@@ -7,7 +7,7 @@ using Roslynator.VisualStudio.TypeConverters;
 
 namespace Roslynator.VisualStudio
 {
-    public partial class GeneralOptionsPage : DialogPage
+    public class GeneralOptionsPage : DialogPage
     {
         public GeneralOptionsPage()
         {

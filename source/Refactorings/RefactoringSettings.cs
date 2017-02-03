@@ -4,26 +4,26 @@ namespace Roslynator.CSharp.Refactorings
 {
     public sealed class RefactoringSettings
     {
-        private RefactoringIdentifierSet _disabledRefactorings;
-
         public RefactoringSettings()
         {
-            _disabledRefactorings = new RefactoringIdentifierSet();
+            DisabledRefactorings = new RefactoringIdentifierSet();
         }
 
         public static RefactoringSettings Current { get; } = new RefactoringSettings();
+
+        public RefactoringIdentifierSet DisabledRefactorings { get; set; }
 
         public bool PrefixFieldIdentifierWithUnderscore { get; set; } = true;
 
         public void Reset()
         {
             PrefixFieldIdentifierWithUnderscore = true;
-            _disabledRefactorings.Clear();
+            DisabledRefactorings.Clear();
         }
 
         public bool IsRefactoringEnabled(string identifier)
         {
-            return !_disabledRefactorings.Contains(identifier);
+            return !DisabledRefactorings.Contains(identifier);
         }
 
         public bool IsAnyRefactoringEnabled(string identifier, string identifier2)
@@ -74,12 +74,24 @@ namespace Roslynator.CSharp.Refactorings
 
         public void DisableRefactoring(string identifier)
         {
-            _disabledRefactorings.Add(identifier);
+            DisabledRefactorings.Add(identifier);
         }
 
         public void EnableRefactoring(string identifier)
         {
-            _disabledRefactorings.Remove(identifier);
+            DisabledRefactorings.Remove(identifier);
+        }
+
+        public void SetRefactoring(string identifier, bool isEnabled)
+        {
+            if (isEnabled)
+            {
+                EnableRefactoring(identifier);
+            }
+            else
+            {
+                DisableRefactoring(identifier);
+            }
         }
     }
 }
