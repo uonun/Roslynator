@@ -22,7 +22,7 @@ namespace Roslynator.VisualStudio
 
         public void Apply()
         {
-            RoslynatorCodeRefactoringProvider.DefaultSettings.PrefixFieldIdentifierWithUnderscore = PrefixFieldIdentifierWithUnderscore;
+            RefactoringSettings.Current.PrefixFieldIdentifierWithUnderscore = PrefixFieldIdentifierWithUnderscore;
         }
 
         protected override void OnApply(PageApplyEventArgs e)

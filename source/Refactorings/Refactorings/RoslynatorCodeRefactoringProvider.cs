@@ -11,8 +11,6 @@ namespace Roslynator.CSharp.Refactorings
     [ExportCodeRefactoringProvider(LanguageNames.CSharp, Name = nameof(RoslynatorCodeRefactoringProvider))]
     public class RoslynatorCodeRefactoringProvider : CodeRefactoringProvider
     {
-        public static RefactoringSettings DefaultSettings { get; } = new RefactoringSettings();
-
         public override async Task ComputeRefactoringsAsync(CodeRefactoringContext context)
         {
             SyntaxNode root = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);
@@ -21,7 +19,7 @@ namespace Roslynator.CSharp.Refactorings
             try
             {
 #endif
-                var refactoringContext = new RefactoringContext(context, root, DefaultSettings);
+                var refactoringContext = new RefactoringContext(context, root, RefactoringSettings.Current);
 
                 await refactoringContext.ComputeRefactoringsAsync().ConfigureAwait(false);
 #if DEBUG

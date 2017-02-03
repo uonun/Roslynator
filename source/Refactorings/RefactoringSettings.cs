@@ -11,7 +11,15 @@ namespace Roslynator.CSharp.Refactorings
             _disabledRefactorings = new RefactoringIdentifierSet();
         }
 
+        public static RefactoringSettings Current { get; } = new RefactoringSettings();
+
         public bool PrefixFieldIdentifierWithUnderscore { get; set; } = true;
+
+        public void Reset()
+        {
+            PrefixFieldIdentifierWithUnderscore = true;
+            _disabledRefactorings.Clear();
+        }
 
         public bool IsRefactoringEnabled(string identifier)
         {
@@ -64,16 +72,14 @@ namespace Roslynator.CSharp.Refactorings
                 || IsRefactoringEnabled(identifier6);
         }
 
-        public void SetIsRefactoringEnabled(string identifier, bool isEnabled)
+        public void DisableRefactoring(string identifier)
         {
-            if (isEnabled)
-            {
-                _disabledRefactorings.Remove(identifier);
-            }
-            else
-            {
-                _disabledRefactorings.Add(identifier);
-            }
+            _disabledRefactorings.Add(identifier);
+        }
+
+        public void EnableRefactoring(string identifier)
+        {
+            _disabledRefactorings.Remove(identifier);
         }
     }
 }
