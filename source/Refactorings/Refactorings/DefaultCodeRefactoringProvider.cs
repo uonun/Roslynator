@@ -8,8 +8,8 @@ using Microsoft.CodeAnalysis.CodeRefactorings;
 
 namespace Roslynator.CSharp.Refactorings
 {
-    [ExportCodeRefactoringProvider(LanguageNames.CSharp, Name = nameof(RoslynatorCodeRefactoringProvider))]
-    public class RoslynatorCodeRefactoringProvider : CodeRefactoringProvider
+    [ExportCodeRefactoringProvider(LanguageNames.CSharp, Name = "RoslynatorCodeRefactoringProvider")]
+    public class DefaultCodeRefactoringProvider : CodeRefactoringProvider
     {
         public override async Task ComputeRefactoringsAsync(CodeRefactoringContext context)
         {
@@ -27,7 +27,7 @@ namespace Roslynator.CSharp.Refactorings
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.ToString());
-                Debug.Assert(false, nameof(RoslynatorCodeRefactoringProvider));
+                Debug.Assert(false, nameof(DefaultCodeRefactoringProvider));
                 throw;
             }
 #endif
