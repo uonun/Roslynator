@@ -1082,19 +1082,19 @@ namespace Roslynator.CSharp
             return SyntaxFactory.ObjectCreationExpression(type, argumentList, default(InitializerExpressionSyntax));
         }
 
-        public static ParameterSyntax Parameter(TypeSyntax type, SyntaxToken identifier)
+        public static ParameterSyntax Parameter(TypeSyntax type, SyntaxToken identifier, EqualsValueClauseSyntax @default = null)
         {
-            return Parameter(default(SyntaxTokenList), type, identifier);
+            return Parameter(default(SyntaxTokenList), type, identifier, @default);
         }
 
-        public static ParameterSyntax Parameter(SyntaxTokenList modifiers, TypeSyntax type, SyntaxToken identifier)
+        public static ParameterSyntax Parameter(SyntaxTokenList modifiers, TypeSyntax type, SyntaxToken identifier, EqualsValueClauseSyntax @default = null)
         {
             return SyntaxFactory.Parameter(
                 default(SyntaxList<AttributeListSyntax>),
                 modifiers,
                 type,
                 identifier,
-                default(EqualsValueClauseSyntax));
+                @default);
         }
 
         public static PrefixUnaryExpressionSyntax PreIncrementExpression(ExpressionSyntax operand)
