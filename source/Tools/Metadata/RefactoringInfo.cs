@@ -11,6 +11,7 @@ namespace Roslynator.Metadata
     public class RefactoringInfo
     {
         public RefactoringInfo(
+            string id,
             string identifier,
             string title,
             bool isEnabledByDefault,
@@ -19,6 +20,7 @@ namespace Roslynator.Metadata
             IList<SyntaxInfo> syntaxes,
             IList<ImageInfo> images)
         {
+            Id = id;
             Identifier = identifier;
             Title = title;
             IsEnabledByDefault = isEnabledByDefault;
@@ -35,7 +37,10 @@ namespace Roslynator.Metadata
             foreach (XElement element in doc.Root.Elements())
             {
                 yield return new RefactoringInfo(
-                    element.Attribute("Id").Value,
+                    (element.Attribute("Id") != null)
+                        ? element.Attribute("Id").Value
+                        : null,
+                    element.Attribute("Identifier").Value,
                     element.Attribute("Title").Value,
                     (element.Attribute("IsEnabledByDefault") != null)
                         ? bool.Parse(element.Attribute("IsEnabledByDefault").Value)
@@ -54,6 +59,8 @@ namespace Roslynator.Metadata
                         : new List<ImageInfo>());
             }
         }
+
+        public string Id { get; }
 
         public string Identifier { get; }
 

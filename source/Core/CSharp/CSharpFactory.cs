@@ -662,6 +662,16 @@ namespace Roslynator.CSharp
             return Token(SyntaxKind.BreakKeyword);
         }
 
+        public static SyntaxToken OutKeyword()
+        {
+            return Token(SyntaxKind.OutKeyword);
+        }
+
+        public static SyntaxToken RefKeyword()
+        {
+            return Token(SyntaxKind.RefKeyword);
+        }
+
         public static IdentifierNameSyntax VarType()
         {
             return IdentifierName("var");
@@ -1074,9 +1084,14 @@ namespace Roslynator.CSharp
 
         public static ParameterSyntax Parameter(TypeSyntax type, SyntaxToken identifier)
         {
+            return Parameter(default(SyntaxTokenList), type, identifier);
+        }
+
+        public static ParameterSyntax Parameter(SyntaxTokenList modifiers, TypeSyntax type, SyntaxToken identifier)
+        {
             return SyntaxFactory.Parameter(
                 default(SyntaxList<AttributeListSyntax>),
-                default(SyntaxTokenList),
+                modifiers,
                 type,
                 identifier,
                 default(EqualsValueClauseSyntax));
@@ -1203,6 +1218,59 @@ namespace Roslynator.CSharp
                 default(SyntaxList<AttributeListSyntax>),
                 identifier,
                 EqualsValueClause(value));
+        }
+
+        public static InitializerExpressionSyntax ObjectInitializerExpression(SeparatedSyntaxList<ExpressionSyntax> expressions = default(SeparatedSyntaxList<ExpressionSyntax>))
+        {
+            return InitializerExpression(SyntaxKind.ObjectInitializerExpression, expressions);
+        }
+
+        public static InitializerExpressionSyntax ObjectInitializerExpression(
+            SyntaxToken openBraceToken,
+            SeparatedSyntaxList<ExpressionSyntax> expressions,
+            SyntaxToken closeBraceToken)
+        {
+            return InitializerExpression(SyntaxKind.ObjectInitializerExpression, openBraceToken, expressions, closeBraceToken);
+        }
+
+        public static MethodDeclarationSyntax MethodDeclaration(
+            SyntaxTokenList modifiers,
+            TypeSyntax returnType,
+            SyntaxToken identifier,
+            ParameterListSyntax parameterList,
+            BlockSyntax body)
+        {
+            return SyntaxFactory.MethodDeclaration(
+                default(SyntaxList<AttributeListSyntax>),
+                modifiers,
+                returnType,
+                default(ExplicitInterfaceSpecifierSyntax),
+                identifier,
+                default(TypeParameterListSyntax),
+                parameterList,
+                default(SyntaxList<TypeParameterConstraintClauseSyntax>),
+                body,
+                default(ArrowExpressionClauseSyntax));
+        }
+
+        public static MethodDeclarationSyntax MethodDeclaration(
+            SyntaxTokenList modifiers,
+            TypeSyntax returnType,
+            SyntaxToken identifier,
+            ParameterListSyntax parameterList,
+            ArrowExpressionClauseSyntax expressionBody)
+        {
+            return SyntaxFactory.MethodDeclaration(
+                default(SyntaxList<AttributeListSyntax>),
+                modifiers,
+                returnType,
+                default(ExplicitInterfaceSpecifierSyntax),
+                identifier,
+                default(TypeParameterListSyntax),
+                parameterList,
+                default(SyntaxList<TypeParameterConstraintClauseSyntax>),
+                default(BlockSyntax),
+                expressionBody);
         }
     }
 }

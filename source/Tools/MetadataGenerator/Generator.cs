@@ -192,16 +192,54 @@ namespace MetadataGenerator
                 sw.WriteLine("## Roslynator Refactorings");
                 sw.WriteLine();
 
-                sw.WriteLine(" Title | Enabled by Default ");
-                sw.WriteLine(" --- |:---:");
+                sw.WriteLine("Id | Title | Enabled by Default ");
+                sw.WriteLine("--- | --- |:---:");
 
                 foreach (RefactoringInfo info in Refactorings.OrderBy(f => f.Title, StringComparer))
                 {
+                    sw.Write(info.Id);
+                    sw.Write('|');
                     sw.Write("[" + MarkdownHelper.Escape(info.Title.TrimEnd('.')) + "](Refactorings.md#" + info.GetGitHubHref() + ")");
                     sw.Write('|');
                     sw.Write((info.IsEnabledByDefault) ? "x" : "");
                     sw.WriteLine();
                 }
+
+                return sw.ToString();
+            }
+        }
+
+        public string CreateDefaultConfigFile()
+        {
+            var doc = new XDocument(
+                new XElement("roslynator",
+                    new XElement("settings",
+                        new XElement("general",
+                            new XElement("prefixFieldIdentifierWithUnderscore", new XAttribute("isEnabled", true))),
+                        new XElement("refactorings",
+                            Refactorings.Select(f =>
+                            {
+                                return new XElement("refactoring",
+                                    new XAttribute("id", f.Id),
+                                    new XAttribute("isEnabled", f.IsEnabledByDefault));
+                            })
+                        )
+                    )
+                )
+            );
+
+            var xmlWriterSettings = new XmlWriterSettings()
+            {
+                OmitXmlDeclaration = false,
+                NewLineChars = "\r\n",
+                IndentChars = "  ",
+                Indent = true
+            };
+
+            using (var sw = new Utf8StringWriter())
+            {
+                using (XmlWriter xmlWriter = XmlWriter.Create(sw, xmlWriterSettings))
+                    doc.WriteTo(xmlWriter);
 
                 return sw.ToString();
             }

@@ -31,12 +31,13 @@ namespace CodeGenerator
 
             var refactoringIdentifiersGenerator = new RefactoringIdentifiersGenerator();
             writer.SaveCode(
-                 Path.Combine(dirPath, @"Refactorings\RefactoringIdentifiers.cs"),
-                refactoringIdentifiersGenerator.Generate(refactorings));
+                Path.Combine(dirPath, @"Refactorings\RefactoringIdentifiers.cs"),
+                refactoringIdentifiersGenerator.Generate(refactorings),
+                normalizeWhitespace: false);
 
             var optionsPagePropertiesGenerator = new OptionsPagePropertiesGenerator();
             writer.SaveCode(
-                 Path.Combine(dirPath, @"VisualStudio.Common\RefactoringsOptionsPage.Generated.cs"),
+                Path.Combine(dirPath, @"VisualStudio.Common\RefactoringsOptionsPage.Generated.cs"),
                 optionsPagePropertiesGenerator.Generate(refactorings));
 
 #if DEBUG

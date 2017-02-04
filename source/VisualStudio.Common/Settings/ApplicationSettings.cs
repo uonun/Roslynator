@@ -8,7 +8,7 @@ namespace Roslynator.VisualStudio.Settings
 {
     public sealed class ApplicationSettings
     {
-        public const string FileName = ".roslynatorconfig";
+        public const string FileName = "roslynator.config";
 
         public ApplicationSettings()
         {
@@ -78,12 +78,12 @@ namespace Roslynator.VisualStudio.Settings
 
         private static void LoadRefactoring(XElement element, ApplicationSettings settings)
         {
-            string identifier;
-            if (element.TryGetAttributeValueAsString("identifier", out identifier))
+            string id;
+            if (element.TryGetAttributeValueAsString("id", out id))
             {
                 bool isEnabled;
                 if (element.TryGetAttributeValueAsBoolean("isEnabled", out isEnabled))
-                    settings.Refactorings[identifier] = isEnabled;
+                    settings.Refactorings[id] = isEnabled;
             }
         }
     }

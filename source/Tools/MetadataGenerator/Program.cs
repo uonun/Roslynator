@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Josef Pihrt. All rights reserved. Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
@@ -23,7 +24,7 @@ namespace MetadataGenerator
 
             string dirPath = args[0];
 
-            SortRefactoringsInFile(Path.Combine(dirPath, @"Refactorings\Refactorings.xml"));
+            SortRefactoringsAndAddMissingIds(Path.Combine(dirPath, @"Refactorings\Refactorings.xml"));
 
             var generator = new Generator();
 
@@ -75,6 +76,10 @@ namespace MetadataGenerator
                 generator.CreateRefactoringsReadMe());
 
             writer.SaveCode(
+                Path.Combine(dirPath, @"Refactorings\RoslynatorConfig.xml"),
+                generator.CreateDefaultConfigFile());
+
+            writer.SaveCode(
                 Path.Combine(dirPath, @"Analyzers\README.md"),
                 generator.CreateAnalyzersReadMe());
 
@@ -88,15 +93,40 @@ namespace MetadataGenerator
 #endif
         }
 
-        public static void SortRefactoringsInFile(string filePath)
+        public static void SortRefactoringsAndAddMissingIds(string filePath)
         {
             XDocument doc = XDocument.Load(filePath, LoadOptions.PreserveWhitespace);
 
             XElement root = doc.Root;
 
-            IOrderedEnumerable<XElement> newElements = root
+            IEnumerable<XElement> newElements = root
                 .Elements()
-                .OrderBy(f => f.Attribute("Id").Value);
+                .OrderBy(f => f.Attribute("Identifier").Value);
+
+            if (newElements.Any(f => f.Attribute("Id") == null))
+            {
+                int maxValue = newElements.Where(f => f.Attribute("Id") != null)
+                    .Select(f => int.Parse(f.Attribute("Id").Value.Substring(2)))
+                    .DefaultIfEmpty()
+                    .Max();
+
+                int idNumber = maxValue + 1;
+
+                newElements = newElements.Select(f =>
+                {
+                    if (f.Attribute("Id") != null)
+                    {
+                        return f;
+                    }
+                    else
+                    {
+                        string id = $"RR{idNumber.ToString().PadLeft(4, '0')}";
+                        f.ReplaceAttributes(new XAttribute("Id", id), f.Attributes());
+                        idNumber++;
+                        return f;
+                    }
+                });
+            }
 
             root.ReplaceAll(newElements);
 
