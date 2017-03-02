@@ -71,7 +71,7 @@ namespace Roslynator.CSharp.Refactorings
 
         private static void ReportDiagnostic(SyntaxNodeAnalysisContext context, ExpressionSyntax expression)
         {
-            context.ReportDiagnostic(DiagnosticDescriptors.UsePredefinedType, expression.GetLocation());
+            context.ReportDiagnostic(DiagnosticDescriptors.UsePredefinedType, expression);
         }
 
         public static async Task<Document> RefactorAsync(
@@ -80,7 +80,7 @@ namespace Roslynator.CSharp.Refactorings
             ITypeSymbol typeSymbol,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            TypeSyntax newType = typeSymbol.ToSyntax()
+            TypeSyntax newType = typeSymbol.ToTypeSyntax()
                 .WithTriviaFrom(node)
                 .WithFormatterAnnotation();
 

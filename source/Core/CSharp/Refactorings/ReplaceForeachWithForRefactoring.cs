@@ -14,7 +14,7 @@ using static Roslynator.CSharp.CSharpFactory;
 
 namespace Roslynator.CSharp.Refactorings
 {
-    public static class ReplaceForEachWithForRefactoring
+    internal static class ReplaceForEachWithForRefactoring
     {
         public static bool CanRefactor(
             ForEachStatementSyntax forEachStatement,
@@ -31,9 +31,9 @@ namespace Roslynator.CSharp.Refactorings
 
             if (typeSymbol?.IsErrorType() == false)
             {
-                return typeSymbol.IsArrayType()
-                   || typeSymbol.IsString()
-                   || Symbol.ContainsPublicIndexerWithInt32Parameter(typeSymbol);
+                return typeSymbol.IsString()
+                   || typeSymbol.IsArrayType()
+                   || SymbolUtility.FindGetItemMethodWithInt32Parameter(typeSymbol)?.IsAccessible(forEachStatement.SpanStart, semanticModel) == true;
             }
 
             return false;
@@ -59,7 +59,7 @@ namespace Roslynator.CSharp.Refactorings
                 document.Project.Solution,
                 cancellationToken).ConfigureAwait(false);
 
-            string identifier = Identifier.EnsureUniqueLocalName("i", forEachStatement.Statement.SpanStart, semanticModel, cancellationToken);
+            string identifier = Identifier.EnsureUniqueLocalName("i", forEachStatement.Statement, semanticModel, cancellationToken);
 
             ForStatementSyntax forStatement = ForStatement(
                 declaration: VariableDeclaration(

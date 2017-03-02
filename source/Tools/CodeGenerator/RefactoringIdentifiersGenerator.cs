@@ -17,7 +17,7 @@ namespace CodeGenerator
 {
     public class RefactoringIdentifiersGenerator : Generator
     {
-        public CompilationUnitSyntax Generate(IEnumerable<RefactoringInfo> refactorings)
+        public CompilationUnitSyntax Generate(IEnumerable<RefactoringDescriptor> refactorings)
         {
             CompilationUnitSyntax compilationUnit = CompilationUnit()
                 .WithUsings(List(new UsingDirectiveSyntax[] {
@@ -81,9 +81,9 @@ namespace CodeGenerator
             return newClassDeclaration;
         }
 
-        private static IEnumerable<MemberDeclarationSyntax> CreateMembers(IEnumerable<RefactoringInfo> refactorings)
+        private static IEnumerable<MemberDeclarationSyntax> CreateMembers(IEnumerable<RefactoringDescriptor> refactorings)
         {
-            foreach (RefactoringInfo refactoring in refactorings)
+            foreach (RefactoringDescriptor refactoring in refactorings)
                 yield return CreateConstantDeclaration(refactoring.Identifier);
 
             TypeSyntax type = ParseTypeName("Dictionary<string, string>");

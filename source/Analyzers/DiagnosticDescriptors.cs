@@ -286,17 +286,6 @@ namespace Roslynator.CSharp
             isEnabledByDefault: false
         );
 
-        public static readonly DiagnosticDescriptor RemoveRedundantBraces = new DiagnosticDescriptor(
-            id: DiagnosticIdentifiers.RemoveRedundantBraces,
-            title: "Remove redundant braces.",
-            messageFormat: "Remove redundant braces.",
-            category: DiagnosticCategories.Redundancy,
-            defaultSeverity: DiagnosticSeverity.Info,
-            isEnabledByDefault: true
-        );
-
-        public static readonly DiagnosticDescriptor RemoveRedundantBracesFadeOut = RemoveRedundantBraces.CreateFadeOut();
-
         public static readonly DiagnosticDescriptor RemoveRedundantParentheses = new DiagnosticDescriptor(
             id: DiagnosticIdentifiers.RemoveRedundantParentheses,
             title: "Remove redundant parentheses.",
@@ -311,7 +300,7 @@ namespace Roslynator.CSharp
         public static readonly DiagnosticDescriptor RemoveRedundantBooleanLiteral = new DiagnosticDescriptor(
             id: DiagnosticIdentifiers.RemoveRedundantBooleanLiteral,
             title: "Remove redundant boolean literal.",
-            messageFormat: "Remove redundant boolean literal.",
+            messageFormat: "Remove redundant '{0}'.",
             category: DiagnosticCategories.Redundancy,
             defaultSeverity: DiagnosticSeverity.Info,
             isEnabledByDefault: true,
@@ -455,16 +444,16 @@ namespace Roslynator.CSharp
 
         public static readonly DiagnosticDescriptor NonAsynchronousMethodNameShouldNotEndWithAsyncFadeOut = NonAsynchronousMethodNameShouldNotEndWithAsync.CreateFadeOut();
 
-        public static readonly DiagnosticDescriptor ReplaceAnonymousMethodWithLambdaExpression = new DiagnosticDescriptor(
-            id: DiagnosticIdentifiers.ReplaceAnonymousMethodWithLambdaExpression,
-            title: "Replace anonymous method with lambda expression.",
-            messageFormat: "Replace anonymous method with lambda expression.",
+        public static readonly DiagnosticDescriptor UseLambdaExpressionInsteadOfAnonymousMethod = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.UseLambdaExpressionInsteadOfAnonymousMethod,
+            title: "Use lambda expression instead of anonymous method.",
+            messageFormat: "Use lambda expression instead of anonymous method.",
             category: DiagnosticCategories.Usage,
             defaultSeverity: DiagnosticSeverity.Info,
             isEnabledByDefault: true
         );
 
-        public static readonly DiagnosticDescriptor ReplaceAnonymousMethodWithLambdaExpressionFadeOut = ReplaceAnonymousMethodWithLambdaExpression.CreateFadeOut();
+        public static readonly DiagnosticDescriptor UseLambdaExpressionInsteadOfAnonymousMethodFadeOut = UseLambdaExpressionInsteadOfAnonymousMethod.CreateFadeOut();
 
         public static readonly DiagnosticDescriptor SimplifyBooleanComparison = new DiagnosticDescriptor(
             id: DiagnosticIdentifiers.SimplifyBooleanComparison,
@@ -737,10 +726,10 @@ namespace Roslynator.CSharp
             isEnabledByDefault: true
         );
 
-        public static readonly DiagnosticDescriptor ReplaceStringEmptyWithEmptyStringLiteral = new DiagnosticDescriptor(
-            id: DiagnosticIdentifiers.ReplaceStringEmptyWithEmptyStringLiteral,
-            title: "Replace string.Empty with \"\".",
-            messageFormat: "Replace string.Empty with \"\".",
+        public static readonly DiagnosticDescriptor UseEmptyStringLiteralInsteadOfStringEmpty = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.UseEmptyStringLiteralInsteadOfStringEmpty,
+            title: "Use \"\" instead of string.Empty.",
+            messageFormat: "Use \"\" instead of string.Empty",
             category: DiagnosticCategories.General,
             defaultSeverity: DiagnosticSeverity.Info,
             isEnabledByDefault: false,
@@ -756,10 +745,10 @@ namespace Roslynator.CSharp
             isEnabledByDefault: true
         );
 
-        public static readonly DiagnosticDescriptor ReplaceAnyMethodWithCountOrLengthProperty = new DiagnosticDescriptor(
-            id: DiagnosticIdentifiers.ReplaceAnyMethodWithCountOrLengthProperty,
-            title: "Replace 'Any' method with 'Count' or 'Length' property.",
-            messageFormat: "Replace 'Any' method with '{0}' property.",
+        public static readonly DiagnosticDescriptor UseCountOrLengthPropertyInsteadOfAnyMethod = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.UseCountOrLengthPropertyInsteadOfAnyMethod,
+            title: "Use 'Count/Length' property instead of 'Any' method.",
+            messageFormat: "Use '{0}' property instead of 'Any' method.",
             category: DiagnosticCategories.Performance,
             defaultSeverity: DiagnosticSeverity.Info,
             isEnabledByDefault: true
@@ -774,43 +763,43 @@ namespace Roslynator.CSharp
             isEnabledByDefault: false
         );
 
-        public static readonly DiagnosticDescriptor ReplaceCountMethodWithCountOrLengthProperty = new DiagnosticDescriptor(
-            id: DiagnosticIdentifiers.ReplaceCountMethodWithCountOrLengthProperty,
-            title: "Replace 'Count' method with 'Count' or 'Length' property.",
-            messageFormat: "Replace 'Count' method with '{0}' property.",
+        public static readonly DiagnosticDescriptor UseCountOrLengthPropertyInsteadOfCountMethod = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.UseCountOrLengthPropertyInsteadOfCountMethod,
+            title: "Use 'Count/Length' property instead of 'Count' method.",
+            messageFormat: "Use '{0}' property instead of 'Count' method.",
             category: DiagnosticCategories.Performance,
             defaultSeverity: DiagnosticSeverity.Warning,
             isEnabledByDefault: true
         );
 
-        public static readonly DiagnosticDescriptor ReplaceCountMethodWithAnyMethod = new DiagnosticDescriptor(
-            id: DiagnosticIdentifiers.ReplaceCountMethodWithAnyMethod,
-            title: "Replace 'Count' method with 'Any' method.",
-            messageFormat: "Replace 'Count' method with 'Any' method.",
+        public static readonly DiagnosticDescriptor UseAnyMethodInsteadOfCountMethod = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.UseAnyMethodInsteadOfCountMethod,
+            title: "Use 'Any' method instead of 'Count' method.",
+            messageFormat: "Use 'Any' method instead of 'Count' method.",
             category: DiagnosticCategories.Performance,
             defaultSeverity: DiagnosticSeverity.Warning,
             isEnabledByDefault: true
         );
 
-        public static readonly DiagnosticDescriptor ReplaceConditionalExpressionWithCoalesceExpression = new DiagnosticDescriptor(
-            id: DiagnosticIdentifiers.ReplaceConditionalExpressionWithCoalesceExpression,
-            title: "Replace conditional expression with coalesce expression.",
-            messageFormat: "Replace conditional expression with coalesce expression.",
+        public static readonly DiagnosticDescriptor UseCoalesceExpressionInsteadOfConditionalExpression = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.UseCoalesceExpressionInsteadOfConditionalExpression,
+            title: "Use coalesce expression instead of conditional expression.",
+            messageFormat: "Use coalesce expression instead of conditional expression.",
             category: DiagnosticCategories.Simplification,
             defaultSeverity: DiagnosticSeverity.Info,
             isEnabledByDefault: true
         );
 
-        public static readonly DiagnosticDescriptor ReplacePropertyWithAutoImplementedProperty = new DiagnosticDescriptor(
-            id: DiagnosticIdentifiers.ReplacePropertyWithAutoImplementedProperty,
-            title: "Replace property with auto-implemented property.",
-            messageFormat: "Replace property with auto-implemented property.",
+        public static readonly DiagnosticDescriptor UseAutoImplementedProperty = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.UseAutoImplementedProperty,
+            title: "Use auto-implemented property instead of expanded property.",
+            messageFormat: "Use auto-implemented property instead of expanded property.",
             category: DiagnosticCategories.Simplification,
             defaultSeverity: DiagnosticSeverity.Info,
             isEnabledByDefault: true
         );
 
-        public static readonly DiagnosticDescriptor ReplacePropertyWithAutoImplementedPropertyFadeOut = ReplacePropertyWithAutoImplementedProperty.CreateFadeOut();
+        public static readonly DiagnosticDescriptor UseAutoImplementedPropertyFadeOut = UseAutoImplementedProperty.CreateFadeOut();
 
         public static readonly DiagnosticDescriptor UseLinefeedAsNewLine = new DiagnosticDescriptor(
             id: DiagnosticIdentifiers.UseLinefeedAsNewLine,
@@ -830,10 +819,10 @@ namespace Roslynator.CSharp
             isEnabledByDefault: false
         );
 
-        public static readonly DiagnosticDescriptor AvoidUsageOfTab = new DiagnosticDescriptor(
-            id: DiagnosticIdentifiers.AvoidUsageOfTab,
-            title: "Avoid usage of tab.",
-            messageFormat: "Replace tab with spaces.",
+        public static readonly DiagnosticDescriptor UseSpacesInsteadOfTab = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.UseSpacesInsteadOfTab,
+            title: "Use space(s) instead of tab.",
+            messageFormat: "Use space(s) instead of tab.",
             category: DiagnosticCategories.General,
             defaultSeverity: DiagnosticSeverity.Warning,
             isEnabledByDefault: false
@@ -904,10 +893,10 @@ namespace Roslynator.CSharp
             isEnabledByDefault: true
         );
 
-        public static readonly DiagnosticDescriptor UseBitwiseOperationInsteadOfHasFlagMethod = new DiagnosticDescriptor(
-            id: DiagnosticIdentifiers.UseBitwiseOperationInsteadOfHasFlagMethod,
-            title: "Use bitwise operation instead of 'HasFlag' method.",
-            messageFormat: "Use bitwise operation instead of 'HasFlag' method.",
+        public static readonly DiagnosticDescriptor UseBitwiseOperationInsteadOfCallingHasFlag = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.UseBitwiseOperationInsteadOfCallingHasFlag,
+            title: "Use bitwise operation instead of calling 'HasFlag'.",
+            messageFormat: "Use bitwise operation instead of calling 'HasFlag'.",
             category: DiagnosticCategories.Performance,
             defaultSeverity: DiagnosticSeverity.Info,
             isEnabledByDefault: true
@@ -1448,5 +1437,199 @@ namespace Roslynator.CSharp
             defaultSeverity: DiagnosticSeverity.Info,
             isEnabledByDefault: false
         );
+
+        public static readonly DiagnosticDescriptor SortEnumMembers = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.SortEnumMembers,
+            title: "Sort enum members.",
+            messageFormat: "Sort '{0}' members.",
+            category: DiagnosticCategories.Readability,
+            defaultSeverity: DiagnosticSeverity.Info,
+            isEnabledByDefault: true
+        );
+
+        public static readonly DiagnosticDescriptor UseStringComparison = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.UseStringComparison,
+            title: "Use StringComparison when comparing strings.",
+            messageFormat: "Use StringComparison when comparing strings.",
+            category: DiagnosticCategories.Usage,
+            defaultSeverity: DiagnosticSeverity.Warning,
+            isEnabledByDefault: true
+        );
+
+        public static readonly DiagnosticDescriptor UseStringLengthInsteadOfComparisonWithEmptyString = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.UseStringLengthInsteadOfComparisonWithEmptyString,
+            title: "Use string.Length instead of comparison with empty string.",
+            messageFormat: "Use string.Length instead of comparison with empty string.",
+            category: DiagnosticCategories.Usage,
+            defaultSeverity: DiagnosticSeverity.Info,
+            isEnabledByDefault: true
+        );
+
+        public static readonly DiagnosticDescriptor CompositeEnumValueContainsUndefinedFlag = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.CompositeEnumValueContainsUndefinedFlag,
+            title: "Composite enum value contains undefined flag.",
+            messageFormat: "Composite enum value contains undefined flag {0}.",
+            category: DiagnosticCategories.Design,
+            defaultSeverity: DiagnosticSeverity.Warning,
+            isEnabledByDefault: true
+        );
+
+        public static readonly DiagnosticDescriptor AvoidStaticMembersInGenericTypes = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.AvoidStaticMembersInGenericTypes,
+            title: "Avoid static members in generic types.",
+            messageFormat: "Avoid static members in generic types.",
+            category: DiagnosticCategories.Design,
+            defaultSeverity: DiagnosticSeverity.Info,
+            isEnabledByDefault: true
+        );
+
+        public static readonly DiagnosticDescriptor UseGenericEventHandler = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.UseGenericEventHandler,
+            title: "Use EventHandler<T>.",
+            messageFormat: "Use EventHandler<T>.",
+            category: DiagnosticCategories.Usage,
+            defaultSeverity: DiagnosticSeverity.Info,
+            isEnabledByDefault: true
+        );
+
+        public static readonly DiagnosticDescriptor AbstractTypeShouldNotHavePublicConstructors = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.AbstractTypeShouldNotHavePublicConstructors,
+            title: "Abstract type should not have public constructors.",
+            messageFormat: "Abstract type should not have public constructors.",
+            category: DiagnosticCategories.Design,
+            defaultSeverity: DiagnosticSeverity.Info,
+            isEnabledByDefault: true
+        );
+
+        public static readonly DiagnosticDescriptor EnumMemberShouldDeclareExplicitValue = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.EnumMemberShouldDeclareExplicitValue,
+            title: "Enum member should declare explicit value.",
+            messageFormat: "Enum member should declare explicit value.",
+            category: DiagnosticCategories.Readability,
+            defaultSeverity: DiagnosticSeverity.Info,
+            isEnabledByDefault: true
+        );
+
+        public static readonly DiagnosticDescriptor AvoidChainOfAssignments = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.AvoidChainOfAssignments,
+            title: "Avoid chain of assignments.",
+            messageFormat: "Avoid chain of assignments.",
+            category: DiagnosticCategories.Readability,
+            defaultSeverity: DiagnosticSeverity.Info,
+            isEnabledByDefault: false
+        );
+
+        public static readonly DiagnosticDescriptor UnusedParameter = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.UnusedParameter,
+            title: "Unused parameter.",
+            messageFormat: "Unused parameter '{0}'.",
+            category: DiagnosticCategories.Redundancy,
+            defaultSeverity: DiagnosticSeverity.Info,
+            isEnabledByDefault: true,
+            customTags: WellKnownDiagnosticTags.Unnecessary
+        );
+
+        public static readonly DiagnosticDescriptor UnusedTypeParameter = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.UnusedTypeParameter,
+            title: "Unused type parameter.",
+            messageFormat: "Unused type parameter '{0}'.",
+            category: DiagnosticCategories.Redundancy,
+            defaultSeverity: DiagnosticSeverity.Info,
+            isEnabledByDefault: true,
+            customTags: WellKnownDiagnosticTags.Unnecessary
+        );
+
+        public static readonly DiagnosticDescriptor UnconstrainedTypeParameterCheckedForNull = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.UnconstrainedTypeParameterCheckedForNull,
+            title: "Unconstrained type parameter checked for null.",
+            messageFormat: "Unconstrained type parameter checked for null.",
+            category: DiagnosticCategories.Usage,
+            defaultSeverity: DiagnosticSeverity.Warning,
+            isEnabledByDefault: true
+        );
+
+        public static readonly DiagnosticDescriptor ValueTypeCheckedForNull = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.ValueTypeCheckedForNull,
+            title: "Value type checked for null.",
+            messageFormat: "Value type checked for null.",
+            category: DiagnosticCategories.Usage,
+            defaultSeverity: DiagnosticSeverity.Info,
+            isEnabledByDefault: true
+        );
+
+        public static readonly DiagnosticDescriptor OverridingMemberCannotChangeAccessModifiers = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.OverridingMemberCannotChangeAccessModifiers,
+            title: "Overriding member cannot change access modifiers.",
+            messageFormat: "Overriding member cannot change access modifiers.",
+            category: DiagnosticCategories.ErrorFix,
+            defaultSeverity: DiagnosticSeverity.Hidden,
+            isEnabledByDefault: true
+        );
+
+        public static readonly DiagnosticDescriptor ParameterNameDiffersFromBase = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.ParameterNameDiffersFromBase,
+            title: "Parameter name differs from base name.",
+            messageFormat: "Parameter name '{0}' differs from base name '{1}'.",
+            category: DiagnosticCategories.Maintainability,
+            defaultSeverity: DiagnosticSeverity.Warning,
+            isEnabledByDefault: true
+        );
+
+        public static readonly DiagnosticDescriptor MarkFieldAsReadOnly = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.MarkFieldAsReadOnly,
+            title: "Mark field as read-only.",
+            messageFormat: "Mark field as read-only.",
+            category: DiagnosticCategories.Design,
+            defaultSeverity: DiagnosticSeverity.Info,
+            isEnabledByDefault: true
+        );
+
+        public static readonly DiagnosticDescriptor UseReadOnlyAutoProperty = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.UseReadOnlyAutoProperty,
+            title: "Use read-only auto-implemented property.",
+            messageFormat: "Use read-only auto-implemented property.",
+            category: DiagnosticCategories.Design,
+            defaultSeverity: DiagnosticSeverity.Info,
+            isEnabledByDefault: true,
+            customTags: WellKnownDiagnosticTags.Unnecessary
+        );
+
+        public static readonly DiagnosticDescriptor SimplifyLazilyInitializedProperty = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.SimplifyLazilyInitializedProperty,
+            title: "Simplify lazily initialized property.",
+            messageFormat: "Simplify lazily initialized property.",
+            category: DiagnosticCategories.Simplification,
+            defaultSeverity: DiagnosticSeverity.Info,
+            isEnabledByDefault: true
+        );
+
+        public static readonly DiagnosticDescriptor UseIsOperatorInsteadOfAsOperator = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.UseIsOperatorInsteadOfAsOperator,
+            title: "Use is operator instead of as operator.",
+            messageFormat: "Use is operator instead of as operator.",
+            category: DiagnosticCategories.Simplification,
+            defaultSeverity: DiagnosticSeverity.Warning,
+            isEnabledByDefault: true
+        );
+
+        public static readonly DiagnosticDescriptor UseCoalesceExpressionInsteadOfIf = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.UseCoalesceExpressionInsteadOfIf,
+            title: "Use coalesce expression instead of if.",
+            messageFormat: "Use coalesce expression instead of if.",
+            category: DiagnosticCategories.Simplification,
+            defaultSeverity: DiagnosticSeverity.Info,
+            isEnabledByDefault: true
+        );
+
+        public static readonly DiagnosticDescriptor RemoveRedundantAsyncAwait = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.RemoveRedundantAsyncAwait,
+            title: "Remove redundant async/await.",
+            messageFormat: "Remove redundant async/await.",
+            category: DiagnosticCategories.Redundancy,
+            defaultSeverity: DiagnosticSeverity.Info,
+            isEnabledByDefault: true
+        );
+
+        public static readonly DiagnosticDescriptor RemoveRedundantAsyncAwaitFadeOut = RemoveRedundantAsyncAwait.CreateFadeOut();
     }
 }

@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -19,6 +20,8 @@ namespace Roslynator.CSharp
 
         public abstract SyntaxList<StatementSyntax> Statements { get; }
 
+        public abstract StatementContainer WithStatements(SyntaxList<StatementSyntax> statements);
+
         public abstract SyntaxNode NodeWithStatements(SyntaxList<StatementSyntax> statements);
 
         public virtual SyntaxNode NodeWithStatements(IEnumerable<StatementSyntax> statements)
@@ -26,21 +29,23 @@ namespace Roslynator.CSharp
             return NodeWithStatements(SyntaxFactory.List(statements));
         }
 
-        public static bool TryCreate(SyntaxNode nodeWithStatements, out StatementContainer container)
+        public static bool TryCreate(StatementSyntax statement, out StatementContainer container)
         {
-            if (nodeWithStatements == null)
-                throw new ArgumentNullException(nameof(nodeWithStatements));
+            if (statement == null)
+                throw new ArgumentNullException(nameof(statement));
 
-            switch (nodeWithStatements.Kind())
+            SyntaxNode parent = statement.Parent;
+
+            switch (parent?.Kind())
             {
                 case SyntaxKind.Block:
                     {
-                        container = new BlockStatementContainer((BlockSyntax)nodeWithStatements);
+                        container = new BlockStatementContainer((BlockSyntax)parent);
                         return true;
                     }
                 case SyntaxKind.SwitchSection:
                     {
-                        container = new SwitchSectionStatementContainer((SwitchSectionSyntax)nodeWithStatements);
+                        container = new SwitchSectionStatementContainer((SwitchSectionSyntax)parent);
                         return true;
                     }
                 default:
@@ -51,21 +56,43 @@ namespace Roslynator.CSharp
             }
         }
 
-        public static bool TryCreate(StatementSyntax statement, out StatementContainer container)
+        public static StatementContainer Create(StatementSyntax statement)
         {
             if (statement == null)
                 throw new ArgumentNullException(nameof(statement));
 
             SyntaxNode parent = statement.Parent;
 
-            if (parent != null)
+            switch (parent?.Kind())
             {
-                return TryCreate(parent, out container);
+                case SyntaxKind.Block:
+                    return new BlockStatementContainer((BlockSyntax)parent);
+                case SyntaxKind.SwitchSection:
+                    return new SwitchSectionStatementContainer((SwitchSectionSyntax)parent);
+                default:
+                    throw new InvalidOperationException();
             }
-            else
+        }
+
+        internal static SyntaxList<StatementSyntax> GetStatements(StatementSyntax statement)
+        {
+            SyntaxNode parent = statement?.Parent;
+
+            switch (parent?.Kind())
             {
-                container = null;
-                return false;
+                case SyntaxKind.Block:
+                    {
+                        return ((BlockSyntax)parent).Statements;
+                    }
+                case SyntaxKind.SwitchSection:
+                    {
+                        return ((SwitchSectionSyntax)parent).Statements;
+                    }
+                default:
+                    {
+                        Debug.Assert(parent == null || EmbeddedStatement.IsEmbeddedStatement(statement), parent.Kind().ToString());
+                        return default(SyntaxList<StatementSyntax>);
+                    }
             }
         }
     }

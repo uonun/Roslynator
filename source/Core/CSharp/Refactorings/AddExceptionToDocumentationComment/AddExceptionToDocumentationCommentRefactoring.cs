@@ -15,7 +15,7 @@ using Roslynator.Extensions;
 
 namespace Roslynator.CSharp.Refactorings.AddExceptionToDocumentationComment
 {
-    public static class AddExceptionToDocumentationCommentRefactoring
+    internal static class AddExceptionToDocumentationCommentRefactoring
     {
         public static AddExceptionToDocumentationCommentAnalysis Analyze(
             ThrowStatementSyntax throwStatement,
@@ -60,7 +60,7 @@ namespace Roslynator.CSharp.Refactorings.AddExceptionToDocumentationComment
             ITypeSymbol exceptionSymbol = semanticModel.GetTypeSymbol(expression, cancellationToken);
 
             if (exceptionSymbol?.IsErrorType() == false
-                && Symbol.IsException(exceptionSymbol, semanticModel))
+                && SymbolUtility.IsException(exceptionSymbol, semanticModel))
             {
                 ISymbol declarationSymbol = GetDeclarationSymbol(node.SpanStart, semanticModel, cancellationToken);
 
@@ -151,7 +151,7 @@ namespace Roslynator.CSharp.Refactorings.AddExceptionToDocumentationComment
                 ITypeSymbol typeSymbol = semanticModel.GetTypeSymbol(expression, cancellationToken);
 
                 if (typeSymbol?.IsErrorType() == false
-                    && Symbol.IsException(typeSymbol, semanticModel))
+                    && SymbolUtility.IsException(typeSymbol, semanticModel))
                 {
                     SyntaxTrivia trivia = declaration.GetSingleLineDocumentationComment();
 
@@ -377,7 +377,7 @@ namespace Roslynator.CSharp.Refactorings.AddExceptionToDocumentationComment
                 sb.Append("\"/>");
 
                 if (exceptionSymbol.Equals(semanticModel.GetTypeByMetadataName(MetadataNames.System_ArgumentNullException)))
-                    sb.Append("\"/> is <c>null</c>.");
+                    sb.Append(" is <c>null</c>.");
             }
 
             sb.Append("</exception>");

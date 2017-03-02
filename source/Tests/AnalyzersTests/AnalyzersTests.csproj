@@ -41,6 +41,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractTypeShouldNotHavePublicConstructors.cs" />
     <Compile Include="AddBraces.cs" />
     <Compile Include="AddBracesToSwitchSectionWithMultipleStatements.cs" />
     <Compile Include="AddDocumentationComment.cs" />
@@ -50,6 +51,8 @@
     <Compile Include="AddEmptyLineAfterLastStatementInDoStatement.cs" />
     <Compile Include="AddExceptionToDocumentationComment.cs" />
     <Compile Include="AddMissingSemicolon.cs" />
+    <Compile Include="AvoidStaticMembersInGenericTypes.cs" />
+    <Compile Include="AvoidChainOfAssignments.cs" />
     <Compile Include="BitwiseOperationOnEnumWithoutFlagsAttribute.cs" />
     <Compile Include="AddParameterToDocumentationComment.cs" />
     <Compile Include="AddParentheses.cs" />
@@ -62,14 +65,28 @@
     <Compile Include="AvoidEmbeddedStatementInIfElse.cs" />
     <Compile Include="AvoidUsageOfWhileStatementToCreateInfiniteLoop.cs" />
     <Compile Include="CallFindMethodInsteadOfFirstOrDefaultMethod.cs" />
-    <Compile Include="CoalesceExpressionIsRedundant.cs" />
+    <Compile Include="MarkFieldAsReadOnly.cs" />
+    <Compile Include="RemoveFileWithNoCode2.cs" />
+    <Compile Include="RemoveRedundantAsyncAwait.cs" />
+    <Compile Include="SimplifyLazilyInitializedProperty.cs" />
+    <Compile Include="UnusedParameter.cs" />
+    <Compile Include="ParameterNameDiffersFromBase.cs" />
+    <Compile Include="OverridingMethodCannotChangeAccessModifiers.cs" />
+    <Compile Include="UseIsOperatorInsteadOfAsOperator.cs" />
+    <Compile Include="UseCoalesceExpressionInsteadOfIf.cs" />
+    <Compile Include="UseReadOnlyAutoProperty.cs" />
+    <Compile Include="ValueTypeCheckedForNull.cs" />
+    <Compile Include="NullCheckOfUnconstrainedTypeParameter.cs" />
+    <Compile Include="SimplifyCoalesceExpression.cs" />
     <Compile Include="CombineEnumerableWhereMethodChain.cs" />
+    <Compile Include="CompositeEnumValueContainsUndefinedFlag.cs" />
     <Compile Include="DeclareEnumMemberWithZeroValue.cs" />
     <Compile Include="DeclareTypeInsideNamespace.cs" />
     <Compile Include="AvoidUsageOfForStatementToCreateInfiniteLoop.cs" />
     <Compile Include="AddStaticModifierToAllPartialClassDeclarations.cs" />
     <Compile Include="DefaultSwitchLabelShouldBeLastLabelInSection.cs" />
     <Compile Include="AvoidMultilineExpressionBodyRefactoring.cs" />
+    <Compile Include="EnumMemberShouldDeclareExplicitValue.cs" />
     <Compile Include="FormatAccessorList.cs" />
     <Compile Include="FormatEachStatementOnSeparateLine.cs" />
     <Compile Include="FormatEmbeddedStatementOnSeparateLine.cs" />
@@ -123,6 +140,8 @@
     <Compile Include="ReplaceIfStatementWithReturnStatement.cs" />
     <Compile Include="ReplaceReturnStatementWithExpressionStatement.cs" />
     <Compile Include="ReplaceReturnWithYieldReturn.cs" />
+    <Compile Include="SortEnumMembers.cs" />
+    <Compile Include="UnusedTypeParameter.cs" />
     <Compile Include="UseConditionalAccess.cs" />
     <Compile Include="UseElementAccessInsteadOfElementAt.cs" />
     <Compile Include="Tuple.cs" />
@@ -136,8 +155,10 @@
     <Compile Include="UseElementAccessInsteadOfFirst.cs" />
     <Compile Include="UseExplicitTypeInsteadOfVar.cs" />
     <Compile Include="UseExpressionBodiedMember.cs" />
+    <Compile Include="UseGenericEventHandler.cs" />
     <Compile Include="UseNameOfOperator.cs" />
     <Compile Include="CallStringConcatInsteadOfStringJoin.cs" />
+    <Compile Include="UseStringComparison.cs" />
     <Compile Include="UseStringIsNullOrEmptyMethod.cs" />
     <Compile Include="SimplifyLinqMethodChain.cs" />
     <Compile Include="UseCastMethodInsteadOfSelectMethod.cs" />
@@ -159,6 +180,7 @@
     <Compile Include="FormatDeclarationBraces.cs" />
     <Compile Include="RemoveRedundantParentheses.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UseStringLengthInsteadOfComparisonWithEmptyString.cs" />
     <Compile Include="UseVarInsteadOfExplicitType.cs" />
   </ItemGroup>
   <ItemGroup>

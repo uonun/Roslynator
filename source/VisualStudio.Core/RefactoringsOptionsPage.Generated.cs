@@ -127,7 +127,6 @@ namespace Roslynator.VisualStudio
             RenameMethodAccordingToTypeName = true;
             RenameParameterAccordingToTypeName = true;
             RenamePropertyAccordingToTypeName = true;
-            ReplaceAnonymousMethodWithLambdaExpression = true;
             ReplaceAnyWithAllOrAllWithAny = true;
             ReplaceAsWithCast = true;
             ReplaceCastWithAs = true;
@@ -136,18 +135,16 @@ namespace Roslynator.VisualStudio
             ReplaceConstantWithField = true;
             ReplaceCountWithLengthOrLengthWithCount = true;
             ReplaceDoStatementWithWhileStatement = true;
-            ReplaceEmptyStringLiteralWithStringEmpty = false;
             ReplaceEqualsExpressionWithStringEquals = true;
             ReplaceEqualsExpressionWithStringIsNullOrEmpty = true;
             ReplaceEqualsExpressionWithStringIsNullOrWhiteSpace = true;
+            ReplaceExpressionWithConstantValue = true;
             ReplaceFieldWithConstant = true;
             ReplaceForEachWithFor = true;
             ReplaceForWithForEach = true;
             ReplaceForWithWhile = true;
-            ReplaceHasFlagWithBitwiseOperation = true;
-            ReplaceIfElseWithAssignment = true;
+            ReplaceHexadecimalLiteralWithDecimalLiteral = true;
             ReplaceIfElseWithSwitch = true;
-            ReplaceIfStatementWithReturnStatement = true;
             ReplaceIncrementOperatorWithDecrementOperator = true;
             ReplaceInterpolatedStringWithInterpolationExpression = true;
             ReplaceInterpolatedStringWithStringLiteral = true;
@@ -159,7 +156,6 @@ namespace Roslynator.VisualStudio
             ReplaceRegularStringLiteralWithVerbatimStringLiteral = true;
             ReplaceStatementWithIfStatement = true;
             ReplaceStringContainsWithStringIndexOf = true;
-            ReplaceStringEmptyWithEmptyStringLiteral = true;
             ReplaceStringFormatWithInterpolatedString = true;
             ReplaceStringLiteralWithCharacterLiteral = true;
             ReplaceSwitchWithIfElse = true;
@@ -168,6 +164,7 @@ namespace Roslynator.VisualStudio
             ReplaceWhileStatementWithDoStatement = true;
             ReplaceWhileWithFor = true;
             ReverseForLoop = true;
+            SimplifyIf = true;
             SimplifyLambdaExpression = true;
             SortMemberDeclarations = true;
             SplitAttributes = true;
@@ -178,9 +175,16 @@ namespace Roslynator.VisualStudio
             SwapMemberDeclarations = true;
             SwapStatementsInIfElse = true;
             Uncomment = true;
+            UseBitwiseOperationInsteadOfCallingHasFlag = true;
+            UseCoalesceExpressionInsteadOfIf = true;
+            UseConditionalExpressionInsteadOfIf = true;
             UseElementAccessInsteadOfEnumerableMethod = true;
+            UseEmptyStringLiteralInsteadOfStringEmpty = true;
             UseExpressionBodiedMember = true;
+            UseLambdaExpressionInsteadOfAnonymousMethod = true;
+            UseStringEmptyInsteadOfEmptyStringLiteral = false;
             WrapInCondition = true;
+            WrapInElseClause = true;
             WrapInIfDirective = true;
             WrapInRegion = true;
             WrapInTryCatch = true;
@@ -304,7 +308,6 @@ namespace Roslynator.VisualStudio
             SetIsEnabled(RefactoringIdentifiers.RenameMethodAccordingToTypeName, RenameMethodAccordingToTypeName);
             SetIsEnabled(RefactoringIdentifiers.RenameParameterAccordingToTypeName, RenameParameterAccordingToTypeName);
             SetIsEnabled(RefactoringIdentifiers.RenamePropertyAccordingToTypeName, RenamePropertyAccordingToTypeName);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceAnonymousMethodWithLambdaExpression, ReplaceAnonymousMethodWithLambdaExpression);
             SetIsEnabled(RefactoringIdentifiers.ReplaceAnyWithAllOrAllWithAny, ReplaceAnyWithAllOrAllWithAny);
             SetIsEnabled(RefactoringIdentifiers.ReplaceAsWithCast, ReplaceAsWithCast);
             SetIsEnabled(RefactoringIdentifiers.ReplaceCastWithAs, ReplaceCastWithAs);
@@ -313,18 +316,16 @@ namespace Roslynator.VisualStudio
             SetIsEnabled(RefactoringIdentifiers.ReplaceConstantWithField, ReplaceConstantWithField);
             SetIsEnabled(RefactoringIdentifiers.ReplaceCountWithLengthOrLengthWithCount, ReplaceCountWithLengthOrLengthWithCount);
             SetIsEnabled(RefactoringIdentifiers.ReplaceDoStatementWithWhileStatement, ReplaceDoStatementWithWhileStatement);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceEmptyStringLiteralWithStringEmpty, ReplaceEmptyStringLiteralWithStringEmpty);
             SetIsEnabled(RefactoringIdentifiers.ReplaceEqualsExpressionWithStringEquals, ReplaceEqualsExpressionWithStringEquals);
             SetIsEnabled(RefactoringIdentifiers.ReplaceEqualsExpressionWithStringIsNullOrEmpty, ReplaceEqualsExpressionWithStringIsNullOrEmpty);
             SetIsEnabled(RefactoringIdentifiers.ReplaceEqualsExpressionWithStringIsNullOrWhiteSpace, ReplaceEqualsExpressionWithStringIsNullOrWhiteSpace);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceExpressionWithConstantValue, ReplaceExpressionWithConstantValue);
             SetIsEnabled(RefactoringIdentifiers.ReplaceFieldWithConstant, ReplaceFieldWithConstant);
             SetIsEnabled(RefactoringIdentifiers.ReplaceForEachWithFor, ReplaceForEachWithFor);
             SetIsEnabled(RefactoringIdentifiers.ReplaceForWithForEach, ReplaceForWithForEach);
             SetIsEnabled(RefactoringIdentifiers.ReplaceForWithWhile, ReplaceForWithWhile);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceHasFlagWithBitwiseOperation, ReplaceHasFlagWithBitwiseOperation);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceIfElseWithAssignment, ReplaceIfElseWithAssignment);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceHexadecimalLiteralWithDecimalLiteral, ReplaceHexadecimalLiteralWithDecimalLiteral);
             SetIsEnabled(RefactoringIdentifiers.ReplaceIfElseWithSwitch, ReplaceIfElseWithSwitch);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceIfStatementWithReturnStatement, ReplaceIfStatementWithReturnStatement);
             SetIsEnabled(RefactoringIdentifiers.ReplaceIncrementOperatorWithDecrementOperator, ReplaceIncrementOperatorWithDecrementOperator);
             SetIsEnabled(RefactoringIdentifiers.ReplaceInterpolatedStringWithInterpolationExpression, ReplaceInterpolatedStringWithInterpolationExpression);
             SetIsEnabled(RefactoringIdentifiers.ReplaceInterpolatedStringWithStringLiteral, ReplaceInterpolatedStringWithStringLiteral);
@@ -336,7 +337,6 @@ namespace Roslynator.VisualStudio
             SetIsEnabled(RefactoringIdentifiers.ReplaceRegularStringLiteralWithVerbatimStringLiteral, ReplaceRegularStringLiteralWithVerbatimStringLiteral);
             SetIsEnabled(RefactoringIdentifiers.ReplaceStatementWithIfStatement, ReplaceStatementWithIfStatement);
             SetIsEnabled(RefactoringIdentifiers.ReplaceStringContainsWithStringIndexOf, ReplaceStringContainsWithStringIndexOf);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceStringEmptyWithEmptyStringLiteral, ReplaceStringEmptyWithEmptyStringLiteral);
             SetIsEnabled(RefactoringIdentifiers.ReplaceStringFormatWithInterpolatedString, ReplaceStringFormatWithInterpolatedString);
             SetIsEnabled(RefactoringIdentifiers.ReplaceStringLiteralWithCharacterLiteral, ReplaceStringLiteralWithCharacterLiteral);
             SetIsEnabled(RefactoringIdentifiers.ReplaceSwitchWithIfElse, ReplaceSwitchWithIfElse);
@@ -345,6 +345,7 @@ namespace Roslynator.VisualStudio
             SetIsEnabled(RefactoringIdentifiers.ReplaceWhileStatementWithDoStatement, ReplaceWhileStatementWithDoStatement);
             SetIsEnabled(RefactoringIdentifiers.ReplaceWhileWithFor, ReplaceWhileWithFor);
             SetIsEnabled(RefactoringIdentifiers.ReverseForLoop, ReverseForLoop);
+            SetIsEnabled(RefactoringIdentifiers.SimplifyIf, SimplifyIf);
             SetIsEnabled(RefactoringIdentifiers.SimplifyLambdaExpression, SimplifyLambdaExpression);
             SetIsEnabled(RefactoringIdentifiers.SortMemberDeclarations, SortMemberDeclarations);
             SetIsEnabled(RefactoringIdentifiers.SplitAttributes, SplitAttributes);
@@ -355,9 +356,16 @@ namespace Roslynator.VisualStudio
             SetIsEnabled(RefactoringIdentifiers.SwapMemberDeclarations, SwapMemberDeclarations);
             SetIsEnabled(RefactoringIdentifiers.SwapStatementsInIfElse, SwapStatementsInIfElse);
             SetIsEnabled(RefactoringIdentifiers.Uncomment, Uncomment);
+            SetIsEnabled(RefactoringIdentifiers.UseBitwiseOperationInsteadOfCallingHasFlag, UseBitwiseOperationInsteadOfCallingHasFlag);
+            SetIsEnabled(RefactoringIdentifiers.UseCoalesceExpressionInsteadOfIf, UseCoalesceExpressionInsteadOfIf);
+            SetIsEnabled(RefactoringIdentifiers.UseConditionalExpressionInsteadOfIf, UseConditionalExpressionInsteadOfIf);
             SetIsEnabled(RefactoringIdentifiers.UseElementAccessInsteadOfEnumerableMethod, UseElementAccessInsteadOfEnumerableMethod);
+            SetIsEnabled(RefactoringIdentifiers.UseEmptyStringLiteralInsteadOfStringEmpty, UseEmptyStringLiteralInsteadOfStringEmpty);
             SetIsEnabled(RefactoringIdentifiers.UseExpressionBodiedMember, UseExpressionBodiedMember);
+            SetIsEnabled(RefactoringIdentifiers.UseLambdaExpressionInsteadOfAnonymousMethod, UseLambdaExpressionInsteadOfAnonymousMethod);
+            SetIsEnabled(RefactoringIdentifiers.UseStringEmptyInsteadOfEmptyStringLiteral, UseStringEmptyInsteadOfEmptyStringLiteral);
             SetIsEnabled(RefactoringIdentifiers.WrapInCondition, WrapInCondition);
+            SetIsEnabled(RefactoringIdentifiers.WrapInElseClause, WrapInElseClause);
             SetIsEnabled(RefactoringIdentifiers.WrapInIfDirective, WrapInIfDirective);
             SetIsEnabled(RefactoringIdentifiers.WrapInRegion, WrapInRegion);
             SetIsEnabled(RefactoringIdentifiers.WrapInTryCatch, WrapInTryCatch);
@@ -1515,16 +1523,6 @@ namespace Roslynator.VisualStudio
         }
 
         [Category(RefactoringCategory)]
-        [DisplayName("Replace anonymous method with lambda expression")]
-        [Description("Syntax: anonymous method\r\nScope: delegate keyword")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceAnonymousMethodWithLambdaExpression
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
         [DisplayName("Replace Any with All (or All with Any)")]
         [Description("Syntax: Any(Func<T, bool> or All(Func<T, bool> from System.Linq.Enumerable namespace\r\nScope: method name")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
@@ -1605,16 +1603,6 @@ namespace Roslynator.VisualStudio
         }
 
         [Category(RefactoringCategory)]
-        [DisplayName("Replace \"\" with String.Empty")]
-        [Description("Syntax: empty string literal")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceEmptyStringLiteralWithStringEmpty
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
         [DisplayName("Replace equals expression with String.Equals")]
         [Description("Syntax: equals expression, not equals expression\r\nScope: operator")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
@@ -1639,6 +1627,16 @@ namespace Roslynator.VisualStudio
         [Description("Syntax: equals expression, not equals expression\r\nScope: operator")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
         public bool ReplaceEqualsExpressionWithStringIsNullOrWhiteSpace
+        {
+            get;
+            set;
+        }
+
+        [Category(RefactoringCategory)]
+        [DisplayName("Replace expression with constant value")]
+        [Description("Syntax: expression that has constant value")]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceExpressionWithConstantValue
         {
             get;
             set;
@@ -1685,20 +1683,10 @@ namespace Roslynator.VisualStudio
         }
 
         [Category(RefactoringCategory)]
-        [DisplayName("Replace HasFlag invocation with bitwise operation")]
-        [Description("Syntax: Enum.HasFlag method invocation")]
+        [DisplayName("Replace hexadecimal literal with decimal literal")]
+        [Description("Syntax: hexadecimal literal")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceHasFlagWithBitwiseOperation
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace if-else with assignment")]
-        [Description("Syntax: if statement")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceIfElseWithAssignment
+        public bool ReplaceHexadecimalLiteralWithDecimalLiteral
         {
             get;
             set;
@@ -1709,16 +1697,6 @@ namespace Roslynator.VisualStudio
         [Description("Syntax: if statement")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
         public bool ReplaceIfElseWithSwitch
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace if statement with return statement")]
-        [Description("Syntax: if statement")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceIfStatementWithReturnStatement
         {
             get;
             set;
@@ -1835,16 +1813,6 @@ namespace Roslynator.VisualStudio
         }
 
         [Category(RefactoringCategory)]
-        [DisplayName("Replace String.Empty with \"\"")]
-        [Description("Syntax: String.Empty field")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceStringEmptyWithEmptyStringLiteral
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
         [DisplayName("Replace String.Format with interpolated string")]
         [Description("Syntax: String.Format method")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
@@ -1919,6 +1887,16 @@ namespace Roslynator.VisualStudio
         [Description("Syntax: for statement")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
         public bool ReverseForLoop
+        {
+            get;
+            set;
+        }
+
+        [Category(RefactoringCategory)]
+        [DisplayName("Simplify if")]
+        [Description("Syntax: if statement")]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool SimplifyIf
         {
             get;
             set;
@@ -2025,10 +2003,50 @@ namespace Roslynator.VisualStudio
         }
 
         [Category(RefactoringCategory)]
+        [DisplayName("Use bitwise operation instead of calling 'HasFlag'")]
+        [Description("Syntax: Enum.HasFlag method invocation")]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool UseBitwiseOperationInsteadOfCallingHasFlag
+        {
+            get;
+            set;
+        }
+
+        [Category(RefactoringCategory)]
+        [DisplayName("Use coalesce expression instead of if")]
+        [Description("Syntax: if statement")]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool UseCoalesceExpressionInsteadOfIf
+        {
+            get;
+            set;
+        }
+
+        [Category(RefactoringCategory)]
+        [DisplayName("Use conditional expression instead of if")]
+        [Description("Syntax: if statement")]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool UseConditionalExpressionInsteadOfIf
+        {
+            get;
+            set;
+        }
+
+        [Category(RefactoringCategory)]
         [DisplayName("Use element access instead of 'First/Last'ElementAt' method")]
         [Description("Syntax: First/Last/ElementAt method invocation\r\nScope: method name")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
         public bool UseElementAccessInsteadOfEnumerableMethod
+        {
+            get;
+            set;
+        }
+
+        [Category(RefactoringCategory)]
+        [DisplayName("Use \"\" instead of String.Empty")]
+        [Description("Syntax: String.Empty field")]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool UseEmptyStringLiteralInsteadOfStringEmpty
         {
             get;
             set;
@@ -2045,10 +2063,40 @@ namespace Roslynator.VisualStudio
         }
 
         [Category(RefactoringCategory)]
+        [DisplayName("Use lambda expression instead of anonymous method")]
+        [Description("Syntax: anonymous method\r\nScope: delegate keyword")]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool UseLambdaExpressionInsteadOfAnonymousMethod
+        {
+            get;
+            set;
+        }
+
+        [Category(RefactoringCategory)]
+        [DisplayName("Use String.Empty instead of \"\"")]
+        [Description("Syntax: empty string literal")]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool UseStringEmptyInsteadOfEmptyStringLiteral
+        {
+            get;
+            set;
+        }
+
+        [Category(RefactoringCategory)]
         [DisplayName("Wrap in condition")]
         [Description("Syntax: selected statements")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
         public bool WrapInCondition
+        {
+            get;
+            set;
+        }
+
+        [Category(RefactoringCategory)]
+        [DisplayName("Wrap in else clause")]
+        [Description("Syntax: statement")]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool WrapInElseClause
         {
             get;
             set;

@@ -35,7 +35,7 @@ namespace Roslynator.CSharp.Refactorings
                         IEnumerable<IMethodSymbol> declaredConstructors = classDeclaration.Members
                             .Where(f => f.IsKind(SyntaxKind.ConstructorDeclaration))
                             .Select(f => semanticModel.GetDeclaredSymbol(f, context.CancellationToken))
-                            .Where(f => f.IsInstanceMethod())
+                            .Where(f => f?.IsMethod() == true && !f.IsStatic)
                             .Cast<IMethodSymbol>();
 
                         using (IEnumerator<IMethodSymbol> en = baseSymbol
@@ -117,7 +117,7 @@ namespace Roslynator.CSharp.Refactorings
                 parameters.Add(Parameter(
                     default(SyntaxList<AttributeListSyntax>),
                     ModifierFactory.FromAccessibility(parameterSymbol.DeclaredAccessibility),
-                    parameterSymbol.Type.ToMinimalSyntax(semanticModel, position),
+                    parameterSymbol.Type.ToMinimalTypeSyntax(semanticModel, position),
                     Identifier(parameterSymbol.Name),
                     @default));
 

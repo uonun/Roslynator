@@ -65,7 +65,7 @@ namespace Roslynator.VisualStudio
 
             settings.DisableRefactoring(RefactoringIdentifiers.IntroduceConstructor);
             settings.DisableRefactoring(RefactoringIdentifiers.RemoveAllDocumentationComments);
-            settings.DisableRefactoring(RefactoringIdentifiers.ReplaceEmptyStringLiteralWithStringEmpty);
+            settings.DisableRefactoring(RefactoringIdentifiers.UseStringEmptyInsteadOfEmptyStringLiteral);
             settings.DisableRefactoring(RefactoringIdentifiers.ReplaceMethodWithProperty);
 
             var generalOptionsPage = (GeneralOptionsPage)GetDialogPage(typeof(GeneralOptionsPage));

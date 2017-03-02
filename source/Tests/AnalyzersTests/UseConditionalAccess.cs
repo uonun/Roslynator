@@ -15,6 +15,10 @@ namespace Roslynator.CSharp.Analyzers.Tests
             {
             }
 
+            if (s != null && s.Length > 0)
+            {
+            }
+
             if (s != null && !s.StartsWith("a"))
             {
             }
@@ -25,7 +29,15 @@ namespace Roslynator.CSharp.Analyzers.Tests
             {
             }
 
+            if (dic != null && dic[0].Length > 0)
+            {
+            }
+
             if (dic != null && !dic[0].StartsWith("a"))
+            {
+            }
+
+            if (s != null && s.Substring(0) == null)
             {
             }
         }

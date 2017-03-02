@@ -266,6 +266,23 @@ namespace Roslynator.CSharp.Extensions
             return constructorDeclaration?.Modifiers.Contains(SyntaxKind.StaticKeyword) == true;
         }
 
+        public static CSharpSyntaxNode BodyOrExpressionBody(this ConstructorDeclarationSyntax constructorDeclaration)
+        {
+            if (constructorDeclaration == null)
+                throw new ArgumentNullException(nameof(constructorDeclaration));
+
+            BlockSyntax body = constructorDeclaration.Body;
+
+            if (body != null)
+            {
+                return body;
+            }
+            else
+            {
+                return constructorDeclaration.ExpressionBody;
+            }
+        }
+
         public static TextSpan HeaderSpan(this ConversionOperatorDeclarationSyntax operatorDeclaration)
         {
             if (operatorDeclaration == null)
@@ -276,6 +293,40 @@ namespace Roslynator.CSharp.Extensions
                 operatorDeclaration.ParameterList?.Span.End
                     ?? operatorDeclaration.Type?.Span.End
                     ?? operatorDeclaration.OperatorKeyword.Span.End);
+        }
+
+        public static CSharpSyntaxNode BodyOrExpressionBody(this ConversionOperatorDeclarationSyntax conversionOperatorDeclaration)
+        {
+            if (conversionOperatorDeclaration == null)
+                throw new ArgumentNullException(nameof(conversionOperatorDeclaration));
+
+            BlockSyntax body = conversionOperatorDeclaration.Body;
+
+            if (body != null)
+            {
+                return body;
+            }
+            else
+            {
+                return conversionOperatorDeclaration.ExpressionBody;
+            }
+        }
+
+        public static CSharpSyntaxNode BodyOrExpressionBody(this DestructorDeclarationSyntax destructorDeclaration)
+        {
+            if (destructorDeclaration == null)
+                throw new ArgumentNullException(nameof(destructorDeclaration));
+
+            BlockSyntax body = destructorDeclaration.Body;
+
+            if (body != null)
+            {
+                return body;
+            }
+            else
+            {
+                return destructorDeclaration.ExpressionBody;
+            }
         }
 
         public static XmlElementSyntax SummaryElement(this DocumentationCommentTriviaSyntax documentationComment)
@@ -382,12 +433,9 @@ namespace Roslynator.CSharp.Extensions
             }
         }
 
-        public static ExpressionSyntax Unparenthesize(this ExpressionSyntax expression)
+        public static ExpressionSyntax WalkDownParentheses(this ExpressionSyntax expression)
         {
-            if (expression == null)
-                throw new ArgumentNullException(nameof(expression));
-
-            while (expression.IsKind(SyntaxKind.ParenthesizedExpression))
+            while (expression?.IsKind(SyntaxKind.ParenthesizedExpression) == true)
                 expression = ((ParenthesizedExpressionSyntax)expression).Expression;
 
             return expression;
@@ -557,6 +605,32 @@ namespace Roslynator.CSharp.Extensions
             }
 
             return s;
+        }
+
+        public static bool IsHexadecimalNumericLiteral(this LiteralExpressionSyntax literalExpression)
+        {
+            if (literalExpression == null)
+                throw new ArgumentNullException(nameof(literalExpression));
+
+            return literalExpression.IsKind(SyntaxKind.NumericLiteralExpression)
+                && literalExpression.Token.Text.StartsWith("0x", StringComparison.OrdinalIgnoreCase);
+        }
+
+        public static CSharpSyntaxNode BodyOrExpressionBody(this LocalFunctionStatementSyntax localFunctionStatement)
+        {
+            if (localFunctionStatement == null)
+                throw new ArgumentNullException(nameof(localFunctionStatement));
+
+            BlockSyntax body = localFunctionStatement.Body;
+
+            if (body != null)
+            {
+                return body;
+            }
+            else
+            {
+                return localFunctionStatement.ExpressionBody;
+            }
         }
 
         public static SyntaxTrivia GetSingleLineDocumentationComment(this MemberDeclarationSyntax memberDeclaration)
@@ -1250,6 +1324,23 @@ namespace Roslynator.CSharp.Extensions
                 operatorDeclaration.ParameterList?.Span.End ?? operatorDeclaration.OperatorToken.Span.End);
         }
 
+        public static CSharpSyntaxNode BodyOrExpressionBody(this OperatorDeclarationSyntax operatorDeclaration)
+        {
+            if (operatorDeclaration == null)
+                throw new ArgumentNullException(nameof(operatorDeclaration));
+
+            BlockSyntax body = operatorDeclaration.Body;
+
+            if (body != null)
+            {
+                return body;
+            }
+            else
+            {
+                return operatorDeclaration.ExpressionBody;
+            }
+        }
+
         public static PropertyDeclarationSyntax WithAttributeLists(
             this PropertyDeclarationSyntax propertyDeclaration,
             params AttributeListSyntax[] attributeLists)
@@ -1309,30 +1400,12 @@ namespace Roslynator.CSharp.Extensions
             return propertyDeclaration?.Modifiers.Contains(SyntaxKind.StaticKeyword) == true;
         }
 
-        public static SyntaxList<StatementSyntax> GetContainingList(this StatementSyntax statement)
-        {
-            if (statement == null)
-                throw new ArgumentNullException(nameof(statement));
-
-            SyntaxNode parent = statement.Parent;
-
-            switch (parent?.Kind())
-            {
-                case SyntaxKind.Block:
-                    return ((BlockSyntax)parent).Statements;
-                case SyntaxKind.SwitchSection:
-                    return ((SwitchSectionSyntax)parent).Statements;
-                default:
-                    return default(SyntaxList<StatementSyntax>);
-            }
-        }
-
         public static StatementSyntax PreviousStatement(this StatementSyntax statement)
         {
             if (statement == null)
                 throw new ArgumentNullException(nameof(statement));
 
-            SyntaxList<StatementSyntax> statements = statement.GetContainingList();
+            SyntaxList<StatementSyntax> statements = StatementContainer.GetStatements(statement);
 
             if (statements.Any())
             {
@@ -1356,7 +1429,7 @@ namespace Roslynator.CSharp.Extensions
             if (statement == null)
                 throw new ArgumentNullException(nameof(statement));
 
-            SyntaxList<StatementSyntax> statements = statement.GetContainingList();
+            SyntaxList<StatementSyntax> statements = StatementContainer.GetStatements(statement);
 
             if (statements.Any())
             {

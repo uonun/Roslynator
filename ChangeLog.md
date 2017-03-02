@@ -1,3 +1,69 @@
+### 1.2.16 (2017-03-02)
+
+#### Analyzers
+
+##### New Analyzers
+
+* SimplifyLazilyInitializedProperty
+* UseIsOperatorInsteadOfAsOperator
+* UseCoalesceOperatorInsteadOfIf
+* RemoveRedundantAsyncAwait
+
+#### Refactorings
+
+##### New Refactorings
+
+* ReplaceHexadecimalLiteralWithDecimalLiteral
+* WrapInElseClause
+
+### 1.2.15 (2017-02-23)
+
+#### Analyzers
+
+##### Changes
+
+* Analyzer RemoveRedundantBraces was deleted.
+
+##### New Analyzers
+
+* MarkFieldAsReadOnly
+* UseReadOnlyAutoProperty
+
+### 1.2.14 (2017-02-19)
+
+#### Analyzers
+
+##### New Analyzers
+
+* ParameterNameDiffersFromBase
+* OverridingMemberCannotChnageAccessModifiers
+* ValueTypeCheckedForNull
+* UnconstrainedTypeParameterCheckedForNull
+* UnusedTypeParameter
+* UnusedParameter
+
+### 1.2.13 (2017-02-11)
+
+#### Analyzers
+
+##### New Analyzers
+
+* SortEnumMembers
+* UseStringComparison
+* UseStringLengthInsteadOfComparisonWithEmptyString
+* CompositeEnumValueContainsUndefinedFlag
+* AvoidStaticMembersInGenericTypes
+* UseGenericEventHandler
+* AbstractTypeShouldNotHavePublicConstructors
+* EnumMemberShouldDeclareExplicitValue
+* AvoidChainOfAssginments
+
+#### Refactorings
+
+##### New Refactorings
+
+* ReplaceExpressionWithConstantValue
+
 ### 1.2.12 (2017-02-02)
 
 #### Analyzers

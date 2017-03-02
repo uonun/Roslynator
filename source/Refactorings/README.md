@@ -175,3 +175,6 @@ RR0169|[Wrap in condition](Refactorings.md#wrap-in-condition)|x
 RR0171|[Wrap in region](Refactorings.md#wrap-in-region)|x
 RR0172|[Wrap in try\-catch](Refactorings.md#wrap-in-try-catch)|x
 RR0173|[Wrap in using statement](Refactorings.md#wrap-in-using-statement)|x
+[Use lambda expression instead of anonymous method](Refactorings.md#use-lambda-expression-instead-of-anonymous-method)|x
+[Use String\.Empty instead of ""](Refactorings.md#use-stringempty-instead-of-)|
+[Wrap in else clause](Refactorings.md#wrap-in-else-clause)|x

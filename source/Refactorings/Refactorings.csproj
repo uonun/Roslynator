@@ -42,21 +42,20 @@
     <AssemblyOriginatorKeyFile>Roslynator.CSharp.Refactorings.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Formatting\CSharpFormatter.cs" />
-    <Compile Include="Formatting\BinaryExpressionToMultiLineRewriter.cs" />
     <Compile Include="Refactorings\DeclarationExpressionRefactoring.cs" />
     <Compile Include="Refactorings\ChangeDeclarationExpressionTypeRefactoring.cs" />
+    <Compile Include="HexadecimalLiteralInfo.cs" />
+    <Compile Include="HexadecimalLiteralSuffixKind.cs" />
     <Compile Include="Refactorings\ClassDeclarationRefactoring.cs" />
     <Compile Include="Refactorings\EnumDeclarationRefactoring.cs" />
     <Compile Include="Refactorings\InterfaceDeclarationRefactoring.cs" />
+    <Compile Include="Refactorings\LocalFunctionStatementRefactoring.cs" />
     <Compile Include="Refactorings\NamespaceDeclarationRefactoring.cs" />
-    <Compile Include="Refactorings\EnumRefactoring\EnumHelper.cs" />
-    <Compile Include="Refactorings\EnumRefactoring\FlagsGenerator.cs" />
-    <Compile Include="Refactorings\EnumRefactoring\GenerateCombinedEnumMemberRefactoring.cs" />
-    <Compile Include="Refactorings\EnumRefactoring\GenerateEnumMemberRefactoring.cs" />
+    <Compile Include="Refactorings\EnumWithFlagsAttribute\GenerateEnumHelper.cs" />
+    <Compile Include="Refactorings\EnumWithFlagsAttribute\GenerateCombinedEnumMemberRefactoring.cs" />
+    <Compile Include="Refactorings\EnumWithFlagsAttribute\GenerateEnumMemberRefactoring.cs" />
     <Compile Include="Refactorings\EnumMemberDeclarationRefactoring.cs" />
-    <Compile Include="Refactorings\EnumRefactoring\GenerateEnumValuesRefactoring.cs" />
-    <Compile Include="Refactorings\EnumRefactoring\FlagsGenerationMode.cs" />
+    <Compile Include="Refactorings\EnumWithFlagsAttribute\GenerateEnumValuesRefactoring.cs" />
     <Compile Include="Refactorings\DestructorDeclarationRefactoring.cs" />
     <Compile Include="Refactorings\MakeMemberVirtualRefactoring.cs" />
     <Compile Include="Refactorings\CastExpressionRefactoring.cs" />
@@ -89,11 +88,6 @@
     <Compile Include="Refactorings\ReplaceEqualsExpression\ReplaceEqualsExpressionRefactoring.cs" />
     <Compile Include="Refactorings\ReplaceEqualsExpression\ReplaceEqualsExpressionWithStringIsNullOrEmptyRefactoring.cs" />
     <Compile Include="Refactorings\ReplaceEqualsExpression\ReplaceEqualsExpressionWithStringIsNullOrWhiteSpaceRefactoring.cs" />
-    <Compile Include="Refactorings\ReplaceIfWithStatement\ReplaceIfWithStatementRefactoring.cs" />
-    <Compile Include="Refactorings\ReplaceIfWithStatement\ReplaceIfWithStatementRefactoring`1.cs" />
-    <Compile Include="Refactorings\ReplaceIfWithStatement\ReplaceIfAndReturnWithReturnRefactoring.cs" />
-    <Compile Include="Refactorings\ReplaceIfWithStatement\ReplaceIfWithReturnRefactoring.cs" />
-    <Compile Include="Refactorings\ReplaceIfWithStatement\ReplaceIfWithYieldReturnRefactoring.cs" />
     <Compile Include="Refactorings\ReplaceInterpolatedStringWithInterpolationExpressionRefactoring.cs" />
     <Compile Include="Refactorings\ReplacePropertyWithMethod\ReplacePropertyWithMethodSyntaxRewriter.cs" />
     <Compile Include="Refactorings\ReplaceStatementWithIf\ReplaceExpressionStatementWithIfStatementRefactoring.cs" />
@@ -113,9 +107,10 @@
     <Compile Include="Refactorings\IntroduceAndInitialize\IntroduceAndInitializeFieldRefactoring.cs" />
     <Compile Include="Refactorings\NodeInList\RewriterInfo.cs" />
     <Compile Include="Refactorings\ReplaceConditionalExpressionWithExpressionRefactoring.cs" />
-    <Compile Include="Refactorings\ReplaceIfWithStatement\ReplaceIfElseWithAssignmentRefactoring.cs" />
     <Compile Include="Refactorings\ExtractCondition\ExtractConditionFromWhileToNestedIfRefactoring.cs" />
     <Compile Include="Refactorings\SelectedSwitchSectionsRefactoring.cs" />
+    <Compile Include="Refactorings\SemicolonTokenRefactoring.cs" />
+    <Compile Include="Refactorings\SortMemberDeclarations\SortMemberDeclarationsRewriter.cs" />
     <Compile Include="Refactorings\ThrowExpressionRefactoring.cs" />
     <Compile Include="Refactorings\WrapSelectedLines\WrapInIfDirectiveRefactoring.cs" />
     <Compile Include="Refactorings\AddUsingDirectiveRefactoring.cs" />
@@ -259,6 +254,7 @@
     <Compile Include="Refactorings\MemberDeclarationsRefactoring.cs" />
     <Compile Include="Refactorings\ReplaceMethodWithProperty\ReplaceMethodWithPropertySyntaxRewriter.cs" />
     <Compile Include="Refactorings\ReplaceNullLiteralExpressionWithDefaultExpressionRefactoring.cs" />
+    <Compile Include="Refactorings\ReplaceExpressionWithConstantValueRefactoring.cs" />
     <Compile Include="Refactorings\RemoveAllPreprocessorDirectivesRefactoring.cs" />
     <Compile Include="Refactorings\ReplaceIfElseWithSwitchRefactoring.cs" />
     <Compile Include="Refactorings\ReplaceEqualsExpressionWithStringEqualsRefactoring.cs" />
@@ -269,10 +265,9 @@
     <Compile Include="Refactorings\ReplaceForWithWhileRefactoring.cs" />
     <Compile Include="Refactorings\ReplaceCastWithAsRefactoring.cs" />
     <Compile Include="Refactorings\ReplaceWhileWithForRefactoring.cs" />
-    <Compile Include="SelectedExpressions.cs" />
-    <Compile Include="Refactorings\SortEnumMemberDeclarationsRefactoring.cs" />
-    <Compile Include="Refactorings\SortMemberDeclarationsRefactoring.cs" />
-    <Compile Include="StringExpressionChain.cs" />
+    <Compile Include="Refactorings\ReplaceHexadecimalLiteralWithDecimalLiteralRefactoring.cs" />
+    <Compile Include="Refactorings\SortMemberDeclarations\SortEnumMemberDeclarationsRefactoring.cs" />
+    <Compile Include="Refactorings\SortMemberDeclarations\SortMemberDeclarationsRefactoring.cs" />
     <Compile Include="Refactorings\StructDeclarationRefactoring.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Refactorings\MemberDeclarationRefactoring.cs" />
@@ -282,6 +277,7 @@
     <Compile Include="Refactorings\ModifyExpressionRefactoring.cs" />
     <Compile Include="Refactorings\UsingDirectiveRefactoring.cs" />
     <Compile Include="Refactorings\ThrowStatementRefactoring.cs" />
+    <Compile Include="WrapInElseClauseRefactoring.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

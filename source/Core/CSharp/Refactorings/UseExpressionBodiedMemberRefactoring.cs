@@ -13,7 +13,7 @@ using static Roslynator.CSharp.CSharpFactory;
 
 namespace Roslynator.CSharp.Refactorings
 {
-    public static class UseExpressionBodiedMemberRefactoring
+    internal static class UseExpressionBodiedMemberRefactoring
     {
         public static bool CanRefactor(MethodDeclarationSyntax declaration)
         {
@@ -40,6 +40,15 @@ namespace Roslynator.CSharp.Refactorings
 
             return declaration.ExpressionBody == null
                 && GetExpression(declaration.Body) != null;
+        }
+
+        public static bool CanRefactor(LocalFunctionStatementSyntax localFunctionStatement)
+        {
+            if (localFunctionStatement == null)
+                throw new ArgumentNullException(nameof(localFunctionStatement));
+
+            return localFunctionStatement.ExpressionBody == null
+                && GetExpression(localFunctionStatement.Body) != null;
         }
 
         public static bool CanRefactor(OperatorDeclarationSyntax declaration)
@@ -202,6 +211,16 @@ namespace Roslynator.CSharp.Refactorings
                         ExpressionSyntax expression = GetExpression(destructorDeclaration.Body);
 
                         return destructorDeclaration
+                            .WithExpressionBody(ArrowExpressionClause(expression))
+                            .WithBody(null)
+                            .WithSemicolonToken(SemicolonToken());
+                    }
+                case SyntaxKind.LocalFunctionStatement:
+                    {
+                        var local = (LocalFunctionStatementSyntax)node;
+                        ExpressionSyntax expression = GetExpression(local.Body);
+
+                        return local
                             .WithExpressionBody(ArrowExpressionClause(expression))
                             .WithBody(null)
                             .WithSemicolonToken(SemicolonToken());

@@ -24,7 +24,8 @@ namespace Roslynator.CSharp.Refactorings
         {
             var ifStatement = (IfStatementSyntax)context.Node;
 
-            if (!IfElseChain.IsPartOfChain(ifStatement))
+            if (!IfElseChain.IsPartOfChain(ifStatement)
+                && !IsPartOfLazyInitialization(ifStatement))
             {
                 ExpressionSyntax condition = ifStatement.Condition;
 
@@ -60,9 +61,7 @@ namespace Roslynator.CSharp.Refactorings
                                     {
                                         StatementSyntax statementToReport = ifStatement;
 
-                                        SyntaxNode parent = ifStatement.Parent;
-
-                                        SyntaxList<StatementSyntax> statements = GetStatements(parent);
+                                        SyntaxList<StatementSyntax> statements = StatementContainer.GetStatements(ifStatement);
 
                                         if (statements.Any())
                                         {
@@ -72,7 +71,7 @@ namespace Roslynator.CSharp.Refactorings
                                             {
                                                 StatementSyntax previousStatement = statements[index - 1];
 
-                                                if (CanRefactor(previousStatement, ifStatement, left, parent))
+                                                if (CanRefactor(previousStatement, ifStatement, left, ifStatement.Parent))
                                                     statementToReport = previousStatement;
                                             }
                                         }
@@ -85,6 +84,15 @@ namespace Roslynator.CSharp.Refactorings
                     }
                 }
             }
+        }
+
+        private static bool IsPartOfLazyInitialization(IfStatementSyntax ifStatement)
+        {
+            SyntaxList<StatementSyntax> statements = StatementContainer.GetStatements(ifStatement);
+
+            return statements.Count == 2
+                && statements.IndexOf(ifStatement) == 0
+                && statements[1].IsKind(SyntaxKind.ReturnStatement);
         }
 
         private static bool CanRefactor(
@@ -181,19 +189,6 @@ namespace Roslynator.CSharp.Refactorings
             return null;
         }
 
-        private static SyntaxList<StatementSyntax> GetStatements(SyntaxNode node)
-        {
-            switch (node?.Kind())
-            {
-                case SyntaxKind.Block:
-                    return ((BlockSyntax)node).Statements;
-                case SyntaxKind.SwitchSection:
-                    return ((SwitchSectionSyntax)node).Statements;
-                default:
-                    return default(SyntaxList<StatementSyntax>);
-            }
-        }
-
         public static async Task<Document> RefactorAsync(
             Document document,
             StatementSyntax statement,
@@ -206,8 +201,6 @@ namespace Roslynator.CSharp.Refactorings
                 SyntaxList<StatementSyntax> statements = container.Statements;
 
                 int index = statements.IndexOf(statement);
-
-                StatementSyntax nextStatemnt = statements[index + 1];
 
                 switch (statement.Kind())
                 {
@@ -251,7 +244,7 @@ namespace Roslynator.CSharp.Refactorings
 
                             var assignment = (AssignmentExpressionSyntax)expressionStatement.Expression;
 
-                            return await RefactorAsync(document, expressionStatement, (IfStatementSyntax)nextStatemnt, index, container, assignment.Right, cancellationToken).ConfigureAwait(false);
+                            return await RefactorAsync(document, expressionStatement, (IfStatementSyntax)statements[index + 1], index, container, assignment.Right, cancellationToken).ConfigureAwait(false);
                         }
                     case SyntaxKind.LocalDeclarationStatement:
                         {
@@ -264,7 +257,7 @@ namespace Roslynator.CSharp.Refactorings
                                 .Initializer
                                 .Value;
 
-                            return await RefactorAsync(document, localDeclaration, (IfStatementSyntax)nextStatemnt, index, container, value, cancellationToken).ConfigureAwait(false);
+                            return await RefactorAsync(document, localDeclaration, (IfStatementSyntax)statements[index + 1], index, container, value, cancellationToken).ConfigureAwait(false);
                         }
                 }
             }

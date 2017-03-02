@@ -62,7 +62,7 @@ namespace Roslynator.CSharp.Refactorings
                                         {
                                             context.ReportDiagnostic(
                                                 DiagnosticDescriptors.MarkLocalVariableAsConst,
-                                                type.GetLocation());
+                                                type);
                                         }
                                     }
                                 }
@@ -236,7 +236,7 @@ namespace Roslynator.CSharp.Refactorings
 
                 ITypeSymbol typeSymbol = semanticModel.GetTypeSymbol(type, cancellationToken);
 
-                TypeSyntax newType = typeSymbol.ToMinimalSyntax(semanticModel, localDeclaration.SpanStart);
+                TypeSyntax newType = typeSymbol.ToMinimalTypeSyntax(semanticModel, localDeclaration.SpanStart);
 
                 newNode = newNode.ReplaceNode(type, newType.WithTriviaFrom(type));
             }

@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Josef Pihrt. All rights reserved. Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
@@ -57,7 +58,8 @@ namespace Roslynator.CSharp.Refactorings
         {
             ExpressionSyntax right = logicalAndExpression.Right;
 
-            if (right?.IsMissing == false)
+            if (right?.IsMissing == false
+                && !IsEqualToNullExpression(right))
             {
                 if (right.IsKind(SyntaxKind.LogicalNotExpression))
                     right = ((PrefixUnaryExpressionSyntax)right).Operand;
@@ -86,12 +88,20 @@ namespace Roslynator.CSharp.Refactorings
             return null;
         }
 
+        private static bool IsEqualToNullExpression(ExpressionSyntax expression)
+        {
+            return expression.IsKind(SyntaxKind.EqualsExpression)
+                && ((BinaryExpressionSyntax)expression).Right?.IsKind(SyntaxKind.NullLiteralExpression) == true;
+        }
+
         public static async Task<Document> RefactorAsync(
             Document document,
             BinaryExpressionSyntax logicalAnd,
             CancellationToken cancellationToken)
         {
             ExpressionSyntax newNode = Refactor(logicalAnd)
+                .WithLeadingTrivia(logicalAnd.GetLeadingTrivia())
+                .WithFormatterAnnotation()
                 .Parenthesize(moveTrivia: true)
                 .WithSimplifierAnnotation();
 
@@ -104,9 +114,9 @@ namespace Roslynator.CSharp.Refactorings
             TextSpan span = node.Span;
 
             ExpressionSyntax expression = logicalAnd.Right;
-            SyntaxTriviaList trailingTrivia = expression.GetTrailingTrivia();
+            SyntaxKind expressionKind = expression.Kind();
 
-            if (expression.IsKind(SyntaxKind.LogicalNotExpression))
+            if (expressionKind == SyntaxKind.LogicalNotExpression)
             {
                 var logicalNot = (PrefixUnaryExpressionSyntax)expression;
                 ExpressionSyntax operand = logicalNot.Operand;
@@ -114,27 +124,51 @@ namespace Roslynator.CSharp.Refactorings
 
                 string s = operand.ToFullString();
 
-                ExpressionSyntax newNode = ParseExpression(
-                    s.Substring(0, span.Length) +
-                    "?" +
-                    s.Substring(span.Length, operand.Span.Length - span.Length - trailingTrivia.Span.Length) +
-                    " == false");
+                int length = operand.GetLeadingTrivia().Span.Length + span.Length;
 
-                return newNode
-                    .PrependToLeadingTrivia(logicalNot.GetLeadingAndTrailingTrivia())
-                    .WithTrailingTrivia(trailingTrivia);
+                var sb = new StringBuilder();
+                sb.Append(s, 0, length);
+                sb.Append("?");
+                sb.Append(s, length, s.Length - length);
+                sb.Append(" == false");
+
+                return ParseExpression(sb.ToString());
             }
             else
             {
                 string s = expression.ToFullString();
 
-                ExpressionSyntax newNode = ParseExpression(
-                    s.Substring(0, span.Length) +
-                    "?" +
-                    s.Substring(span.Length, expression.Span.Length - span.Length - trailingTrivia.Span.Length) +
-                    " == true");
+                int length = expression.GetLeadingTrivia().Span.Length + span.Length;
 
-                return newNode.WithTrailingTrivia(trailingTrivia);
+                var sb = new StringBuilder();
+                sb.Append(s, 0, length);
+                sb.Append("?");
+                sb.Append(s, length, s.Length - length);
+
+                switch (expressionKind)
+                {
+                    case SyntaxKind.LogicalOrExpression:
+                    case SyntaxKind.LogicalAndExpression:
+                    case SyntaxKind.BitwiseOrExpression:
+                    case SyntaxKind.BitwiseAndExpression:
+                    case SyntaxKind.ExclusiveOrExpression:
+                    case SyntaxKind.EqualsExpression:
+                    case SyntaxKind.NotEqualsExpression:
+                    case SyntaxKind.LessThanExpression:
+                    case SyntaxKind.LessThanOrEqualExpression:
+                    case SyntaxKind.GreaterThanExpression:
+                    case SyntaxKind.GreaterThanOrEqualExpression:
+                    case SyntaxKind.IsExpression:
+                    case SyntaxKind.AsExpression:
+                        break;
+                    default:
+                        {
+                            sb.Append(" == true");
+                            break;
+                        }
+                }
+
+                return ParseExpression(sb.ToString());
             }
         }
     }

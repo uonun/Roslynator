@@ -25,10 +25,10 @@ namespace Roslynator.CSharp.Refactorings.ExtractCondition
         {
             var ifStatement = (IfStatementSyntax)condition.Parent;
 
-            IfStatementSyntax newIfStatement = RemoveExpressionFromCondition(ifStatement, condition, expression)
-                .WithFormatterAnnotation();
+            IfStatementSyntax newIfStatement = RemoveExpressionFromCondition(ifStatement, condition, expression);
 
-            IfStatementSyntax newNode = AddNestedIf(newIfStatement, expression);
+            IfStatementSyntax newNode = AddNestedIf(newIfStatement, expression)
+                .WithFormatterAnnotation();
 
             return await document.ReplaceNodeAsync(ifStatement, newNode, cancellationToken).ConfigureAwait(false);
         }
@@ -37,15 +37,15 @@ namespace Roslynator.CSharp.Refactorings.ExtractCondition
             Document document,
             IfStatementSyntax ifStatement,
             BinaryExpressionSyntax condition,
-            SelectedExpressions selectedExpressions,
+            BinaryExpressionSpan binaryExpressionSpan,
             CancellationToken cancellationToken)
         {
-            IfStatementSyntax newNode = RemoveExpressionsFromCondition(ifStatement, condition, selectedExpressions)
+            IfStatementSyntax newNode = RemoveExpressionsFromCondition(ifStatement, condition, binaryExpressionSpan);
+
+            ExpressionSyntax expression = SyntaxFactory.ParseExpression(binaryExpressionSpan.ToString());
+
+            newNode = AddNestedIf(newNode, expression)
                 .WithFormatterAnnotation();
-
-            ExpressionSyntax expression = SyntaxFactory.ParseExpression(selectedExpressions.ExpressionsText);
-
-            newNode = AddNestedIf(newNode, expression);
 
             return await document.ReplaceNodeAsync(ifStatement, newNode, cancellationToken).ConfigureAwait(false);
         }

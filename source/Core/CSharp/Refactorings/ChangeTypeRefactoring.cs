@@ -11,7 +11,7 @@ using static Roslynator.CSharp.CSharpFactory;
 
 namespace Roslynator.CSharp.Refactorings
 {
-    public static class ChangeTypeRefactoring
+    internal static class ChangeTypeRefactoring
     {
         public static async Task<Document> ChangeTypeAsync(
            Document document,
@@ -28,7 +28,7 @@ namespace Roslynator.CSharp.Refactorings
             if (typeSymbol == null)
                 throw new ArgumentNullException(nameof(typeSymbol));
 
-            TypeSyntax newType = typeSymbol.ToSyntax()
+            TypeSyntax newType = typeSymbol.ToTypeSyntax()
                 .WithTriviaFrom(type)
                 .WithSimplifierAnnotation();
 

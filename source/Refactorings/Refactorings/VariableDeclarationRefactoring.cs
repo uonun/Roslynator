@@ -70,18 +70,21 @@ namespace Roslynator.CSharp.Refactorings
                                 if (!string.IsNullOrEmpty(newName))
                                 {
                                     if (context.Settings.PrefixFieldIdentifierWithUnderscore
-                                        && symbol.IsPrivateField()
+                                        && symbol.IsPrivate()
+                                        && symbol.IsField()
                                         && !((IFieldSymbol)symbol).IsConst)
                                     {
                                         newName = Identifier.ToCamelCase(newName, prefixWithUnderscore: true);
                                     }
 
-                                    if (!string.Equals(identifier.ValueText, newName, StringComparison.Ordinal))
+                                    string oldName = identifier.ValueText;
+
+                                    if (!string.Equals(oldName, newName, StringComparison.Ordinal))
                                     {
-                                        newName = Identifier.EnsureUniqueLocalName(newName, identifier.SpanStart, semanticModel, context.CancellationToken);
+                                        newName = Identifier.EnsureUniqueLocalName(newName, variable, semanticModel, context.CancellationToken);
 
                                         context.RegisterRefactoring(
-                                            $"Rename {GetName(symbol)} to '{newName}'",
+                                            $"Rename '{oldName}' to '{newName}'",
                                             cancellationToken => Renamer.RenameSymbolAsync(context.Document, symbol, newName, cancellationToken));
                                     }
                                 }
@@ -90,19 +93,6 @@ namespace Roslynator.CSharp.Refactorings
                     }
                 }
             }
-        }
-
-        private static string GetName(ISymbol symbol)
-        {
-            if (symbol.IsField())
-            {
-                if (((IFieldSymbol)symbol).IsConst)
-                    return "constant";
-                else
-                    return "field";
-            }
-
-            return "local";
         }
 
         private static bool FirstCharToLower(ISymbol symbol)

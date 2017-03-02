@@ -44,7 +44,7 @@ namespace Roslynator.CSharp
             }
         }
 
-        public static ExpressionSyntax ConstantExpression(object value)
+        public static LiteralExpressionSyntax ConstantExpression(object value)
         {
             if (value == null)
                 return NullLiteralExpression();
@@ -122,29 +122,13 @@ namespace Roslynator.CSharp
 
         public static FieldDeclarationSyntax FieldDeclaration(SyntaxTokenList modifiers, TypeSyntax type, SyntaxToken identifier, ExpressionSyntax value = null)
         {
-            return FieldDeclaration(
-                modifiers,
-                type,
-                identifier,
-                (value != null) ? EqualsValueClause(value) : null);
-        }
-
-        public static FieldDeclarationSyntax FieldDeclaration(SyntaxTokenList modifiers, TypeSyntax type, string identifier, EqualsValueClauseSyntax initializer)
-        {
-            return FieldDeclaration(modifiers, type, Identifier(identifier), initializer);
-        }
-
-        public static FieldDeclarationSyntax FieldDeclaration(SyntaxTokenList modifiers, TypeSyntax type, SyntaxToken identifier, EqualsValueClauseSyntax initializer)
-        {
             return SyntaxFactory.FieldDeclaration(
                 default(SyntaxList<AttributeListSyntax>),
                 modifiers,
                 VariableDeclaration(
                     type,
-                    VariableDeclarator(
-                        identifier,
-                        default(BracketedArgumentListSyntax),
-                        initializer)));
+                    identifier,
+                    (value != null) ? EqualsValueClause(value) : null));
         }
 
         public static ArgumentListSyntax ArgumentList(ArgumentSyntax argument)
@@ -275,6 +259,26 @@ namespace Roslynator.CSharp
                 default:
                     throw new ArgumentOutOfRangeException(nameof(kind));
             }
+        }
+
+        public static VariableDeclaratorSyntax VariableDeclarator(string identifier, EqualsValueClauseSyntax initializer)
+        {
+            return VariableDeclarator(Identifier(identifier), initializer);
+        }
+
+        public static VariableDeclaratorSyntax VariableDeclarator(SyntaxToken identifier, EqualsValueClauseSyntax initializer)
+        {
+            return SyntaxFactory.VariableDeclarator(identifier, default(BracketedArgumentListSyntax), initializer);
+        }
+
+        public static VariableDeclarationSyntax VariableDeclaration(TypeSyntax type, string identifier, EqualsValueClauseSyntax initializer)
+        {
+            return VariableDeclaration(type, Identifier(identifier), initializer);
+        }
+
+        public static VariableDeclarationSyntax VariableDeclaration(TypeSyntax type, SyntaxToken identifier, EqualsValueClauseSyntax initializer)
+        {
+            return VariableDeclaration(type, VariableDeclarator(identifier, initializer));
         }
 
         public static VariableDeclarationSyntax VariableDeclaration(TypeSyntax type, VariableDeclaratorSyntax variable)
@@ -797,20 +801,6 @@ namespace Roslynator.CSharp
             return BinaryExpression(SyntaxKind.LogicalAndExpression, left, operatorToken, right);
         }
 
-        public static BinaryExpressionSyntax LogicalAndExpression(ExpressionSyntax left, ExpressionSyntax right, bool addParenthesesIfNecessary)
-        {
-            if (addParenthesesIfNecessary)
-            {
-                return LogicalAndExpression(
-                    ParenthesizeIfNecessary(left, SyntaxKind.LogicalAndExpression),
-                    ParenthesizeIfNecessary(right, SyntaxKind.LogicalAndExpression));
-            }
-            else
-            {
-                return LogicalAndExpression(left, right);
-            }
-        }
-
         public static BinaryExpressionSyntax LogicalOrExpression(ExpressionSyntax left, ExpressionSyntax right)
         {
             return BinaryExpression(SyntaxKind.LogicalOrExpression, left, right);
@@ -819,32 +809,6 @@ namespace Roslynator.CSharp
         public static BinaryExpressionSyntax LogicalOrExpression(ExpressionSyntax left, SyntaxToken operatorToken, ExpressionSyntax right)
         {
             return BinaryExpression(SyntaxKind.LogicalOrExpression, left, operatorToken, right);
-        }
-
-        public static BinaryExpressionSyntax LogicalOrExpression(ExpressionSyntax left, ExpressionSyntax right, bool addParenthesesIfNecessary)
-        {
-            if (addParenthesesIfNecessary)
-            {
-                return LogicalOrExpression(
-                    ParenthesizeIfNecessary(left, SyntaxKind.LogicalOrExpression),
-                    ParenthesizeIfNecessary(right, SyntaxKind.LogicalOrExpression));
-            }
-            else
-            {
-                return LogicalOrExpression(left, right);
-            }
-        }
-
-        private static ExpressionSyntax ParenthesizeIfNecessary(ExpressionSyntax expression, SyntaxKind parentKind)
-        {
-            if (CSharpAnalysis.GetOperatorPrecedence(expression) > CSharpAnalysis.GetOperatorPrecedence(parentKind))
-            {
-                return expression.Parenthesize(moveTrivia: true);
-            }
-            else
-            {
-                return expression;
-            }
         }
 
         public static BinaryExpressionSyntax EqualsExpression(ExpressionSyntax left, ExpressionSyntax right)
@@ -875,6 +839,16 @@ namespace Roslynator.CSharp
         public static BinaryExpressionSyntax AsExpression(ExpressionSyntax expression, SyntaxToken operatorToken, TypeSyntax type)
         {
             return BinaryExpression(SyntaxKind.AsExpression, expression, operatorToken, type);
+        }
+
+        public static BinaryExpressionSyntax IsExpression(ExpressionSyntax expression, TypeSyntax type)
+        {
+            return BinaryExpression(SyntaxKind.IsExpression, expression, type);
+        }
+
+        public static BinaryExpressionSyntax IsExpression(ExpressionSyntax expression, SyntaxToken operatorToken, TypeSyntax type)
+        {
+            return BinaryExpression(SyntaxKind.IsExpression, expression, operatorToken, type);
         }
 
         public static BinaryExpressionSyntax AddExpression(ExpressionSyntax left, ExpressionSyntax right)
@@ -1187,7 +1161,7 @@ namespace Roslynator.CSharp
 
         public static GenericNameSyntax GenericName(SyntaxToken identifier, TypeSyntax typeArgument)
         {
-            return SyntaxFactory.GenericName(identifier, TypeArgumentList(SingletonSeparatedList(typeArgument)));
+            return SyntaxFactory.GenericName(identifier, TypeArgumentList(typeArgument));
         }
 
         public static LocalDeclarationStatementSyntax LocalDeclarationStatement(TypeSyntax type, string identifier, ExpressionSyntax value = null)
@@ -1198,8 +1172,8 @@ namespace Roslynator.CSharp
         public static LocalDeclarationStatementSyntax LocalDeclarationStatement(TypeSyntax type, SyntaxToken identifier, ExpressionSyntax value = null)
         {
             VariableDeclaratorSyntax declarator = (value != null)
-                ? VariableDeclarator(identifier, default(BracketedArgumentListSyntax), EqualsValueClause(value))
-                : VariableDeclarator(identifier);
+                ? VariableDeclarator(identifier, EqualsValueClause(value))
+                : SyntaxFactory.VariableDeclarator(identifier);
 
             return SyntaxFactory.LocalDeclarationStatement(
                 SyntaxFactory.VariableDeclaration(
@@ -1218,6 +1192,11 @@ namespace Roslynator.CSharp
                 default(SyntaxList<AttributeListSyntax>),
                 identifier,
                 EqualsValueClause(value));
+        }
+
+        public static TypeArgumentListSyntax TypeArgumentList(TypeSyntax argument)
+        {
+            return SyntaxFactory.TypeArgumentList(SingletonSeparatedList(argument));
         }
 
         public static InitializerExpressionSyntax ObjectInitializerExpression(SeparatedSyntaxList<ExpressionSyntax> expressions = default(SeparatedSyntaxList<ExpressionSyntax>))

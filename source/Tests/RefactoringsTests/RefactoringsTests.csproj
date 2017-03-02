@@ -72,12 +72,13 @@
     <Compile Include="ReplaceAsWithCastRefactoring.cs" />
     <Compile Include="ReplaceCastWithAsRefactoring.cs" />
     <Compile Include="ReplaceConditionalExpressionWithExpressionRefactoring.cs" />
+    <Compile Include="ReplaceExpressionWithConstantValueRefactoring.cs" />
     <Compile Include="ReplaceEqualsExpressionWithStringEqualsRefactoring.cs" />
     <Compile Include="ReplaceEqualsExpressionWithStringMethodRefactoring.cs" />
-    <Compile Include="ReplaceIfElseWithAssignment.cs" />
+    <Compile Include="ReplaceHexadecimalLiteralWithDecimalLiteralRefactoring.cs" />
     <Compile Include="ReplaceForWithWhileRefactoring.cs" />
     <Compile Include="ReplaceIfElseWithSwitchRefactoring.cs" />
-    <Compile Include="ReplaceIfStatementWithReturnStatementRefactoring.cs" />
+    <Compile Include="UseInsteadOfIfRefactoring.cs" />
     <Compile Include="ReplaceNullLiteralExpressionWithDefaultExpressionRefactoring.cs" />
     <Compile Include="ReplaceInterpolatedStringWithInterpolationExpressionRefactoring.cs" />
     <Compile Include="ReplaceMethodGroupWithLambdaRefactoring.cs" />
@@ -89,8 +90,8 @@
     <Compile Include="SortMemberDeclarationsRefactoring.cs" />
     <Compile Include="SplitSwitchLabelsRefactoring.cs" />
     <Compile Include="ReplaceStringContainsWithStringIndexOfRefactoring.cs" />
+    <Compile Include="WrapInElseRefactoring.cs" />
     <Compile Include="Tuple.cs" />
-    <Compile Include="UseConditionalAccess.cs" />
     <Compile Include="WrapInIfDirectiveRefactoring.cs" />
     <Compile Include="WrapInRegionRefactoring.cs" />
     <Compile Include="InlineMethodRefactoring_.cs" />
@@ -206,7 +207,7 @@
     <Compile Include="AddBracesToIfElseRefactoring.cs" />
     <Compile Include="AddBracesRefactoring.cs" />
     <Compile Include="AddBooleanComparisonRefactoring.cs" />
-    <Compile Include="ReplaceMethodInvocationWithElementAccessRefactoring.cs" />
+    <Compile Include="UseElementAccessInsteadOfEnumerableMethodRefactoring.cs" />
     <Compile Include="MergeAttributesRefactoring.cs" />
     <Compile Include="SplitAttributesRefactoring.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

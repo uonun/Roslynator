@@ -37,13 +37,13 @@ namespace Roslynator.CSharp.Refactorings
                         {
                             case SyntaxKind.YieldReturnStatement:
                                 {
-                                    context.ReportDiagnostic(DiagnosticDescriptors.ReplaceReturnWithYieldReturn, returnStatement.GetLocation());
+                                    context.ReportDiagnostic(DiagnosticDescriptors.ReplaceReturnWithYieldReturn, returnStatement);
                                     break;
                                 }
                             case SyntaxKind.ForEachStatement:
                                 {
                                     if (!returnStatement.ContainsDirectives)
-                                        context.ReportDiagnostic(DiagnosticDescriptors.ReplaceReturnWithYieldReturn, returnStatement.GetLocation());
+                                        context.ReportDiagnostic(DiagnosticDescriptors.ReplaceReturnWithYieldReturn, returnStatement);
 
                                     break;
                                 }
@@ -138,7 +138,7 @@ namespace Roslynator.CSharp.Refactorings
                     }
                 case SyntaxKind.ForEachStatement:
                     {
-                        string identifier = Identifier.EnsureUniqueLocalName("item", returnStatement.SpanStart, semanticModel, cancellationToken);
+                        string identifier = Identifier.EnsureUniqueLocalName("item", returnStatement, semanticModel, cancellationToken);
 
                         YieldStatementSyntax yieldReturnStatement = YieldStatement(
                             SyntaxKind.YieldReturnStatement,

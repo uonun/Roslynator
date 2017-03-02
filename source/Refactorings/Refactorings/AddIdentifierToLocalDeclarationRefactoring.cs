@@ -47,13 +47,13 @@ namespace Roslynator.CSharp.Refactorings
                             if (typeSymbol?.IsErrorType() == false)
                             {
                                 string name = Identifier.CreateName(typeSymbol, firstCharToLower: true);
-                                name = Identifier.EnsureUniqueLocalName(name, declarator.SpanStart, semanticModel, context.CancellationToken);
+                                name = Identifier.EnsureUniqueLocalName(name, declarator, semanticModel, context.CancellationToken);
 
                                 if (!string.IsNullOrEmpty(name))
                                 {
                                     context.RegisterRefactoring(
                                         $"Add identifier '{name}'",
-                                        c => RefactorAsync(context.Document, declarator, type, name, c));
+                                        c => RefactorAsync(context.Document, type, name, c));
                                 }
                             }
                         }
@@ -75,7 +75,7 @@ namespace Roslynator.CSharp.Refactorings
                 if (typeSymbol?.IsErrorType() == false)
                 {
                     string name = Identifier.CreateName(typeSymbol, firstCharToLower: true);
-                    name = Identifier.EnsureUniqueLocalName(name, expression.SpanStart, semanticModel, context.CancellationToken);
+                    name = Identifier.EnsureUniqueLocalName(name, expression, semanticModel, context.CancellationToken);
 
                     if (!string.IsNullOrEmpty(name))
                     {
@@ -89,7 +89,6 @@ namespace Roslynator.CSharp.Refactorings
 
         private static async Task<Document> RefactorAsync(
             Document document,
-            VariableDeclaratorSyntax declarator,
             TypeSyntax type,
             string name,
             CancellationToken cancellationToken = default(CancellationToken))

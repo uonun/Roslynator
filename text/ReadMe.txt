@@ -1,11 +1,12 @@
 ## Roslynator
-* A collection of 150+ analyzers and 170+ refactorings for C#, powered by Roslyn.
+* A collection of 170+ analyzers and 170+ refactorings for C#, powered by Roslyn.
 * [Analyzers](http://github.com/JosefPihrt/Roslynator/blob/master/source/Analyzers/README.md)
 * [Refactorings](http://github.com/JosefPihrt/Roslynator/blob/master/source/Refactorings/README.md)
 * [Release Notes](http://github.com/JosefPihrt/Roslynator/blob/master/ChangeLog.md)
 
-### Options
+### Settings
 
+* Analyzers can be enabled/disabled using **rule set**. Please see [How to Customize Analyzers](http://github.com/JosefPihrt/Roslynator/blob/master/docs/HowToCustomizeAnalyzers.md).
 * Refactorings can be enabled/disabled in Visual Studio options
 
 ![Refactorings Options](/images/RefactoringsOptions.png)

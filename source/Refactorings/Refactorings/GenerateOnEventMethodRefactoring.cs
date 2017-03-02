@@ -53,7 +53,7 @@ namespace Roslynator.CSharp.Refactorings
                                         && !MethodExists(eventSymbol, containingType, eventArgsSymbol))
                                     {
                                         string methodName = "On" + eventSymbol.Name;
-                                        methodName = Identifier.EnsureUniqueMemberName(methodName, containingType, context.CancellationToken);
+                                        methodName = Identifier.EnsureUniqueMemberName(methodName, containingType);
 
                                         context.RegisterRefactoring(
                                             $"Generate '{methodName}' method",
@@ -128,7 +128,7 @@ namespace Roslynator.CSharp.Refactorings
             ITypeSymbol eventArgsSymbol,
             bool supportCSharp6)
         {
-            TypeSyntax eventArgsType = eventArgsSymbol.ToSyntax().WithSimplifierAnnotation();
+            TypeSyntax eventArgsType = eventArgsSymbol.ToTypeSyntax().WithSimplifierAnnotation();
 
             return MethodDeclaration(
                 default(SyntaxList<AttributeListSyntax>),
@@ -141,13 +141,12 @@ namespace Roslynator.CSharp.Refactorings
                 default(TypeParameterListSyntax),
                 ParameterList(Parameter(eventArgsType, Identifier(EventArgsIdentifier))),
                 default(SyntaxList<TypeParameterConstraintClauseSyntax>),
-                Block(CreateOnEventMethodBody(eventSymbol, eventArgsType, supportCSharp6)),
+                Block(CreateOnEventMethodBody(eventSymbol, supportCSharp6)),
                 default(ArrowExpressionClauseSyntax));
         }
 
         private static IEnumerable<StatementSyntax> CreateOnEventMethodBody(
             IEventSymbol eventSymbol,
-            TypeSyntax eventArgsType,
             bool supportsCSharp6)
         {
             if (supportsCSharp6)
@@ -165,10 +164,9 @@ namespace Roslynator.CSharp.Refactorings
             {
                 yield return LocalDeclarationStatement(
                     VariableDeclaration(
-                        eventSymbol.Type.ToSyntax().WithSimplifierAnnotation(),
+                        eventSymbol.Type.ToTypeSyntax().WithSimplifierAnnotation(),
                         VariableDeclarator(
                             Identifier(HandlerIdentifier),
-                            default(BracketedArgumentListSyntax),
                             EqualsValueClause(IdentifierName(eventSymbol.Name)))));
 
                 yield return IfStatement(

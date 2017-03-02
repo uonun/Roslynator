@@ -2,13 +2,16 @@
 
 using System.Collections.Immutable;
 using System.Composition;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Roslynator.CSharp.Extensions;
 using Roslynator.CSharp.Refactorings;
-using Roslynator.CSharp.Refactorings.ReplaceCountMethod;
+using Roslynator.CSharp.Refactorings.UseInsteadOfCountMethod;
+using Roslynator.Extensions;
 
 namespace Roslynator.CSharp.CodeFixProviders
 {
@@ -22,12 +25,16 @@ namespace Roslynator.CSharp.CodeFixProviders
             {
                 return ImmutableArray.Create(
                     DiagnosticIdentifiers.SimplifyBooleanComparison,
-                    DiagnosticIdentifiers.ReplaceCountMethodWithAnyMethod,
+                    DiagnosticIdentifiers.UseAnyMethodInsteadOfCountMethod,
                     DiagnosticIdentifiers.AvoidNullLiteralExpressionOnLeftSideOfBinaryExpression,
                     DiagnosticIdentifiers.UseStringIsNullOrEmptyMethod,
                     DiagnosticIdentifiers.SimplifyCoalesceExpression,
                     DiagnosticIdentifiers.RemoveRedundantAsOperator,
-                    DiagnosticIdentifiers.UseConditionalAccess);
+                    DiagnosticIdentifiers.UseConditionalAccess,
+                    DiagnosticIdentifiers.UseStringLengthInsteadOfComparisonWithEmptyString,
+                    DiagnosticIdentifiers.UnconstrainedTypeParameterCheckedForNull,
+                    DiagnosticIdentifiers.ValueTypeCheckedForNull,
+                    DiagnosticIdentifiers.UseIsOperatorInsteadOfAsOperator);
             }
         }
 
@@ -57,11 +64,11 @@ namespace Roslynator.CSharp.CodeFixProviders
 
                             break;
                         }
-                    case DiagnosticIdentifiers.ReplaceCountMethodWithAnyMethod:
+                    case DiagnosticIdentifiers.UseAnyMethodInsteadOfCountMethod:
                         {
                             CodeAction codeAction = CodeAction.Create(
-                                "Replace 'Count()' with 'Any()'",
-                                cancellationToken => ReplaceCountMethodWithAnyMethodRefactoring.RefactorAsync(context.Document, binaryExpression, cancellationToken),
+                                "Call 'Any' instead of 'Count'",
+                                cancellationToken => UseAnyMethodInsteadOfCountMethodRefactoring.RefactorAsync(context.Document, binaryExpression, cancellationToken),
                                 diagnostic.Id + EquivalenceKeySuffix);
 
                             context.RegisterCodeFix(codeAction, diagnostic);
@@ -120,6 +127,67 @@ namespace Roslynator.CSharp.CodeFixProviders
                             CodeAction codeAction = CodeAction.Create(
                                 "Use conditional access",
                                 cancellationToken => UseConditionalAccessRefactoring.RefactorAsync(context.Document, binaryExpression, cancellationToken),
+                                diagnostic.Id + EquivalenceKeySuffix);
+
+                            context.RegisterCodeFix(codeAction, diagnostic);
+                            break;
+                        }
+                    case DiagnosticIdentifiers.UseStringLengthInsteadOfComparisonWithEmptyString:
+                        {
+                            CodeAction codeAction = CodeAction.Create(
+                                "Use string.Length",
+                                cancellationToken => UseStringLengthInsteadOfComparisonWithEmptyStringRefactoring.RefactorAsync(context.Document, binaryExpression, cancellationToken),
+                                diagnostic.Id + EquivalenceKeySuffix);
+
+                            context.RegisterCodeFix(codeAction, diagnostic);
+                            break;
+                        }
+                    case DiagnosticIdentifiers.UnconstrainedTypeParameterCheckedForNull:
+                        {
+                            SemanticModel semanticModel = await context.Document.GetSemanticModelAsync(context.CancellationToken).ConfigureAwait(false);
+
+                            ITypeSymbol typeSymbol = semanticModel.GetTypeSymbol(binaryExpression.Left, context.CancellationToken);
+
+                            CodeAction codeAction = CodeAction.Create(
+                                $"Use EqualityComparer<{typeSymbol.Name}>.Default",
+                                cancellationToken => UnconstrainedTypeParameterCheckedForNullRefactoring.RefactorAsync(context.Document, binaryExpression, typeSymbol, cancellationToken),
+                                diagnostic.Id + EquivalenceKeySuffix);
+
+                            context.RegisterCodeFix(codeAction, diagnostic);
+                            break;
+                        }
+                    case DiagnosticIdentifiers.ValueTypeCheckedForNull:
+                        {
+                            SemanticModel semanticModel = await context.Document.GetSemanticModelAsync(context.CancellationToken).ConfigureAwait(false);
+
+                            ITypeSymbol typeSymbol = semanticModel.GetTypeSymbol(binaryExpression.Left, context.CancellationToken);
+
+                            string title = null;
+
+                            if (typeSymbol.IsPredefinedValueType()
+                                || typeSymbol.GetMethods(WellKnownMemberNames.EqualityOperatorName).Any())
+                            {
+                                title = $"Replace 'null' with 'default({SymbolDisplay.GetMinimalString(typeSymbol, semanticModel, binaryExpression.Right.SpanStart)})'";
+                            }
+                            else
+                            {
+                                title = $"Use EqualityComparer<{SymbolDisplay.GetMinimalString(typeSymbol, semanticModel, binaryExpression.Right.SpanStart)}>.Default";
+                            }
+
+                            CodeAction codeAction = CodeAction.Create(
+                                title,
+                                cancellationToken => ValueTypeCheckedForNullRefactoring.RefactorAsync(context.Document, binaryExpression, typeSymbol, cancellationToken),
+                                diagnostic.Id + EquivalenceKeySuffix);
+
+                            context.RegisterCodeFix(codeAction, diagnostic);
+                            break;
+                        }
+                    case DiagnosticIdentifiers.UseIsOperatorInsteadOfAsOperator:
+                        {
+                            CodeAction codeAction = CodeAction.Create(
+                                "Use is operator",
+                                cancellationToken => UseIsOperatorInsteadOfAsOperatorRefactoring.
+                                RefactorAsync(context.Document, binaryExpression, cancellationToken),
                                 diagnostic.Id + EquivalenceKeySuffix);
 
                             context.RegisterCodeFix(codeAction, diagnostic);
