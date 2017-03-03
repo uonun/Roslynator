@@ -18,12 +18,14 @@ namespace MetadataGenerator
                         new XElement("general",
                             new XElement("prefixFieldIdentifierWithUnderscore", new XAttribute("isEnabled", true))),
                         new XElement("refactorings",
-                            refactorings.Select(f =>
-                            {
-                                return new XElement("refactoring",
-                                    new XAttribute("id", f.Id),
-                                    new XAttribute("isEnabled", f.IsEnabledByDefault));
-                            })
+                            refactorings
+                                .OrderBy(f => f.Id)
+                                .Select(f =>
+                                {
+                                    return new XElement("refactoring",
+                                        new XAttribute("id", f.Id),
+                                        new XAttribute("isEnabled", f.IsEnabledByDefault));
+                                })
                         )
                     )
                 )

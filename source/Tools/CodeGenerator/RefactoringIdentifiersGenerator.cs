@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Josef Pihrt. All rights reserved. Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
@@ -17,6 +18,8 @@ namespace CodeGenerator
 {
     public class RefactoringIdentifiersGenerator : Generator
     {
+        public StringComparer InvariantComparer { get; } = StringComparer.InvariantCulture;
+
         public CompilationUnitSyntax Generate(IEnumerable<RefactoringDescriptor> refactorings)
         {
             CompilationUnitSyntax compilationUnit = CompilationUnit()
@@ -28,7 +31,7 @@ namespace CodeGenerator
                             ClassDeclaration("RefactoringIdentifiers")
                                 .WithModifiers(ModifierFactory.PublicStatic())
                                 .WithMembers(
-                                    CreateMembers(refactorings))));
+                                    CreateMembers(refactorings.OrderBy(f => f.Identifier, InvariantComparer)))));
 
             compilationUnit = compilationUnit.NormalizeWhitespace();
 

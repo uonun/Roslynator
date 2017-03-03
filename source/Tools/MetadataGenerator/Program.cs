@@ -15,6 +15,8 @@ namespace MetadataGenerator
 {
     internal static class Program
     {
+        private static readonly StringComparer _invariantComparer = StringComparer.InvariantCulture;
+
         private static void Main(string[] args)
         {
             if (args == null || args.Length == 0)
@@ -32,14 +34,14 @@ namespace MetadataGenerator
 
             RefactoringDescriptor[] refactorings = RefactoringDescriptor
                 .LoadFromFile(Path.Combine(dirPath, @"Refactorings\Refactorings.xml"))
-                .OrderBy(f => f.Identifier, StringComparer.InvariantCulture)
+                .OrderBy(f => f.Identifier, _invariantComparer)
                 .ToArray();
 
             Console.WriteLine($"number of refactorings: {refactorings.Length}");
 
             AnalyzerDescriptor[] analyzers = AnalyzerDescriptor
                 .LoadFromFile(Path.Combine(dirPath, @"Analyzers\Analyzers.xml"))
-                .OrderBy(f => f.Id, StringComparer.InvariantCulture)
+                .OrderBy(f => f.Id, _invariantComparer)
                 .ToArray();
 
             Console.WriteLine($"number of analyzers: {analyzers.Length}");
@@ -120,7 +122,7 @@ namespace MetadataGenerator
 
             IEnumerable<XElement> newElements = root
                 .Elements()
-                .OrderBy(f => f.Attribute("Identifier").Value);
+                .OrderBy(f => f.Attribute("Identifier").Value, _invariantComparer);
 
             if (newElements.Any(f => f.Attribute("Id") == null))
             {

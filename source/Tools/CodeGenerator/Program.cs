@@ -24,7 +24,6 @@ namespace CodeGenerator
 
             RefactoringDescriptor[] refactorings = RefactoringDescriptor
                 .LoadFromFile(Path.Combine(dirPath, @"Refactorings\Refactorings.xml"))
-                .OrderBy(f => f.Identifier, StringComparer.InvariantCulture)
                 .ToArray();
 
             var writer = new CodeFileWriter();

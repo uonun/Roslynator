@@ -22,14 +22,6 @@
       <refactoring id="RR0015" isEnabled="true" />
       <refactoring id="RR0016" isEnabled="true" />
       <refactoring id="RR0017" isEnabled="true" />
-      <refactoring id="RR0052" isEnabled="true" />
-      <refactoring id="RR0053" isEnabled="true" />
-      <refactoring id="RR0054" isEnabled="true" />
-      <refactoring id="RR0055" isEnabled="true" />
-      <refactoring id="RR0056" isEnabled="true" />
-      <refactoring id="RR0057" isEnabled="true" />
-      <refactoring id="RR0058" isEnabled="true" />
-      <refactoring id="RR0059" isEnabled="true" />
       <refactoring id="RR0018" isEnabled="true" />
       <refactoring id="RR0019" isEnabled="true" />
       <refactoring id="RR0020" isEnabled="true" />
@@ -64,6 +56,14 @@
       <refactoring id="RR0049" isEnabled="true" />
       <refactoring id="RR0050" isEnabled="true" />
       <refactoring id="RR0051" isEnabled="true" />
+      <refactoring id="RR0052" isEnabled="true" />
+      <refactoring id="RR0053" isEnabled="true" />
+      <refactoring id="RR0054" isEnabled="true" />
+      <refactoring id="RR0055" isEnabled="true" />
+      <refactoring id="RR0056" isEnabled="true" />
+      <refactoring id="RR0057" isEnabled="true" />
+      <refactoring id="RR0058" isEnabled="true" />
+      <refactoring id="RR0059" isEnabled="true" />
       <refactoring id="RR0060" isEnabled="true" />
       <refactoring id="RR0061" isEnabled="true" />
       <refactoring id="RR0062" isEnabled="true" />
@@ -129,7 +129,7 @@
       <refactoring id="RR0122" isEnabled="true" />
       <refactoring id="RR0123" isEnabled="true" />
       <refactoring id="RR0124" isEnabled="true" />
-      <refactoring id="RR0125" isEnabled="false" />
+      <refactoring id="RR0125" isEnabled="true" />
       <refactoring id="RR0126" isEnabled="true" />
       <refactoring id="RR0127" isEnabled="true" />
       <refactoring id="RR0128" isEnabled="true" />
@@ -142,10 +142,10 @@
       <refactoring id="RR0135" isEnabled="true" />
       <refactoring id="RR0136" isEnabled="true" />
       <refactoring id="RR0137" isEnabled="true" />
-      <refactoring id="RR0138" isEnabled="true" />
+      <refactoring id="RR0138" isEnabled="false" />
       <refactoring id="RR0139" isEnabled="true" />
       <refactoring id="RR0140" isEnabled="true" />
-      <refactoring id="RR0141" isEnabled="false" />
+      <refactoring id="RR0141" isEnabled="true" />
       <refactoring id="RR0142" isEnabled="true" />
       <refactoring id="RR0143" isEnabled="true" />
       <refactoring id="RR0144" isEnabled="true" />
@@ -175,9 +175,13 @@
       <refactoring id="RR0168" isEnabled="true" />
       <refactoring id="RR0169" isEnabled="true" />
       <refactoring id="RR0170" isEnabled="true" />
-      <refactoring id="RR0171" isEnabled="true" />
+      <refactoring id="RR0171" isEnabled="false" />
       <refactoring id="RR0172" isEnabled="true" />
       <refactoring id="RR0173" isEnabled="true" />
+      <refactoring id="RR0174" isEnabled="true" />
+      <refactoring id="RR0175" isEnabled="true" />
+      <refactoring id="RR0176" isEnabled="true" />
+      <refactoring id="RR0177" isEnabled="true" />
     </refactorings>
   </settings>
 </roslynator>
