@@ -81,11 +81,7 @@ namespace Roslynator.VisualStudio
                 settings.PrefixFieldIdentifierWithUnderscore = appSettings.PrefixFieldIdentifierWithUnderscore;
 
                 foreach (KeyValuePair<string, bool> kvp in appSettings.Refactorings)
-                {
-                    string identifier;
-                    if (RefactoringIdentifiers.TryGetIdentifier(kvp.Key, out identifier))
-                        settings.SetRefactoring(identifier, kvp.Value);
-                }
+                    settings.SetRefactoring(kvp.Key, kvp.Value);
             }
         }
 

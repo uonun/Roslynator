@@ -22,7 +22,7 @@ namespace CodeGenerator
 
         public CompilationUnitSyntax Generate(IEnumerable<RefactoringDescriptor> refactorings)
         {
-            CompilationUnitSyntax compilationUnit = CompilationUnit()
+            return CompilationUnit()
                 .WithUsings(List(new UsingDirectiveSyntax[] {
                     UsingDirective(ParseName(MetadataNames.System_Collections_Generic)) }))
                 .WithMembers(
@@ -32,18 +32,6 @@ namespace CodeGenerator
                                 .WithModifiers(ModifierFactory.PublicStatic())
                                 .WithMembers(
                                     CreateMembers(refactorings.OrderBy(f => f.Identifier, InvariantComparer)))));
-
-            compilationUnit = compilationUnit.NormalizeWhitespace();
-
-            var classDeclaration = (ClassDeclarationSyntax)compilationUnit
-                .DescendantNodes()
-                .FirstOrDefault(f => f.IsKind(SyntaxKind.ClassDeclaration));
-
-            ClassDeclarationSyntax newClassDeclaration = AddEmptyLineBetweenMembers(classDeclaration);
-
-            newClassDeclaration = FormatInitializer(newClassDeclaration);
-
-            return compilationUnit.ReplaceNode(classDeclaration, newClassDeclaration);
         }
 
         private static ClassDeclarationSyntax AddEmptyLineBetweenMembers(ClassDeclarationSyntax classDeclaration)
@@ -67,70 +55,10 @@ namespace CodeGenerator
             return classDeclaration.WithMembers(List(newMembers));
         }
 
-        private static ClassDeclarationSyntax FormatInitializer(ClassDeclarationSyntax newClassDeclaration)
-        {
-            var initializer = (InitializerExpressionSyntax)newClassDeclaration
-                .DescendantNodes()
-                .FirstOrDefault(f => f.IsKind(SyntaxKind.ObjectInitializerExpression));
-
-            InitializerExpressionSyntax newInitializer = initializer
-                .WithOpenBraceToken(initializer.OpenBraceToken.WithTrailingTrivia(NewLineTrivia()))
-                .WithCloseBraceToken(initializer.CloseBraceToken.WithLeadingTrivia(ParseLeadingTrivia("        ")).PrependToLeadingTrivia(NewLineTrivia()))
-                .WithExpressions(initializer.Expressions.Select(f => f.WithLeadingTrivia(ParseLeadingTrivia("            "))).ToSeparatedSyntaxList());
-
-            newInitializer = newInitializer.ReplaceTokens(newInitializer.ChildTokens().Where(f => f.IsKind(SyntaxKind.CommaToken)), (f, g) => f.WithTrailingTrivia(NewLineTrivia()));
-
-            newClassDeclaration = newClassDeclaration.ReplaceNode(initializer, newInitializer);
-            return newClassDeclaration;
-        }
-
         private static IEnumerable<MemberDeclarationSyntax> CreateMembers(IEnumerable<RefactoringDescriptor> refactorings)
         {
             foreach (RefactoringDescriptor refactoring in refactorings)
-                yield return CreateConstantDeclaration(refactoring.Identifier);
-
-            TypeSyntax type = ParseTypeName("Dictionary<string, string>");
-
-            yield return FieldDeclaration(
-                ModifierFactory.PrivateStaticReadOnly(),
-                type,
-                Identifier("_map"),
-                ObjectCreationExpression(
-                    type,
-                    ArgumentList(),
-                    ObjectInitializerExpression(
-                        refactorings
-                            .Select(refactoring =>
-                            {
-                                return SimpleAssignmentExpression(
-                                    ImplicitElementAccess(StringLiteralExpression(refactoring.Id)),
-                                    StringLiteralExpression(refactoring.Identifier));
-                            })
-                            .ToSeparatedSyntaxList<ExpressionSyntax>()
-                    )
-                )
-            );
-
-            yield return MethodDeclaration(
-                ModifierFactory.PublicStatic(),
-                BoolType(),
-                Identifier("TryGetIdentifier"),
-                ParameterList(
-                    Parameter(StringType(), Identifier("id")),
-                    Parameter(ModifierFactory.Out(), StringType(), Identifier("identifier"))),
-                Block(
-                    ReturnStatement(
-                        SimpleMemberInvocationExpression(
-                            IdentifierName("_map"),
-                            "TryGetValue",
-                            ArgumentList(
-                                Argument(IdentifierName("id")),
-                                Argument(default(NameColonSyntax), OutKeyword(), IdentifierName("identifier")))))));
-        }
-
-        private static MemberDeclarationSyntax CreateConstantDeclaration(string name)
-        {
-            return FieldDeclaration(ModifierFactory.PublicConst(), StringType(), name, StringLiteralExpression(name));
+                yield return FieldDeclaration(ModifierFactory.PublicConst(), StringType(), refactoring.Identifier, StringLiteralExpression(refactoring.Id));
         }
     }
 }

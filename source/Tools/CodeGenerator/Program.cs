@@ -31,8 +31,7 @@ namespace CodeGenerator
             var refactoringIdentifiersGenerator = new RefactoringIdentifiersGenerator();
             writer.SaveCode(
                 Path.Combine(dirPath, @"Refactorings\RefactoringIdentifiers.cs"),
-                refactoringIdentifiersGenerator.Generate(refactorings),
-                normalizeWhitespace: false);
+                refactoringIdentifiersGenerator.Generate(refactorings));
 
             var optionsPagePropertiesGenerator = new OptionsPagePropertiesGenerator();
             writer.SaveCode(

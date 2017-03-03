@@ -21,76 +21,76 @@ namespace Roslynator.CSharp.Refactorings
             DisabledRefactorings.Clear();
         }
 
-        public bool IsRefactoringEnabled(string identifier)
+        public bool IsRefactoringEnabled(string id)
         {
-            return !DisabledRefactorings.Contains(identifier);
+            return !DisabledRefactorings.Contains(id);
         }
 
-        public bool IsAnyRefactoringEnabled(string identifier, string identifier2)
+        public bool IsAnyRefactoringEnabled(string id, string id2)
         {
-            return IsRefactoringEnabled(identifier)
-                || IsRefactoringEnabled(identifier2);
+            return IsRefactoringEnabled(id)
+                || IsRefactoringEnabled(id2);
         }
 
-        public bool IsAnyRefactoringEnabled(string identifier, string identifier2, string identifier3)
+        public bool IsAnyRefactoringEnabled(string id, string id2, string id3)
         {
-            return IsRefactoringEnabled(identifier)
-                || IsRefactoringEnabled(identifier2)
-                || IsRefactoringEnabled(identifier3);
+            return IsRefactoringEnabled(id)
+                || IsRefactoringEnabled(id2)
+                || IsRefactoringEnabled(id3);
         }
 
-        public bool IsAnyRefactoringEnabled(string identifier, string identifier2, string identifier3, string identifier4)
+        public bool IsAnyRefactoringEnabled(string id, string id2, string id3, string id4)
         {
-            return IsRefactoringEnabled(identifier)
-                || IsRefactoringEnabled(identifier2)
-                || IsRefactoringEnabled(identifier3)
-                || IsRefactoringEnabled(identifier4);
+            return IsRefactoringEnabled(id)
+                || IsRefactoringEnabled(id2)
+                || IsRefactoringEnabled(id3)
+                || IsRefactoringEnabled(id4);
         }
 
-        public bool IsAnyRefactoringEnabled(string identifier, string identifier2, string identifier3, string identifier4, string identifier5)
+        public bool IsAnyRefactoringEnabled(string id, string id2, string id3, string id4, string id5)
         {
-            return IsRefactoringEnabled(identifier)
-                || IsRefactoringEnabled(identifier2)
-                || IsRefactoringEnabled(identifier3)
-                || IsRefactoringEnabled(identifier4)
-                || IsRefactoringEnabled(identifier5);
+            return IsRefactoringEnabled(id)
+                || IsRefactoringEnabled(id2)
+                || IsRefactoringEnabled(id3)
+                || IsRefactoringEnabled(id4)
+                || IsRefactoringEnabled(id5);
         }
 
         public bool IsAnyRefactoringEnabled(
-            string identifier,
-            string identifier2,
-            string identifier3,
-            string identifier4,
-            string identifier5,
-            string identifier6)
+            string id,
+            string id2,
+            string id3,
+            string id4,
+            string id5,
+            string id6)
         {
-            return IsRefactoringEnabled(identifier)
-                || IsRefactoringEnabled(identifier2)
-                || IsRefactoringEnabled(identifier3)
-                || IsRefactoringEnabled(identifier4)
-                || IsRefactoringEnabled(identifier5)
-                || IsRefactoringEnabled(identifier6);
+            return IsRefactoringEnabled(id)
+                || IsRefactoringEnabled(id2)
+                || IsRefactoringEnabled(id3)
+                || IsRefactoringEnabled(id4)
+                || IsRefactoringEnabled(id5)
+                || IsRefactoringEnabled(id6);
         }
 
-        public void DisableRefactoring(string identifier)
+        public void DisableRefactoring(string id)
         {
-            DisabledRefactorings.Add(identifier);
+            DisabledRefactorings.Add(id);
         }
 
-        public void EnableRefactoring(string identifier)
+        public void EnableRefactoring(string id)
         {
-            DisabledRefactorings.Remove(identifier);
+            DisabledRefactorings.Remove(id);
         }
 
-        public void SetRefactoring(string identifier, bool isEnabled)
+        public void SetRefactoring(string id, bool isEnabled)
         {
             if (isEnabled)
             {
-                EnableRefactoring(identifier);
+                EnableRefactoring(id);
             }
             else
             {
-                DisableRefactoring(identifier);
+                DisableRefactoring(id);
             }
         }
     }

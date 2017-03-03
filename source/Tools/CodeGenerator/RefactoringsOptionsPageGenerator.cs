@@ -46,12 +46,12 @@ namespace CodeGenerator
                 .WithModifiers(ModifierFactory.Public())
                 .WithBody(
                     Block(refactorings
-                        .OrderBy(f => f.Identifier, InvariantComparer)
+                        .OrderBy(f => f.Id, InvariantComparer)
                         .Select(refactoring =>
                         {
                             return ExpressionStatement(
                                 SimpleAssignmentExpression(
-                                    IdentifierName(refactoring.Identifier),
+                                    IdentifierName(refactoring.Id),
                                     (refactoring.IsEnabledByDefault) ? TrueLiteralExpression() : FalseLiteralExpression()));
                         })));
 
@@ -64,7 +64,7 @@ namespace CodeGenerator
                         .Select(refactoring =>
                         {
                             return ExpressionStatement(
-                                ParseExpression($"refactorings.Add(new RefactoringModel(\"{refactoring.Id}\", \"{StringUtility.EscapeQuote(refactoring.Title)}\", {refactoring.Identifier}))"));
+                                ParseExpression($"refactorings.Add(new RefactoringModel(\"{refactoring.Id}\", \"{StringUtility.EscapeQuote(refactoring.Title)}\", {refactoring.Id}))"));
                         })));
 
             yield return MethodDeclaration(VoidType(), "LoadValuesFromView")
@@ -72,11 +72,11 @@ namespace CodeGenerator
                 .WithParameterList(ParameterList(Parameter(ParseTypeName("ICollection<RefactoringModel>"), Identifier("refactorings"))))
                 .WithBody(
                     Block(refactorings
-                        .OrderBy(f => f.Identifier, InvariantComparer)
+                        .OrderBy(f => f.Id, InvariantComparer)
                         .Select(refactoring =>
                         {
                             return ExpressionStatement(
-                                ParseExpression($"{refactoring.Identifier} = refactorings.FirstOrDefault(f => f.Id == \"{refactoring.Id}\").IsEnabled"));
+                                ParseExpression($"{refactoring.Id} = refactorings.FirstOrDefault(f => f.Id == \"{refactoring.Id}\").IsEnabled"));
                         })));
 
             yield return MethodDeclaration(VoidType(), "Apply")
@@ -94,16 +94,16 @@ namespace CodeGenerator
                                             SimpleMemberAccessExpression(
                                                 IdentifierName("RefactoringIdentifiers"),
                                                 IdentifierName(refactoring.Identifier))),
-                                        Argument(IdentifierName(refactoring.Identifier)))));
+                                        Argument(IdentifierName(refactoring.Id)))));
                         })));
 
-            foreach (RefactoringDescriptor info in refactorings.OrderBy(f => f.Identifier, InvariantComparer))
+            foreach (RefactoringDescriptor info in refactorings.OrderBy(f => f.Id, InvariantComparer))
                 yield return CreateRefactoringProperty(info);
         }
 
         private PropertyDeclarationSyntax CreateRefactoringProperty(RefactoringDescriptor refactoring)
         {
-            return PropertyDeclaration(BoolType(), refactoring.Identifier)
+            return PropertyDeclaration(BoolType(), refactoring.Id)
                 .WithAttributeLists(
                     AttributeList(Attribute("Category", IdentifierName("RefactoringCategory"))),
                     AttributeList(Attribute("DisplayName", StringLiteralExpression(refactoring.Title))),

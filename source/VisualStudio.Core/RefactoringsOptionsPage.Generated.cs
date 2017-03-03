@@ -14,733 +14,733 @@ namespace Roslynator.VisualStudio
     {
         public RefactoringsOptionsPage()
         {
-            AddBooleanComparison = true;
-            AddBraces = true;
-            AddBracesToIfElse = true;
-            AddBracesToSwitchSection = true;
-            AddBracesToSwitchSections = true;
-            AddCastExpression = true;
-            AddDefaultValueToParameter = true;
-            AddDefaultValueToReturnStatement = true;
-            AddExceptionToDocumentationComment = true;
-            AddIdentifierToVariableDeclaration = true;
-            AddParameterNameToArgument = true;
-            AddParameterNameToParameter = true;
-            AddUsingDirective = true;
-            AddUsingStaticDirective = true;
-            CallConfigureAwait = true;
-            CallExtensionMethodAsInstanceMethod = true;
-            CallToMethod = true;
-            ChangeExplicitTypeToVar = true;
-            ChangeMemberTypeAccordingToReturnExpression = true;
-            ChangeMemberTypeAccordingToYieldReturnExpression = true;
-            ChangeMethodReturnTypeToVoid = true;
-            ChangeTypeAccordingToExpression = true;
-            ChangeVarToExplicitType = true;
-            CheckExpressionForNull = true;
-            CheckParameterForNull = true;
-            CollapseToInitializer = true;
-            CommentOutMember = true;
-            CommentOutStatement = true;
-            CopyDocumentationCommentFromBaseMember = true;
-            DuplicateArgument = true;
-            DuplicateMember = true;
-            DuplicateParameter = true;
-            DuplicateStatement = true;
-            ExpandAssignmentExpression = true;
-            ExpandCoalesceExpression = true;
-            ExpandEvent = true;
-            ExpandExpressionBody = true;
-            ExpandInitializer = true;
-            ExpandLambdaExpressionBody = true;
-            ExpandProperty = true;
-            ExpandPropertyAndAddBackingField = true;
-            ExtractDeclarationFromUsingStatement = true;
-            ExtractExpressionFromCondition = true;
-            ExtractGenericType = true;
-            ExtractStatement = true;
-            ExtractTypeDeclarationToNewFile = true;
-            FormatAccessorBraces = true;
-            FormatArgumentList = true;
-            FormatBinaryExpression = true;
-            FormatConditionalExpression = true;
-            FormatExpressionChain = true;
-            FormatInitializer = true;
-            FormatParameterList = true;
-            GenerateBaseConstructors = true;
-            GenerateCombinedEnumMember = true;
-            GenerateEnumMember = true;
-            GenerateEnumValues = true;
-            GenerateEventInvokingMethod = true;
-            GenerateSwitchSections = true;
-            InitializeLocalWithDefaultValue = true;
-            InlineAliasExpression = true;
-            InlineMethod = true;
-            InsertStringInterpolation = true;
-            IntroduceAndInitializeField = true;
-            IntroduceAndInitializeProperty = true;
-            IntroduceConstructor = false;
-            IntroduceFieldToLockOn = true;
-            IntroduceLocalFromStatementThatReturnsValue = true;
-            MakeMemberAbstract = true;
-            MakeMemberVirtual = true;
-            MarkContainingClassAsAbstract = true;
-            MarkMemberAsStatic = true;
-            MergeAssignmentExpressionWithReturnStatement = true;
-            MergeAttributes = true;
-            MergeIfStatements = true;
-            MergeInterpolationIntoInterpolatedString = true;
-            MergeLocalDeclarations = true;
-            MergeStringExpressions = true;
-            NegateBinaryExpression = true;
-            NegateBooleanLiteral = true;
-            NegateIsExpression = true;
-            NegateOperator = true;
-            NotifyPropertyChanged = true;
-            ParenthesizeExpression = true;
-            PromoteLocalToParameter = true;
-            RemoveAllComments = true;
-            RemoveAllCommentsExceptDocumentationComments = true;
-            RemoveAllDocumentationComments = false;
-            RemoveAllMemberDeclarations = true;
-            RemoveAllPreprocessorDirectives = true;
-            RemoveAllRegionDirectives = true;
-            RemoveAllStatements = true;
-            RemoveAllSwitchSections = true;
-            RemoveBraces = true;
-            RemoveBracesFromIfElse = true;
-            RemoveBracesFromSwitchSection = true;
-            RemoveBracesFromSwitchSections = true;
-            RemoveComment = true;
-            RemoveConditionFromLastElse = true;
-            RemoveDirectiveAndRelatedDirectives = true;
-            RemoveEmptyLines = true;
-            RemoveInterpolation = true;
-            RemoveMember = true;
-            RemoveMemberDeclarations = true;
-            RemoveParameterNameFromArgument = true;
-            RemoveParentheses = true;
-            RemovePropertyInitializer = true;
-            RemoveRegion = true;
-            RemoveStatement = true;
-            RemoveStatementsFromSwitchSections = true;
-            RenameBackingFieldAccordingToPropertyName = true;
-            RenameIdentifierAccordingToTypeName = true;
-            RenameMethodAccordingToTypeName = true;
-            RenameParameterAccordingToTypeName = true;
-            RenamePropertyAccordingToTypeName = true;
-            ReplaceAnyWithAllOrAllWithAny = true;
-            ReplaceAsWithCast = true;
-            ReplaceCastWithAs = true;
-            ReplaceConditionalExpressionWithExpression = true;
-            ReplaceConditionalExpressionWithIfElse = true;
-            ReplaceConstantWithField = true;
-            ReplaceCountWithLengthOrLengthWithCount = true;
-            ReplaceDoStatementWithWhileStatement = true;
-            ReplaceEqualsExpressionWithStringEquals = true;
-            ReplaceEqualsExpressionWithStringIsNullOrEmpty = true;
-            ReplaceEqualsExpressionWithStringIsNullOrWhiteSpace = true;
-            ReplaceExpressionWithConstantValue = true;
-            ReplaceFieldWithConstant = true;
-            ReplaceForEachWithFor = true;
-            ReplaceForWithForEach = true;
-            ReplaceForWithWhile = true;
-            ReplaceHexadecimalLiteralWithDecimalLiteral = true;
-            ReplaceIfElseWithSwitch = true;
-            ReplaceIncrementOperatorWithDecrementOperator = true;
-            ReplaceInterpolatedStringWithInterpolationExpression = true;
-            ReplaceInterpolatedStringWithStringLiteral = true;
-            ReplaceMethodGroupWithLambda = true;
-            ReplaceMethodWithProperty = false;
-            ReplaceNullLiteralExpressionWithDefaultExpression = true;
-            ReplacePrefixOperatorWithPostfixOperator = true;
-            ReplacePropertyWithMethod = true;
-            ReplaceRegularStringLiteralWithVerbatimStringLiteral = true;
-            ReplaceStatementWithIfStatement = true;
-            ReplaceStringContainsWithStringIndexOf = true;
-            ReplaceStringFormatWithInterpolatedString = true;
-            ReplaceStringLiteralWithCharacterLiteral = true;
-            ReplaceSwitchWithIfElse = true;
-            ReplaceVerbatimStringLiteralWithRegularStringLiteral = true;
-            ReplaceVerbatimStringLiteralWithRegularStringLiterals = true;
-            ReplaceWhileStatementWithDoStatement = true;
-            ReplaceWhileWithFor = true;
-            ReverseForLoop = true;
-            SimplifyIf = true;
-            SimplifyLambdaExpression = true;
-            SortMemberDeclarations = true;
-            SplitAttributes = true;
-            SplitSwitchLabels = true;
-            SplitVariableDeclaration = true;
-            SwapExpressionsInBinaryExpression = true;
-            SwapExpressionsInConditionalExpression = true;
-            SwapMemberDeclarations = true;
-            SwapStatementsInIfElse = true;
-            Uncomment = true;
-            UseBitwiseOperationInsteadOfCallingHasFlag = true;
-            UseCoalesceExpressionInsteadOfIf = true;
-            UseConditionalExpressionInsteadOfIf = true;
-            UseElementAccessInsteadOfEnumerableMethod = true;
-            UseEmptyStringLiteralInsteadOfStringEmpty = true;
-            UseExpressionBodiedMember = true;
-            UseLambdaExpressionInsteadOfAnonymousMethod = true;
-            UseStringEmptyInsteadOfEmptyStringLiteral = false;
-            WrapInCondition = true;
-            WrapInElseClause = true;
-            WrapInIfDirective = true;
-            WrapInRegion = true;
-            WrapInTryCatch = true;
-            WrapInUsingStatement = true;
+            RR0001 = true;
+            RR0002 = true;
+            RR0003 = true;
+            RR0004 = true;
+            RR0005 = true;
+            RR0006 = true;
+            RR0007 = true;
+            RR0008 = true;
+            RR0009 = true;
+            RR0010 = true;
+            RR0011 = true;
+            RR0012 = true;
+            RR0013 = true;
+            RR0014 = true;
+            RR0015 = true;
+            RR0016 = true;
+            RR0017 = true;
+            RR0018 = true;
+            RR0019 = true;
+            RR0020 = true;
+            RR0021 = true;
+            RR0022 = true;
+            RR0023 = true;
+            RR0024 = true;
+            RR0025 = true;
+            RR0026 = true;
+            RR0027 = true;
+            RR0028 = true;
+            RR0029 = true;
+            RR0030 = true;
+            RR0031 = true;
+            RR0032 = true;
+            RR0033 = true;
+            RR0034 = true;
+            RR0035 = true;
+            RR0036 = true;
+            RR0037 = true;
+            RR0038 = true;
+            RR0039 = true;
+            RR0040 = true;
+            RR0041 = true;
+            RR0042 = true;
+            RR0043 = true;
+            RR0044 = true;
+            RR0045 = true;
+            RR0046 = true;
+            RR0047 = true;
+            RR0048 = true;
+            RR0049 = true;
+            RR0050 = true;
+            RR0051 = true;
+            RR0052 = true;
+            RR0053 = true;
+            RR0054 = true;
+            RR0055 = true;
+            RR0056 = true;
+            RR0057 = true;
+            RR0058 = true;
+            RR0059 = true;
+            RR0060 = true;
+            RR0061 = true;
+            RR0062 = true;
+            RR0063 = true;
+            RR0064 = true;
+            RR0065 = true;
+            RR0066 = false;
+            RR0067 = true;
+            RR0068 = true;
+            RR0069 = true;
+            RR0070 = true;
+            RR0071 = true;
+            RR0072 = true;
+            RR0073 = true;
+            RR0074 = true;
+            RR0075 = true;
+            RR0076 = true;
+            RR0077 = true;
+            RR0078 = true;
+            RR0079 = true;
+            RR0080 = true;
+            RR0081 = true;
+            RR0082 = true;
+            RR0083 = true;
+            RR0084 = true;
+            RR0085 = true;
+            RR0086 = true;
+            RR0087 = true;
+            RR0088 = false;
+            RR0089 = true;
+            RR0090 = true;
+            RR0091 = true;
+            RR0092 = true;
+            RR0093 = true;
+            RR0094 = true;
+            RR0095 = true;
+            RR0096 = true;
+            RR0097 = true;
+            RR0098 = true;
+            RR0099 = true;
+            RR0100 = true;
+            RR0101 = true;
+            RR0102 = true;
+            RR0103 = true;
+            RR0104 = true;
+            RR0105 = true;
+            RR0106 = true;
+            RR0107 = true;
+            RR0108 = true;
+            RR0109 = true;
+            RR0110 = true;
+            RR0111 = true;
+            RR0112 = true;
+            RR0113 = true;
+            RR0114 = true;
+            RR0115 = true;
+            RR0116 = true;
+            RR0117 = true;
+            RR0118 = true;
+            RR0119 = true;
+            RR0120 = true;
+            RR0121 = true;
+            RR0122 = true;
+            RR0123 = true;
+            RR0124 = true;
+            RR0125 = true;
+            RR0126 = true;
+            RR0127 = true;
+            RR0128 = true;
+            RR0129 = true;
+            RR0130 = true;
+            RR0131 = true;
+            RR0132 = true;
+            RR0133 = true;
+            RR0134 = true;
+            RR0135 = true;
+            RR0136 = true;
+            RR0137 = true;
+            RR0138 = false;
+            RR0139 = true;
+            RR0140 = true;
+            RR0141 = true;
+            RR0142 = true;
+            RR0143 = true;
+            RR0144 = true;
+            RR0145 = true;
+            RR0146 = true;
+            RR0147 = true;
+            RR0148 = true;
+            RR0149 = true;
+            RR0150 = true;
+            RR0151 = true;
+            RR0152 = true;
+            RR0153 = true;
+            RR0154 = true;
+            RR0155 = true;
+            RR0156 = true;
+            RR0157 = true;
+            RR0158 = true;
+            RR0159 = true;
+            RR0160 = true;
+            RR0161 = true;
+            RR0162 = true;
+            RR0163 = true;
+            RR0164 = true;
+            RR0165 = true;
+            RR0166 = true;
+            RR0167 = true;
+            RR0168 = true;
+            RR0169 = true;
+            RR0170 = true;
+            RR0171 = false;
+            RR0172 = true;
+            RR0173 = true;
+            RR0174 = true;
+            RR0175 = true;
+            RR0176 = true;
+            RR0177 = true;
         }
 
         public void SaveValuesToView(ICollection<RefactoringModel> refactorings)
         {
-            refactorings.Add(new RefactoringModel("RR0001", "Add boolean comparison", AddBooleanComparison));
-            refactorings.Add(new RefactoringModel("RR0002", "Add braces", AddBraces));
-            refactorings.Add(new RefactoringModel("RR0003", "Add braces to if-else", AddBracesToIfElse));
-            refactorings.Add(new RefactoringModel("RR0004", "Add braces to switch section", AddBracesToSwitchSection));
-            refactorings.Add(new RefactoringModel("RR0005", "Add braces to switch sections", AddBracesToSwitchSections));
-            refactorings.Add(new RefactoringModel("RR0006", "Add cast expression", AddCastExpression));
-            refactorings.Add(new RefactoringModel("RR0007", "Add default value to parameter", AddDefaultValueToParameter));
-            refactorings.Add(new RefactoringModel("RR0008", "Add default value to return statement", AddDefaultValueToReturnStatement));
-            refactorings.Add(new RefactoringModel("RR0009", "Add exception to documentation comment", AddExceptionToDocumentationComment));
-            refactorings.Add(new RefactoringModel("RR0010", "Add identifier to variable declaration", AddIdentifierToVariableDeclaration));
-            refactorings.Add(new RefactoringModel("RR0011", "Add parameter name to argument", AddParameterNameToArgument));
-            refactorings.Add(new RefactoringModel("RR0012", "Add parameter name to parameter", AddParameterNameToParameter));
-            refactorings.Add(new RefactoringModel("RR0013", "Add using directive", AddUsingDirective));
-            refactorings.Add(new RefactoringModel("RR0014", "Add using static directive", AddUsingStaticDirective));
-            refactorings.Add(new RefactoringModel("RR0015", "Call 'ConfigureAwait(false)'", CallConfigureAwait));
-            refactorings.Add(new RefactoringModel("RR0016", "Call extension method as instance method", CallExtensionMethodAsInstanceMethod));
-            refactorings.Add(new RefactoringModel("RR0017", "Call 'To...' method (ToString, ToArray, ToList)", CallToMethod));
-            refactorings.Add(new RefactoringModel("RR0018", "Change explicit type to 'var'", ChangeExplicitTypeToVar));
-            refactorings.Add(new RefactoringModel("RR0019", "Change method/property/indexer type according to return expression", ChangeMemberTypeAccordingToReturnExpression));
-            refactorings.Add(new RefactoringModel("RR0020", "Change method/property/indexer type according to yield return expression", ChangeMemberTypeAccordingToYieldReturnExpression));
-            refactorings.Add(new RefactoringModel("RR0021", "Change method return type to 'void'", ChangeMethodReturnTypeToVoid));
-            refactorings.Add(new RefactoringModel("RR0022", "Change type according to expression", ChangeTypeAccordingToExpression));
-            refactorings.Add(new RefactoringModel("RR0023", "Change 'var' to explicit type", ChangeVarToExplicitType));
-            refactorings.Add(new RefactoringModel("RR0024", "Check expression for null", CheckExpressionForNull));
-            refactorings.Add(new RefactoringModel("RR0025", "Check parameter for null", CheckParameterForNull));
-            refactorings.Add(new RefactoringModel("RR0026", "Collapse to initalizer", CollapseToInitializer));
-            refactorings.Add(new RefactoringModel("RR0027", "Comment out member", CommentOutMember));
-            refactorings.Add(new RefactoringModel("RR0028", "Comment out statement", CommentOutStatement));
-            refactorings.Add(new RefactoringModel("RR0029", "Copy documentation comment from base member", CopyDocumentationCommentFromBaseMember));
-            refactorings.Add(new RefactoringModel("RR0030", "Duplicate argument", DuplicateArgument));
-            refactorings.Add(new RefactoringModel("RR0031", "Duplicate member", DuplicateMember));
-            refactorings.Add(new RefactoringModel("RR0032", "Duplicate parameter", DuplicateParameter));
-            refactorings.Add(new RefactoringModel("RR0033", "Duplicate statement", DuplicateStatement));
-            refactorings.Add(new RefactoringModel("RR0034", "Expand assignment expression", ExpandAssignmentExpression));
-            refactorings.Add(new RefactoringModel("RR0035", "Expand coalesce expression", ExpandCoalesceExpression));
-            refactorings.Add(new RefactoringModel("RR0036", "Expand event", ExpandEvent));
-            refactorings.Add(new RefactoringModel("RR0037", "Expand expression body", ExpandExpressionBody));
-            refactorings.Add(new RefactoringModel("RR0038", "Expand initializer", ExpandInitializer));
-            refactorings.Add(new RefactoringModel("RR0039", "Expand lambda expression body", ExpandLambdaExpressionBody));
-            refactorings.Add(new RefactoringModel("RR0040", "Expand property", ExpandProperty));
-            refactorings.Add(new RefactoringModel("RR0041", "Expand property and add backing field", ExpandPropertyAndAddBackingField));
-            refactorings.Add(new RefactoringModel("RR0042", "Extract declaration from using statement", ExtractDeclarationFromUsingStatement));
-            refactorings.Add(new RefactoringModel("RR0043", "Extract expression from condition", ExtractExpressionFromCondition));
-            refactorings.Add(new RefactoringModel("RR0044", "Extract generic type", ExtractGenericType));
-            refactorings.Add(new RefactoringModel("RR0045", "Extract statement(s)", ExtractStatement));
-            refactorings.Add(new RefactoringModel("RR0046", "Extract type declaration to a new file", ExtractTypeDeclarationToNewFile));
-            refactorings.Add(new RefactoringModel("RR0047", "Format accessor braces", FormatAccessorBraces));
-            refactorings.Add(new RefactoringModel("RR0048", "Format argument list", FormatArgumentList));
-            refactorings.Add(new RefactoringModel("RR0049", "Format binary expression", FormatBinaryExpression));
-            refactorings.Add(new RefactoringModel("RR0050", "Format conditional expression", FormatConditionalExpression));
-            refactorings.Add(new RefactoringModel("RR0051", "Format expression chain", FormatExpressionChain));
-            refactorings.Add(new RefactoringModel("RR0052", "Format initializer", FormatInitializer));
-            refactorings.Add(new RefactoringModel("RR0053", "Format parameter list", FormatParameterList));
-            refactorings.Add(new RefactoringModel("RR0054", "Generate base constructors", GenerateBaseConstructors));
-            refactorings.Add(new RefactoringModel("RR0055", "Generate combined enum member", GenerateCombinedEnumMember));
-            refactorings.Add(new RefactoringModel("RR0056", "Generate enum member", GenerateEnumMember));
-            refactorings.Add(new RefactoringModel("RR0057", "Generate enum values", GenerateEnumValues));
-            refactorings.Add(new RefactoringModel("RR0058", "Generate event invoking method", GenerateEventInvokingMethod));
-            refactorings.Add(new RefactoringModel("RR0059", "Generate switch sections", GenerateSwitchSections));
-            refactorings.Add(new RefactoringModel("RR0060", "Initialize local with default value", InitializeLocalWithDefaultValue));
-            refactorings.Add(new RefactoringModel("RR0061", "Inline alias expression", InlineAliasExpression));
-            refactorings.Add(new RefactoringModel("RR0062", "Inline method", InlineMethod));
-            refactorings.Add(new RefactoringModel("RR0063", "Insert string interpolation", InsertStringInterpolation));
-            refactorings.Add(new RefactoringModel("RR0064", "Introduce and initialize field", IntroduceAndInitializeField));
-            refactorings.Add(new RefactoringModel("RR0065", "Introduce and initialize property", IntroduceAndInitializeProperty));
-            refactorings.Add(new RefactoringModel("RR0066", "Introduce constructor", IntroduceConstructor));
-            refactorings.Add(new RefactoringModel("RR0067", "Introduce field to lock on", IntroduceFieldToLockOn));
-            refactorings.Add(new RefactoringModel("RR0068", "Introduce local from statement that returns value", IntroduceLocalFromStatementThatReturnsValue));
-            refactorings.Add(new RefactoringModel("RR0069", "Make member abstract", MakeMemberAbstract));
-            refactorings.Add(new RefactoringModel("RR0070", "Make member virtual", MakeMemberVirtual));
-            refactorings.Add(new RefactoringModel("RR0071", "Mark containing class as abstract", MarkContainingClassAsAbstract));
-            refactorings.Add(new RefactoringModel("RR0072", "Mark member as static", MarkMemberAsStatic));
-            refactorings.Add(new RefactoringModel("RR0073", "Merge assignment expression with return statement", MergeAssignmentExpressionWithReturnStatement));
-            refactorings.Add(new RefactoringModel("RR0074", "Merge attributes", MergeAttributes));
-            refactorings.Add(new RefactoringModel("RR0075", "Merge if statements", MergeIfStatements));
-            refactorings.Add(new RefactoringModel("RR0076", "Merge interpolation into interpolated string", MergeInterpolationIntoInterpolatedString));
-            refactorings.Add(new RefactoringModel("RR0077", "Merge local declarations", MergeLocalDeclarations));
-            refactorings.Add(new RefactoringModel("RR0078", "Merge string expressions", MergeStringExpressions));
-            refactorings.Add(new RefactoringModel("RR0079", "Negate binary expression", NegateBinaryExpression));
-            refactorings.Add(new RefactoringModel("RR0080", "Negate boolean literal", NegateBooleanLiteral));
-            refactorings.Add(new RefactoringModel("RR0081", "Negate is expression", NegateIsExpression));
-            refactorings.Add(new RefactoringModel("RR0082", "Negate operator", NegateOperator));
-            refactorings.Add(new RefactoringModel("RR0083", "Notify property changed", NotifyPropertyChanged));
-            refactorings.Add(new RefactoringModel("RR0084", "Parenthesize expression", ParenthesizeExpression));
-            refactorings.Add(new RefactoringModel("RR0085", "Promote local to parameter", PromoteLocalToParameter));
-            refactorings.Add(new RefactoringModel("RR0086", "Remove all comments", RemoveAllComments));
-            refactorings.Add(new RefactoringModel("RR0087", "Remove all comments (except documentation comments)", RemoveAllCommentsExceptDocumentationComments));
-            refactorings.Add(new RefactoringModel("RR0088", "Remove all documentation comments", RemoveAllDocumentationComments));
-            refactorings.Add(new RefactoringModel("RR0089", "Remove all member declarations", RemoveAllMemberDeclarations));
-            refactorings.Add(new RefactoringModel("RR0090", "Remove all preprocessor directives", RemoveAllPreprocessorDirectives));
-            refactorings.Add(new RefactoringModel("RR0091", "Remove all region directives", RemoveAllRegionDirectives));
-            refactorings.Add(new RefactoringModel("RR0092", "Remove all statements", RemoveAllStatements));
-            refactorings.Add(new RefactoringModel("RR0093", "Remove all switch sections", RemoveAllSwitchSections));
-            refactorings.Add(new RefactoringModel("RR0094", "Remove braces", RemoveBraces));
-            refactorings.Add(new RefactoringModel("RR0095", "Remove braces from if-else", RemoveBracesFromIfElse));
-            refactorings.Add(new RefactoringModel("RR0096", "Remove braces from switch section", RemoveBracesFromSwitchSection));
-            refactorings.Add(new RefactoringModel("RR0097", "Remove braces from switch sections", RemoveBracesFromSwitchSections));
-            refactorings.Add(new RefactoringModel("RR0098", "Remove comment", RemoveComment));
-            refactorings.Add(new RefactoringModel("RR0099", "Remove condition from last else clause", RemoveConditionFromLastElse));
-            refactorings.Add(new RefactoringModel("RR0100", "Remove directive and related directives", RemoveDirectiveAndRelatedDirectives));
-            refactorings.Add(new RefactoringModel("RR0101", "Remove empty lines", RemoveEmptyLines));
-            refactorings.Add(new RefactoringModel("RR0102", "Remove interpolation", RemoveInterpolation));
-            refactorings.Add(new RefactoringModel("RR0103", "Remove member", RemoveMember));
-            refactorings.Add(new RefactoringModel("RR0104", "Remove member declarations above/below", RemoveMemberDeclarations));
-            refactorings.Add(new RefactoringModel("RR0105", "Remove parameter name from argument", RemoveParameterNameFromArgument));
-            refactorings.Add(new RefactoringModel("RR0106", "Remove parentheses", RemoveParentheses));
-            refactorings.Add(new RefactoringModel("RR0107", "Remove property initializer", RemovePropertyInitializer));
-            refactorings.Add(new RefactoringModel("RR0108", "Remove region", RemoveRegion));
-            refactorings.Add(new RefactoringModel("RR0109", "Remove statement", RemoveStatement));
-            refactorings.Add(new RefactoringModel("RR0110", "Remove statements from switch sections", RemoveStatementsFromSwitchSections));
-            refactorings.Add(new RefactoringModel("RR0111", "Rename backing field according to property name", RenameBackingFieldAccordingToPropertyName));
-            refactorings.Add(new RefactoringModel("RR0112", "Rename identifier according to type name", RenameIdentifierAccordingToTypeName));
-            refactorings.Add(new RefactoringModel("RR0113", "Rename method according to type name", RenameMethodAccordingToTypeName));
-            refactorings.Add(new RefactoringModel("RR0114", "Rename parameter according to its type name", RenameParameterAccordingToTypeName));
-            refactorings.Add(new RefactoringModel("RR0115", "Rename property according to type name", RenamePropertyAccordingToTypeName));
-            refactorings.Add(new RefactoringModel("RR0116", "Replace Any with All (or All with Any)", ReplaceAnyWithAllOrAllWithAny));
-            refactorings.Add(new RefactoringModel("RR0117", "Replace as expression with cast expression", ReplaceAsWithCast));
-            refactorings.Add(new RefactoringModel("RR0118", "Replace cast expression with as expression", ReplaceCastWithAs));
-            refactorings.Add(new RefactoringModel("RR0119", "Replace conditional expression with expression", ReplaceConditionalExpressionWithExpression));
-            refactorings.Add(new RefactoringModel("RR0120", "Replace conditional expression with if-else", ReplaceConditionalExpressionWithIfElse));
-            refactorings.Add(new RefactoringModel("RR0121", "Replace constant with field", ReplaceConstantWithField));
-            refactorings.Add(new RefactoringModel("RR0122", "Replace Count property with Length property (or Length with Count)", ReplaceCountWithLengthOrLengthWithCount));
-            refactorings.Add(new RefactoringModel("RR0123", "Replace do statement with while statement", ReplaceDoStatementWithWhileStatement));
-            refactorings.Add(new RefactoringModel("RR0124", "Replace equals expression with String.Equals", ReplaceEqualsExpressionWithStringEquals));
-            refactorings.Add(new RefactoringModel("RR0125", "Replace equals expression with String.IsNullOrEmpty", ReplaceEqualsExpressionWithStringIsNullOrEmpty));
-            refactorings.Add(new RefactoringModel("RR0126", "Replace equals expression with String.IsNullOrWhiteSpace", ReplaceEqualsExpressionWithStringIsNullOrWhiteSpace));
-            refactorings.Add(new RefactoringModel("RR0127", "Replace expression with constant value", ReplaceExpressionWithConstantValue));
-            refactorings.Add(new RefactoringModel("RR0128", "Replace field with constant", ReplaceFieldWithConstant));
-            refactorings.Add(new RefactoringModel("RR0129", "Replace foreach statement with for statement", ReplaceForEachWithFor));
-            refactorings.Add(new RefactoringModel("RR0130", "Replace for statement with foreach statement", ReplaceForWithForEach));
-            refactorings.Add(new RefactoringModel("RR0131", "Replace for statement with while statement", ReplaceForWithWhile));
-            refactorings.Add(new RefactoringModel("RR0132", "Replace hexadecimal literal with decimal literal", ReplaceHexadecimalLiteralWithDecimalLiteral));
-            refactorings.Add(new RefactoringModel("RR0133", "Replace if-else with switch statement", ReplaceIfElseWithSwitch));
-            refactorings.Add(new RefactoringModel("RR0134", "Replace increment operator with decrement operator", ReplaceIncrementOperatorWithDecrementOperator));
-            refactorings.Add(new RefactoringModel("RR0135", "Replace interpolated string with interpolation expression", ReplaceInterpolatedStringWithInterpolationExpression));
-            refactorings.Add(new RefactoringModel("RR0136", "Replace interpolated string with string literal", ReplaceInterpolatedStringWithStringLiteral));
-            refactorings.Add(new RefactoringModel("RR0137", "Replace method group with lambda", ReplaceMethodGroupWithLambda));
-            refactorings.Add(new RefactoringModel("RR0138", "Replace method with property", ReplaceMethodWithProperty));
-            refactorings.Add(new RefactoringModel("RR0139", "Replace null literal expression with default expression", ReplaceNullLiteralExpressionWithDefaultExpression));
-            refactorings.Add(new RefactoringModel("RR0140", "Replace prefix operator to postfix operator", ReplacePrefixOperatorWithPostfixOperator));
-            refactorings.Add(new RefactoringModel("RR0141", "Replace property with method", ReplacePropertyWithMethod));
-            refactorings.Add(new RefactoringModel("RR0142", "Replace regular string literal with verbatim string literal", ReplaceRegularStringLiteralWithVerbatimStringLiteral));
-            refactorings.Add(new RefactoringModel("RR0143", "Replace statement with if statement", ReplaceStatementWithIfStatement));
-            refactorings.Add(new RefactoringModel("RR0144", "Replace String.Contains with String.IndexOf", ReplaceStringContainsWithStringIndexOf));
-            refactorings.Add(new RefactoringModel("RR0145", "Replace String.Format with interpolated string", ReplaceStringFormatWithInterpolatedString));
-            refactorings.Add(new RefactoringModel("RR0146", "Replace string literal with character literal", ReplaceStringLiteralWithCharacterLiteral));
-            refactorings.Add(new RefactoringModel("RR0147", "Replace switch statement with if-else", ReplaceSwitchWithIfElse));
-            refactorings.Add(new RefactoringModel("RR0148", "Replace verbatim string literal with regular string literal", ReplaceVerbatimStringLiteralWithRegularStringLiteral));
-            refactorings.Add(new RefactoringModel("RR0149", "Replace verbatim string literal with regular string literals", ReplaceVerbatimStringLiteralWithRegularStringLiterals));
-            refactorings.Add(new RefactoringModel("RR0150", "Replace while statement with do statement", ReplaceWhileStatementWithDoStatement));
-            refactorings.Add(new RefactoringModel("RR0151", "Replace while statement with for statement", ReplaceWhileWithFor));
-            refactorings.Add(new RefactoringModel("RR0152", "Reverse for loop", ReverseForLoop));
-            refactorings.Add(new RefactoringModel("RR0153", "Simplify if", SimplifyIf));
-            refactorings.Add(new RefactoringModel("RR0154", "Simplify lambda expression", SimplifyLambdaExpression));
-            refactorings.Add(new RefactoringModel("RR0155", "Sort member declarations", SortMemberDeclarations));
-            refactorings.Add(new RefactoringModel("RR0156", "Split attributes", SplitAttributes));
-            refactorings.Add(new RefactoringModel("RR0157", "Split switch labels", SplitSwitchLabels));
-            refactorings.Add(new RefactoringModel("RR0158", "Split variable declaration", SplitVariableDeclaration));
-            refactorings.Add(new RefactoringModel("RR0159", "Swap expressions in binary expression", SwapExpressionsInBinaryExpression));
-            refactorings.Add(new RefactoringModel("RR0160", "Swap expressions in conditional expression", SwapExpressionsInConditionalExpression));
-            refactorings.Add(new RefactoringModel("RR0161", "Swap member declarations", SwapMemberDeclarations));
-            refactorings.Add(new RefactoringModel("RR0162", "Swap statements in if-else", SwapStatementsInIfElse));
-            refactorings.Add(new RefactoringModel("RR0163", "Uncomment", Uncomment));
-            refactorings.Add(new RefactoringModel("RR0164", "Use bitwise operation instead of calling 'HasFlag'", UseBitwiseOperationInsteadOfCallingHasFlag));
-            refactorings.Add(new RefactoringModel("RR0165", "Use coalesce expression instead of if", UseCoalesceExpressionInsteadOfIf));
-            refactorings.Add(new RefactoringModel("RR0166", "Use conditional expression instead of if", UseConditionalExpressionInsteadOfIf));
-            refactorings.Add(new RefactoringModel("RR0167", "Use element access instead of 'First/Last'ElementAt' method", UseElementAccessInsteadOfEnumerableMethod));
-            refactorings.Add(new RefactoringModel("RR0168", "Use \"\" instead of String.Empty", UseEmptyStringLiteralInsteadOfStringEmpty));
-            refactorings.Add(new RefactoringModel("RR0169", "Use expression-bodied member", UseExpressionBodiedMember));
-            refactorings.Add(new RefactoringModel("RR0170", "Use lambda expression instead of anonymous method", UseLambdaExpressionInsteadOfAnonymousMethod));
-            refactorings.Add(new RefactoringModel("RR0171", "Use String.Empty instead of \"\"", UseStringEmptyInsteadOfEmptyStringLiteral));
-            refactorings.Add(new RefactoringModel("RR0172", "Wrap in condition", WrapInCondition));
-            refactorings.Add(new RefactoringModel("RR0173", "Wrap in else clause", WrapInElseClause));
-            refactorings.Add(new RefactoringModel("RR0174", "Wrap in #if directive", WrapInIfDirective));
-            refactorings.Add(new RefactoringModel("RR0175", "Wrap in region", WrapInRegion));
-            refactorings.Add(new RefactoringModel("RR0176", "Wrap in try-catch", WrapInTryCatch));
-            refactorings.Add(new RefactoringModel("RR0177", "Wrap in using statement", WrapInUsingStatement));
+            refactorings.Add(new RefactoringModel("RR0001", "Add boolean comparison", RR0001));
+            refactorings.Add(new RefactoringModel("RR0002", "Add braces", RR0002));
+            refactorings.Add(new RefactoringModel("RR0003", "Add braces to if-else", RR0003));
+            refactorings.Add(new RefactoringModel("RR0004", "Add braces to switch section", RR0004));
+            refactorings.Add(new RefactoringModel("RR0005", "Add braces to switch sections", RR0005));
+            refactorings.Add(new RefactoringModel("RR0006", "Add cast expression", RR0006));
+            refactorings.Add(new RefactoringModel("RR0007", "Add default value to parameter", RR0007));
+            refactorings.Add(new RefactoringModel("RR0008", "Add default value to return statement", RR0008));
+            refactorings.Add(new RefactoringModel("RR0009", "Add exception to documentation comment", RR0009));
+            refactorings.Add(new RefactoringModel("RR0010", "Add identifier to variable declaration", RR0010));
+            refactorings.Add(new RefactoringModel("RR0011", "Add parameter name to argument", RR0011));
+            refactorings.Add(new RefactoringModel("RR0012", "Add parameter name to parameter", RR0012));
+            refactorings.Add(new RefactoringModel("RR0013", "Add using directive", RR0013));
+            refactorings.Add(new RefactoringModel("RR0014", "Add using static directive", RR0014));
+            refactorings.Add(new RefactoringModel("RR0015", "Call 'ConfigureAwait(false)'", RR0015));
+            refactorings.Add(new RefactoringModel("RR0016", "Call extension method as instance method", RR0016));
+            refactorings.Add(new RefactoringModel("RR0017", "Call 'To...' method (ToString, ToArray, ToList)", RR0017));
+            refactorings.Add(new RefactoringModel("RR0018", "Change explicit type to 'var'", RR0018));
+            refactorings.Add(new RefactoringModel("RR0019", "Change method/property/indexer type according to return expression", RR0019));
+            refactorings.Add(new RefactoringModel("RR0020", "Change method/property/indexer type according to yield return expression", RR0020));
+            refactorings.Add(new RefactoringModel("RR0021", "Change method return type to 'void'", RR0021));
+            refactorings.Add(new RefactoringModel("RR0022", "Change type according to expression", RR0022));
+            refactorings.Add(new RefactoringModel("RR0023", "Change 'var' to explicit type", RR0023));
+            refactorings.Add(new RefactoringModel("RR0024", "Check expression for null", RR0024));
+            refactorings.Add(new RefactoringModel("RR0025", "Check parameter for null", RR0025));
+            refactorings.Add(new RefactoringModel("RR0026", "Collapse to initalizer", RR0026));
+            refactorings.Add(new RefactoringModel("RR0027", "Comment out member", RR0027));
+            refactorings.Add(new RefactoringModel("RR0028", "Comment out statement", RR0028));
+            refactorings.Add(new RefactoringModel("RR0029", "Copy documentation comment from base member", RR0029));
+            refactorings.Add(new RefactoringModel("RR0030", "Duplicate argument", RR0030));
+            refactorings.Add(new RefactoringModel("RR0031", "Duplicate member", RR0031));
+            refactorings.Add(new RefactoringModel("RR0032", "Duplicate parameter", RR0032));
+            refactorings.Add(new RefactoringModel("RR0033", "Duplicate statement", RR0033));
+            refactorings.Add(new RefactoringModel("RR0034", "Expand assignment expression", RR0034));
+            refactorings.Add(new RefactoringModel("RR0035", "Expand coalesce expression", RR0035));
+            refactorings.Add(new RefactoringModel("RR0036", "Expand event", RR0036));
+            refactorings.Add(new RefactoringModel("RR0037", "Expand expression body", RR0037));
+            refactorings.Add(new RefactoringModel("RR0038", "Expand initializer", RR0038));
+            refactorings.Add(new RefactoringModel("RR0039", "Expand lambda expression body", RR0039));
+            refactorings.Add(new RefactoringModel("RR0040", "Expand property", RR0040));
+            refactorings.Add(new RefactoringModel("RR0041", "Expand property and add backing field", RR0041));
+            refactorings.Add(new RefactoringModel("RR0042", "Extract declaration from using statement", RR0042));
+            refactorings.Add(new RefactoringModel("RR0043", "Extract expression from condition", RR0043));
+            refactorings.Add(new RefactoringModel("RR0044", "Extract generic type", RR0044));
+            refactorings.Add(new RefactoringModel("RR0045", "Extract statement(s)", RR0045));
+            refactorings.Add(new RefactoringModel("RR0046", "Extract type declaration to a new file", RR0046));
+            refactorings.Add(new RefactoringModel("RR0047", "Format accessor braces", RR0047));
+            refactorings.Add(new RefactoringModel("RR0048", "Format argument list", RR0048));
+            refactorings.Add(new RefactoringModel("RR0049", "Format binary expression", RR0049));
+            refactorings.Add(new RefactoringModel("RR0050", "Format conditional expression", RR0050));
+            refactorings.Add(new RefactoringModel("RR0051", "Format expression chain", RR0051));
+            refactorings.Add(new RefactoringModel("RR0052", "Format initializer", RR0052));
+            refactorings.Add(new RefactoringModel("RR0053", "Format parameter list", RR0053));
+            refactorings.Add(new RefactoringModel("RR0054", "Generate base constructors", RR0054));
+            refactorings.Add(new RefactoringModel("RR0055", "Generate combined enum member", RR0055));
+            refactorings.Add(new RefactoringModel("RR0056", "Generate enum member", RR0056));
+            refactorings.Add(new RefactoringModel("RR0057", "Generate enum values", RR0057));
+            refactorings.Add(new RefactoringModel("RR0058", "Generate event invoking method", RR0058));
+            refactorings.Add(new RefactoringModel("RR0059", "Generate switch sections", RR0059));
+            refactorings.Add(new RefactoringModel("RR0060", "Initialize local with default value", RR0060));
+            refactorings.Add(new RefactoringModel("RR0061", "Inline alias expression", RR0061));
+            refactorings.Add(new RefactoringModel("RR0062", "Inline method", RR0062));
+            refactorings.Add(new RefactoringModel("RR0063", "Insert string interpolation", RR0063));
+            refactorings.Add(new RefactoringModel("RR0064", "Introduce and initialize field", RR0064));
+            refactorings.Add(new RefactoringModel("RR0065", "Introduce and initialize property", RR0065));
+            refactorings.Add(new RefactoringModel("RR0066", "Introduce constructor", RR0066));
+            refactorings.Add(new RefactoringModel("RR0067", "Introduce field to lock on", RR0067));
+            refactorings.Add(new RefactoringModel("RR0068", "Introduce local from statement that returns value", RR0068));
+            refactorings.Add(new RefactoringModel("RR0069", "Make member abstract", RR0069));
+            refactorings.Add(new RefactoringModel("RR0070", "Make member virtual", RR0070));
+            refactorings.Add(new RefactoringModel("RR0071", "Mark containing class as abstract", RR0071));
+            refactorings.Add(new RefactoringModel("RR0072", "Mark member as static", RR0072));
+            refactorings.Add(new RefactoringModel("RR0073", "Merge assignment expression with return statement", RR0073));
+            refactorings.Add(new RefactoringModel("RR0074", "Merge attributes", RR0074));
+            refactorings.Add(new RefactoringModel("RR0075", "Merge if statements", RR0075));
+            refactorings.Add(new RefactoringModel("RR0076", "Merge interpolation into interpolated string", RR0076));
+            refactorings.Add(new RefactoringModel("RR0077", "Merge local declarations", RR0077));
+            refactorings.Add(new RefactoringModel("RR0078", "Merge string expressions", RR0078));
+            refactorings.Add(new RefactoringModel("RR0079", "Negate binary expression", RR0079));
+            refactorings.Add(new RefactoringModel("RR0080", "Negate boolean literal", RR0080));
+            refactorings.Add(new RefactoringModel("RR0081", "Negate is expression", RR0081));
+            refactorings.Add(new RefactoringModel("RR0082", "Negate operator", RR0082));
+            refactorings.Add(new RefactoringModel("RR0083", "Notify property changed", RR0083));
+            refactorings.Add(new RefactoringModel("RR0084", "Parenthesize expression", RR0084));
+            refactorings.Add(new RefactoringModel("RR0085", "Promote local to parameter", RR0085));
+            refactorings.Add(new RefactoringModel("RR0086", "Remove all comments", RR0086));
+            refactorings.Add(new RefactoringModel("RR0087", "Remove all comments (except documentation comments)", RR0087));
+            refactorings.Add(new RefactoringModel("RR0088", "Remove all documentation comments", RR0088));
+            refactorings.Add(new RefactoringModel("RR0089", "Remove all member declarations", RR0089));
+            refactorings.Add(new RefactoringModel("RR0090", "Remove all preprocessor directives", RR0090));
+            refactorings.Add(new RefactoringModel("RR0091", "Remove all region directives", RR0091));
+            refactorings.Add(new RefactoringModel("RR0092", "Remove all statements", RR0092));
+            refactorings.Add(new RefactoringModel("RR0093", "Remove all switch sections", RR0093));
+            refactorings.Add(new RefactoringModel("RR0094", "Remove braces", RR0094));
+            refactorings.Add(new RefactoringModel("RR0095", "Remove braces from if-else", RR0095));
+            refactorings.Add(new RefactoringModel("RR0096", "Remove braces from switch section", RR0096));
+            refactorings.Add(new RefactoringModel("RR0097", "Remove braces from switch sections", RR0097));
+            refactorings.Add(new RefactoringModel("RR0098", "Remove comment", RR0098));
+            refactorings.Add(new RefactoringModel("RR0099", "Remove condition from last else clause", RR0099));
+            refactorings.Add(new RefactoringModel("RR0100", "Remove directive and related directives", RR0100));
+            refactorings.Add(new RefactoringModel("RR0101", "Remove empty lines", RR0101));
+            refactorings.Add(new RefactoringModel("RR0102", "Remove interpolation", RR0102));
+            refactorings.Add(new RefactoringModel("RR0103", "Remove member", RR0103));
+            refactorings.Add(new RefactoringModel("RR0104", "Remove member declarations above/below", RR0104));
+            refactorings.Add(new RefactoringModel("RR0105", "Remove parameter name from argument", RR0105));
+            refactorings.Add(new RefactoringModel("RR0106", "Remove parentheses", RR0106));
+            refactorings.Add(new RefactoringModel("RR0107", "Remove property initializer", RR0107));
+            refactorings.Add(new RefactoringModel("RR0108", "Remove region", RR0108));
+            refactorings.Add(new RefactoringModel("RR0109", "Remove statement", RR0109));
+            refactorings.Add(new RefactoringModel("RR0110", "Remove statements from switch sections", RR0110));
+            refactorings.Add(new RefactoringModel("RR0111", "Rename backing field according to property name", RR0111));
+            refactorings.Add(new RefactoringModel("RR0112", "Rename identifier according to type name", RR0112));
+            refactorings.Add(new RefactoringModel("RR0113", "Rename method according to type name", RR0113));
+            refactorings.Add(new RefactoringModel("RR0114", "Rename parameter according to its type name", RR0114));
+            refactorings.Add(new RefactoringModel("RR0115", "Rename property according to type name", RR0115));
+            refactorings.Add(new RefactoringModel("RR0116", "Replace Any with All (or All with Any)", RR0116));
+            refactorings.Add(new RefactoringModel("RR0117", "Replace as expression with cast expression", RR0117));
+            refactorings.Add(new RefactoringModel("RR0118", "Replace cast expression with as expression", RR0118));
+            refactorings.Add(new RefactoringModel("RR0119", "Replace conditional expression with expression", RR0119));
+            refactorings.Add(new RefactoringModel("RR0120", "Replace conditional expression with if-else", RR0120));
+            refactorings.Add(new RefactoringModel("RR0121", "Replace constant with field", RR0121));
+            refactorings.Add(new RefactoringModel("RR0122", "Replace Count property with Length property (or Length with Count)", RR0122));
+            refactorings.Add(new RefactoringModel("RR0123", "Replace do statement with while statement", RR0123));
+            refactorings.Add(new RefactoringModel("RR0124", "Replace equals expression with String.Equals", RR0124));
+            refactorings.Add(new RefactoringModel("RR0125", "Replace equals expression with String.IsNullOrEmpty", RR0125));
+            refactorings.Add(new RefactoringModel("RR0126", "Replace equals expression with String.IsNullOrWhiteSpace", RR0126));
+            refactorings.Add(new RefactoringModel("RR0127", "Replace expression with constant value", RR0127));
+            refactorings.Add(new RefactoringModel("RR0128", "Replace field with constant", RR0128));
+            refactorings.Add(new RefactoringModel("RR0129", "Replace foreach statement with for statement", RR0129));
+            refactorings.Add(new RefactoringModel("RR0130", "Replace for statement with foreach statement", RR0130));
+            refactorings.Add(new RefactoringModel("RR0131", "Replace for statement with while statement", RR0131));
+            refactorings.Add(new RefactoringModel("RR0132", "Replace hexadecimal literal with decimal literal", RR0132));
+            refactorings.Add(new RefactoringModel("RR0133", "Replace if-else with switch statement", RR0133));
+            refactorings.Add(new RefactoringModel("RR0134", "Replace increment operator with decrement operator", RR0134));
+            refactorings.Add(new RefactoringModel("RR0135", "Replace interpolated string with interpolation expression", RR0135));
+            refactorings.Add(new RefactoringModel("RR0136", "Replace interpolated string with string literal", RR0136));
+            refactorings.Add(new RefactoringModel("RR0137", "Replace method group with lambda", RR0137));
+            refactorings.Add(new RefactoringModel("RR0138", "Replace method with property", RR0138));
+            refactorings.Add(new RefactoringModel("RR0139", "Replace null literal expression with default expression", RR0139));
+            refactorings.Add(new RefactoringModel("RR0140", "Replace prefix operator to postfix operator", RR0140));
+            refactorings.Add(new RefactoringModel("RR0141", "Replace property with method", RR0141));
+            refactorings.Add(new RefactoringModel("RR0142", "Replace regular string literal with verbatim string literal", RR0142));
+            refactorings.Add(new RefactoringModel("RR0143", "Replace statement with if statement", RR0143));
+            refactorings.Add(new RefactoringModel("RR0144", "Replace String.Contains with String.IndexOf", RR0144));
+            refactorings.Add(new RefactoringModel("RR0145", "Replace String.Format with interpolated string", RR0145));
+            refactorings.Add(new RefactoringModel("RR0146", "Replace string literal with character literal", RR0146));
+            refactorings.Add(new RefactoringModel("RR0147", "Replace switch statement with if-else", RR0147));
+            refactorings.Add(new RefactoringModel("RR0148", "Replace verbatim string literal with regular string literal", RR0148));
+            refactorings.Add(new RefactoringModel("RR0149", "Replace verbatim string literal with regular string literals", RR0149));
+            refactorings.Add(new RefactoringModel("RR0150", "Replace while statement with do statement", RR0150));
+            refactorings.Add(new RefactoringModel("RR0151", "Replace while statement with for statement", RR0151));
+            refactorings.Add(new RefactoringModel("RR0152", "Reverse for loop", RR0152));
+            refactorings.Add(new RefactoringModel("RR0153", "Simplify if", RR0153));
+            refactorings.Add(new RefactoringModel("RR0154", "Simplify lambda expression", RR0154));
+            refactorings.Add(new RefactoringModel("RR0155", "Sort member declarations", RR0155));
+            refactorings.Add(new RefactoringModel("RR0156", "Split attributes", RR0156));
+            refactorings.Add(new RefactoringModel("RR0157", "Split switch labels", RR0157));
+            refactorings.Add(new RefactoringModel("RR0158", "Split variable declaration", RR0158));
+            refactorings.Add(new RefactoringModel("RR0159", "Swap expressions in binary expression", RR0159));
+            refactorings.Add(new RefactoringModel("RR0160", "Swap expressions in conditional expression", RR0160));
+            refactorings.Add(new RefactoringModel("RR0161", "Swap member declarations", RR0161));
+            refactorings.Add(new RefactoringModel("RR0162", "Swap statements in if-else", RR0162));
+            refactorings.Add(new RefactoringModel("RR0163", "Uncomment", RR0163));
+            refactorings.Add(new RefactoringModel("RR0164", "Use bitwise operation instead of calling 'HasFlag'", RR0164));
+            refactorings.Add(new RefactoringModel("RR0165", "Use coalesce expression instead of if", RR0165));
+            refactorings.Add(new RefactoringModel("RR0166", "Use conditional expression instead of if", RR0166));
+            refactorings.Add(new RefactoringModel("RR0167", "Use element access instead of 'First/Last'ElementAt' method", RR0167));
+            refactorings.Add(new RefactoringModel("RR0168", "Use \"\" instead of String.Empty", RR0168));
+            refactorings.Add(new RefactoringModel("RR0169", "Use expression-bodied member", RR0169));
+            refactorings.Add(new RefactoringModel("RR0170", "Use lambda expression instead of anonymous method", RR0170));
+            refactorings.Add(new RefactoringModel("RR0171", "Use String.Empty instead of \"\"", RR0171));
+            refactorings.Add(new RefactoringModel("RR0172", "Wrap in condition", RR0172));
+            refactorings.Add(new RefactoringModel("RR0173", "Wrap in else clause", RR0173));
+            refactorings.Add(new RefactoringModel("RR0174", "Wrap in #if directive", RR0174));
+            refactorings.Add(new RefactoringModel("RR0175", "Wrap in region", RR0175));
+            refactorings.Add(new RefactoringModel("RR0176", "Wrap in try-catch", RR0176));
+            refactorings.Add(new RefactoringModel("RR0177", "Wrap in using statement", RR0177));
         }
 
         public void LoadValuesFromView(ICollection<RefactoringModel> refactorings)
         {
-            AddBooleanComparison = refactorings.FirstOrDefault(f => f.Id == "RR0001").IsEnabled;
-            AddBraces = refactorings.FirstOrDefault(f => f.Id == "RR0002").IsEnabled;
-            AddBracesToIfElse = refactorings.FirstOrDefault(f => f.Id == "RR0003").IsEnabled;
-            AddBracesToSwitchSection = refactorings.FirstOrDefault(f => f.Id == "RR0004").IsEnabled;
-            AddBracesToSwitchSections = refactorings.FirstOrDefault(f => f.Id == "RR0005").IsEnabled;
-            AddCastExpression = refactorings.FirstOrDefault(f => f.Id == "RR0006").IsEnabled;
-            AddDefaultValueToParameter = refactorings.FirstOrDefault(f => f.Id == "RR0007").IsEnabled;
-            AddDefaultValueToReturnStatement = refactorings.FirstOrDefault(f => f.Id == "RR0008").IsEnabled;
-            AddExceptionToDocumentationComment = refactorings.FirstOrDefault(f => f.Id == "RR0009").IsEnabled;
-            AddIdentifierToVariableDeclaration = refactorings.FirstOrDefault(f => f.Id == "RR0010").IsEnabled;
-            AddParameterNameToArgument = refactorings.FirstOrDefault(f => f.Id == "RR0011").IsEnabled;
-            AddParameterNameToParameter = refactorings.FirstOrDefault(f => f.Id == "RR0012").IsEnabled;
-            AddUsingDirective = refactorings.FirstOrDefault(f => f.Id == "RR0013").IsEnabled;
-            AddUsingStaticDirective = refactorings.FirstOrDefault(f => f.Id == "RR0014").IsEnabled;
-            CallConfigureAwait = refactorings.FirstOrDefault(f => f.Id == "RR0015").IsEnabled;
-            CallExtensionMethodAsInstanceMethod = refactorings.FirstOrDefault(f => f.Id == "RR0016").IsEnabled;
-            CallToMethod = refactorings.FirstOrDefault(f => f.Id == "RR0017").IsEnabled;
-            ChangeExplicitTypeToVar = refactorings.FirstOrDefault(f => f.Id == "RR0018").IsEnabled;
-            ChangeMemberTypeAccordingToReturnExpression = refactorings.FirstOrDefault(f => f.Id == "RR0019").IsEnabled;
-            ChangeMemberTypeAccordingToYieldReturnExpression = refactorings.FirstOrDefault(f => f.Id == "RR0020").IsEnabled;
-            ChangeMethodReturnTypeToVoid = refactorings.FirstOrDefault(f => f.Id == "RR0021").IsEnabled;
-            ChangeTypeAccordingToExpression = refactorings.FirstOrDefault(f => f.Id == "RR0022").IsEnabled;
-            ChangeVarToExplicitType = refactorings.FirstOrDefault(f => f.Id == "RR0023").IsEnabled;
-            CheckExpressionForNull = refactorings.FirstOrDefault(f => f.Id == "RR0024").IsEnabled;
-            CheckParameterForNull = refactorings.FirstOrDefault(f => f.Id == "RR0025").IsEnabled;
-            CollapseToInitializer = refactorings.FirstOrDefault(f => f.Id == "RR0026").IsEnabled;
-            CommentOutMember = refactorings.FirstOrDefault(f => f.Id == "RR0027").IsEnabled;
-            CommentOutStatement = refactorings.FirstOrDefault(f => f.Id == "RR0028").IsEnabled;
-            CopyDocumentationCommentFromBaseMember = refactorings.FirstOrDefault(f => f.Id == "RR0029").IsEnabled;
-            DuplicateArgument = refactorings.FirstOrDefault(f => f.Id == "RR0030").IsEnabled;
-            DuplicateMember = refactorings.FirstOrDefault(f => f.Id == "RR0031").IsEnabled;
-            DuplicateParameter = refactorings.FirstOrDefault(f => f.Id == "RR0032").IsEnabled;
-            DuplicateStatement = refactorings.FirstOrDefault(f => f.Id == "RR0033").IsEnabled;
-            ExpandAssignmentExpression = refactorings.FirstOrDefault(f => f.Id == "RR0034").IsEnabled;
-            ExpandCoalesceExpression = refactorings.FirstOrDefault(f => f.Id == "RR0035").IsEnabled;
-            ExpandEvent = refactorings.FirstOrDefault(f => f.Id == "RR0036").IsEnabled;
-            ExpandExpressionBody = refactorings.FirstOrDefault(f => f.Id == "RR0037").IsEnabled;
-            ExpandInitializer = refactorings.FirstOrDefault(f => f.Id == "RR0038").IsEnabled;
-            ExpandLambdaExpressionBody = refactorings.FirstOrDefault(f => f.Id == "RR0039").IsEnabled;
-            ExpandProperty = refactorings.FirstOrDefault(f => f.Id == "RR0040").IsEnabled;
-            ExpandPropertyAndAddBackingField = refactorings.FirstOrDefault(f => f.Id == "RR0041").IsEnabled;
-            ExtractDeclarationFromUsingStatement = refactorings.FirstOrDefault(f => f.Id == "RR0042").IsEnabled;
-            ExtractExpressionFromCondition = refactorings.FirstOrDefault(f => f.Id == "RR0043").IsEnabled;
-            ExtractGenericType = refactorings.FirstOrDefault(f => f.Id == "RR0044").IsEnabled;
-            ExtractStatement = refactorings.FirstOrDefault(f => f.Id == "RR0045").IsEnabled;
-            ExtractTypeDeclarationToNewFile = refactorings.FirstOrDefault(f => f.Id == "RR0046").IsEnabled;
-            FormatAccessorBraces = refactorings.FirstOrDefault(f => f.Id == "RR0047").IsEnabled;
-            FormatArgumentList = refactorings.FirstOrDefault(f => f.Id == "RR0048").IsEnabled;
-            FormatBinaryExpression = refactorings.FirstOrDefault(f => f.Id == "RR0049").IsEnabled;
-            FormatConditionalExpression = refactorings.FirstOrDefault(f => f.Id == "RR0050").IsEnabled;
-            FormatExpressionChain = refactorings.FirstOrDefault(f => f.Id == "RR0051").IsEnabled;
-            FormatInitializer = refactorings.FirstOrDefault(f => f.Id == "RR0052").IsEnabled;
-            FormatParameterList = refactorings.FirstOrDefault(f => f.Id == "RR0053").IsEnabled;
-            GenerateBaseConstructors = refactorings.FirstOrDefault(f => f.Id == "RR0054").IsEnabled;
-            GenerateCombinedEnumMember = refactorings.FirstOrDefault(f => f.Id == "RR0055").IsEnabled;
-            GenerateEnumMember = refactorings.FirstOrDefault(f => f.Id == "RR0056").IsEnabled;
-            GenerateEnumValues = refactorings.FirstOrDefault(f => f.Id == "RR0057").IsEnabled;
-            GenerateEventInvokingMethod = refactorings.FirstOrDefault(f => f.Id == "RR0058").IsEnabled;
-            GenerateSwitchSections = refactorings.FirstOrDefault(f => f.Id == "RR0059").IsEnabled;
-            InitializeLocalWithDefaultValue = refactorings.FirstOrDefault(f => f.Id == "RR0060").IsEnabled;
-            InlineAliasExpression = refactorings.FirstOrDefault(f => f.Id == "RR0061").IsEnabled;
-            InlineMethod = refactorings.FirstOrDefault(f => f.Id == "RR0062").IsEnabled;
-            InsertStringInterpolation = refactorings.FirstOrDefault(f => f.Id == "RR0063").IsEnabled;
-            IntroduceAndInitializeField = refactorings.FirstOrDefault(f => f.Id == "RR0064").IsEnabled;
-            IntroduceAndInitializeProperty = refactorings.FirstOrDefault(f => f.Id == "RR0065").IsEnabled;
-            IntroduceConstructor = refactorings.FirstOrDefault(f => f.Id == "RR0066").IsEnabled;
-            IntroduceFieldToLockOn = refactorings.FirstOrDefault(f => f.Id == "RR0067").IsEnabled;
-            IntroduceLocalFromStatementThatReturnsValue = refactorings.FirstOrDefault(f => f.Id == "RR0068").IsEnabled;
-            MakeMemberAbstract = refactorings.FirstOrDefault(f => f.Id == "RR0069").IsEnabled;
-            MakeMemberVirtual = refactorings.FirstOrDefault(f => f.Id == "RR0070").IsEnabled;
-            MarkContainingClassAsAbstract = refactorings.FirstOrDefault(f => f.Id == "RR0071").IsEnabled;
-            MarkMemberAsStatic = refactorings.FirstOrDefault(f => f.Id == "RR0072").IsEnabled;
-            MergeAssignmentExpressionWithReturnStatement = refactorings.FirstOrDefault(f => f.Id == "RR0073").IsEnabled;
-            MergeAttributes = refactorings.FirstOrDefault(f => f.Id == "RR0074").IsEnabled;
-            MergeIfStatements = refactorings.FirstOrDefault(f => f.Id == "RR0075").IsEnabled;
-            MergeInterpolationIntoInterpolatedString = refactorings.FirstOrDefault(f => f.Id == "RR0076").IsEnabled;
-            MergeLocalDeclarations = refactorings.FirstOrDefault(f => f.Id == "RR0077").IsEnabled;
-            MergeStringExpressions = refactorings.FirstOrDefault(f => f.Id == "RR0078").IsEnabled;
-            NegateBinaryExpression = refactorings.FirstOrDefault(f => f.Id == "RR0079").IsEnabled;
-            NegateBooleanLiteral = refactorings.FirstOrDefault(f => f.Id == "RR0080").IsEnabled;
-            NegateIsExpression = refactorings.FirstOrDefault(f => f.Id == "RR0081").IsEnabled;
-            NegateOperator = refactorings.FirstOrDefault(f => f.Id == "RR0082").IsEnabled;
-            NotifyPropertyChanged = refactorings.FirstOrDefault(f => f.Id == "RR0083").IsEnabled;
-            ParenthesizeExpression = refactorings.FirstOrDefault(f => f.Id == "RR0084").IsEnabled;
-            PromoteLocalToParameter = refactorings.FirstOrDefault(f => f.Id == "RR0085").IsEnabled;
-            RemoveAllComments = refactorings.FirstOrDefault(f => f.Id == "RR0086").IsEnabled;
-            RemoveAllCommentsExceptDocumentationComments = refactorings.FirstOrDefault(f => f.Id == "RR0087").IsEnabled;
-            RemoveAllDocumentationComments = refactorings.FirstOrDefault(f => f.Id == "RR0088").IsEnabled;
-            RemoveAllMemberDeclarations = refactorings.FirstOrDefault(f => f.Id == "RR0089").IsEnabled;
-            RemoveAllPreprocessorDirectives = refactorings.FirstOrDefault(f => f.Id == "RR0090").IsEnabled;
-            RemoveAllRegionDirectives = refactorings.FirstOrDefault(f => f.Id == "RR0091").IsEnabled;
-            RemoveAllStatements = refactorings.FirstOrDefault(f => f.Id == "RR0092").IsEnabled;
-            RemoveAllSwitchSections = refactorings.FirstOrDefault(f => f.Id == "RR0093").IsEnabled;
-            RemoveBraces = refactorings.FirstOrDefault(f => f.Id == "RR0094").IsEnabled;
-            RemoveBracesFromIfElse = refactorings.FirstOrDefault(f => f.Id == "RR0095").IsEnabled;
-            RemoveBracesFromSwitchSection = refactorings.FirstOrDefault(f => f.Id == "RR0096").IsEnabled;
-            RemoveBracesFromSwitchSections = refactorings.FirstOrDefault(f => f.Id == "RR0097").IsEnabled;
-            RemoveComment = refactorings.FirstOrDefault(f => f.Id == "RR0098").IsEnabled;
-            RemoveConditionFromLastElse = refactorings.FirstOrDefault(f => f.Id == "RR0099").IsEnabled;
-            RemoveDirectiveAndRelatedDirectives = refactorings.FirstOrDefault(f => f.Id == "RR0100").IsEnabled;
-            RemoveEmptyLines = refactorings.FirstOrDefault(f => f.Id == "RR0101").IsEnabled;
-            RemoveInterpolation = refactorings.FirstOrDefault(f => f.Id == "RR0102").IsEnabled;
-            RemoveMember = refactorings.FirstOrDefault(f => f.Id == "RR0103").IsEnabled;
-            RemoveMemberDeclarations = refactorings.FirstOrDefault(f => f.Id == "RR0104").IsEnabled;
-            RemoveParameterNameFromArgument = refactorings.FirstOrDefault(f => f.Id == "RR0105").IsEnabled;
-            RemoveParentheses = refactorings.FirstOrDefault(f => f.Id == "RR0106").IsEnabled;
-            RemovePropertyInitializer = refactorings.FirstOrDefault(f => f.Id == "RR0107").IsEnabled;
-            RemoveRegion = refactorings.FirstOrDefault(f => f.Id == "RR0108").IsEnabled;
-            RemoveStatement = refactorings.FirstOrDefault(f => f.Id == "RR0109").IsEnabled;
-            RemoveStatementsFromSwitchSections = refactorings.FirstOrDefault(f => f.Id == "RR0110").IsEnabled;
-            RenameBackingFieldAccordingToPropertyName = refactorings.FirstOrDefault(f => f.Id == "RR0111").IsEnabled;
-            RenameIdentifierAccordingToTypeName = refactorings.FirstOrDefault(f => f.Id == "RR0112").IsEnabled;
-            RenameMethodAccordingToTypeName = refactorings.FirstOrDefault(f => f.Id == "RR0113").IsEnabled;
-            RenameParameterAccordingToTypeName = refactorings.FirstOrDefault(f => f.Id == "RR0114").IsEnabled;
-            RenamePropertyAccordingToTypeName = refactorings.FirstOrDefault(f => f.Id == "RR0115").IsEnabled;
-            ReplaceAnyWithAllOrAllWithAny = refactorings.FirstOrDefault(f => f.Id == "RR0116").IsEnabled;
-            ReplaceAsWithCast = refactorings.FirstOrDefault(f => f.Id == "RR0117").IsEnabled;
-            ReplaceCastWithAs = refactorings.FirstOrDefault(f => f.Id == "RR0118").IsEnabled;
-            ReplaceConditionalExpressionWithExpression = refactorings.FirstOrDefault(f => f.Id == "RR0119").IsEnabled;
-            ReplaceConditionalExpressionWithIfElse = refactorings.FirstOrDefault(f => f.Id == "RR0120").IsEnabled;
-            ReplaceConstantWithField = refactorings.FirstOrDefault(f => f.Id == "RR0121").IsEnabled;
-            ReplaceCountWithLengthOrLengthWithCount = refactorings.FirstOrDefault(f => f.Id == "RR0122").IsEnabled;
-            ReplaceDoStatementWithWhileStatement = refactorings.FirstOrDefault(f => f.Id == "RR0123").IsEnabled;
-            ReplaceEqualsExpressionWithStringEquals = refactorings.FirstOrDefault(f => f.Id == "RR0124").IsEnabled;
-            ReplaceEqualsExpressionWithStringIsNullOrEmpty = refactorings.FirstOrDefault(f => f.Id == "RR0125").IsEnabled;
-            ReplaceEqualsExpressionWithStringIsNullOrWhiteSpace = refactorings.FirstOrDefault(f => f.Id == "RR0126").IsEnabled;
-            ReplaceExpressionWithConstantValue = refactorings.FirstOrDefault(f => f.Id == "RR0127").IsEnabled;
-            ReplaceFieldWithConstant = refactorings.FirstOrDefault(f => f.Id == "RR0128").IsEnabled;
-            ReplaceForEachWithFor = refactorings.FirstOrDefault(f => f.Id == "RR0129").IsEnabled;
-            ReplaceForWithForEach = refactorings.FirstOrDefault(f => f.Id == "RR0130").IsEnabled;
-            ReplaceForWithWhile = refactorings.FirstOrDefault(f => f.Id == "RR0131").IsEnabled;
-            ReplaceHexadecimalLiteralWithDecimalLiteral = refactorings.FirstOrDefault(f => f.Id == "RR0132").IsEnabled;
-            ReplaceIfElseWithSwitch = refactorings.FirstOrDefault(f => f.Id == "RR0133").IsEnabled;
-            ReplaceIncrementOperatorWithDecrementOperator = refactorings.FirstOrDefault(f => f.Id == "RR0134").IsEnabled;
-            ReplaceInterpolatedStringWithInterpolationExpression = refactorings.FirstOrDefault(f => f.Id == "RR0135").IsEnabled;
-            ReplaceInterpolatedStringWithStringLiteral = refactorings.FirstOrDefault(f => f.Id == "RR0136").IsEnabled;
-            ReplaceMethodGroupWithLambda = refactorings.FirstOrDefault(f => f.Id == "RR0137").IsEnabled;
-            ReplaceMethodWithProperty = refactorings.FirstOrDefault(f => f.Id == "RR0138").IsEnabled;
-            ReplaceNullLiteralExpressionWithDefaultExpression = refactorings.FirstOrDefault(f => f.Id == "RR0139").IsEnabled;
-            ReplacePrefixOperatorWithPostfixOperator = refactorings.FirstOrDefault(f => f.Id == "RR0140").IsEnabled;
-            ReplacePropertyWithMethod = refactorings.FirstOrDefault(f => f.Id == "RR0141").IsEnabled;
-            ReplaceRegularStringLiteralWithVerbatimStringLiteral = refactorings.FirstOrDefault(f => f.Id == "RR0142").IsEnabled;
-            ReplaceStatementWithIfStatement = refactorings.FirstOrDefault(f => f.Id == "RR0143").IsEnabled;
-            ReplaceStringContainsWithStringIndexOf = refactorings.FirstOrDefault(f => f.Id == "RR0144").IsEnabled;
-            ReplaceStringFormatWithInterpolatedString = refactorings.FirstOrDefault(f => f.Id == "RR0145").IsEnabled;
-            ReplaceStringLiteralWithCharacterLiteral = refactorings.FirstOrDefault(f => f.Id == "RR0146").IsEnabled;
-            ReplaceSwitchWithIfElse = refactorings.FirstOrDefault(f => f.Id == "RR0147").IsEnabled;
-            ReplaceVerbatimStringLiteralWithRegularStringLiteral = refactorings.FirstOrDefault(f => f.Id == "RR0148").IsEnabled;
-            ReplaceVerbatimStringLiteralWithRegularStringLiterals = refactorings.FirstOrDefault(f => f.Id == "RR0149").IsEnabled;
-            ReplaceWhileStatementWithDoStatement = refactorings.FirstOrDefault(f => f.Id == "RR0150").IsEnabled;
-            ReplaceWhileWithFor = refactorings.FirstOrDefault(f => f.Id == "RR0151").IsEnabled;
-            ReverseForLoop = refactorings.FirstOrDefault(f => f.Id == "RR0152").IsEnabled;
-            SimplifyIf = refactorings.FirstOrDefault(f => f.Id == "RR0153").IsEnabled;
-            SimplifyLambdaExpression = refactorings.FirstOrDefault(f => f.Id == "RR0154").IsEnabled;
-            SortMemberDeclarations = refactorings.FirstOrDefault(f => f.Id == "RR0155").IsEnabled;
-            SplitAttributes = refactorings.FirstOrDefault(f => f.Id == "RR0156").IsEnabled;
-            SplitSwitchLabels = refactorings.FirstOrDefault(f => f.Id == "RR0157").IsEnabled;
-            SplitVariableDeclaration = refactorings.FirstOrDefault(f => f.Id == "RR0158").IsEnabled;
-            SwapExpressionsInBinaryExpression = refactorings.FirstOrDefault(f => f.Id == "RR0159").IsEnabled;
-            SwapExpressionsInConditionalExpression = refactorings.FirstOrDefault(f => f.Id == "RR0160").IsEnabled;
-            SwapMemberDeclarations = refactorings.FirstOrDefault(f => f.Id == "RR0161").IsEnabled;
-            SwapStatementsInIfElse = refactorings.FirstOrDefault(f => f.Id == "RR0162").IsEnabled;
-            Uncomment = refactorings.FirstOrDefault(f => f.Id == "RR0163").IsEnabled;
-            UseBitwiseOperationInsteadOfCallingHasFlag = refactorings.FirstOrDefault(f => f.Id == "RR0164").IsEnabled;
-            UseCoalesceExpressionInsteadOfIf = refactorings.FirstOrDefault(f => f.Id == "RR0165").IsEnabled;
-            UseConditionalExpressionInsteadOfIf = refactorings.FirstOrDefault(f => f.Id == "RR0166").IsEnabled;
-            UseElementAccessInsteadOfEnumerableMethod = refactorings.FirstOrDefault(f => f.Id == "RR0167").IsEnabled;
-            UseEmptyStringLiteralInsteadOfStringEmpty = refactorings.FirstOrDefault(f => f.Id == "RR0168").IsEnabled;
-            UseExpressionBodiedMember = refactorings.FirstOrDefault(f => f.Id == "RR0169").IsEnabled;
-            UseLambdaExpressionInsteadOfAnonymousMethod = refactorings.FirstOrDefault(f => f.Id == "RR0170").IsEnabled;
-            UseStringEmptyInsteadOfEmptyStringLiteral = refactorings.FirstOrDefault(f => f.Id == "RR0171").IsEnabled;
-            WrapInCondition = refactorings.FirstOrDefault(f => f.Id == "RR0172").IsEnabled;
-            WrapInElseClause = refactorings.FirstOrDefault(f => f.Id == "RR0173").IsEnabled;
-            WrapInIfDirective = refactorings.FirstOrDefault(f => f.Id == "RR0174").IsEnabled;
-            WrapInRegion = refactorings.FirstOrDefault(f => f.Id == "RR0175").IsEnabled;
-            WrapInTryCatch = refactorings.FirstOrDefault(f => f.Id == "RR0176").IsEnabled;
-            WrapInUsingStatement = refactorings.FirstOrDefault(f => f.Id == "RR0177").IsEnabled;
+            RR0001 = refactorings.FirstOrDefault(f => f.Id == "RR0001").IsEnabled;
+            RR0002 = refactorings.FirstOrDefault(f => f.Id == "RR0002").IsEnabled;
+            RR0003 = refactorings.FirstOrDefault(f => f.Id == "RR0003").IsEnabled;
+            RR0004 = refactorings.FirstOrDefault(f => f.Id == "RR0004").IsEnabled;
+            RR0005 = refactorings.FirstOrDefault(f => f.Id == "RR0005").IsEnabled;
+            RR0006 = refactorings.FirstOrDefault(f => f.Id == "RR0006").IsEnabled;
+            RR0007 = refactorings.FirstOrDefault(f => f.Id == "RR0007").IsEnabled;
+            RR0008 = refactorings.FirstOrDefault(f => f.Id == "RR0008").IsEnabled;
+            RR0009 = refactorings.FirstOrDefault(f => f.Id == "RR0009").IsEnabled;
+            RR0010 = refactorings.FirstOrDefault(f => f.Id == "RR0010").IsEnabled;
+            RR0011 = refactorings.FirstOrDefault(f => f.Id == "RR0011").IsEnabled;
+            RR0012 = refactorings.FirstOrDefault(f => f.Id == "RR0012").IsEnabled;
+            RR0013 = refactorings.FirstOrDefault(f => f.Id == "RR0013").IsEnabled;
+            RR0014 = refactorings.FirstOrDefault(f => f.Id == "RR0014").IsEnabled;
+            RR0015 = refactorings.FirstOrDefault(f => f.Id == "RR0015").IsEnabled;
+            RR0016 = refactorings.FirstOrDefault(f => f.Id == "RR0016").IsEnabled;
+            RR0017 = refactorings.FirstOrDefault(f => f.Id == "RR0017").IsEnabled;
+            RR0018 = refactorings.FirstOrDefault(f => f.Id == "RR0018").IsEnabled;
+            RR0019 = refactorings.FirstOrDefault(f => f.Id == "RR0019").IsEnabled;
+            RR0020 = refactorings.FirstOrDefault(f => f.Id == "RR0020").IsEnabled;
+            RR0021 = refactorings.FirstOrDefault(f => f.Id == "RR0021").IsEnabled;
+            RR0022 = refactorings.FirstOrDefault(f => f.Id == "RR0022").IsEnabled;
+            RR0023 = refactorings.FirstOrDefault(f => f.Id == "RR0023").IsEnabled;
+            RR0024 = refactorings.FirstOrDefault(f => f.Id == "RR0024").IsEnabled;
+            RR0025 = refactorings.FirstOrDefault(f => f.Id == "RR0025").IsEnabled;
+            RR0026 = refactorings.FirstOrDefault(f => f.Id == "RR0026").IsEnabled;
+            RR0027 = refactorings.FirstOrDefault(f => f.Id == "RR0027").IsEnabled;
+            RR0028 = refactorings.FirstOrDefault(f => f.Id == "RR0028").IsEnabled;
+            RR0029 = refactorings.FirstOrDefault(f => f.Id == "RR0029").IsEnabled;
+            RR0030 = refactorings.FirstOrDefault(f => f.Id == "RR0030").IsEnabled;
+            RR0031 = refactorings.FirstOrDefault(f => f.Id == "RR0031").IsEnabled;
+            RR0032 = refactorings.FirstOrDefault(f => f.Id == "RR0032").IsEnabled;
+            RR0033 = refactorings.FirstOrDefault(f => f.Id == "RR0033").IsEnabled;
+            RR0034 = refactorings.FirstOrDefault(f => f.Id == "RR0034").IsEnabled;
+            RR0035 = refactorings.FirstOrDefault(f => f.Id == "RR0035").IsEnabled;
+            RR0036 = refactorings.FirstOrDefault(f => f.Id == "RR0036").IsEnabled;
+            RR0037 = refactorings.FirstOrDefault(f => f.Id == "RR0037").IsEnabled;
+            RR0038 = refactorings.FirstOrDefault(f => f.Id == "RR0038").IsEnabled;
+            RR0039 = refactorings.FirstOrDefault(f => f.Id == "RR0039").IsEnabled;
+            RR0040 = refactorings.FirstOrDefault(f => f.Id == "RR0040").IsEnabled;
+            RR0041 = refactorings.FirstOrDefault(f => f.Id == "RR0041").IsEnabled;
+            RR0042 = refactorings.FirstOrDefault(f => f.Id == "RR0042").IsEnabled;
+            RR0043 = refactorings.FirstOrDefault(f => f.Id == "RR0043").IsEnabled;
+            RR0044 = refactorings.FirstOrDefault(f => f.Id == "RR0044").IsEnabled;
+            RR0045 = refactorings.FirstOrDefault(f => f.Id == "RR0045").IsEnabled;
+            RR0046 = refactorings.FirstOrDefault(f => f.Id == "RR0046").IsEnabled;
+            RR0047 = refactorings.FirstOrDefault(f => f.Id == "RR0047").IsEnabled;
+            RR0048 = refactorings.FirstOrDefault(f => f.Id == "RR0048").IsEnabled;
+            RR0049 = refactorings.FirstOrDefault(f => f.Id == "RR0049").IsEnabled;
+            RR0050 = refactorings.FirstOrDefault(f => f.Id == "RR0050").IsEnabled;
+            RR0051 = refactorings.FirstOrDefault(f => f.Id == "RR0051").IsEnabled;
+            RR0052 = refactorings.FirstOrDefault(f => f.Id == "RR0052").IsEnabled;
+            RR0053 = refactorings.FirstOrDefault(f => f.Id == "RR0053").IsEnabled;
+            RR0054 = refactorings.FirstOrDefault(f => f.Id == "RR0054").IsEnabled;
+            RR0055 = refactorings.FirstOrDefault(f => f.Id == "RR0055").IsEnabled;
+            RR0056 = refactorings.FirstOrDefault(f => f.Id == "RR0056").IsEnabled;
+            RR0057 = refactorings.FirstOrDefault(f => f.Id == "RR0057").IsEnabled;
+            RR0058 = refactorings.FirstOrDefault(f => f.Id == "RR0058").IsEnabled;
+            RR0059 = refactorings.FirstOrDefault(f => f.Id == "RR0059").IsEnabled;
+            RR0060 = refactorings.FirstOrDefault(f => f.Id == "RR0060").IsEnabled;
+            RR0061 = refactorings.FirstOrDefault(f => f.Id == "RR0061").IsEnabled;
+            RR0062 = refactorings.FirstOrDefault(f => f.Id == "RR0062").IsEnabled;
+            RR0063 = refactorings.FirstOrDefault(f => f.Id == "RR0063").IsEnabled;
+            RR0064 = refactorings.FirstOrDefault(f => f.Id == "RR0064").IsEnabled;
+            RR0065 = refactorings.FirstOrDefault(f => f.Id == "RR0065").IsEnabled;
+            RR0066 = refactorings.FirstOrDefault(f => f.Id == "RR0066").IsEnabled;
+            RR0067 = refactorings.FirstOrDefault(f => f.Id == "RR0067").IsEnabled;
+            RR0068 = refactorings.FirstOrDefault(f => f.Id == "RR0068").IsEnabled;
+            RR0069 = refactorings.FirstOrDefault(f => f.Id == "RR0069").IsEnabled;
+            RR0070 = refactorings.FirstOrDefault(f => f.Id == "RR0070").IsEnabled;
+            RR0071 = refactorings.FirstOrDefault(f => f.Id == "RR0071").IsEnabled;
+            RR0072 = refactorings.FirstOrDefault(f => f.Id == "RR0072").IsEnabled;
+            RR0073 = refactorings.FirstOrDefault(f => f.Id == "RR0073").IsEnabled;
+            RR0074 = refactorings.FirstOrDefault(f => f.Id == "RR0074").IsEnabled;
+            RR0075 = refactorings.FirstOrDefault(f => f.Id == "RR0075").IsEnabled;
+            RR0076 = refactorings.FirstOrDefault(f => f.Id == "RR0076").IsEnabled;
+            RR0077 = refactorings.FirstOrDefault(f => f.Id == "RR0077").IsEnabled;
+            RR0078 = refactorings.FirstOrDefault(f => f.Id == "RR0078").IsEnabled;
+            RR0079 = refactorings.FirstOrDefault(f => f.Id == "RR0079").IsEnabled;
+            RR0080 = refactorings.FirstOrDefault(f => f.Id == "RR0080").IsEnabled;
+            RR0081 = refactorings.FirstOrDefault(f => f.Id == "RR0081").IsEnabled;
+            RR0082 = refactorings.FirstOrDefault(f => f.Id == "RR0082").IsEnabled;
+            RR0083 = refactorings.FirstOrDefault(f => f.Id == "RR0083").IsEnabled;
+            RR0084 = refactorings.FirstOrDefault(f => f.Id == "RR0084").IsEnabled;
+            RR0085 = refactorings.FirstOrDefault(f => f.Id == "RR0085").IsEnabled;
+            RR0086 = refactorings.FirstOrDefault(f => f.Id == "RR0086").IsEnabled;
+            RR0087 = refactorings.FirstOrDefault(f => f.Id == "RR0087").IsEnabled;
+            RR0088 = refactorings.FirstOrDefault(f => f.Id == "RR0088").IsEnabled;
+            RR0089 = refactorings.FirstOrDefault(f => f.Id == "RR0089").IsEnabled;
+            RR0090 = refactorings.FirstOrDefault(f => f.Id == "RR0090").IsEnabled;
+            RR0091 = refactorings.FirstOrDefault(f => f.Id == "RR0091").IsEnabled;
+            RR0092 = refactorings.FirstOrDefault(f => f.Id == "RR0092").IsEnabled;
+            RR0093 = refactorings.FirstOrDefault(f => f.Id == "RR0093").IsEnabled;
+            RR0094 = refactorings.FirstOrDefault(f => f.Id == "RR0094").IsEnabled;
+            RR0095 = refactorings.FirstOrDefault(f => f.Id == "RR0095").IsEnabled;
+            RR0096 = refactorings.FirstOrDefault(f => f.Id == "RR0096").IsEnabled;
+            RR0097 = refactorings.FirstOrDefault(f => f.Id == "RR0097").IsEnabled;
+            RR0098 = refactorings.FirstOrDefault(f => f.Id == "RR0098").IsEnabled;
+            RR0099 = refactorings.FirstOrDefault(f => f.Id == "RR0099").IsEnabled;
+            RR0100 = refactorings.FirstOrDefault(f => f.Id == "RR0100").IsEnabled;
+            RR0101 = refactorings.FirstOrDefault(f => f.Id == "RR0101").IsEnabled;
+            RR0102 = refactorings.FirstOrDefault(f => f.Id == "RR0102").IsEnabled;
+            RR0103 = refactorings.FirstOrDefault(f => f.Id == "RR0103").IsEnabled;
+            RR0104 = refactorings.FirstOrDefault(f => f.Id == "RR0104").IsEnabled;
+            RR0105 = refactorings.FirstOrDefault(f => f.Id == "RR0105").IsEnabled;
+            RR0106 = refactorings.FirstOrDefault(f => f.Id == "RR0106").IsEnabled;
+            RR0107 = refactorings.FirstOrDefault(f => f.Id == "RR0107").IsEnabled;
+            RR0108 = refactorings.FirstOrDefault(f => f.Id == "RR0108").IsEnabled;
+            RR0109 = refactorings.FirstOrDefault(f => f.Id == "RR0109").IsEnabled;
+            RR0110 = refactorings.FirstOrDefault(f => f.Id == "RR0110").IsEnabled;
+            RR0111 = refactorings.FirstOrDefault(f => f.Id == "RR0111").IsEnabled;
+            RR0112 = refactorings.FirstOrDefault(f => f.Id == "RR0112").IsEnabled;
+            RR0113 = refactorings.FirstOrDefault(f => f.Id == "RR0113").IsEnabled;
+            RR0114 = refactorings.FirstOrDefault(f => f.Id == "RR0114").IsEnabled;
+            RR0115 = refactorings.FirstOrDefault(f => f.Id == "RR0115").IsEnabled;
+            RR0116 = refactorings.FirstOrDefault(f => f.Id == "RR0116").IsEnabled;
+            RR0117 = refactorings.FirstOrDefault(f => f.Id == "RR0117").IsEnabled;
+            RR0118 = refactorings.FirstOrDefault(f => f.Id == "RR0118").IsEnabled;
+            RR0119 = refactorings.FirstOrDefault(f => f.Id == "RR0119").IsEnabled;
+            RR0120 = refactorings.FirstOrDefault(f => f.Id == "RR0120").IsEnabled;
+            RR0121 = refactorings.FirstOrDefault(f => f.Id == "RR0121").IsEnabled;
+            RR0122 = refactorings.FirstOrDefault(f => f.Id == "RR0122").IsEnabled;
+            RR0123 = refactorings.FirstOrDefault(f => f.Id == "RR0123").IsEnabled;
+            RR0124 = refactorings.FirstOrDefault(f => f.Id == "RR0124").IsEnabled;
+            RR0125 = refactorings.FirstOrDefault(f => f.Id == "RR0125").IsEnabled;
+            RR0126 = refactorings.FirstOrDefault(f => f.Id == "RR0126").IsEnabled;
+            RR0127 = refactorings.FirstOrDefault(f => f.Id == "RR0127").IsEnabled;
+            RR0128 = refactorings.FirstOrDefault(f => f.Id == "RR0128").IsEnabled;
+            RR0129 = refactorings.FirstOrDefault(f => f.Id == "RR0129").IsEnabled;
+            RR0130 = refactorings.FirstOrDefault(f => f.Id == "RR0130").IsEnabled;
+            RR0131 = refactorings.FirstOrDefault(f => f.Id == "RR0131").IsEnabled;
+            RR0132 = refactorings.FirstOrDefault(f => f.Id == "RR0132").IsEnabled;
+            RR0133 = refactorings.FirstOrDefault(f => f.Id == "RR0133").IsEnabled;
+            RR0134 = refactorings.FirstOrDefault(f => f.Id == "RR0134").IsEnabled;
+            RR0135 = refactorings.FirstOrDefault(f => f.Id == "RR0135").IsEnabled;
+            RR0136 = refactorings.FirstOrDefault(f => f.Id == "RR0136").IsEnabled;
+            RR0137 = refactorings.FirstOrDefault(f => f.Id == "RR0137").IsEnabled;
+            RR0138 = refactorings.FirstOrDefault(f => f.Id == "RR0138").IsEnabled;
+            RR0139 = refactorings.FirstOrDefault(f => f.Id == "RR0139").IsEnabled;
+            RR0140 = refactorings.FirstOrDefault(f => f.Id == "RR0140").IsEnabled;
+            RR0141 = refactorings.FirstOrDefault(f => f.Id == "RR0141").IsEnabled;
+            RR0142 = refactorings.FirstOrDefault(f => f.Id == "RR0142").IsEnabled;
+            RR0143 = refactorings.FirstOrDefault(f => f.Id == "RR0143").IsEnabled;
+            RR0144 = refactorings.FirstOrDefault(f => f.Id == "RR0144").IsEnabled;
+            RR0145 = refactorings.FirstOrDefault(f => f.Id == "RR0145").IsEnabled;
+            RR0146 = refactorings.FirstOrDefault(f => f.Id == "RR0146").IsEnabled;
+            RR0147 = refactorings.FirstOrDefault(f => f.Id == "RR0147").IsEnabled;
+            RR0148 = refactorings.FirstOrDefault(f => f.Id == "RR0148").IsEnabled;
+            RR0149 = refactorings.FirstOrDefault(f => f.Id == "RR0149").IsEnabled;
+            RR0150 = refactorings.FirstOrDefault(f => f.Id == "RR0150").IsEnabled;
+            RR0151 = refactorings.FirstOrDefault(f => f.Id == "RR0151").IsEnabled;
+            RR0152 = refactorings.FirstOrDefault(f => f.Id == "RR0152").IsEnabled;
+            RR0153 = refactorings.FirstOrDefault(f => f.Id == "RR0153").IsEnabled;
+            RR0154 = refactorings.FirstOrDefault(f => f.Id == "RR0154").IsEnabled;
+            RR0155 = refactorings.FirstOrDefault(f => f.Id == "RR0155").IsEnabled;
+            RR0156 = refactorings.FirstOrDefault(f => f.Id == "RR0156").IsEnabled;
+            RR0157 = refactorings.FirstOrDefault(f => f.Id == "RR0157").IsEnabled;
+            RR0158 = refactorings.FirstOrDefault(f => f.Id == "RR0158").IsEnabled;
+            RR0159 = refactorings.FirstOrDefault(f => f.Id == "RR0159").IsEnabled;
+            RR0160 = refactorings.FirstOrDefault(f => f.Id == "RR0160").IsEnabled;
+            RR0161 = refactorings.FirstOrDefault(f => f.Id == "RR0161").IsEnabled;
+            RR0162 = refactorings.FirstOrDefault(f => f.Id == "RR0162").IsEnabled;
+            RR0163 = refactorings.FirstOrDefault(f => f.Id == "RR0163").IsEnabled;
+            RR0164 = refactorings.FirstOrDefault(f => f.Id == "RR0164").IsEnabled;
+            RR0165 = refactorings.FirstOrDefault(f => f.Id == "RR0165").IsEnabled;
+            RR0166 = refactorings.FirstOrDefault(f => f.Id == "RR0166").IsEnabled;
+            RR0167 = refactorings.FirstOrDefault(f => f.Id == "RR0167").IsEnabled;
+            RR0168 = refactorings.FirstOrDefault(f => f.Id == "RR0168").IsEnabled;
+            RR0169 = refactorings.FirstOrDefault(f => f.Id == "RR0169").IsEnabled;
+            RR0170 = refactorings.FirstOrDefault(f => f.Id == "RR0170").IsEnabled;
+            RR0171 = refactorings.FirstOrDefault(f => f.Id == "RR0171").IsEnabled;
+            RR0172 = refactorings.FirstOrDefault(f => f.Id == "RR0172").IsEnabled;
+            RR0173 = refactorings.FirstOrDefault(f => f.Id == "RR0173").IsEnabled;
+            RR0174 = refactorings.FirstOrDefault(f => f.Id == "RR0174").IsEnabled;
+            RR0175 = refactorings.FirstOrDefault(f => f.Id == "RR0175").IsEnabled;
+            RR0176 = refactorings.FirstOrDefault(f => f.Id == "RR0176").IsEnabled;
+            RR0177 = refactorings.FirstOrDefault(f => f.Id == "RR0177").IsEnabled;
         }
 
         public void Apply()
         {
-            SetIsEnabled(RefactoringIdentifiers.AddBooleanComparison, AddBooleanComparison);
-            SetIsEnabled(RefactoringIdentifiers.AddBraces, AddBraces);
-            SetIsEnabled(RefactoringIdentifiers.AddBracesToIfElse, AddBracesToIfElse);
-            SetIsEnabled(RefactoringIdentifiers.AddBracesToSwitchSection, AddBracesToSwitchSection);
-            SetIsEnabled(RefactoringIdentifiers.AddBracesToSwitchSections, AddBracesToSwitchSections);
-            SetIsEnabled(RefactoringIdentifiers.AddCastExpression, AddCastExpression);
-            SetIsEnabled(RefactoringIdentifiers.AddDefaultValueToParameter, AddDefaultValueToParameter);
-            SetIsEnabled(RefactoringIdentifiers.AddDefaultValueToReturnStatement, AddDefaultValueToReturnStatement);
-            SetIsEnabled(RefactoringIdentifiers.AddExceptionToDocumentationComment, AddExceptionToDocumentationComment);
-            SetIsEnabled(RefactoringIdentifiers.AddIdentifierToVariableDeclaration, AddIdentifierToVariableDeclaration);
-            SetIsEnabled(RefactoringIdentifiers.AddParameterNameToArgument, AddParameterNameToArgument);
-            SetIsEnabled(RefactoringIdentifiers.AddParameterNameToParameter, AddParameterNameToParameter);
-            SetIsEnabled(RefactoringIdentifiers.AddUsingDirective, AddUsingDirective);
-            SetIsEnabled(RefactoringIdentifiers.AddUsingStaticDirective, AddUsingStaticDirective);
-            SetIsEnabled(RefactoringIdentifiers.CallConfigureAwait, CallConfigureAwait);
-            SetIsEnabled(RefactoringIdentifiers.CallExtensionMethodAsInstanceMethod, CallExtensionMethodAsInstanceMethod);
-            SetIsEnabled(RefactoringIdentifiers.CallToMethod, CallToMethod);
-            SetIsEnabled(RefactoringIdentifiers.ChangeExplicitTypeToVar, ChangeExplicitTypeToVar);
-            SetIsEnabled(RefactoringIdentifiers.ChangeMemberTypeAccordingToReturnExpression, ChangeMemberTypeAccordingToReturnExpression);
-            SetIsEnabled(RefactoringIdentifiers.ChangeMemberTypeAccordingToYieldReturnExpression, ChangeMemberTypeAccordingToYieldReturnExpression);
-            SetIsEnabled(RefactoringIdentifiers.ChangeMethodReturnTypeToVoid, ChangeMethodReturnTypeToVoid);
-            SetIsEnabled(RefactoringIdentifiers.ChangeTypeAccordingToExpression, ChangeTypeAccordingToExpression);
-            SetIsEnabled(RefactoringIdentifiers.ChangeVarToExplicitType, ChangeVarToExplicitType);
-            SetIsEnabled(RefactoringIdentifiers.CheckExpressionForNull, CheckExpressionForNull);
-            SetIsEnabled(RefactoringIdentifiers.CheckParameterForNull, CheckParameterForNull);
-            SetIsEnabled(RefactoringIdentifiers.CollapseToInitializer, CollapseToInitializer);
-            SetIsEnabled(RefactoringIdentifiers.CommentOutMember, CommentOutMember);
-            SetIsEnabled(RefactoringIdentifiers.CommentOutStatement, CommentOutStatement);
-            SetIsEnabled(RefactoringIdentifiers.CopyDocumentationCommentFromBaseMember, CopyDocumentationCommentFromBaseMember);
-            SetIsEnabled(RefactoringIdentifiers.DuplicateArgument, DuplicateArgument);
-            SetIsEnabled(RefactoringIdentifiers.DuplicateMember, DuplicateMember);
-            SetIsEnabled(RefactoringIdentifiers.DuplicateParameter, DuplicateParameter);
-            SetIsEnabled(RefactoringIdentifiers.DuplicateStatement, DuplicateStatement);
-            SetIsEnabled(RefactoringIdentifiers.ExpandAssignmentExpression, ExpandAssignmentExpression);
-            SetIsEnabled(RefactoringIdentifiers.ExpandCoalesceExpression, ExpandCoalesceExpression);
-            SetIsEnabled(RefactoringIdentifiers.ExpandEvent, ExpandEvent);
-            SetIsEnabled(RefactoringIdentifiers.ExpandExpressionBody, ExpandExpressionBody);
-            SetIsEnabled(RefactoringIdentifiers.ExpandInitializer, ExpandInitializer);
-            SetIsEnabled(RefactoringIdentifiers.ExpandLambdaExpressionBody, ExpandLambdaExpressionBody);
-            SetIsEnabled(RefactoringIdentifiers.ExpandProperty, ExpandProperty);
-            SetIsEnabled(RefactoringIdentifiers.ExpandPropertyAndAddBackingField, ExpandPropertyAndAddBackingField);
-            SetIsEnabled(RefactoringIdentifiers.ExtractDeclarationFromUsingStatement, ExtractDeclarationFromUsingStatement);
-            SetIsEnabled(RefactoringIdentifiers.ExtractExpressionFromCondition, ExtractExpressionFromCondition);
-            SetIsEnabled(RefactoringIdentifiers.ExtractGenericType, ExtractGenericType);
-            SetIsEnabled(RefactoringIdentifiers.ExtractStatement, ExtractStatement);
-            SetIsEnabled(RefactoringIdentifiers.ExtractTypeDeclarationToNewFile, ExtractTypeDeclarationToNewFile);
-            SetIsEnabled(RefactoringIdentifiers.FormatAccessorBraces, FormatAccessorBraces);
-            SetIsEnabled(RefactoringIdentifiers.FormatArgumentList, FormatArgumentList);
-            SetIsEnabled(RefactoringIdentifiers.FormatBinaryExpression, FormatBinaryExpression);
-            SetIsEnabled(RefactoringIdentifiers.FormatConditionalExpression, FormatConditionalExpression);
-            SetIsEnabled(RefactoringIdentifiers.FormatExpressionChain, FormatExpressionChain);
-            SetIsEnabled(RefactoringIdentifiers.FormatInitializer, FormatInitializer);
-            SetIsEnabled(RefactoringIdentifiers.FormatParameterList, FormatParameterList);
-            SetIsEnabled(RefactoringIdentifiers.GenerateBaseConstructors, GenerateBaseConstructors);
-            SetIsEnabled(RefactoringIdentifiers.GenerateCombinedEnumMember, GenerateCombinedEnumMember);
-            SetIsEnabled(RefactoringIdentifiers.GenerateEnumMember, GenerateEnumMember);
-            SetIsEnabled(RefactoringIdentifiers.GenerateEnumValues, GenerateEnumValues);
-            SetIsEnabled(RefactoringIdentifiers.GenerateEventInvokingMethod, GenerateEventInvokingMethod);
-            SetIsEnabled(RefactoringIdentifiers.GenerateSwitchSections, GenerateSwitchSections);
-            SetIsEnabled(RefactoringIdentifiers.InitializeLocalWithDefaultValue, InitializeLocalWithDefaultValue);
-            SetIsEnabled(RefactoringIdentifiers.InlineAliasExpression, InlineAliasExpression);
-            SetIsEnabled(RefactoringIdentifiers.InlineMethod, InlineMethod);
-            SetIsEnabled(RefactoringIdentifiers.InsertStringInterpolation, InsertStringInterpolation);
-            SetIsEnabled(RefactoringIdentifiers.IntroduceAndInitializeField, IntroduceAndInitializeField);
-            SetIsEnabled(RefactoringIdentifiers.IntroduceAndInitializeProperty, IntroduceAndInitializeProperty);
-            SetIsEnabled(RefactoringIdentifiers.IntroduceConstructor, IntroduceConstructor);
-            SetIsEnabled(RefactoringIdentifiers.IntroduceFieldToLockOn, IntroduceFieldToLockOn);
-            SetIsEnabled(RefactoringIdentifiers.IntroduceLocalFromStatementThatReturnsValue, IntroduceLocalFromStatementThatReturnsValue);
-            SetIsEnabled(RefactoringIdentifiers.MakeMemberAbstract, MakeMemberAbstract);
-            SetIsEnabled(RefactoringIdentifiers.MakeMemberVirtual, MakeMemberVirtual);
-            SetIsEnabled(RefactoringIdentifiers.MarkContainingClassAsAbstract, MarkContainingClassAsAbstract);
-            SetIsEnabled(RefactoringIdentifiers.MarkMemberAsStatic, MarkMemberAsStatic);
-            SetIsEnabled(RefactoringIdentifiers.MergeAssignmentExpressionWithReturnStatement, MergeAssignmentExpressionWithReturnStatement);
-            SetIsEnabled(RefactoringIdentifiers.MergeAttributes, MergeAttributes);
-            SetIsEnabled(RefactoringIdentifiers.MergeIfStatements, MergeIfStatements);
-            SetIsEnabled(RefactoringIdentifiers.MergeInterpolationIntoInterpolatedString, MergeInterpolationIntoInterpolatedString);
-            SetIsEnabled(RefactoringIdentifiers.MergeLocalDeclarations, MergeLocalDeclarations);
-            SetIsEnabled(RefactoringIdentifiers.MergeStringExpressions, MergeStringExpressions);
-            SetIsEnabled(RefactoringIdentifiers.NegateBinaryExpression, NegateBinaryExpression);
-            SetIsEnabled(RefactoringIdentifiers.NegateBooleanLiteral, NegateBooleanLiteral);
-            SetIsEnabled(RefactoringIdentifiers.NegateIsExpression, NegateIsExpression);
-            SetIsEnabled(RefactoringIdentifiers.NegateOperator, NegateOperator);
-            SetIsEnabled(RefactoringIdentifiers.NotifyPropertyChanged, NotifyPropertyChanged);
-            SetIsEnabled(RefactoringIdentifiers.ParenthesizeExpression, ParenthesizeExpression);
-            SetIsEnabled(RefactoringIdentifiers.PromoteLocalToParameter, PromoteLocalToParameter);
-            SetIsEnabled(RefactoringIdentifiers.RemoveAllComments, RemoveAllComments);
-            SetIsEnabled(RefactoringIdentifiers.RemoveAllCommentsExceptDocumentationComments, RemoveAllCommentsExceptDocumentationComments);
-            SetIsEnabled(RefactoringIdentifiers.RemoveAllDocumentationComments, RemoveAllDocumentationComments);
-            SetIsEnabled(RefactoringIdentifiers.RemoveAllMemberDeclarations, RemoveAllMemberDeclarations);
-            SetIsEnabled(RefactoringIdentifiers.RemoveAllPreprocessorDirectives, RemoveAllPreprocessorDirectives);
-            SetIsEnabled(RefactoringIdentifiers.RemoveAllRegionDirectives, RemoveAllRegionDirectives);
-            SetIsEnabled(RefactoringIdentifiers.RemoveAllStatements, RemoveAllStatements);
-            SetIsEnabled(RefactoringIdentifiers.RemoveAllSwitchSections, RemoveAllSwitchSections);
-            SetIsEnabled(RefactoringIdentifiers.RemoveBraces, RemoveBraces);
-            SetIsEnabled(RefactoringIdentifiers.RemoveBracesFromIfElse, RemoveBracesFromIfElse);
-            SetIsEnabled(RefactoringIdentifiers.RemoveBracesFromSwitchSection, RemoveBracesFromSwitchSection);
-            SetIsEnabled(RefactoringIdentifiers.RemoveBracesFromSwitchSections, RemoveBracesFromSwitchSections);
-            SetIsEnabled(RefactoringIdentifiers.RemoveComment, RemoveComment);
-            SetIsEnabled(RefactoringIdentifiers.RemoveConditionFromLastElse, RemoveConditionFromLastElse);
-            SetIsEnabled(RefactoringIdentifiers.RemoveDirectiveAndRelatedDirectives, RemoveDirectiveAndRelatedDirectives);
-            SetIsEnabled(RefactoringIdentifiers.RemoveEmptyLines, RemoveEmptyLines);
-            SetIsEnabled(RefactoringIdentifiers.RemoveInterpolation, RemoveInterpolation);
-            SetIsEnabled(RefactoringIdentifiers.RemoveMember, RemoveMember);
-            SetIsEnabled(RefactoringIdentifiers.RemoveMemberDeclarations, RemoveMemberDeclarations);
-            SetIsEnabled(RefactoringIdentifiers.RemoveParameterNameFromArgument, RemoveParameterNameFromArgument);
-            SetIsEnabled(RefactoringIdentifiers.RemoveParentheses, RemoveParentheses);
-            SetIsEnabled(RefactoringIdentifiers.RemovePropertyInitializer, RemovePropertyInitializer);
-            SetIsEnabled(RefactoringIdentifiers.RemoveRegion, RemoveRegion);
-            SetIsEnabled(RefactoringIdentifiers.RemoveStatement, RemoveStatement);
-            SetIsEnabled(RefactoringIdentifiers.RemoveStatementsFromSwitchSections, RemoveStatementsFromSwitchSections);
-            SetIsEnabled(RefactoringIdentifiers.RenameBackingFieldAccordingToPropertyName, RenameBackingFieldAccordingToPropertyName);
-            SetIsEnabled(RefactoringIdentifiers.RenameIdentifierAccordingToTypeName, RenameIdentifierAccordingToTypeName);
-            SetIsEnabled(RefactoringIdentifiers.RenameMethodAccordingToTypeName, RenameMethodAccordingToTypeName);
-            SetIsEnabled(RefactoringIdentifiers.RenameParameterAccordingToTypeName, RenameParameterAccordingToTypeName);
-            SetIsEnabled(RefactoringIdentifiers.RenamePropertyAccordingToTypeName, RenamePropertyAccordingToTypeName);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceAnyWithAllOrAllWithAny, ReplaceAnyWithAllOrAllWithAny);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceAsWithCast, ReplaceAsWithCast);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceCastWithAs, ReplaceCastWithAs);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceConditionalExpressionWithExpression, ReplaceConditionalExpressionWithExpression);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceConditionalExpressionWithIfElse, ReplaceConditionalExpressionWithIfElse);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceConstantWithField, ReplaceConstantWithField);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceCountWithLengthOrLengthWithCount, ReplaceCountWithLengthOrLengthWithCount);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceDoStatementWithWhileStatement, ReplaceDoStatementWithWhileStatement);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceEqualsExpressionWithStringEquals, ReplaceEqualsExpressionWithStringEquals);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceEqualsExpressionWithStringIsNullOrEmpty, ReplaceEqualsExpressionWithStringIsNullOrEmpty);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceEqualsExpressionWithStringIsNullOrWhiteSpace, ReplaceEqualsExpressionWithStringIsNullOrWhiteSpace);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceExpressionWithConstantValue, ReplaceExpressionWithConstantValue);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceFieldWithConstant, ReplaceFieldWithConstant);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceForEachWithFor, ReplaceForEachWithFor);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceForWithForEach, ReplaceForWithForEach);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceForWithWhile, ReplaceForWithWhile);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceHexadecimalLiteralWithDecimalLiteral, ReplaceHexadecimalLiteralWithDecimalLiteral);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceIfElseWithSwitch, ReplaceIfElseWithSwitch);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceIncrementOperatorWithDecrementOperator, ReplaceIncrementOperatorWithDecrementOperator);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceInterpolatedStringWithInterpolationExpression, ReplaceInterpolatedStringWithInterpolationExpression);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceInterpolatedStringWithStringLiteral, ReplaceInterpolatedStringWithStringLiteral);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceMethodGroupWithLambda, ReplaceMethodGroupWithLambda);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceMethodWithProperty, ReplaceMethodWithProperty);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceNullLiteralExpressionWithDefaultExpression, ReplaceNullLiteralExpressionWithDefaultExpression);
-            SetIsEnabled(RefactoringIdentifiers.ReplacePrefixOperatorWithPostfixOperator, ReplacePrefixOperatorWithPostfixOperator);
-            SetIsEnabled(RefactoringIdentifiers.ReplacePropertyWithMethod, ReplacePropertyWithMethod);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceRegularStringLiteralWithVerbatimStringLiteral, ReplaceRegularStringLiteralWithVerbatimStringLiteral);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceStatementWithIfStatement, ReplaceStatementWithIfStatement);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceStringContainsWithStringIndexOf, ReplaceStringContainsWithStringIndexOf);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceStringFormatWithInterpolatedString, ReplaceStringFormatWithInterpolatedString);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceStringLiteralWithCharacterLiteral, ReplaceStringLiteralWithCharacterLiteral);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceSwitchWithIfElse, ReplaceSwitchWithIfElse);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceVerbatimStringLiteralWithRegularStringLiteral, ReplaceVerbatimStringLiteralWithRegularStringLiteral);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceVerbatimStringLiteralWithRegularStringLiterals, ReplaceVerbatimStringLiteralWithRegularStringLiterals);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceWhileStatementWithDoStatement, ReplaceWhileStatementWithDoStatement);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceWhileWithFor, ReplaceWhileWithFor);
-            SetIsEnabled(RefactoringIdentifiers.ReverseForLoop, ReverseForLoop);
-            SetIsEnabled(RefactoringIdentifiers.SimplifyIf, SimplifyIf);
-            SetIsEnabled(RefactoringIdentifiers.SimplifyLambdaExpression, SimplifyLambdaExpression);
-            SetIsEnabled(RefactoringIdentifiers.SortMemberDeclarations, SortMemberDeclarations);
-            SetIsEnabled(RefactoringIdentifiers.SplitAttributes, SplitAttributes);
-            SetIsEnabled(RefactoringIdentifiers.SplitSwitchLabels, SplitSwitchLabels);
-            SetIsEnabled(RefactoringIdentifiers.SplitVariableDeclaration, SplitVariableDeclaration);
-            SetIsEnabled(RefactoringIdentifiers.SwapExpressionsInBinaryExpression, SwapExpressionsInBinaryExpression);
-            SetIsEnabled(RefactoringIdentifiers.SwapExpressionsInConditionalExpression, SwapExpressionsInConditionalExpression);
-            SetIsEnabled(RefactoringIdentifiers.SwapMemberDeclarations, SwapMemberDeclarations);
-            SetIsEnabled(RefactoringIdentifiers.SwapStatementsInIfElse, SwapStatementsInIfElse);
-            SetIsEnabled(RefactoringIdentifiers.Uncomment, Uncomment);
-            SetIsEnabled(RefactoringIdentifiers.UseBitwiseOperationInsteadOfCallingHasFlag, UseBitwiseOperationInsteadOfCallingHasFlag);
-            SetIsEnabled(RefactoringIdentifiers.UseCoalesceExpressionInsteadOfIf, UseCoalesceExpressionInsteadOfIf);
-            SetIsEnabled(RefactoringIdentifiers.UseConditionalExpressionInsteadOfIf, UseConditionalExpressionInsteadOfIf);
-            SetIsEnabled(RefactoringIdentifiers.UseElementAccessInsteadOfEnumerableMethod, UseElementAccessInsteadOfEnumerableMethod);
-            SetIsEnabled(RefactoringIdentifiers.UseEmptyStringLiteralInsteadOfStringEmpty, UseEmptyStringLiteralInsteadOfStringEmpty);
-            SetIsEnabled(RefactoringIdentifiers.UseExpressionBodiedMember, UseExpressionBodiedMember);
-            SetIsEnabled(RefactoringIdentifiers.UseLambdaExpressionInsteadOfAnonymousMethod, UseLambdaExpressionInsteadOfAnonymousMethod);
-            SetIsEnabled(RefactoringIdentifiers.UseStringEmptyInsteadOfEmptyStringLiteral, UseStringEmptyInsteadOfEmptyStringLiteral);
-            SetIsEnabled(RefactoringIdentifiers.WrapInCondition, WrapInCondition);
-            SetIsEnabled(RefactoringIdentifiers.WrapInElseClause, WrapInElseClause);
-            SetIsEnabled(RefactoringIdentifiers.WrapInIfDirective, WrapInIfDirective);
-            SetIsEnabled(RefactoringIdentifiers.WrapInRegion, WrapInRegion);
-            SetIsEnabled(RefactoringIdentifiers.WrapInTryCatch, WrapInTryCatch);
-            SetIsEnabled(RefactoringIdentifiers.WrapInUsingStatement, WrapInUsingStatement);
+            SetIsEnabled(RefactoringIdentifiers.AddBooleanComparison, RR0001);
+            SetIsEnabled(RefactoringIdentifiers.AddBraces, RR0002);
+            SetIsEnabled(RefactoringIdentifiers.AddBracesToIfElse, RR0003);
+            SetIsEnabled(RefactoringIdentifiers.AddBracesToSwitchSection, RR0004);
+            SetIsEnabled(RefactoringIdentifiers.AddBracesToSwitchSections, RR0005);
+            SetIsEnabled(RefactoringIdentifiers.AddCastExpression, RR0006);
+            SetIsEnabled(RefactoringIdentifiers.AddDefaultValueToParameter, RR0007);
+            SetIsEnabled(RefactoringIdentifiers.AddDefaultValueToReturnStatement, RR0008);
+            SetIsEnabled(RefactoringIdentifiers.AddExceptionToDocumentationComment, RR0009);
+            SetIsEnabled(RefactoringIdentifiers.AddIdentifierToVariableDeclaration, RR0010);
+            SetIsEnabled(RefactoringIdentifiers.AddParameterNameToArgument, RR0011);
+            SetIsEnabled(RefactoringIdentifiers.AddParameterNameToParameter, RR0012);
+            SetIsEnabled(RefactoringIdentifiers.AddUsingDirective, RR0013);
+            SetIsEnabled(RefactoringIdentifiers.AddUsingStaticDirective, RR0014);
+            SetIsEnabled(RefactoringIdentifiers.CallConfigureAwait, RR0015);
+            SetIsEnabled(RefactoringIdentifiers.CallExtensionMethodAsInstanceMethod, RR0016);
+            SetIsEnabled(RefactoringIdentifiers.CallToMethod, RR0017);
+            SetIsEnabled(RefactoringIdentifiers.ChangeExplicitTypeToVar, RR0018);
+            SetIsEnabled(RefactoringIdentifiers.ChangeMemberTypeAccordingToReturnExpression, RR0019);
+            SetIsEnabled(RefactoringIdentifiers.ChangeMemberTypeAccordingToYieldReturnExpression, RR0020);
+            SetIsEnabled(RefactoringIdentifiers.ChangeMethodReturnTypeToVoid, RR0021);
+            SetIsEnabled(RefactoringIdentifiers.ChangeTypeAccordingToExpression, RR0022);
+            SetIsEnabled(RefactoringIdentifiers.ChangeVarToExplicitType, RR0023);
+            SetIsEnabled(RefactoringIdentifiers.CheckExpressionForNull, RR0024);
+            SetIsEnabled(RefactoringIdentifiers.CheckParameterForNull, RR0025);
+            SetIsEnabled(RefactoringIdentifiers.CollapseToInitializer, RR0026);
+            SetIsEnabled(RefactoringIdentifiers.CommentOutMember, RR0027);
+            SetIsEnabled(RefactoringIdentifiers.CommentOutStatement, RR0028);
+            SetIsEnabled(RefactoringIdentifiers.CopyDocumentationCommentFromBaseMember, RR0029);
+            SetIsEnabled(RefactoringIdentifiers.DuplicateArgument, RR0030);
+            SetIsEnabled(RefactoringIdentifiers.DuplicateMember, RR0031);
+            SetIsEnabled(RefactoringIdentifiers.DuplicateParameter, RR0032);
+            SetIsEnabled(RefactoringIdentifiers.DuplicateStatement, RR0033);
+            SetIsEnabled(RefactoringIdentifiers.ExpandAssignmentExpression, RR0034);
+            SetIsEnabled(RefactoringIdentifiers.ExpandCoalesceExpression, RR0035);
+            SetIsEnabled(RefactoringIdentifiers.ExpandEvent, RR0036);
+            SetIsEnabled(RefactoringIdentifiers.ExpandExpressionBody, RR0037);
+            SetIsEnabled(RefactoringIdentifiers.ExpandInitializer, RR0038);
+            SetIsEnabled(RefactoringIdentifiers.ExpandLambdaExpressionBody, RR0039);
+            SetIsEnabled(RefactoringIdentifiers.ExpandProperty, RR0040);
+            SetIsEnabled(RefactoringIdentifiers.ExpandPropertyAndAddBackingField, RR0041);
+            SetIsEnabled(RefactoringIdentifiers.ExtractDeclarationFromUsingStatement, RR0042);
+            SetIsEnabled(RefactoringIdentifiers.ExtractExpressionFromCondition, RR0043);
+            SetIsEnabled(RefactoringIdentifiers.ExtractGenericType, RR0044);
+            SetIsEnabled(RefactoringIdentifiers.ExtractStatement, RR0045);
+            SetIsEnabled(RefactoringIdentifiers.ExtractTypeDeclarationToNewFile, RR0046);
+            SetIsEnabled(RefactoringIdentifiers.FormatAccessorBraces, RR0047);
+            SetIsEnabled(RefactoringIdentifiers.FormatArgumentList, RR0048);
+            SetIsEnabled(RefactoringIdentifiers.FormatBinaryExpression, RR0049);
+            SetIsEnabled(RefactoringIdentifiers.FormatConditionalExpression, RR0050);
+            SetIsEnabled(RefactoringIdentifiers.FormatExpressionChain, RR0051);
+            SetIsEnabled(RefactoringIdentifiers.FormatInitializer, RR0052);
+            SetIsEnabled(RefactoringIdentifiers.FormatParameterList, RR0053);
+            SetIsEnabled(RefactoringIdentifiers.GenerateBaseConstructors, RR0054);
+            SetIsEnabled(RefactoringIdentifiers.GenerateCombinedEnumMember, RR0055);
+            SetIsEnabled(RefactoringIdentifiers.GenerateEnumMember, RR0056);
+            SetIsEnabled(RefactoringIdentifiers.GenerateEnumValues, RR0057);
+            SetIsEnabled(RefactoringIdentifiers.GenerateEventInvokingMethod, RR0058);
+            SetIsEnabled(RefactoringIdentifiers.GenerateSwitchSections, RR0059);
+            SetIsEnabled(RefactoringIdentifiers.InitializeLocalWithDefaultValue, RR0060);
+            SetIsEnabled(RefactoringIdentifiers.InlineAliasExpression, RR0061);
+            SetIsEnabled(RefactoringIdentifiers.InlineMethod, RR0062);
+            SetIsEnabled(RefactoringIdentifiers.InsertStringInterpolation, RR0063);
+            SetIsEnabled(RefactoringIdentifiers.IntroduceAndInitializeField, RR0064);
+            SetIsEnabled(RefactoringIdentifiers.IntroduceAndInitializeProperty, RR0065);
+            SetIsEnabled(RefactoringIdentifiers.IntroduceConstructor, RR0066);
+            SetIsEnabled(RefactoringIdentifiers.IntroduceFieldToLockOn, RR0067);
+            SetIsEnabled(RefactoringIdentifiers.IntroduceLocalFromStatementThatReturnsValue, RR0068);
+            SetIsEnabled(RefactoringIdentifiers.MakeMemberAbstract, RR0069);
+            SetIsEnabled(RefactoringIdentifiers.MakeMemberVirtual, RR0070);
+            SetIsEnabled(RefactoringIdentifiers.MarkContainingClassAsAbstract, RR0071);
+            SetIsEnabled(RefactoringIdentifiers.MarkMemberAsStatic, RR0072);
+            SetIsEnabled(RefactoringIdentifiers.MergeAssignmentExpressionWithReturnStatement, RR0073);
+            SetIsEnabled(RefactoringIdentifiers.MergeAttributes, RR0074);
+            SetIsEnabled(RefactoringIdentifiers.MergeIfStatements, RR0075);
+            SetIsEnabled(RefactoringIdentifiers.MergeInterpolationIntoInterpolatedString, RR0076);
+            SetIsEnabled(RefactoringIdentifiers.MergeLocalDeclarations, RR0077);
+            SetIsEnabled(RefactoringIdentifiers.MergeStringExpressions, RR0078);
+            SetIsEnabled(RefactoringIdentifiers.NegateBinaryExpression, RR0079);
+            SetIsEnabled(RefactoringIdentifiers.NegateBooleanLiteral, RR0080);
+            SetIsEnabled(RefactoringIdentifiers.NegateIsExpression, RR0081);
+            SetIsEnabled(RefactoringIdentifiers.NegateOperator, RR0082);
+            SetIsEnabled(RefactoringIdentifiers.NotifyPropertyChanged, RR0083);
+            SetIsEnabled(RefactoringIdentifiers.ParenthesizeExpression, RR0084);
+            SetIsEnabled(RefactoringIdentifiers.PromoteLocalToParameter, RR0085);
+            SetIsEnabled(RefactoringIdentifiers.RemoveAllComments, RR0086);
+            SetIsEnabled(RefactoringIdentifiers.RemoveAllCommentsExceptDocumentationComments, RR0087);
+            SetIsEnabled(RefactoringIdentifiers.RemoveAllDocumentationComments, RR0088);
+            SetIsEnabled(RefactoringIdentifiers.RemoveAllMemberDeclarations, RR0089);
+            SetIsEnabled(RefactoringIdentifiers.RemoveAllPreprocessorDirectives, RR0090);
+            SetIsEnabled(RefactoringIdentifiers.RemoveAllRegionDirectives, RR0091);
+            SetIsEnabled(RefactoringIdentifiers.RemoveAllStatements, RR0092);
+            SetIsEnabled(RefactoringIdentifiers.RemoveAllSwitchSections, RR0093);
+            SetIsEnabled(RefactoringIdentifiers.RemoveBraces, RR0094);
+            SetIsEnabled(RefactoringIdentifiers.RemoveBracesFromIfElse, RR0095);
+            SetIsEnabled(RefactoringIdentifiers.RemoveBracesFromSwitchSection, RR0096);
+            SetIsEnabled(RefactoringIdentifiers.RemoveBracesFromSwitchSections, RR0097);
+            SetIsEnabled(RefactoringIdentifiers.RemoveComment, RR0098);
+            SetIsEnabled(RefactoringIdentifiers.RemoveConditionFromLastElse, RR0099);
+            SetIsEnabled(RefactoringIdentifiers.RemoveDirectiveAndRelatedDirectives, RR0100);
+            SetIsEnabled(RefactoringIdentifiers.RemoveEmptyLines, RR0101);
+            SetIsEnabled(RefactoringIdentifiers.RemoveInterpolation, RR0102);
+            SetIsEnabled(RefactoringIdentifiers.RemoveMember, RR0103);
+            SetIsEnabled(RefactoringIdentifiers.RemoveMemberDeclarations, RR0104);
+            SetIsEnabled(RefactoringIdentifiers.RemoveParameterNameFromArgument, RR0105);
+            SetIsEnabled(RefactoringIdentifiers.RemoveParentheses, RR0106);
+            SetIsEnabled(RefactoringIdentifiers.RemovePropertyInitializer, RR0107);
+            SetIsEnabled(RefactoringIdentifiers.RemoveRegion, RR0108);
+            SetIsEnabled(RefactoringIdentifiers.RemoveStatement, RR0109);
+            SetIsEnabled(RefactoringIdentifiers.RemoveStatementsFromSwitchSections, RR0110);
+            SetIsEnabled(RefactoringIdentifiers.RenameBackingFieldAccordingToPropertyName, RR0111);
+            SetIsEnabled(RefactoringIdentifiers.RenameIdentifierAccordingToTypeName, RR0112);
+            SetIsEnabled(RefactoringIdentifiers.RenameMethodAccordingToTypeName, RR0113);
+            SetIsEnabled(RefactoringIdentifiers.RenameParameterAccordingToTypeName, RR0114);
+            SetIsEnabled(RefactoringIdentifiers.RenamePropertyAccordingToTypeName, RR0115);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceAnyWithAllOrAllWithAny, RR0116);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceAsWithCast, RR0117);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceCastWithAs, RR0118);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceConditionalExpressionWithExpression, RR0119);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceConditionalExpressionWithIfElse, RR0120);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceConstantWithField, RR0121);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceCountWithLengthOrLengthWithCount, RR0122);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceDoStatementWithWhileStatement, RR0123);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceEqualsExpressionWithStringEquals, RR0124);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceEqualsExpressionWithStringIsNullOrEmpty, RR0125);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceEqualsExpressionWithStringIsNullOrWhiteSpace, RR0126);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceExpressionWithConstantValue, RR0127);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceFieldWithConstant, RR0128);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceForEachWithFor, RR0129);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceForWithForEach, RR0130);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceForWithWhile, RR0131);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceHexadecimalLiteralWithDecimalLiteral, RR0132);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceIfElseWithSwitch, RR0133);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceIncrementOperatorWithDecrementOperator, RR0134);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceInterpolatedStringWithInterpolationExpression, RR0135);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceInterpolatedStringWithStringLiteral, RR0136);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceMethodGroupWithLambda, RR0137);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceMethodWithProperty, RR0138);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceNullLiteralExpressionWithDefaultExpression, RR0139);
+            SetIsEnabled(RefactoringIdentifiers.ReplacePrefixOperatorWithPostfixOperator, RR0140);
+            SetIsEnabled(RefactoringIdentifiers.ReplacePropertyWithMethod, RR0141);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceRegularStringLiteralWithVerbatimStringLiteral, RR0142);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceStatementWithIfStatement, RR0143);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceStringContainsWithStringIndexOf, RR0144);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceStringFormatWithInterpolatedString, RR0145);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceStringLiteralWithCharacterLiteral, RR0146);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceSwitchWithIfElse, RR0147);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceVerbatimStringLiteralWithRegularStringLiteral, RR0148);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceVerbatimStringLiteralWithRegularStringLiterals, RR0149);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceWhileStatementWithDoStatement, RR0150);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceWhileWithFor, RR0151);
+            SetIsEnabled(RefactoringIdentifiers.ReverseForLoop, RR0152);
+            SetIsEnabled(RefactoringIdentifiers.SimplifyIf, RR0153);
+            SetIsEnabled(RefactoringIdentifiers.SimplifyLambdaExpression, RR0154);
+            SetIsEnabled(RefactoringIdentifiers.SortMemberDeclarations, RR0155);
+            SetIsEnabled(RefactoringIdentifiers.SplitAttributes, RR0156);
+            SetIsEnabled(RefactoringIdentifiers.SplitSwitchLabels, RR0157);
+            SetIsEnabled(RefactoringIdentifiers.SplitVariableDeclaration, RR0158);
+            SetIsEnabled(RefactoringIdentifiers.SwapExpressionsInBinaryExpression, RR0159);
+            SetIsEnabled(RefactoringIdentifiers.SwapExpressionsInConditionalExpression, RR0160);
+            SetIsEnabled(RefactoringIdentifiers.SwapMemberDeclarations, RR0161);
+            SetIsEnabled(RefactoringIdentifiers.SwapStatementsInIfElse, RR0162);
+            SetIsEnabled(RefactoringIdentifiers.Uncomment, RR0163);
+            SetIsEnabled(RefactoringIdentifiers.UseBitwiseOperationInsteadOfCallingHasFlag, RR0164);
+            SetIsEnabled(RefactoringIdentifiers.UseCoalesceExpressionInsteadOfIf, RR0165);
+            SetIsEnabled(RefactoringIdentifiers.UseConditionalExpressionInsteadOfIf, RR0166);
+            SetIsEnabled(RefactoringIdentifiers.UseElementAccessInsteadOfEnumerableMethod, RR0167);
+            SetIsEnabled(RefactoringIdentifiers.UseEmptyStringLiteralInsteadOfStringEmpty, RR0168);
+            SetIsEnabled(RefactoringIdentifiers.UseExpressionBodiedMember, RR0169);
+            SetIsEnabled(RefactoringIdentifiers.UseLambdaExpressionInsteadOfAnonymousMethod, RR0170);
+            SetIsEnabled(RefactoringIdentifiers.UseStringEmptyInsteadOfEmptyStringLiteral, RR0171);
+            SetIsEnabled(RefactoringIdentifiers.WrapInCondition, RR0172);
+            SetIsEnabled(RefactoringIdentifiers.WrapInElseClause, RR0173);
+            SetIsEnabled(RefactoringIdentifiers.WrapInIfDirective, RR0174);
+            SetIsEnabled(RefactoringIdentifiers.WrapInRegion, RR0175);
+            SetIsEnabled(RefactoringIdentifiers.WrapInTryCatch, RR0176);
+            SetIsEnabled(RefactoringIdentifiers.WrapInUsingStatement, RR0177);
         }
 
         [Category(RefactoringCategory)]
         [DisplayName("Add boolean comparison")]
         [Description("Syntax: boolean? expression in place where must be boolean expression")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool AddBooleanComparison
+        public bool RR0001
         {
             get;
             set;
@@ -750,7 +750,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Add braces")]
         [Description("Syntax: do statement, else clause, fixed statement, for statement, foreach statement, if statement, lock statement, using statement, while statement\r\nScope: embedded statement")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool AddBraces
+        public bool RR0002
         {
             get;
             set;
@@ -760,7 +760,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Add braces to if-else")]
         [Description("Syntax: if-else chain\r\nScope: embedded statement")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool AddBracesToIfElse
+        public bool RR0003
         {
             get;
             set;
@@ -770,7 +770,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Add braces to switch section")]
         [Description("Syntax: switch section\r\nScope: statements")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool AddBracesToSwitchSection
+        public bool RR0004
         {
             get;
             set;
@@ -780,7 +780,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Add braces to switch sections")]
         [Description("Syntax: switch statement\r\nScope: switch keyword")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool AddBracesToSwitchSections
+        public bool RR0005
         {
             get;
             set;
@@ -790,7 +790,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Add cast expression")]
         [Description("Syntax: argument, assignment expression, return statement, variable declaration")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool AddCastExpression
+        public bool RR0006
         {
             get;
             set;
@@ -800,7 +800,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Add default value to parameter")]
         [Description("Syntax: parameter without default value\r\nScope: identifier")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool AddDefaultValueToParameter
+        public bool RR0007
         {
             get;
             set;
@@ -810,7 +810,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Add default value to return statement")]
         [Description("Syntax: return statement without expression")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool AddDefaultValueToReturnStatement
+        public bool RR0008
         {
             get;
             set;
@@ -820,7 +820,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Add exception to documentation comment")]
         [Description("Syntax: throw statement")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool AddExceptionToDocumentationComment
+        public bool RR0009
         {
             get;
             set;
@@ -830,7 +830,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Add identifier to variable declaration")]
         [Description("Syntax: variable declaration")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool AddIdentifierToVariableDeclaration
+        public bool RR0010
         {
             get;
             set;
@@ -840,7 +840,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Add parameter name to argument")]
         [Description("Syntax: argument list")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool AddParameterNameToArgument
+        public bool RR0011
         {
             get;
             set;
@@ -850,7 +850,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Add parameter name to parameter")]
         [Description("Syntax: parameter\r\nScope: missing identifier")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool AddParameterNameToParameter
+        public bool RR0012
         {
             get;
             set;
@@ -860,7 +860,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Add using directive")]
         [Description("Syntax: qualified name\r\nScope: selected namespace")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool AddUsingDirective
+        public bool RR0013
         {
             get;
             set;
@@ -870,7 +870,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Add using static directive")]
         [Description("Syntax: member access expression (public or internal static class)\r\nScope: selected class name")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool AddUsingStaticDirective
+        public bool RR0014
         {
             get;
             set;
@@ -880,7 +880,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Call 'ConfigureAwait(false)'")]
         [Description("Syntax: awaitable method invocation\r\nScope: method name")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool CallConfigureAwait
+        public bool RR0015
         {
             get;
             set;
@@ -890,7 +890,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Call extension method as instance method")]
         [Description("Syntax: method invocation")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool CallExtensionMethodAsInstanceMethod
+        public bool RR0016
         {
             get;
             set;
@@ -900,7 +900,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Call 'To...' method (ToString, ToArray, ToList)")]
         [Description("Syntax: argument, assignment expression, return statement, variable declaration")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool CallToMethod
+        public bool RR0017
         {
             get;
             set;
@@ -910,7 +910,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Change explicit type to 'var'")]
         [Description("Syntax: variable declaration, foreach statement\r\nScope: type")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ChangeExplicitTypeToVar
+        public bool RR0018
         {
             get;
             set;
@@ -920,7 +920,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Change method/property/indexer type according to return expression")]
         [Description("Syntax: return statement in method/property/indexer")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ChangeMemberTypeAccordingToReturnExpression
+        public bool RR0019
         {
             get;
             set;
@@ -930,7 +930,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Change method/property/indexer type according to yield return expression")]
         [Description("Syntax: yield return statement in method/property/indexer")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ChangeMemberTypeAccordingToYieldReturnExpression
+        public bool RR0020
         {
             get;
             set;
@@ -940,7 +940,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Change method return type to 'void'")]
         [Description("Syntax: method")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ChangeMethodReturnTypeToVoid
+        public bool RR0021
         {
             get;
             set;
@@ -950,7 +950,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Change type according to expression")]
         [Description("Syntax: variable declaration, foreach statement\r\nScope: type")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ChangeTypeAccordingToExpression
+        public bool RR0022
         {
             get;
             set;
@@ -960,7 +960,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Change 'var' to explicit type")]
         [Description("Syntax: variable declaration, foreach statetement\r\nScope: type")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ChangeVarToExplicitType
+        public bool RR0023
         {
             get;
             set;
@@ -970,7 +970,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Check expression for null")]
         [Description("Syntax: local declaration (identifier), assignment expression (left)")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool CheckExpressionForNull
+        public bool RR0024
         {
             get;
             set;
@@ -980,7 +980,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Check parameter for null")]
         [Description("Syntax: parameter\r\nScope: parameter identifier")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool CheckParameterForNull
+        public bool RR0025
         {
             get;
             set;
@@ -990,7 +990,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Collapse to initalizer")]
         [Description("Syntax: object creation followed with assignment(s)")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool CollapseToInitializer
+        public bool RR0026
         {
             get;
             set;
@@ -1000,7 +1000,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Comment out member")]
         [Description("Syntax: method, constructor, property, indexer, operator, event, namespace, class, struct, interface\r\nScope: opening or closing brace")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool CommentOutMember
+        public bool RR0027
         {
             get;
             set;
@@ -1010,7 +1010,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Comment out statement")]
         [Description("Syntax: do statement, fixed statement, for statement, foreach statement, checked statement, if statement, lock statement, switch statement, try statement, unchecked statement, unsafe statement, using statement, while statement\r\nScope: opening or closing brace")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool CommentOutStatement
+        public bool RR0028
         {
             get;
             set;
@@ -1020,7 +1020,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Copy documentation comment from base member")]
         [Description("Syntax: constructor, method, property, indexer, event")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool CopyDocumentationCommentFromBaseMember
+        public bool RR0029
         {
             get;
             set;
@@ -1030,7 +1030,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Duplicate argument")]
         [Description("Syntax: missing argument")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool DuplicateArgument
+        public bool RR0030
         {
             get;
             set;
@@ -1040,7 +1040,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Duplicate member")]
         [Description("Syntax: method, constructor, property, indexer, operator, event, namespace, class, struct, interface\r\nScope: opening or closing brace")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool DuplicateMember
+        public bool RR0031
         {
             get;
             set;
@@ -1050,7 +1050,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Duplicate parameter")]
         [Description("Syntax: missing parameter")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool DuplicateParameter
+        public bool RR0032
         {
             get;
             set;
@@ -1060,7 +1060,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Duplicate statement")]
         [Description("Syntax: do statement, fixed statement, for statement, foreach statement, checked statement, if statement, lock statement, switch statement, try statement, unchecked statement, unsafe statement, using statement, while statement\r\nScope: opening or closing brace")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool DuplicateStatement
+        public bool RR0033
         {
             get;
             set;
@@ -1070,7 +1070,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Expand assignment expression")]
         [Description("Syntax: assignment expression\r\nScope: operator")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ExpandAssignmentExpression
+        public bool RR0034
         {
             get;
             set;
@@ -1080,7 +1080,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Expand coalesce expression")]
         [Description("Syntax: coalesce expression\r\nScope: ?? operator")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ExpandCoalesceExpression
+        public bool RR0035
         {
             get;
             set;
@@ -1090,7 +1090,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Expand event")]
         [Description("Syntax: event field declaration")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ExpandEvent
+        public bool RR0036
         {
             get;
             set;
@@ -1100,7 +1100,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Expand expression body")]
         [Description("Syntax: expression body")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ExpandExpressionBody
+        public bool RR0037
         {
             get;
             set;
@@ -1110,7 +1110,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Expand initializer")]
         [Description("Syntax: initializer")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ExpandInitializer
+        public bool RR0038
         {
             get;
             set;
@@ -1120,7 +1120,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Expand lambda expression body")]
         [Description("Syntax: lambda expression\r\nScope: body")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ExpandLambdaExpressionBody
+        public bool RR0039
         {
             get;
             set;
@@ -1130,7 +1130,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Expand property")]
         [Description("Syntax: auto-property")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ExpandProperty
+        public bool RR0040
         {
             get;
             set;
@@ -1140,7 +1140,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Expand property and add backing field")]
         [Description("Syntax: auto-property")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ExpandPropertyAndAddBackingField
+        public bool RR0041
         {
             get;
             set;
@@ -1150,7 +1150,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Extract declaration from using statement")]
         [Description("Syntax: using statement\r\nScope: declaration")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ExtractDeclarationFromUsingStatement
+        public bool RR0042
         {
             get;
             set;
@@ -1160,7 +1160,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Extract expression from condition")]
         [Description("Syntax: if statement, while statement\r\nScope: condition")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ExtractExpressionFromCondition
+        public bool RR0043
         {
             get;
             set;
@@ -1170,7 +1170,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Extract generic type")]
         [Description("Syntax: generic name with single type argument\r\nScope: type argument")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ExtractGenericType
+        public bool RR0044
         {
             get;
             set;
@@ -1180,7 +1180,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Extract statement(s)")]
         [Description("Syntax: else clause, fixed statement, for statement, foreach statement, checked statement, if statement, lock statement, try statement, unsafe statement, using statement, while statement")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ExtractStatement
+        public bool RR0045
         {
             get;
             set;
@@ -1190,7 +1190,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Extract type declaration to a new file")]
         [Description("Syntax: class declaration, struct declaration, interface declaration, enum declaration, delegate declaration\r\nScope: identifier")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ExtractTypeDeclarationToNewFile
+        public bool RR0046
         {
             get;
             set;
@@ -1200,7 +1200,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Format accessor braces")]
         [Description("Syntax: get accessor, set accessor, add accessor, remove accessor\r\nScope: block")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool FormatAccessorBraces
+        public bool RR0047
         {
             get;
             set;
@@ -1210,7 +1210,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Format argument list")]
         [Description("Syntax: argument list")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool FormatArgumentList
+        public bool RR0048
         {
             get;
             set;
@@ -1220,7 +1220,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Format binary expression")]
         [Description("Syntax: logical and/or expression, bitwise and/or expression")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool FormatBinaryExpression
+        public bool RR0049
         {
             get;
             set;
@@ -1230,7 +1230,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Format conditional expression")]
         [Description("Syntax: conditional expression")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool FormatConditionalExpression
+        public bool RR0050
         {
             get;
             set;
@@ -1240,7 +1240,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Format expression chain")]
         [Description("Syntax: expression chain")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool FormatExpressionChain
+        public bool RR0051
         {
             get;
             set;
@@ -1250,7 +1250,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Format initializer")]
         [Description("Syntax: initializer")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool FormatInitializer
+        public bool RR0052
         {
             get;
             set;
@@ -1260,7 +1260,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Format parameter list")]
         [Description("Syntax: parameter list")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool FormatParameterList
+        public bool RR0053
         {
             get;
             set;
@@ -1270,7 +1270,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Generate base constructors")]
         [Description("Syntax: class declaration\r\nScope: identifier")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool GenerateBaseConstructors
+        public bool RR0054
         {
             get;
             set;
@@ -1280,7 +1280,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Generate combined enum member")]
         [Description("Syntax: enum declaration (with FlagsAttribute)")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool GenerateCombinedEnumMember
+        public bool RR0055
         {
             get;
             set;
@@ -1290,7 +1290,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Generate enum member")]
         [Description("Syntax: enum declaration (with FlagsAttribute)")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool GenerateEnumMember
+        public bool RR0056
         {
             get;
             set;
@@ -1300,7 +1300,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Generate enum values")]
         [Description("Syntax: enum declaration (with FlagsAttribute)")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool GenerateEnumValues
+        public bool RR0057
         {
             get;
             set;
@@ -1310,7 +1310,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Generate event invoking method")]
         [Description("Syntax: event\r\nScope: identifier")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool GenerateEventInvokingMethod
+        public bool RR0058
         {
             get;
             set;
@@ -1320,7 +1320,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Generate switch sections")]
         [Description("Syntax: switch statement (that is empty or contains only default section)")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool GenerateSwitchSections
+        public bool RR0059
         {
             get;
             set;
@@ -1330,7 +1330,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Initialize local with default value")]
         [Description("Syntax: local declaration without initializer\r\nScope: identifier")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool InitializeLocalWithDefaultValue
+        public bool RR0060
         {
             get;
             set;
@@ -1340,7 +1340,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Inline alias expression")]
         [Description("Syntax: using alias directive\r\nScope: identifier")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool InlineAliasExpression
+        public bool RR0061
         {
             get;
             set;
@@ -1350,7 +1350,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Inline method")]
         [Description("Syntax: static/extension method invocation")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool InlineMethod
+        public bool RR0062
         {
             get;
             set;
@@ -1360,7 +1360,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Insert string interpolation")]
         [Description("Syntax: string literal, interpolated string")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool InsertStringInterpolation
+        public bool RR0063
         {
             get;
             set;
@@ -1370,7 +1370,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Introduce and initialize field")]
         [Description("Syntax: constructor parameter")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool IntroduceAndInitializeField
+        public bool RR0064
         {
             get;
             set;
@@ -1380,7 +1380,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Introduce and initialize property")]
         [Description("Syntax: constructor parameter")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool IntroduceAndInitializeProperty
+        public bool RR0065
         {
             get;
             set;
@@ -1390,7 +1390,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Introduce constructor")]
         [Description("Syntax: field, property")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool IntroduceConstructor
+        public bool RR0066
         {
             get;
             set;
@@ -1400,7 +1400,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Introduce field to lock on")]
         [Description("Syntax: lock statement\r\nScope: missing expression")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool IntroduceFieldToLockOn
+        public bool RR0067
         {
             get;
             set;
@@ -1410,7 +1410,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Introduce local from statement that returns value")]
         [Description("Syntax: expression statement")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool IntroduceLocalFromStatementThatReturnsValue
+        public bool RR0068
         {
             get;
             set;
@@ -1420,7 +1420,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Make member abstract")]
         [Description("Syntax: non-abstract indexer/method/property in abstract class\r\nScope: indexer/method/property header")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool MakeMemberAbstract
+        public bool RR0069
         {
             get;
             set;
@@ -1430,7 +1430,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Make member virtual")]
         [Description("Syntax: method declaration, indexer declaration")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool MakeMemberVirtual
+        public bool RR0070
         {
             get;
             set;
@@ -1440,7 +1440,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Mark containing class as abstract")]
         [Description("Syntax: method declaration, property declaration, indexer declaration, event declaration")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool MarkContainingClassAsAbstract
+        public bool RR0071
         {
             get;
             set;
@@ -1450,7 +1450,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Mark member as static")]
         [Description("Syntax: non-static field/method/property/event in static class")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool MarkMemberAsStatic
+        public bool RR0072
         {
             get;
             set;
@@ -1460,7 +1460,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Merge assignment expression with return statement")]
         [Description("Syntax: assignment expression followed with return statement")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool MergeAssignmentExpressionWithReturnStatement
+        public bool RR0073
         {
             get;
             set;
@@ -1470,7 +1470,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Merge attributes")]
         [Description("Syntax: selected attribute lists")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool MergeAttributes
+        public bool RR0074
         {
             get;
             set;
@@ -1480,7 +1480,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Merge if statements")]
         [Description("Syntax: selected if statements")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool MergeIfStatements
+        public bool RR0075
         {
             get;
             set;
@@ -1490,7 +1490,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Merge interpolation into interpolated string")]
         [Description("Syntax: interpolation")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool MergeInterpolationIntoInterpolatedString
+        public bool RR0076
         {
             get;
             set;
@@ -1500,7 +1500,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Merge local declarations")]
         [Description("Syntax: local declarations with same type")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool MergeLocalDeclarations
+        public bool RR0077
         {
             get;
             set;
@@ -1510,7 +1510,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Merge string expressions")]
         [Description("Syntax: concatenated string expressions")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool MergeStringExpressions
+        public bool RR0078
         {
             get;
             set;
@@ -1520,7 +1520,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Negate binary expression")]
         [Description("Syntax: logical and/or expression")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool NegateBinaryExpression
+        public bool RR0079
         {
             get;
             set;
@@ -1530,7 +1530,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Negate boolean literal")]
         [Description("Syntax: boolean literal")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool NegateBooleanLiteral
+        public bool RR0080
         {
             get;
             set;
@@ -1540,7 +1540,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Negate is expression")]
         [Description("Syntax: is expression\r\nScope: operator")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool NegateIsExpression
+        public bool RR0081
         {
             get;
             set;
@@ -1550,7 +1550,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Negate operator")]
         [Description("Syntax: !=, &&, ||, <, <=, ==, >, >=")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool NegateOperator
+        public bool RR0082
         {
             get;
             set;
@@ -1560,7 +1560,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Notify property changed")]
         [Description("Syntax: property in class/struct that implements INotifyPropertyChanged\r\nScope: setter")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool NotifyPropertyChanged
+        public bool RR0083
         {
             get;
             set;
@@ -1570,7 +1570,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Parenthesize expression")]
         [Description("Syntax: selected expression")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ParenthesizeExpression
+        public bool RR0084
         {
             get;
             set;
@@ -1580,7 +1580,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Promote local to parameter")]
         [Description("Syntax: local declaration in method")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool PromoteLocalToParameter
+        public bool RR0085
         {
             get;
             set;
@@ -1590,7 +1590,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Remove all comments")]
         [Description("Syntax: singleline/multiline comment, singleline/multiline documentation documentation comment")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RemoveAllComments
+        public bool RR0086
         {
             get;
             set;
@@ -1600,7 +1600,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Remove all comments (except documentation comments)")]
         [Description("Syntax: singleline/multiline comment")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RemoveAllCommentsExceptDocumentationComments
+        public bool RR0087
         {
             get;
             set;
@@ -1610,7 +1610,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Remove all documentation comments")]
         [Description("Syntax: singleline/multiline documentation comment")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RemoveAllDocumentationComments
+        public bool RR0088
         {
             get;
             set;
@@ -1620,7 +1620,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Remove all member declarations")]
         [Description("Syntax: namespace, class, struct, interface\r\nScope: opening or closing brace")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RemoveAllMemberDeclarations
+        public bool RR0089
         {
             get;
             set;
@@ -1630,7 +1630,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Remove all preprocessor directives")]
         [Description("Syntax: preprocessor directive")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RemoveAllPreprocessorDirectives
+        public bool RR0090
         {
             get;
             set;
@@ -1640,7 +1640,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Remove all region directives")]
         [Description("Syntax: region directive")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RemoveAllRegionDirectives
+        public bool RR0091
         {
             get;
             set;
@@ -1650,7 +1650,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Remove all statements")]
         [Description("Syntax: method, constructor, operator\r\nScope: opening or closing brace")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RemoveAllStatements
+        public bool RR0092
         {
             get;
             set;
@@ -1660,7 +1660,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Remove all switch sections")]
         [Description("Syntax: switch statement\r\nScope: opening or closing brace")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RemoveAllSwitchSections
+        public bool RR0093
         {
             get;
             set;
@@ -1670,7 +1670,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Remove braces")]
         [Description("Syntax: do statement, else clause, fixed statement, for statement, foreach statement, if statement, lock statement, using statement, while statement\r\nScope: block with a single statement")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RemoveBraces
+        public bool RR0094
         {
             get;
             set;
@@ -1680,7 +1680,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Remove braces from if-else")]
         [Description("Syntax: if-else chain\r\nScope: embedded statement")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RemoveBracesFromIfElse
+        public bool RR0095
         {
             get;
             set;
@@ -1690,7 +1690,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Remove braces from switch section")]
         [Description("Syntax: switch section\r\nScope: block")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RemoveBracesFromSwitchSection
+        public bool RR0096
         {
             get;
             set;
@@ -1700,7 +1700,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Remove braces from switch sections")]
         [Description("Syntax: switch statement\r\nScope: switch keyword")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RemoveBracesFromSwitchSections
+        public bool RR0097
         {
             get;
             set;
@@ -1710,7 +1710,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Remove comment")]
         [Description("Syntax: singleline/multiline comment, singleline/multiline xml documentation comment")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RemoveComment
+        public bool RR0098
         {
             get;
             set;
@@ -1720,7 +1720,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Remove condition from last else clause")]
         [Description("Syntax: else clause\r\nScope: else keyword")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RemoveConditionFromLastElse
+        public bool RR0099
         {
             get;
             set;
@@ -1730,7 +1730,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Remove directive and related directives")]
         [Description("Syntax: preprocessor directive, region directive")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RemoveDirectiveAndRelatedDirectives
+        public bool RR0100
         {
             get;
             set;
@@ -1740,7 +1740,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Remove empty lines")]
         [Description("Syntax: selected lines")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RemoveEmptyLines
+        public bool RR0101
         {
             get;
             set;
@@ -1750,7 +1750,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Remove interpolation")]
         [Description("Syntax: string interpolation\r\nScope: opening or closing brace")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RemoveInterpolation
+        public bool RR0102
         {
             get;
             set;
@@ -1760,7 +1760,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Remove member")]
         [Description("Syntax: method, constructor, property, indexer, operator, event, namespace, class, struct, interface\r\nScope: opening or closing brace")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RemoveMember
+        public bool RR0103
         {
             get;
             set;
@@ -1770,7 +1770,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Remove member declarations above/below")]
         [Description("Syntax: empty line between member declarations")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RemoveMemberDeclarations
+        public bool RR0104
         {
             get;
             set;
@@ -1780,7 +1780,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Remove parameter name from argument")]
         [Description("Syntax: selected argument(s)")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RemoveParameterNameFromArgument
+        public bool RR0105
         {
             get;
             set;
@@ -1790,7 +1790,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Remove parentheses")]
         [Description("Syntax: parenthesized expression\r\nScope: opening or closing parenthesis")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RemoveParentheses
+        public bool RR0106
         {
             get;
             set;
@@ -1800,7 +1800,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Remove property initializer")]
         [Description("Syntax: property initializer")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RemovePropertyInitializer
+        public bool RR0107
         {
             get;
             set;
@@ -1810,7 +1810,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Remove region")]
         [Description("Syntax: region directive")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RemoveRegion
+        public bool RR0108
         {
             get;
             set;
@@ -1820,7 +1820,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Remove statement")]
         [Description("Syntax: do statement, fixed statement, for statement, foreach statement, checked statement, if statement, lock statement, switch statement, try statement, unchecked statement, unsafe statement, using statement, while statement\r\nScope: open/close brace")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RemoveStatement
+        public bool RR0109
         {
             get;
             set;
@@ -1830,7 +1830,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Remove statements from switch sections")]
         [Description("Syntax: selected switch sections")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RemoveStatementsFromSwitchSections
+        public bool RR0110
         {
             get;
             set;
@@ -1840,7 +1840,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Rename backing field according to property name")]
         [Description("Syntax: field identifier inside property declaration")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RenameBackingFieldAccordingToPropertyName
+        public bool RR0111
         {
             get;
             set;
@@ -1850,7 +1850,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Rename identifier according to type name")]
         [Description("Syntax: foreach statement, local/field/constant declaration\r\nScope: identifier")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RenameIdentifierAccordingToTypeName
+        public bool RR0112
         {
             get;
             set;
@@ -1860,7 +1860,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Rename method according to type name")]
         [Description("Syntax: method")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RenameMethodAccordingToTypeName
+        public bool RR0113
         {
             get;
             set;
@@ -1870,7 +1870,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Rename parameter according to its type name")]
         [Description("Syntax: parameter\r\nScope: parameter identifier")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RenameParameterAccordingToTypeName
+        public bool RR0114
         {
             get;
             set;
@@ -1880,7 +1880,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Rename property according to type name")]
         [Description("Syntax: property identifier")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RenamePropertyAccordingToTypeName
+        public bool RR0115
         {
             get;
             set;
@@ -1890,7 +1890,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace Any with All (or All with Any)")]
         [Description("Syntax: Any(Func<T, bool> or All(Func<T, bool> from System.Linq.Enumerable namespace\r\nScope: method name")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceAnyWithAllOrAllWithAny
+        public bool RR0116
         {
             get;
             set;
@@ -1900,7 +1900,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace as expression with cast expression")]
         [Description("Syntax: as expression")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceAsWithCast
+        public bool RR0117
         {
             get;
             set;
@@ -1910,7 +1910,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace cast expression with as expression")]
         [Description("Syntax: cast expression")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceCastWithAs
+        public bool RR0118
         {
             get;
             set;
@@ -1920,7 +1920,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace conditional expression with expression")]
         [Description("Syntax: conditional expression\r\nScope: selected true/false expression")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceConditionalExpressionWithExpression
+        public bool RR0119
         {
             get;
             set;
@@ -1930,7 +1930,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace conditional expression with if-else")]
         [Description("Syntax: conditional expression")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceConditionalExpressionWithIfElse
+        public bool RR0120
         {
             get;
             set;
@@ -1940,7 +1940,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace constant with field")]
         [Description("Syntax: constant declaration")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceConstantWithField
+        public bool RR0121
         {
             get;
             set;
@@ -1950,7 +1950,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace Count property with Length property (or Length with Count)")]
         [Description("Syntax: member access expression\r\nScope: name")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceCountWithLengthOrLengthWithCount
+        public bool RR0122
         {
             get;
             set;
@@ -1960,7 +1960,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace do statement with while statement")]
         [Description("Syntax: do statement\r\nScope: do keyword")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceDoStatementWithWhileStatement
+        public bool RR0123
         {
             get;
             set;
@@ -1970,7 +1970,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace equals expression with String.Equals")]
         [Description("Syntax: equals expression, not equals expression\r\nScope: operator")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceEqualsExpressionWithStringEquals
+        public bool RR0124
         {
             get;
             set;
@@ -1980,7 +1980,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace equals expression with String.IsNullOrEmpty")]
         [Description("Syntax: equals expression, not equals expression\r\nScope: operator")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceEqualsExpressionWithStringIsNullOrEmpty
+        public bool RR0125
         {
             get;
             set;
@@ -1990,7 +1990,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace equals expression with String.IsNullOrWhiteSpace")]
         [Description("Syntax: equals expression, not equals expression\r\nScope: operator")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceEqualsExpressionWithStringIsNullOrWhiteSpace
+        public bool RR0126
         {
             get;
             set;
@@ -2000,7 +2000,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace expression with constant value")]
         [Description("Syntax: expression that has constant value")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceExpressionWithConstantValue
+        public bool RR0127
         {
             get;
             set;
@@ -2010,7 +2010,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace field with constant")]
         [Description("Syntax: read-only field")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceFieldWithConstant
+        public bool RR0128
         {
             get;
             set;
@@ -2020,7 +2020,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace foreach statement with for statement")]
         [Description("Syntax: foreach statement")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceForEachWithFor
+        public bool RR0129
         {
             get;
             set;
@@ -2030,7 +2030,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace for statement with foreach statement")]
         [Description("Syntax: for statement")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceForWithForEach
+        public bool RR0130
         {
             get;
             set;
@@ -2040,7 +2040,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace for statement with while statement")]
         [Description("Syntax: for statement")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceForWithWhile
+        public bool RR0131
         {
             get;
             set;
@@ -2050,7 +2050,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace hexadecimal literal with decimal literal")]
         [Description("Syntax: hexadecimal literal")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceHexadecimalLiteralWithDecimalLiteral
+        public bool RR0132
         {
             get;
             set;
@@ -2060,7 +2060,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace if-else with switch statement")]
         [Description("Syntax: if statement")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceIfElseWithSwitch
+        public bool RR0133
         {
             get;
             set;
@@ -2070,7 +2070,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace increment operator with decrement operator")]
         [Description("Syntax: prefix/postfix unary expression")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceIncrementOperatorWithDecrementOperator
+        public bool RR0134
         {
             get;
             set;
@@ -2080,7 +2080,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace interpolated string with interpolation expression")]
         [Description("Syntax: interpolated string with single interpolation and no text\r\nScope: interpolation")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceInterpolatedStringWithInterpolationExpression
+        public bool RR0135
         {
             get;
             set;
@@ -2090,7 +2090,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace interpolated string with string literal")]
         [Description("Syntax: Interpolated string without any interpolation")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceInterpolatedStringWithStringLiteral
+        public bool RR0136
         {
             get;
             set;
@@ -2100,7 +2100,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace method group with lambda")]
         [Description("Syntax: method group")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceMethodGroupWithLambda
+        public bool RR0137
         {
             get;
             set;
@@ -2110,7 +2110,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace method with property")]
         [Description("Syntax: method\r\nScope: method header")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceMethodWithProperty
+        public bool RR0138
         {
             get;
             set;
@@ -2120,7 +2120,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace null literal expression with default expression")]
         [Description("Syntax: argument")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceNullLiteralExpressionWithDefaultExpression
+        public bool RR0139
         {
             get;
             set;
@@ -2130,7 +2130,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace prefix operator to postfix operator")]
         [Description("Syntax: prefix/postfix unary expression")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplacePrefixOperatorWithPostfixOperator
+        public bool RR0140
         {
             get;
             set;
@@ -2140,7 +2140,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace property with method")]
         [Description("Syntax: read-only property\r\nScope: property header")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplacePropertyWithMethod
+        public bool RR0141
         {
             get;
             set;
@@ -2150,7 +2150,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace regular string literal with verbatim string literal")]
         [Description("Syntax: regular string literal")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceRegularStringLiteralWithVerbatimStringLiteral
+        public bool RR0142
         {
             get;
             set;
@@ -2160,7 +2160,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace statement with if statement")]
         [Description("Syntax: return statement, yield return statement, assignment statement, local declaration statement")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceStatementWithIfStatement
+        public bool RR0143
         {
             get;
             set;
@@ -2170,7 +2170,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace String.Contains with String.IndexOf")]
         [Description("Syntax: method invocation\r\nScope: method name")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceStringContainsWithStringIndexOf
+        public bool RR0144
         {
             get;
             set;
@@ -2180,7 +2180,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace String.Format with interpolated string")]
         [Description("Syntax: String.Format method")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceStringFormatWithInterpolatedString
+        public bool RR0145
         {
             get;
             set;
@@ -2190,7 +2190,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace string literal with character literal")]
         [Description("Syntax: string literal")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceStringLiteralWithCharacterLiteral
+        public bool RR0146
         {
             get;
             set;
@@ -2200,7 +2200,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace switch statement with if-else")]
         [Description("Syntax: switch statement\r\nScope: switch keyword")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceSwitchWithIfElse
+        public bool RR0147
         {
             get;
             set;
@@ -2210,7 +2210,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace verbatim string literal with regular string literal")]
         [Description("Syntax: verbatim string literal")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceVerbatimStringLiteralWithRegularStringLiteral
+        public bool RR0148
         {
             get;
             set;
@@ -2220,7 +2220,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace verbatim string literal with regular string literals")]
         [Description("Syntax: multiline verbatim string literal")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceVerbatimStringLiteralWithRegularStringLiterals
+        public bool RR0149
         {
             get;
             set;
@@ -2230,7 +2230,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace while statement with do statement")]
         [Description("Syntax: while statement\r\nScope: while keyword")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceWhileStatementWithDoStatement
+        public bool RR0150
         {
             get;
             set;
@@ -2240,7 +2240,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Replace while statement with for statement")]
         [Description("Syntax: while statement")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReplaceWhileWithFor
+        public bool RR0151
         {
             get;
             set;
@@ -2250,7 +2250,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Reverse for loop")]
         [Description("Syntax: for statement")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool ReverseForLoop
+        public bool RR0152
         {
             get;
             set;
@@ -2260,7 +2260,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Simplify if")]
         [Description("Syntax: if statement")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool SimplifyIf
+        public bool RR0153
         {
             get;
             set;
@@ -2270,7 +2270,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Simplify lambda expression")]
         [Description("Syntax: lambda expression with block with single single-line statement\r\nScope: body")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool SimplifyLambdaExpression
+        public bool RR0154
         {
             get;
             set;
@@ -2280,7 +2280,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Sort member declarations")]
         [Description("Syntax: namespace declarations, class declarations, struct declarations, interface declarations, enum declarations\r\nScope: selected member declarations")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool SortMemberDeclarations
+        public bool RR0155
         {
             get;
             set;
@@ -2290,7 +2290,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Split attributes")]
         [Description("Syntax: selected attribute list")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool SplitAttributes
+        public bool RR0156
         {
             get;
             set;
@@ -2300,7 +2300,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Split switch labels")]
         [Description("Syntax: selected switch labels")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool SplitSwitchLabels
+        public bool RR0157
         {
             get;
             set;
@@ -2310,7 +2310,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Split variable declaration")]
         [Description("Syntax: local declaration, field declaration, event field declaration")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool SplitVariableDeclaration
+        public bool RR0158
         {
             get;
             set;
@@ -2320,7 +2320,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Swap expressions in binary expression")]
         [Description("Syntax: logical and/or expression\r\nScope: binary operator")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool SwapExpressionsInBinaryExpression
+        public bool RR0159
         {
             get;
             set;
@@ -2330,7 +2330,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Swap expressions in conditional expression")]
         [Description("Syntax: conditional expression\r\nScope: condition")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool SwapExpressionsInConditionalExpression
+        public bool RR0160
         {
             get;
             set;
@@ -2340,7 +2340,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Swap member declarations")]
         [Description("Syntax: empty line between member declarations")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool SwapMemberDeclarations
+        public bool RR0161
         {
             get;
             set;
@@ -2350,7 +2350,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Swap statements in if-else")]
         [Description("Syntax: if statement\r\nScope: if keyword")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool SwapStatementsInIfElse
+        public bool RR0162
         {
             get;
             set;
@@ -2360,7 +2360,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Uncomment")]
         [Description("Syntax: single-line comment(s)")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool Uncomment
+        public bool RR0163
         {
             get;
             set;
@@ -2370,7 +2370,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Use bitwise operation instead of calling 'HasFlag'")]
         [Description("Syntax: Enum.HasFlag method invocation")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool UseBitwiseOperationInsteadOfCallingHasFlag
+        public bool RR0164
         {
             get;
             set;
@@ -2380,7 +2380,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Use coalesce expression instead of if")]
         [Description("Syntax: if statement")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool UseCoalesceExpressionInsteadOfIf
+        public bool RR0165
         {
             get;
             set;
@@ -2390,7 +2390,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Use conditional expression instead of if")]
         [Description("Syntax: if statement")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool UseConditionalExpressionInsteadOfIf
+        public bool RR0166
         {
             get;
             set;
@@ -2400,7 +2400,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Use element access instead of 'First/Last'ElementAt' method")]
         [Description("Syntax: First/Last/ElementAt method invocation\r\nScope: method name")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool UseElementAccessInsteadOfEnumerableMethod
+        public bool RR0167
         {
             get;
             set;
@@ -2410,7 +2410,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Use \"\" instead of String.Empty")]
         [Description("Syntax: String.Empty field")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool UseEmptyStringLiteralInsteadOfStringEmpty
+        public bool RR0168
         {
             get;
             set;
@@ -2420,7 +2420,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Use expression-bodied member")]
         [Description("Syntax: method, property, indexer, operator\r\nScope: body or accessor list")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool UseExpressionBodiedMember
+        public bool RR0169
         {
             get;
             set;
@@ -2430,7 +2430,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Use lambda expression instead of anonymous method")]
         [Description("Syntax: anonymous method\r\nScope: delegate keyword")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool UseLambdaExpressionInsteadOfAnonymousMethod
+        public bool RR0170
         {
             get;
             set;
@@ -2440,7 +2440,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Use String.Empty instead of \"\"")]
         [Description("Syntax: empty string literal")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool UseStringEmptyInsteadOfEmptyStringLiteral
+        public bool RR0171
         {
             get;
             set;
@@ -2450,7 +2450,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Wrap in condition")]
         [Description("Syntax: selected statements")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool WrapInCondition
+        public bool RR0172
         {
             get;
             set;
@@ -2460,7 +2460,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Wrap in else clause")]
         [Description("Syntax: statement")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool WrapInElseClause
+        public bool RR0173
         {
             get;
             set;
@@ -2470,7 +2470,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Wrap in #if directive")]
         [Description("Syntax: selected lines")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool WrapInIfDirective
+        public bool RR0174
         {
             get;
             set;
@@ -2480,7 +2480,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Wrap in region")]
         [Description("Syntax: selected lines")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool WrapInRegion
+        public bool RR0175
         {
             get;
             set;
@@ -2490,7 +2490,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Wrap in try-catch")]
         [Description("Syntax: selected statements")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool WrapInTryCatch
+        public bool RR0176
         {
             get;
             set;
@@ -2500,7 +2500,7 @@ namespace Roslynator.VisualStudio
         [DisplayName("Wrap in using statement")]
         [Description("Syntax: local declaration of type that implements IDisposable")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool WrapInUsingStatement
+        public bool RR0177
         {
             get;
             set;
