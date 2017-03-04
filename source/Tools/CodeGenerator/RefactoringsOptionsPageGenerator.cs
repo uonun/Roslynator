@@ -76,7 +76,7 @@ namespace CodeGenerator
                         .Select(refactoring =>
                         {
                             return ExpressionStatement(
-                                ParseExpression($"{refactoring.Id} = refactorings.FirstOrDefault(f => f.Id == \"{refactoring.Id}\").IsEnabled"));
+                                ParseExpression($"{refactoring.Id} = refactorings.FirstOrDefault(f => f.Id == \"{refactoring.Id}\").Enabled"));
                         })));
 
             yield return MethodDeclaration(VoidType(), "Apply")

@@ -4,17 +4,17 @@ namespace Roslynator.VisualStudio
 {
     public class RefactoringModel
     {
-        public RefactoringModel(string id, string title, bool isEnabled)
+        public RefactoringModel(string id, string title, bool enabled)
         {
             Id = id;
             Title = title;
-            IsEnabled = isEnabled;
+            Enabled = enabled;
         }
 
         public string Id { get; }
 
         public string Title { get; }
 
-        public bool IsEnabled { get; set; }
+        public bool Enabled { get; set; }
     }
 }
