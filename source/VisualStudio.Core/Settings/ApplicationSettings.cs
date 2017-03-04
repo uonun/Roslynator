@@ -10,14 +10,23 @@ namespace Roslynator.VisualStudio.Settings
     {
         public const string FileName = "roslynator.config";
 
-        public ApplicationSettings()
+        private static ApplicationSettings _current = new ApplicationSettings();
+
+        public static ApplicationSettings Current
         {
-            Refactorings = new Dictionary<string, bool>(StringComparer.Ordinal);
+            get { return _current; }
+            set
+            {
+                if (value == null)
+                    throw new ArgumentException(nameof(value));
+
+                _current = value;
+            }
         }
 
         public bool PrefixFieldIdentifierWithUnderscore { get; set; } = true;
 
-        public Dictionary<string, bool> Refactorings { get; set; }
+        public Dictionary<string, bool> Refactorings { get; set; } = new Dictionary<string, bool>(StringComparer.Ordinal);
 
         public static ApplicationSettings Load(string uri)
         {
@@ -25,7 +34,7 @@ namespace Roslynator.VisualStudio.Settings
 
             XDocument doc = XDocument.Load(uri);
 
-            XElement root = doc.Element("roslynator");
+            XElement root = doc.Element("Roslynator");
 
             if (root != null)
             {
@@ -33,7 +42,7 @@ namespace Roslynator.VisualStudio.Settings
                 {
                     XName name = element.Name;
 
-                    if (name == "settings")
+                    if (name == "Settings")
                         LoadSettingsElement(element, settings);
                 }
             }
@@ -47,11 +56,11 @@ namespace Roslynator.VisualStudio.Settings
             {
                 XName name = child.Name;
 
-                if (name == "general")
+                if (name == "General")
                 {
                     LoadPrefixFieldIdentifierWithUnderscore(child, settings);
                 }
-                else if (name == "refactorings")
+                else if (name == "Refactorings")
                 {
                     LoadRefactorings(child, settings);
                 }
@@ -60,29 +69,29 @@ namespace Roslynator.VisualStudio.Settings
 
         private static void LoadPrefixFieldIdentifierWithUnderscore(XElement parent, ApplicationSettings settings)
         {
-            XElement element = parent.Element("prefixFieldIdentifierWithUnderscore");
+            XElement element = parent.Element("PrefixFieldIdentifierWithUnderscore");
 
             if (element != null)
             {
                 bool isEnabled;
-                if (element.TryGetAttributeValueAsBoolean("isEnabled", out isEnabled))
+                if (element.TryGetAttributeValueAsBoolean("IsEnabled", out isEnabled))
                     settings.PrefixFieldIdentifierWithUnderscore = isEnabled;
             }
         }
 
         private static void LoadRefactorings(XElement element, ApplicationSettings settings)
         {
-            foreach (XElement child in element.Elements("refactoring"))
+            foreach (XElement child in element.Elements("Refactoring"))
                 LoadRefactoring(child, settings);
         }
 
         private static void LoadRefactoring(XElement element, ApplicationSettings settings)
         {
             string id;
-            if (element.TryGetAttributeValueAsString("id", out id))
+            if (element.TryGetAttributeValueAsString("Id", out id))
             {
                 bool isEnabled;
-                if (element.TryGetAttributeValueAsBoolean("isEnabled", out isEnabled))
+                if (element.TryGetAttributeValueAsBoolean("IsEnabled", out isEnabled))
                     settings.Refactorings[id] = isEnabled;
             }
         }

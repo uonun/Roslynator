@@ -74,13 +74,15 @@ namespace Roslynator.VisualStudio
             var refactoringsOptionsPage = (RefactoringsOptionsPage)GetDialogPage(typeof(RefactoringsOptionsPage));
             refactoringsOptionsPage.Apply();
 
-            ApplicationSettings appSettings = LoadApplicationSettings();
+            ApplicationSettings applicationSettings = LoadApplicationSettings();
 
-            if (appSettings != null)
+            if (applicationSettings != null)
             {
-                settings.PrefixFieldIdentifierWithUnderscore = appSettings.PrefixFieldIdentifierWithUnderscore;
+                ApplicationSettings.Current = applicationSettings;
 
-                foreach (KeyValuePair<string, bool> kvp in appSettings.Refactorings)
+                settings.PrefixFieldIdentifierWithUnderscore = applicationSettings.PrefixFieldIdentifierWithUnderscore;
+
+                foreach (KeyValuePair<string, bool> kvp in applicationSettings.Refactorings)
                     settings.SetRefactoring(kvp.Key, kvp.Value);
             }
         }

@@ -2,10 +2,12 @@
 
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows;
 using Microsoft.VisualStudio.Shell;
 using Roslynator.CSharp.Refactorings;
+using Roslynator.VisualStudio.Settings;
 
 namespace Roslynator.VisualStudio
 {
@@ -43,15 +45,15 @@ namespace Roslynator.VisualStudio
             base.OnApply(e);
         }
 
-        private static void SetIsEnabled(string identifier, bool isEnabled)
+        private static void SetIsEnabled(string id, bool isEnabled)
         {
-            if (isEnabled)
+            if (!ApplicationSettings.Current.Refactorings.ContainsKey(id))
             {
-                RefactoringSettings.Current.EnableRefactoring(identifier);
+                RefactoringSettings.Current.SetRefactoring(id, isEnabled);
             }
             else
             {
-                RefactoringSettings.Current.DisableRefactoring(identifier);
+                Debug.WriteLine("Cannot " + ((isEnabled) ? "enable" : "disable") + $" refactoring {id}, value is overridden by config file");
             }
         }
     }

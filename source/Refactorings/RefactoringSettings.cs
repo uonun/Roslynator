@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Josef Pihrt. All rights reserved. Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
+using System.Diagnostics;
 namespace Roslynator.CSharp.Refactorings
 {
     public sealed class RefactoringSettings
@@ -74,12 +75,20 @@ namespace Roslynator.CSharp.Refactorings
 
         public void DisableRefactoring(string id)
         {
+#if DEBUG
+            Debug.WriteLineIf(DisabledRefactorings.Add(id), $"refactoring {id} disabled");
+#else
             DisabledRefactorings.Add(id);
+#endif
         }
 
         public void EnableRefactoring(string id)
         {
+#if DEBUG
+            Debug.WriteLineIf(DisabledRefactorings.Remove(id), $"refactoring {id} enabled");
+#else
             DisabledRefactorings.Remove(id);
+#endif
         }
 
         public void SetRefactoring(string id, bool isEnabled)
