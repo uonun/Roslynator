@@ -29,7 +29,7 @@ namespace CodeGenerator
                     NamespaceDeclaration(DefaultNamespace)
                         .WithMembers(
                             ClassDeclaration("RefactoringIdentifiers")
-                                .WithModifiers(ModifierFactory.PublicStatic())
+                                .WithModifiers(Modifiers.PublicStatic())
                                 .WithMembers(
                                     CreateMembers(refactorings.OrderBy(f => f.Identifier, InvariantComparer)))));
         }
@@ -58,7 +58,7 @@ namespace CodeGenerator
         private static IEnumerable<MemberDeclarationSyntax> CreateMembers(IEnumerable<RefactoringDescriptor> refactorings)
         {
             foreach (RefactoringDescriptor refactoring in refactorings)
-                yield return FieldDeclaration(ModifierFactory.PublicConst(), StringType(), refactoring.Identifier, StringLiteralExpression(refactoring.Id));
+                yield return FieldDeclaration(Modifiers.PublicConst(), StringType(), refactoring.Identifier, StringLiteralExpression(refactoring.Id));
         }
     }
 }

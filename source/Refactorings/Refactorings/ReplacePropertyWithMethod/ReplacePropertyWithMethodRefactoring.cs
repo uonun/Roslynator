@@ -59,12 +59,12 @@ namespace Roslynator.CSharp.Refactorings.ReplacePropertyWithMethod
 
                     if (accessor.IsKind(SyntaxKind.GetAccessorDeclaration))
                     {
-                        if (accessor.Body != null)
+                        if (accessor.BodyOrExpressionBody() != null)
                         {
                             return true;
                         }
                         else if (context.SupportsCSharp6
-                            && accessor.IsAutoImplementedGetter()
+                            && accessor.IsAutoGetter()
                             && propertyDeclaration.Initializer?.Value != null)
                         {
                             return true;

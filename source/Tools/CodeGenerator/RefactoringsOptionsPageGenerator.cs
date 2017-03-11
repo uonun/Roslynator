@@ -35,7 +35,7 @@ namespace CodeGenerator
                     NamespaceDeclaration(DefaultNamespace)
                         .WithMembers(
                             ClassDeclaration("RefactoringsOptionsPage")
-                                .WithModifiers(ModifierFactory.PublicPartial())
+                                .WithModifiers(Modifiers.PublicPartial())
                                 .WithMembers(
                                     CreateMembers(refactorings))));
         }
@@ -43,20 +43,19 @@ namespace CodeGenerator
         private IEnumerable<MemberDeclarationSyntax> CreateMembers(IEnumerable<RefactoringDescriptor> refactorings)
         {
             yield return ConstructorDeclaration("RefactoringsOptionsPage")
-                .WithModifiers(ModifierFactory.Public())
+                .WithModifiers(Modifiers.Public())
                 .WithBody(
                     Block(refactorings
                         .OrderBy(f => f.Id, InvariantComparer)
                         .Select(refactoring =>
                         {
-                            return ExpressionStatement(
-                                SimpleAssignmentExpression(
-                                    IdentifierName(refactoring.Id),
-                                    (refactoring.IsEnabledByDefault) ? TrueLiteralExpression() : FalseLiteralExpression()));
+                            return SimpleAssignmentStatement(
+                                IdentifierName(refactoring.Id),
+                                (refactoring.IsEnabledByDefault) ? TrueLiteralExpression() : FalseLiteralExpression());
                         })));
 
             yield return MethodDeclaration(VoidType(), "SetRefactoringsDisabledByDefault")
-                .WithModifiers(ModifierFactory.PublicStatic())
+                .WithModifiers(Modifiers.PublicStatic())
                 .WithParameterList(ParameterList(Parameter(IdentifierName("RefactoringSettings"), Identifier("settings"))))
                 .WithBody(
                     Block(refactorings
@@ -69,7 +68,7 @@ namespace CodeGenerator
                         })));
 
             yield return MethodDeclaration(VoidType(), "SaveValuesToView")
-                .WithModifiers(ModifierFactory.Public())
+                .WithModifiers(Modifiers.Public())
                 .WithParameterList(ParameterList(Parameter(ParseTypeName("ICollection<RefactoringModel>"), Identifier("refactorings"))))
                 .WithBody(
                     Block(refactorings
@@ -81,7 +80,7 @@ namespace CodeGenerator
                         })));
 
             yield return MethodDeclaration(VoidType(), "LoadValuesFromView")
-                .WithModifiers(ModifierFactory.Public())
+                .WithModifiers(Modifiers.Public())
                 .WithParameterList(ParameterList(Parameter(ParseTypeName("ICollection<RefactoringModel>"), Identifier("refactorings"))))
                 .WithBody(
                     Block(refactorings
@@ -93,7 +92,7 @@ namespace CodeGenerator
                         })));
 
             yield return MethodDeclaration(VoidType(), "Apply")
-                .WithModifiers(ModifierFactory.Public())
+                .WithModifiers(Modifiers.Public())
                 .WithBody(
                     Block(refactorings
                         .OrderBy(f => f.Identifier, InvariantComparer)
@@ -101,7 +100,7 @@ namespace CodeGenerator
                         {
                             return ExpressionStatement(
                                 InvocationExpression(
-                                    "SetIsEnabled",
+                                    IdentifierName("SetIsEnabled"),
                                     ArgumentList(
                                         Argument(
                                             SimpleMemberAccessExpression(
@@ -118,15 +117,15 @@ namespace CodeGenerator
         {
             return PropertyDeclaration(BoolType(), refactoring.Id)
                 .WithAttributeLists(
-                    AttributeList(Attribute("Category", IdentifierName("RefactoringCategory"))),
-                    AttributeList(Attribute("DisplayName", StringLiteralExpression(refactoring.Title))),
-                    AttributeList(Attribute("Description", StringLiteralExpression(CreateDescription(refactoring)))),
-                    AttributeList(Attribute("TypeConverter", TypeOfExpression(IdentifierName("EnabledDisabledConverter")))))
-                .WithModifiers(ModifierFactory.Public())
+                    SingletonAttributeList(Attribute(IdentifierName("Category"), IdentifierName("RefactoringCategory"))),
+                    SingletonAttributeList(Attribute(IdentifierName("DisplayName"), StringLiteralExpression(refactoring.Title))),
+                    SingletonAttributeList(Attribute(IdentifierName("Description"), StringLiteralExpression(CreateDescription(refactoring)))),
+                    SingletonAttributeList(Attribute(IdentifierName("TypeConverter"), TypeOfExpression(IdentifierName("EnabledDisabledConverter")))))
+                .WithModifiers(Modifiers.Public())
                 .WithAccessorList(
                     AccessorList(
-                        AutoImplementedGetter(),
-                        AutoImplementedSetter()));
+                        AutoGetAccessorDeclaration(),
+                        AutoSetAccessorDeclaration()));
         }
 
         private static string CreateDescription(RefactoringDescriptor refactoring)

@@ -17,29 +17,29 @@ namespace Roslynator.CSharp.Extensions
 {
     public static class SyntaxExtensions
     {
-        public static bool IsAutoImplementedGetter(this AccessorDeclarationSyntax accessorDeclaration)
+        public static bool IsAutoGetter(this AccessorDeclarationSyntax accessorDeclaration)
         {
-            return IsAutoImplemented(accessorDeclaration, SyntaxKind.GetAccessorDeclaration);
+            return IsAutoAccessor(accessorDeclaration, SyntaxKind.GetAccessorDeclaration);
         }
 
-        public static bool IsAutoImplementedSetter(this AccessorDeclarationSyntax accessorDeclaration)
+        public static bool IsAutoSetter(this AccessorDeclarationSyntax accessorDeclaration)
         {
-            return IsAutoImplemented(accessorDeclaration, SyntaxKind.SetAccessorDeclaration);
+            return IsAutoAccessor(accessorDeclaration, SyntaxKind.SetAccessorDeclaration);
         }
 
-        private static bool IsAutoImplemented(this AccessorDeclarationSyntax accessorDeclaration, SyntaxKind kind)
+        private static bool IsAutoAccessor(this AccessorDeclarationSyntax accessorDeclaration, SyntaxKind kind)
         {
             if (accessorDeclaration == null)
                 throw new ArgumentNullException(nameof(accessorDeclaration));
 
             return accessorDeclaration.IsKind(kind)
-                && IsAutoImplemented(accessorDeclaration);
+                && IsAutoAccessor(accessorDeclaration);
         }
 
-        private static bool IsAutoImplemented(this AccessorDeclarationSyntax accessorDeclaration)
+        private static bool IsAutoAccessor(this AccessorDeclarationSyntax accessorDeclaration)
         {
             return accessorDeclaration.SemicolonToken.IsKind(SyntaxKind.SemicolonToken)
-                && accessorDeclaration.Body == null;
+                && accessorDeclaration.BodyOrExpressionBody() == null;
         }
 
         public static AccessorDeclarationSyntax WithoutSemicolonToken(
@@ -633,7 +633,7 @@ namespace Roslynator.CSharp.Extensions
             }
         }
 
-        public static SyntaxTrivia GetSingleLineDocumentationComment(this MemberDeclarationSyntax memberDeclaration)
+        public static SyntaxTrivia GetSingleLineDocumentationCommentTrivia(this MemberDeclarationSyntax memberDeclaration)
         {
             if (memberDeclaration == null)
                 throw new ArgumentNullException(nameof(memberDeclaration));
@@ -641,6 +641,24 @@ namespace Roslynator.CSharp.Extensions
             return memberDeclaration
                 .GetLeadingTrivia()
                 .FirstOrDefault(f => f.IsKind(SyntaxKind.SingleLineDocumentationCommentTrivia));
+        }
+
+        public static DocumentationCommentTriviaSyntax GetSingleLineDocumentationComment(this MemberDeclarationSyntax memberDeclaration)
+        {
+            if (memberDeclaration == null)
+                throw new ArgumentNullException(nameof(memberDeclaration));
+
+            SyntaxTrivia trivia = memberDeclaration.GetSingleLineDocumentationCommentTrivia();
+
+            if (trivia.IsKind(SyntaxKind.SingleLineDocumentationCommentTrivia))
+            {
+                var comment = trivia.GetStructure() as DocumentationCommentTriviaSyntax;
+
+                if (comment?.IsKind(SyntaxKind.SingleLineDocumentationCommentTrivia) == true)
+                    return comment;
+            }
+
+            return null;
         }
 
         public static bool HasSingleLineDocumentationComment(this MemberDeclarationSyntax memberDeclaration)
@@ -1341,6 +1359,11 @@ namespace Roslynator.CSharp.Extensions
             }
         }
 
+        public static bool IsThis(this ParameterSyntax parameter)
+        {
+            return parameter?.Modifiers.Contains(SyntaxKind.ThisKeyword) == true;
+        }
+
         public static PropertyDeclarationSyntax WithAttributeLists(
             this PropertyDeclarationSyntax propertyDeclaration,
             params AttributeListSyntax[] attributeLists)
@@ -1474,6 +1497,11 @@ namespace Roslynator.CSharp.Extensions
                 throw new ArgumentNullException(nameof(switchSection));
 
             return switchSection.WithStatements(default(SyntaxList<StatementSyntax>));
+        }
+
+        public static bool IsDefault(this SwitchSectionSyntax switchSection)
+        {
+            return switchSection.Labels.Any(f => f.IsKind(SyntaxKind.DefaultSwitchLabel));
         }
 
         public static int LastIndexOf<TNode>(this SyntaxList<TNode> list, SyntaxKind kind) where TNode : SyntaxNode

@@ -45,9 +45,13 @@
     <Compile Include="CSharp\Analysis\BracesAnalysisResult.cs" />
     <Compile Include="CSharp\Analysis\CSharpAnalysis.cs" />
     <Compile Include="CSharp\CSharpErrorCodes.cs" />
+    <Compile Include="CSharp\Documentation\AddBaseOrNewDocumentationCommentRewriter.cs" />
+    <Compile Include="CSharp\Documentation\BaseDocumentationCommentInfo.cs" />
+    <Compile Include="CSharp\Documentation\DocumentationCommentInserter.cs" />
+    <Compile Include="CSharp\Documentation\BaseDocumentationCommentOrigin.cs" />
     <Compile Include="CSharp\Formatting\CSharpFormatter.cs" />
-    <Compile Include="CSharp\DocumentationCommentGenerator.cs" />
-    <Compile Include="CSharp\DocumentationCommentGeneratorSettings.cs" />
+    <Compile Include="CSharp\Documentation\DocumentationCommentGenerator.cs" />
+    <Compile Include="CSharp\Documentation\DocumentationCommentGeneratorSettings.cs" />
     <Compile Include="CSharp\EmbeddedStatement.cs" />
     <Compile Include="CSharp\EnumMemberValueComparer.cs" />
     <Compile Include="CSharp\EnumMemberDeclarationNameComparer.cs" />
@@ -62,7 +66,10 @@
     <Compile Include="CSharp\Extensions\SyntaxTriviaExtensions.cs" />
     <Compile Include="CSharp\Extensions\SyntaxTriviaListExtensions.cs" />
     <Compile Include="CSharp\Formatting\BinaryExpressionToMultiLineRewriter.cs" />
+    <Compile Include="CSharp\HexadecimalLiteralInfo.cs" />
+    <Compile Include="CSharp\HexadecimalLiteralSuffixKind.cs" />
     <Compile Include="CSharp\IfElseChain.cs" />
+    <Compile Include="CSharp\IfStatementOrElseClause.cs" />
     <Compile Include="CSharp\Inserter.cs" />
     <Compile Include="CSharp\MemberDeclarationSortMode.cs" />
     <Compile Include="CSharp\Internal\ModifierRemover.cs" />
@@ -110,7 +117,7 @@
     <Compile Include="CSharp\CSharpFactory.cs" />
     <Compile Include="CSharp\Internal\DetermineParameterHelper.cs" />
     <Compile Include="CSharp\Extensions\SyntaxExtensions.cs" />
-    <Compile Include="CSharp\PropertyKind.cs" />
+    <Compile Include="CSharp\AutoPropertyKind.cs" />
     <Compile Include="CSharp\Refactorings\CallConfigureAwaitRefactoring.cs" />
     <Compile Include="CSharp\Refactorings\UseLambdaExpressionInsteadOfAnonymousMethodRefactoring.cs" />
     <Compile Include="CSharp\Refactorings\AddBracesToIfElseRefactoring.cs" />
@@ -125,7 +132,7 @@
     <Compile Include="CSharp\Refactorings\SimplifyLambdaExpressionRefactoring.cs" />
     <Compile Include="CSharp\Refactorings\SplitVariableDeclarationRefactoring.cs" />
     <Compile Include="CSharp\Refactorings\UseExpressionBodiedMemberRefactoring.cs" />
-    <Compile Include="CSharp\SyntaxRewriters\GenerateDocumentationCommentSyntaxRewriter.cs" />
+    <Compile Include="CSharp\Documentation\AddNewDocumentationCommentRewriter.cs" />
     <Compile Include="ExtensionMethodInfo.cs" />
     <Compile Include="ExtensionMethodKind.cs" />
     <Compile Include="EnumHelper.cs" />
@@ -150,7 +157,7 @@
     <Compile Include="Text\Extensions\TextSpanExtensions.cs" />
     <Compile Include="Internal\CreateNameFromTypeSymbol.cs" />
     <Compile Include="MetadataNames.cs" />
-    <Compile Include="CSharp\ModifierFactory.cs" />
+    <Compile Include="CSharp\Modifiers.cs" />
     <Compile Include="Identifier.cs" />
     <Compile Include="Text\SelectedTextLineCollection.cs" />
     <Compile Include="CSharp\SelectedStatementCollection.cs" />

@@ -45,7 +45,7 @@ namespace Roslynator.CSharp.Refactorings
 
             int propertyIndex = members.IndexOf(propertyDeclaration);
 
-            if (IsReadOnlyAutoImplementedProperty(propertyDeclaration))
+            if (IsReadOnlyAutoProperty(propertyDeclaration))
             {
                 IPropertySymbol propertySymbol = semanticModel.GetDeclaredSymbol(propertyDeclaration, cancellationToken);
 
@@ -65,12 +65,11 @@ namespace Roslynator.CSharp.Refactorings
             return await document.ReplaceNodeAsync(parentMember, parentMember.SetMembers(newMembers), cancellationToken).ConfigureAwait(false);
         }
 
-        private static bool IsReadOnlyAutoImplementedProperty(PropertyDeclarationSyntax propertyDeclaration)
+        private static bool IsReadOnlyAutoProperty(PropertyDeclarationSyntax propertyDeclaration)
         {
             AccessorListSyntax accessorList = propertyDeclaration.AccessorList;
 
-            return accessorList != null
-                && accessorList.Getter()?.IsAutoImplementedGetter() == true
+            return accessorList?.Getter()?.IsAutoGetter() == true
                 && accessorList.Setter() == null;
         }
 
@@ -96,10 +95,9 @@ namespace Roslynator.CSharp.Refactorings
             {
                 AccessorDeclarationSyntax newSetter = setter
                     .WithBody(Block(
-                        ExpressionStatement(
-                            SimpleAssignmentExpression(
+                        SimpleAssignmentStatement(
                                 IdentifierName(name),
-                                IdentifierName("value")))))
+                                IdentifierName("value"))))
                     .WithoutSemicolonToken();
 
                 propertyDeclaration = propertyDeclaration.ReplaceNode(setter, newSetter);
@@ -114,18 +112,16 @@ namespace Roslynator.CSharp.Refactorings
 
         private static FieldDeclarationSyntax CreateBackingField(PropertyDeclarationSyntax propertyDeclaration, string name)
         {
-            SyntaxTokenList modifiers = TokenList(PrivateKeyword());
+            SyntaxTokenList modifiers = Modifiers.Private();
 
             if (propertyDeclaration.IsStatic())
                 modifiers = modifiers.Add(StaticKeyword());
 
             return FieldDeclaration(
-                default(SyntaxList<AttributeListSyntax>),
                 modifiers,
-                VariableDeclaration(
-                    propertyDeclaration.Type,
-                    name,
-                    propertyDeclaration.Initializer));
+                propertyDeclaration.Type,
+                name,
+                propertyDeclaration.Initializer);
         }
     }
 }
