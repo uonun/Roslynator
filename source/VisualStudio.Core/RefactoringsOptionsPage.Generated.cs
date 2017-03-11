@@ -193,6 +193,14 @@ namespace Roslynator.VisualStudio
             RR0177 = true;
         }
 
+        public static void SetRefactoringsDisabledByDefault(RefactoringSettings settings)
+        {
+            settings.DisableRefactoring(RefactoringIdentifiers.IntroduceConstructor);
+            settings.DisableRefactoring(RefactoringIdentifiers.RemoveAllDocumentationComments);
+            settings.DisableRefactoring(RefactoringIdentifiers.ReplaceMethodWithProperty);
+            settings.DisableRefactoring(RefactoringIdentifiers.UseStringEmptyInsteadOfEmptyStringLiteral);
+        }
+
         public void SaveValuesToView(ICollection<RefactoringModel> refactorings)
         {
             refactorings.Add(new RefactoringModel("RR0001", "Add boolean comparison", RR0001));

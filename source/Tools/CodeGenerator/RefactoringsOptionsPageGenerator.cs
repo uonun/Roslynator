@@ -55,6 +55,19 @@ namespace CodeGenerator
                                     (refactoring.IsEnabledByDefault) ? TrueLiteralExpression() : FalseLiteralExpression()));
                         })));
 
+            yield return MethodDeclaration(VoidType(), "SetRefactoringsDisabledByDefault")
+                .WithModifiers(ModifierFactory.PublicStatic())
+                .WithParameterList(ParameterList(Parameter(IdentifierName("RefactoringSettings"), Identifier("settings"))))
+                .WithBody(
+                    Block(refactorings
+                        .Where(f => !f.IsEnabledByDefault)
+                        .OrderBy(f => f.Identifier, InvariantComparer)
+                        .Select(refactoring =>
+                        {
+                            return ExpressionStatement(
+                                ParseExpression($"settings.DisableRefactoring(RefactoringIdentifiers.{refactoring.Identifier})"));
+                        })));
+
             yield return MethodDeclaration(VoidType(), "SaveValuesToView")
                 .WithModifiers(ModifierFactory.Public())
                 .WithParameterList(ParameterList(Parameter(ParseTypeName("ICollection<RefactoringModel>"), Identifier("refactorings"))))
