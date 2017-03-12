@@ -78,7 +78,7 @@ namespace MetadataGenerator
                 markdownGenerator.CreateRefactoringsReadMe(refactorings));
 
             SaveFile(
-                Path.Combine(dirPath, @"Refactorings\RoslynatorConfig.xml"),
+                Path.Combine(dirPath, @"Refactorings\DefaultRoslynatorConfig.xml"),
                 XmlGenerator.CreateDefaultConfigFile(refactorings));
 
             SaveFile(
