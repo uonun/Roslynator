@@ -20,6 +20,10 @@ namespace Roslynator.VisualStudio
         [TypeConverter(typeof(YesNoConverter))]
         public bool PrefixFieldIdentifierWithUnderscore { get; set; }
 
+        [Category("General")]
+        [Browsable(false)]
+        public string ApplicationVersion { get; set; }
+
         public void Apply()
         {
             RefactoringSettings.Current.PrefixFieldIdentifierWithUnderscore = PrefixFieldIdentifierWithUnderscore;

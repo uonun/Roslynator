@@ -34,6 +34,7 @@ namespace Roslynator.VisualStudio
     {
         private uint _cookie;
         private FileSystemWatcher _watcher;
+        private bool _settingsLoaded;
 
         public VSPackage()
         {
@@ -66,9 +67,32 @@ namespace Roslynator.VisualStudio
             RefactoringsOptionsPage.SetRefactoringsDisabledByDefault(settings);
 
             var generalOptionsPage = (GeneralOptionsPage)GetDialogPage(typeof(GeneralOptionsPage));
-            generalOptionsPage.Apply();
-
             var refactoringsOptionsPage = (RefactoringsOptionsPage)GetDialogPage(typeof(RefactoringsOptionsPage));
+
+            if (!_settingsLoaded)
+            {
+                Version version;
+                if (!Version.TryParse(generalOptionsPage.ApplicationVersion, out version)
+                    || version.Major < 1
+                    || version.Minor < 2
+                    || version.Build < 50)
+                {
+                    refactoringsOptionsPage.MigrateValuesFromIdentifierPropertiesToIdProperties();
+                    refactoringsOptionsPage.SaveSettingsToStorage();
+                }
+
+                Version currentVersion = typeof(GeneralOptionsPage).Assembly.GetName().Version;
+
+                if (version == null || version < currentVersion)
+                {
+                    generalOptionsPage.ApplicationVersion = currentVersion.ToString();
+                    generalOptionsPage.SaveSettingsToStorage();
+                }
+
+                _settingsLoaded = true;
+            }
+
+            generalOptionsPage.Apply();
             refactoringsOptionsPage.Apply();
 
             ApplicationSettings applicationSettings = LoadApplicationSettings();

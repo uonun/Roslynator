@@ -193,6 +193,187 @@ namespace Roslynator.VisualStudio
             RR0177 = true;
         }
 
+        public void MigrateValuesFromIdentifierPropertiesToIdProperties()
+        {
+            RR0001 = AddBooleanComparison;
+            RR0002 = AddBraces;
+            RR0003 = AddBracesToIfElse;
+            RR0004 = AddBracesToSwitchSection;
+            RR0005 = AddBracesToSwitchSections;
+            RR0006 = AddCastExpression;
+            RR0007 = AddDefaultValueToParameter;
+            RR0008 = AddDefaultValueToReturnStatement;
+            RR0009 = AddExceptionToDocumentationComment;
+            RR0010 = AddIdentifierToVariableDeclaration;
+            RR0011 = AddParameterNameToArgument;
+            RR0012 = AddParameterNameToParameter;
+            RR0013 = AddUsingDirective;
+            RR0014 = AddUsingStaticDirective;
+            RR0015 = CallConfigureAwait;
+            RR0016 = CallExtensionMethodAsInstanceMethod;
+            RR0017 = CallToMethod;
+            RR0018 = ChangeExplicitTypeToVar;
+            RR0019 = ChangeMemberTypeAccordingToReturnExpression;
+            RR0020 = ChangeMemberTypeAccordingToYieldReturnExpression;
+            RR0021 = ChangeMethodReturnTypeToVoid;
+            RR0022 = ChangeTypeAccordingToExpression;
+            RR0023 = ChangeVarToExplicitType;
+            RR0024 = CheckExpressionForNull;
+            RR0025 = CheckParameterForNull;
+            RR0026 = CollapseToInitializer;
+            RR0027 = CommentOutMember;
+            RR0028 = CommentOutStatement;
+            RR0029 = CopyDocumentationCommentFromBaseMember;
+            RR0030 = DuplicateArgument;
+            RR0031 = DuplicateMember;
+            RR0032 = DuplicateParameter;
+            RR0033 = DuplicateStatement;
+            RR0034 = ExpandAssignmentExpression;
+            RR0035 = ExpandCoalesceExpression;
+            RR0036 = ExpandEvent;
+            RR0037 = ExpandExpressionBody;
+            RR0038 = ExpandInitializer;
+            RR0039 = ExpandLambdaExpressionBody;
+            RR0040 = ExpandProperty;
+            RR0041 = ExpandPropertyAndAddBackingField;
+            RR0042 = ExtractDeclarationFromUsingStatement;
+            RR0043 = ExtractExpressionFromCondition;
+            RR0044 = ExtractGenericType;
+            RR0045 = ExtractStatement;
+            RR0046 = ExtractTypeDeclarationToNewFile;
+            RR0047 = FormatAccessorBraces;
+            RR0048 = FormatArgumentList;
+            RR0049 = FormatBinaryExpression;
+            RR0050 = FormatConditionalExpression;
+            RR0051 = FormatExpressionChain;
+            RR0052 = FormatInitializer;
+            RR0053 = FormatParameterList;
+            RR0054 = GenerateBaseConstructors;
+            RR0055 = GenerateCombinedEnumMember;
+            RR0056 = GenerateEnumMember;
+            RR0057 = GenerateEnumValues;
+            RR0058 = GenerateEventInvokingMethod;
+            RR0059 = GenerateSwitchSections;
+            RR0060 = InitializeLocalWithDefaultValue;
+            RR0061 = InlineAliasExpression;
+            RR0062 = InlineMethod;
+            RR0063 = InsertStringInterpolation;
+            RR0064 = IntroduceAndInitializeField;
+            RR0065 = IntroduceAndInitializeProperty;
+            RR0066 = IntroduceConstructor;
+            RR0067 = IntroduceFieldToLockOn;
+            RR0068 = IntroduceLocalFromStatementThatReturnsValue;
+            RR0069 = MakeMemberAbstract;
+            RR0070 = MakeMemberVirtual;
+            RR0071 = MarkContainingClassAsAbstract;
+            RR0072 = MarkMemberAsStatic;
+            RR0073 = MergeAssignmentExpressionWithReturnStatement;
+            RR0074 = MergeAttributes;
+            RR0075 = MergeIfStatements;
+            RR0076 = MergeInterpolationIntoInterpolatedString;
+            RR0077 = MergeLocalDeclarations;
+            RR0078 = MergeStringExpressions;
+            RR0079 = NegateBinaryExpression;
+            RR0080 = NegateBooleanLiteral;
+            RR0081 = NegateIsExpression;
+            RR0082 = NegateOperator;
+            RR0083 = NotifyPropertyChanged;
+            RR0084 = ParenthesizeExpression;
+            RR0085 = PromoteLocalToParameter;
+            RR0086 = RemoveAllComments;
+            RR0087 = RemoveAllCommentsExceptDocumentationComments;
+            RR0088 = RemoveAllDocumentationComments;
+            RR0089 = RemoveAllMemberDeclarations;
+            RR0090 = RemoveAllPreprocessorDirectives;
+            RR0091 = RemoveAllRegionDirectives;
+            RR0092 = RemoveAllStatements;
+            RR0093 = RemoveAllSwitchSections;
+            RR0094 = RemoveBraces;
+            RR0095 = RemoveBracesFromIfElse;
+            RR0096 = RemoveBracesFromSwitchSection;
+            RR0097 = RemoveBracesFromSwitchSections;
+            RR0098 = RemoveComment;
+            RR0099 = RemoveConditionFromLastElse;
+            RR0100 = RemoveDirectiveAndRelatedDirectives;
+            RR0101 = RemoveEmptyLines;
+            RR0102 = RemoveInterpolation;
+            RR0103 = RemoveMember;
+            RR0104 = RemoveMemberDeclarations;
+            RR0105 = RemoveParameterNameFromArgument;
+            RR0106 = RemoveParentheses;
+            RR0107 = RemovePropertyInitializer;
+            RR0108 = RemoveRegion;
+            RR0109 = RemoveStatement;
+            RR0110 = RemoveStatementsFromSwitchSections;
+            RR0111 = RenameBackingFieldAccordingToPropertyName;
+            RR0112 = RenameIdentifierAccordingToTypeName;
+            RR0113 = RenameMethodAccordingToTypeName;
+            RR0114 = RenameParameterAccordingToTypeName;
+            RR0115 = RenamePropertyAccordingToTypeName;
+            RR0116 = ReplaceAnyWithAllOrAllWithAny;
+            RR0117 = ReplaceAsWithCast;
+            RR0118 = ReplaceCastWithAs;
+            RR0119 = ReplaceConditionalExpressionWithExpression;
+            RR0120 = ReplaceConditionalExpressionWithIfElse;
+            RR0121 = ReplaceConstantWithField;
+            RR0122 = ReplaceCountWithLengthOrLengthWithCount;
+            RR0123 = ReplaceDoStatementWithWhileStatement;
+            RR0124 = ReplaceEqualsExpressionWithStringEquals;
+            RR0125 = ReplaceEqualsExpressionWithStringIsNullOrEmpty;
+            RR0126 = ReplaceEqualsExpressionWithStringIsNullOrWhiteSpace;
+            RR0127 = ReplaceExpressionWithConstantValue;
+            RR0128 = ReplaceFieldWithConstant;
+            RR0129 = ReplaceForEachWithFor;
+            RR0130 = ReplaceForWithForEach;
+            RR0131 = ReplaceForWithWhile;
+            RR0132 = ReplaceHexadecimalLiteralWithDecimalLiteral;
+            RR0133 = ReplaceIfElseWithSwitch;
+            RR0134 = ReplaceIncrementOperatorWithDecrementOperator;
+            RR0135 = ReplaceInterpolatedStringWithInterpolationExpression;
+            RR0136 = ReplaceInterpolatedStringWithStringLiteral;
+            RR0137 = ReplaceMethodGroupWithLambda;
+            RR0138 = ReplaceMethodWithProperty;
+            RR0139 = ReplaceNullLiteralExpressionWithDefaultExpression;
+            RR0140 = ReplacePrefixOperatorWithPostfixOperator;
+            RR0141 = ReplacePropertyWithMethod;
+            RR0142 = ReplaceRegularStringLiteralWithVerbatimStringLiteral;
+            RR0143 = ReplaceStatementWithIfStatement;
+            RR0144 = ReplaceStringContainsWithStringIndexOf;
+            RR0145 = ReplaceStringFormatWithInterpolatedString;
+            RR0146 = ReplaceStringLiteralWithCharacterLiteral;
+            RR0147 = ReplaceSwitchWithIfElse;
+            RR0148 = ReplaceVerbatimStringLiteralWithRegularStringLiteral;
+            RR0149 = ReplaceVerbatimStringLiteralWithRegularStringLiterals;
+            RR0150 = ReplaceWhileStatementWithDoStatement;
+            RR0151 = ReplaceWhileWithFor;
+            RR0152 = ReverseForLoop;
+            RR0153 = SimplifyIf;
+            RR0154 = SimplifyLambdaExpression;
+            RR0155 = SortMemberDeclarations;
+            RR0156 = SplitAttributes;
+            RR0157 = SplitSwitchLabels;
+            RR0158 = SplitVariableDeclaration;
+            RR0159 = SwapExpressionsInBinaryExpression;
+            RR0160 = SwapExpressionsInConditionalExpression;
+            RR0161 = SwapMemberDeclarations;
+            RR0162 = SwapStatementsInIfElse;
+            RR0163 = Uncomment;
+            RR0164 = UseBitwiseOperationInsteadOfCallingHasFlag;
+            RR0165 = UseCoalesceExpressionInsteadOfIf;
+            RR0166 = UseConditionalExpressionInsteadOfIf;
+            RR0167 = UseElementAccessInsteadOfEnumerableMethod;
+            RR0168 = UseEmptyStringLiteralInsteadOfStringEmpty;
+            RR0169 = UseExpressionBodiedMember;
+            RR0170 = UseLambdaExpressionInsteadOfAnonymousMethod;
+            RR0171 = UseStringEmptyInsteadOfEmptyStringLiteral;
+            RR0172 = WrapInCondition;
+            RR0173 = WrapInElseClause;
+            RR0174 = WrapInIfDirective;
+            RR0175 = WrapInRegion;
+            RR0176 = WrapInTryCatch;
+            RR0177 = WrapInUsingStatement;
+        }
+
         public static void SetRefactoringsDisabledByDefault(RefactoringSettings settings)
         {
             settings.DisableRefactoring(RefactoringIdentifiers.IntroduceConstructor);
@@ -2509,6 +2690,1599 @@ namespace Roslynator.VisualStudio
         [Description("Syntax: local declaration of type that implements IDisposable")]
         [TypeConverter(typeof (EnabledDisabledConverter))]
         public bool RR0177
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool AddBooleanComparison
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool AddBraces
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool AddBracesToIfElse
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool AddBracesToSwitchSection
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool AddBracesToSwitchSections
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool AddCastExpression
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool AddDefaultValueToParameter
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool AddDefaultValueToReturnStatement
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool AddExceptionToDocumentationComment
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool AddIdentifierToVariableDeclaration
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool AddParameterNameToArgument
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool AddParameterNameToParameter
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool AddUsingDirective
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool AddUsingStaticDirective
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool CallConfigureAwait
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool CallExtensionMethodAsInstanceMethod
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool CallToMethod
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ChangeExplicitTypeToVar
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ChangeMemberTypeAccordingToReturnExpression
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ChangeMemberTypeAccordingToYieldReturnExpression
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ChangeMethodReturnTypeToVoid
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ChangeTypeAccordingToExpression
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ChangeVarToExplicitType
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool CheckExpressionForNull
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool CheckParameterForNull
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool CollapseToInitializer
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool CommentOutMember
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool CommentOutStatement
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool CopyDocumentationCommentFromBaseMember
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool DuplicateArgument
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool DuplicateMember
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool DuplicateParameter
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool DuplicateStatement
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ExpandAssignmentExpression
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ExpandCoalesceExpression
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ExpandEvent
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ExpandExpressionBody
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ExpandInitializer
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ExpandLambdaExpressionBody
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ExpandProperty
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ExpandPropertyAndAddBackingField
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ExtractDeclarationFromUsingStatement
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ExtractExpressionFromCondition
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ExtractGenericType
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ExtractStatement
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ExtractTypeDeclarationToNewFile
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool FormatAccessorBraces
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool FormatArgumentList
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool FormatBinaryExpression
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool FormatConditionalExpression
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool FormatExpressionChain
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool FormatInitializer
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool FormatParameterList
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool GenerateBaseConstructors
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool GenerateCombinedEnumMember
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool GenerateEnumMember
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool GenerateEnumValues
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool GenerateEventInvokingMethod
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool GenerateSwitchSections
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool InitializeLocalWithDefaultValue
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool InlineAliasExpression
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool InlineMethod
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool InsertStringInterpolation
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool IntroduceAndInitializeField
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool IntroduceAndInitializeProperty
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool IntroduceConstructor
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool IntroduceFieldToLockOn
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool IntroduceLocalFromStatementThatReturnsValue
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool MakeMemberAbstract
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool MakeMemberVirtual
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool MarkContainingClassAsAbstract
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool MarkMemberAsStatic
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool MergeAssignmentExpressionWithReturnStatement
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool MergeAttributes
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool MergeIfStatements
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool MergeInterpolationIntoInterpolatedString
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool MergeLocalDeclarations
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool MergeStringExpressions
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool NegateBinaryExpression
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool NegateBooleanLiteral
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool NegateIsExpression
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool NegateOperator
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool NotifyPropertyChanged
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ParenthesizeExpression
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool PromoteLocalToParameter
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool RemoveAllComments
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool RemoveAllCommentsExceptDocumentationComments
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool RemoveAllDocumentationComments
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool RemoveAllMemberDeclarations
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool RemoveAllPreprocessorDirectives
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool RemoveAllRegionDirectives
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool RemoveAllStatements
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool RemoveAllSwitchSections
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool RemoveBraces
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool RemoveBracesFromIfElse
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool RemoveBracesFromSwitchSection
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool RemoveBracesFromSwitchSections
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool RemoveComment
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool RemoveConditionFromLastElse
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool RemoveDirectiveAndRelatedDirectives
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool RemoveEmptyLines
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool RemoveInterpolation
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool RemoveMember
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool RemoveMemberDeclarations
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool RemoveParameterNameFromArgument
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool RemoveParentheses
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool RemovePropertyInitializer
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool RemoveRegion
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool RemoveStatement
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool RemoveStatementsFromSwitchSections
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool RenameBackingFieldAccordingToPropertyName
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool RenameIdentifierAccordingToTypeName
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool RenameMethodAccordingToTypeName
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool RenameParameterAccordingToTypeName
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool RenamePropertyAccordingToTypeName
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceAnyWithAllOrAllWithAny
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceAsWithCast
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceCastWithAs
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceConditionalExpressionWithExpression
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceConditionalExpressionWithIfElse
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceConstantWithField
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceCountWithLengthOrLengthWithCount
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceDoStatementWithWhileStatement
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceEqualsExpressionWithStringEquals
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceEqualsExpressionWithStringIsNullOrEmpty
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceEqualsExpressionWithStringIsNullOrWhiteSpace
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceExpressionWithConstantValue
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceFieldWithConstant
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceForEachWithFor
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceForWithForEach
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceForWithWhile
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceHexadecimalLiteralWithDecimalLiteral
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceIfElseWithSwitch
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceIncrementOperatorWithDecrementOperator
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceInterpolatedStringWithInterpolationExpression
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceInterpolatedStringWithStringLiteral
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceMethodGroupWithLambda
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceMethodWithProperty
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceNullLiteralExpressionWithDefaultExpression
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplacePrefixOperatorWithPostfixOperator
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplacePropertyWithMethod
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceRegularStringLiteralWithVerbatimStringLiteral
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceStatementWithIfStatement
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceStringContainsWithStringIndexOf
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceStringFormatWithInterpolatedString
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceStringLiteralWithCharacterLiteral
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceSwitchWithIfElse
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceVerbatimStringLiteralWithRegularStringLiteral
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceVerbatimStringLiteralWithRegularStringLiterals
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceWhileStatementWithDoStatement
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReplaceWhileWithFor
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool ReverseForLoop
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool SimplifyIf
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool SimplifyLambdaExpression
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool SortMemberDeclarations
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool SplitAttributes
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool SplitSwitchLabels
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool SplitVariableDeclaration
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool SwapExpressionsInBinaryExpression
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool SwapExpressionsInConditionalExpression
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool SwapMemberDeclarations
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool SwapStatementsInIfElse
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool Uncomment
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool UseBitwiseOperationInsteadOfCallingHasFlag
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool UseCoalesceExpressionInsteadOfIf
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool UseConditionalExpressionInsteadOfIf
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool UseElementAccessInsteadOfEnumerableMethod
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool UseEmptyStringLiteralInsteadOfStringEmpty
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool UseExpressionBodiedMember
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool UseLambdaExpressionInsteadOfAnonymousMethod
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool UseStringEmptyInsteadOfEmptyStringLiteral
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool WrapInCondition
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool WrapInElseClause
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool WrapInIfDirective
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool WrapInRegion
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool WrapInTryCatch
+        {
+            get;
+            set;
+        }
+
+        [Browsable(false)]
+        [Category(RefactoringCategory)]
+        [TypeConverter(typeof (EnabledDisabledConverter))]
+        public bool WrapInUsingStatement
         {
             get;
             set;

@@ -54,6 +54,18 @@ namespace CodeGenerator
                                 (refactoring.IsEnabledByDefault) ? TrueLiteralExpression() : FalseLiteralExpression());
                         })));
 
+            yield return MethodDeclaration(VoidType(), "MigrateValuesFromIdentifierPropertiesToIdProperties")
+                .WithModifiers(Modifiers.Public())
+                .WithParameterList(ParameterList())
+                .WithBody(
+                    Block(refactorings
+                        .OrderBy(f => f.Id, InvariantComparer)
+                        .Select(refactoring =>
+                        {
+                            return ExpressionStatement(
+                                ParseExpression($"{refactoring.Id} = {refactoring.Identifier}"));
+                        })));
+
             yield return MethodDeclaration(VoidType(), "SetRefactoringsDisabledByDefault")
                 .WithModifiers(Modifiers.PublicStatic())
                 .WithParameterList(ParameterList(Parameter(IdentifierName("RefactoringSettings"), Identifier("settings"))))
@@ -110,22 +122,29 @@ namespace CodeGenerator
                         })));
 
             foreach (RefactoringDescriptor info in refactorings.OrderBy(f => f.Id, InvariantComparer))
-                yield return CreateRefactoringProperty(info);
-        }
+                yield return PropertyDeclaration(BoolType(), info.Id)
+                    .WithAttributeLists(
+                        SingletonAttributeList(Attribute(IdentifierName("Category"), IdentifierName("RefactoringCategory"))),
+                        SingletonAttributeList(Attribute(IdentifierName("DisplayName"), StringLiteralExpression(info.Title))),
+                        SingletonAttributeList(Attribute(IdentifierName("Description"), StringLiteralExpression(CreateDescription(info)))),
+                        SingletonAttributeList(Attribute(IdentifierName("TypeConverter"), TypeOfExpression(IdentifierName("EnabledDisabledConverter")))))
+                    .WithModifiers(Modifiers.Public())
+                    .WithAccessorList(
+                        AccessorList(
+                            AutoGetAccessorDeclaration(),
+                            AutoSetAccessorDeclaration()));
 
-        private PropertyDeclarationSyntax CreateRefactoringProperty(RefactoringDescriptor refactoring)
-        {
-            return PropertyDeclaration(BoolType(), refactoring.Id)
-                .WithAttributeLists(
-                    SingletonAttributeList(Attribute(IdentifierName("Category"), IdentifierName("RefactoringCategory"))),
-                    SingletonAttributeList(Attribute(IdentifierName("DisplayName"), StringLiteralExpression(refactoring.Title))),
-                    SingletonAttributeList(Attribute(IdentifierName("Description"), StringLiteralExpression(CreateDescription(refactoring)))),
-                    SingletonAttributeList(Attribute(IdentifierName("TypeConverter"), TypeOfExpression(IdentifierName("EnabledDisabledConverter")))))
-                .WithModifiers(Modifiers.Public())
-                .WithAccessorList(
-                    AccessorList(
-                        AutoGetAccessorDeclaration(),
-                        AutoSetAccessorDeclaration()));
+            foreach (RefactoringDescriptor info in refactorings.OrderBy(f => f.Identifier, InvariantComparer))
+                yield return PropertyDeclaration(BoolType(), info.Identifier)
+                    .WithAttributeLists(
+                        SingletonAttributeList(Attribute(IdentifierName("Browsable"), FalseLiteralExpression())),
+                        SingletonAttributeList(Attribute(IdentifierName("Category"), IdentifierName("RefactoringCategory"))),
+                        SingletonAttributeList(Attribute(IdentifierName("TypeConverter"), TypeOfExpression(IdentifierName("EnabledDisabledConverter")))))
+                    .WithModifiers(Modifiers.Public())
+                    .WithAccessorList(
+                        AccessorList(
+                            AutoGetAccessorDeclaration(),
+                            AutoSetAccessorDeclaration()));
         }
 
         private static string CreateDescription(RefactoringDescriptor refactoring)
