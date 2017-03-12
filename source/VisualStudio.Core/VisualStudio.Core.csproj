@@ -117,8 +117,8 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="RefactoringModel.cs" />
-    <Compile Include="Settings\ApplicationSettings.cs" />
-    <Compile Include="Settings\XElementExtensions.cs" />
+    <Compile Include="ConfigFileSettings.cs" />
+    <Compile Include="XElementExtensions.cs" />
     <Compile Include="TypeConverters\YesNoConverter.cs" />
     <Compile Include="TypeConverters\EnabledDisabledConverter.cs" />
     <Compile Include="TypeConverters\TrueFalseConverter.cs" />

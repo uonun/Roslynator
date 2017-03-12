@@ -7,7 +7,6 @@ using System.Runtime.InteropServices;
 using System.Windows;
 using Microsoft.VisualStudio.Shell;
 using Roslynator.CSharp.Refactorings;
-using Roslynator.VisualStudio.Settings;
 
 namespace Roslynator.VisualStudio
 {
@@ -47,7 +46,7 @@ namespace Roslynator.VisualStudio
 
         private static void SetIsEnabled(string id, bool isEnabled)
         {
-            if (!ApplicationSettings.Current.Refactorings.ContainsKey(id))
+            if (!ConfigFileSettings.Current.Refactorings.ContainsKey(id))
             {
                 RefactoringSettings.Current.SetRefactoring(id, isEnabled);
             }

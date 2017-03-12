@@ -9,7 +9,6 @@ using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Roslynator.CSharp.Refactorings;
-using Roslynator.VisualStudio.Settings;
 
 namespace Roslynator.VisualStudio
 {
@@ -95,11 +94,11 @@ namespace Roslynator.VisualStudio
             generalOptionsPage.Apply();
             refactoringsOptionsPage.Apply();
 
-            ApplicationSettings applicationSettings = LoadApplicationSettings();
+            ConfigFileSettings applicationSettings = LoadApplicationSettings();
 
             if (applicationSettings != null)
             {
-                ApplicationSettings.Current = applicationSettings;
+                ConfigFileSettings.Current = applicationSettings;
 
                 settings.PrefixFieldIdentifierWithUnderscore = applicationSettings.PrefixFieldIdentifierWithUnderscore;
 
@@ -108,7 +107,7 @@ namespace Roslynator.VisualStudio
             }
         }
 
-        private ApplicationSettings LoadApplicationSettings()
+        private ConfigFileSettings LoadApplicationSettings()
         {
             var dte = GetService(typeof(DTE)) as DTE;
 
@@ -122,13 +121,13 @@ namespace Roslynator.VisualStudio
 
                     if (!string.IsNullOrEmpty(directoryPath))
                     {
-                        path = Path.Combine(directoryPath, ApplicationSettings.FileName);
+                        path = Path.Combine(directoryPath, ConfigFileSettings.FileName);
 
                         if (File.Exists(path))
                         {
                             try
                             {
-                                return ApplicationSettings.Load(path);
+                                return ConfigFileSettings.Load(path);
                             }
                             catch (IOException)
                             {
@@ -144,7 +143,7 @@ namespace Roslynator.VisualStudio
                 }
             }
 
-            return default(ApplicationSettings);
+            return default(ConfigFileSettings);
         }
 
         private void WatchConfigFile()
@@ -161,7 +160,7 @@ namespace Roslynator.VisualStudio
 
                     if (!string.IsNullOrEmpty(directoryPath))
                     {
-                        _watcher = new FileSystemWatcher(directoryPath, ApplicationSettings.FileName)
+                        _watcher = new FileSystemWatcher(directoryPath, ConfigFileSettings.FileName)
                         {
                             EnableRaisingEvents = true,
                             IncludeSubdirectories = false

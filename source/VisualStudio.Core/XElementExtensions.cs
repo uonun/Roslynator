@@ -3,7 +3,7 @@
 using System.Linq;
 using System.Xml.Linq;
 
-namespace Roslynator.VisualStudio.Settings
+namespace Roslynator.VisualStudio
 {
     internal static class XElementExtensions
     {

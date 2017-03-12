@@ -4,15 +4,15 @@ using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
 
-namespace Roslynator.VisualStudio.Settings
+namespace Roslynator.VisualStudio
 {
-    public sealed class ApplicationSettings
+    public sealed class ConfigFileSettings
     {
         public const string FileName = "roslynator.config";
 
-        private static ApplicationSettings _current = new ApplicationSettings();
+        private static ConfigFileSettings _current = new ConfigFileSettings();
 
-        public static ApplicationSettings Current
+        public static ConfigFileSettings Current
         {
             get { return _current; }
             set
@@ -28,9 +28,9 @@ namespace Roslynator.VisualStudio.Settings
 
         public Dictionary<string, bool> Refactorings { get; set; } = new Dictionary<string, bool>(StringComparer.Ordinal);
 
-        public static ApplicationSettings Load(string uri)
+        public static ConfigFileSettings Load(string uri)
         {
-            var settings = new ApplicationSettings();
+            var settings = new ConfigFileSettings();
 
             XDocument doc = XDocument.Load(uri);
 
@@ -50,7 +50,7 @@ namespace Roslynator.VisualStudio.Settings
             return settings;
         }
 
-        private static void LoadSettingsElement(XElement element, ApplicationSettings settings)
+        private static void LoadSettingsElement(XElement element, ConfigFileSettings settings)
         {
             foreach (XElement child in element.Elements())
             {
@@ -67,7 +67,7 @@ namespace Roslynator.VisualStudio.Settings
             }
         }
 
-        private static void LoadPrefixFieldIdentifierWithUnderscore(XElement parent, ApplicationSettings settings)
+        private static void LoadPrefixFieldIdentifierWithUnderscore(XElement parent, ConfigFileSettings settings)
         {
             XElement element = parent.Element("PrefixFieldIdentifierWithUnderscore");
 
@@ -79,13 +79,13 @@ namespace Roslynator.VisualStudio.Settings
             }
         }
 
-        private static void LoadRefactorings(XElement element, ApplicationSettings settings)
+        private static void LoadRefactorings(XElement element, ConfigFileSettings settings)
         {
             foreach (XElement child in element.Elements("Refactoring"))
                 LoadRefactoring(child, settings);
         }
 
-        private static void LoadRefactoring(XElement element, ApplicationSettings settings)
+        private static void LoadRefactoring(XElement element, ConfigFileSettings settings)
         {
             string id;
             if (element.TryGetAttributeValueAsString("Id", out id))
