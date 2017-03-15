@@ -4,13 +4,14 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Roslynator.CSharp.Extensions;
 using Roslynator.Extensions;
 
 namespace Roslynator.CSharp.Refactorings.If
 {
     internal abstract class IfToReturnWithConditionalExpression : IfRefactoring
     {
-        public IfToReturnWithConditionalExpression(
+        protected IfToReturnWithConditionalExpression(
             IfStatementSyntax ifStatement,
             ExpressionSyntax expression1,
             ExpressionSyntax expression2) : base(ifStatement)
@@ -33,13 +34,13 @@ namespace Roslynator.CSharp.Refactorings.If
             }
             else
             {
-                if (IfElseChain.IsPartOfChain(ifStatement))
+                if (ifStatement.IsSimpleIf())
                 {
-                    return new IfElseToReturnWithConditionalExpression(ifStatement, expression1, expression2);
+                    return new IfReturnToReturnWithConditionalExpression(ifStatement, expression1, expression2);
                 }
                 else
                 {
-                    return new IfReturnToReturnWithConditionalExpression(ifStatement, expression1, expression2);
+                    return new IfElseToReturnWithConditionalExpression(ifStatement, expression1, expression2);
                 }
             }
         }

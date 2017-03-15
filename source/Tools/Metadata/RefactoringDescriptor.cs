@@ -15,7 +15,6 @@ namespace Roslynator.Metadata
             string identifier,
             string title,
             bool isEnabledByDefault,
-            string extensionVersion,
             string scope,
             IList<SyntaxDescriptor> syntaxes,
             IList<ImageDescriptor> images)
@@ -24,7 +23,6 @@ namespace Roslynator.Metadata
             Identifier = identifier;
             Title = title;
             IsEnabledByDefault = isEnabledByDefault;
-            ExtensionVersion = extensionVersion;
             Scope = scope;
             Syntaxes = new ReadOnlyCollection<SyntaxDescriptor>(syntaxes);
             Images = new ReadOnlyCollection<ImageDescriptor>(images);
@@ -37,16 +35,13 @@ namespace Roslynator.Metadata
             foreach (XElement element in doc.Root.Elements())
             {
                 yield return new RefactoringDescriptor(
-                    (element.Attribute("Id") != null)
-                        ? element.Attribute("Id").Value
-                        : null,
+                    element.Attribute("Id")?.Value,
                     element.Attribute("Identifier").Value,
                     element.Attribute("Title").Value,
                     (element.Attribute("IsEnabledByDefault") != null)
                         ? bool.Parse(element.Attribute("IsEnabledByDefault").Value)
                         : true,
-                    element.Attribute("ExtensionVersion").Value,
-                    (element.Element("Scope") != null) ? element.Element("Scope").Value : null,
+                    element.Element("Scope")?.Value,
                     element.Element("Syntaxes")
                         .Elements("Syntax")
                         .Select(f => new SyntaxDescriptor(f.Value))
@@ -69,8 +64,6 @@ namespace Roslynator.Metadata
         public string Scope { get; }
 
         public bool IsEnabledByDefault { get; }
-
-        public string ExtensionVersion { get; }
 
         public ReadOnlyCollection<SyntaxDescriptor> Syntaxes { get; }
 

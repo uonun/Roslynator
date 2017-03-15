@@ -19,7 +19,7 @@
 
 <h3>Settings</h3>
 <p>Refactorings can be enabled/disabled in Visual Studio options.</p>  
-<img src="http://pihrt.net/images/roslyn/RefactoringsOptions.png" alt="Refactorings Options">
+<img src="http://pihrt.net/images/roslynator/RefactoringsOptions.png" alt="Refactorings Options">
 
 <h3>List of Related Products</h3>
 
@@ -89,6 +89,9 @@
     </li>
     <li>
         <a href="http://github.com/JosefPihrt/Roslynator/blob/master/source/Refactorings/Refactorings.md#add-parameter-name-to-parameter">Add parameter name to parameter</a>
+    </li>
+    <li>
+        <a href="http://github.com/JosefPihrt/Roslynator/blob/master/source/Refactorings/Refactorings.md#add-type-parameter">Add type parameter</a>
     </li>
     <li>
         <a href="http://github.com/JosefPihrt/Roslynator/blob/master/source/Refactorings/Refactorings.md#add-using-directive">Add using directive</a>
@@ -230,6 +233,9 @@
     </li>
     <li>
         <a href="http://github.com/JosefPihrt/Roslynator/blob/master/source/Refactorings/Refactorings.md#generate-switch-sections">Generate switch sections</a>
+    </li>
+    <li>
+        <a href="http://github.com/JosefPihrt/Roslynator/blob/master/source/Refactorings/Refactorings.md#implement-iequatablet">Implement IEquatable&lt;T&gt;</a>
     </li>
     <li>
         <a href="http://github.com/JosefPihrt/Roslynator/blob/master/source/Refactorings/Refactorings.md#initialize-local-with-default-value">Initialize local with default value</a>

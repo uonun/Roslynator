@@ -30,7 +30,7 @@ namespace CodeGenerator
 
             var refactoringIdentifiersGenerator = new RefactoringIdentifiersGenerator();
             writer.SaveCode(
-                Path.Combine(dirPath, @"Refactorings\RefactoringIdentifiers.cs"),
+                Path.Combine(dirPath, @"Refactorings\RefactoringIdentifiers.Generated.cs"),
                 refactoringIdentifiersGenerator.Generate(refactorings));
 
             var optionsPagePropertiesGenerator = new OptionsPagePropertiesGenerator();

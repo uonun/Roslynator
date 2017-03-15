@@ -42,10 +42,15 @@
     <AssemblyOriginatorKeyFile>Roslynator.CSharp.Refactorings.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Refactorings\AddTypeParameterRefactoring.cs" />
+    <Compile Include="RefactoringIdentifiers.cs" />
     <Compile Include="Refactorings\DeclarationExpressionRefactoring.cs" />
     <Compile Include="Refactorings\ChangeDeclarationExpressionTypeRefactoring.cs" />
     <Compile Include="Refactorings\ClassDeclarationRefactoring.cs" />
+    <Compile Include="Refactorings\DelegateDeclarationRefactoring.cs" />
     <Compile Include="Refactorings\EnumDeclarationRefactoring.cs" />
+    <Compile Include="Refactorings\ImplementIEquatableOfTRefactoring.cs" />
     <Compile Include="Refactorings\InterfaceDeclarationRefactoring.cs" />
     <Compile Include="Refactorings\LocalFunctionStatementRefactoring.cs" />
     <Compile Include="Refactorings\NamespaceDeclarationRefactoring.cs" />
@@ -75,7 +80,7 @@
     <Compile Include="Refactorings\InlineMethod\ParameterInfo.cs" />
     <Compile Include="Refactorings\InterpolationRefactoring.cs" />
     <Compile Include="Refactorings\AttributeListRefactoring.cs" />
-    <Compile Include="RefactoringIdentifiers.cs" />
+    <Compile Include="RefactoringIdentifiers.Generated.cs" />
     <Compile Include="RefactoringIdentifierSet.cs" />
     <Compile Include="RefactoringSettings.cs" />
     <Compile Include="Refactorings\ExtractTypeDeclarationToNewFileRefactoring.cs" />

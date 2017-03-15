@@ -76,7 +76,7 @@ namespace Roslynator.VisualStudio
                     || version.Minor < 2
                     || version.Build < 50)
                 {
-                    refactoringsOptionsPage.MigrateValuesFromIdentifierPropertiesToIdProperties();
+                    refactoringsOptionsPage.MigrateValuesFromIdentifierProperties();
                     refactoringsOptionsPage.SaveSettingsToStorage();
                 }
 
@@ -91,8 +91,8 @@ namespace Roslynator.VisualStudio
                 _settingsLoaded = true;
             }
 
-            generalOptionsPage.Apply();
-            refactoringsOptionsPage.Apply();
+            generalOptionsPage.ApplyTo(RefactoringSettings.Current);
+            refactoringsOptionsPage.ApplyTo(RefactoringSettings.Current);
 
             ConfigFileSettings applicationSettings = LoadApplicationSettings();
 

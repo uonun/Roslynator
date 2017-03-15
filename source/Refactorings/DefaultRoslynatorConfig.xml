@@ -182,6 +182,8 @@
       <Refactoring Id="RR0175" IsEnabled="true" /> <!-- WrapInRegion -->
       <Refactoring Id="RR0176" IsEnabled="true" /> <!-- WrapInTryCatch -->
       <Refactoring Id="RR0177" IsEnabled="true" /> <!-- WrapInUsingStatement -->
+      <Refactoring Id="RR0178" IsEnabled="true" /> <!-- AddTypeParameter -->
+      <Refactoring Id="RR0179" IsEnabled="true" /> <!-- ImplementIEquatableOfT -->
     </Refactorings>
   </Settings>
 </Roslynator>

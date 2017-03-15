@@ -34,14 +34,9 @@ namespace Roslynator.Extensions
 
             ImmutableArray<IParameterSymbol> parameters = methodSymbol.Parameters;
 
-            if (parameters.Length == 1)
-            {
-                return parameters.First();
-            }
-            else
-            {
-                return null;
-            }
+            return (parameters.Length == 1)
+                ? parameters[0]
+                : null;
         }
 
         public static IMethodSymbol ReducedFromOrSelf(this IMethodSymbol methodSymbol)
@@ -59,14 +54,9 @@ namespace Roslynator.Extensions
 
             ImmutableArray<IParameterSymbol> parameters = propertySymbol.Parameters;
 
-            if (parameters.Length == 1)
-            {
-                return parameters.First();
-            }
-            else
-            {
-                return null;
-            }
+            return (parameters.Length == 1)
+                ? parameters[0]
+                : null;
         }
 
         public static ISymbol FindImplementedInterfaceMember(this ISymbol symbol)
@@ -601,6 +591,25 @@ namespace Roslynator.Extensions
             for (int i = 0; i < allInterfaces.Length; i++)
             {
                 if (allInterfaces[i].SpecialType == specialType)
+                    return true;
+            }
+
+            return false;
+        }
+
+        public static bool Implements(this ITypeSymbol typeSymbol, ITypeSymbol interfaceSymbol)
+        {
+            if (typeSymbol == null)
+                throw new ArgumentNullException(nameof(typeSymbol));
+
+            if (interfaceSymbol == null)
+                throw new ArgumentNullException(nameof(interfaceSymbol));
+
+            ImmutableArray<INamedTypeSymbol> allInterfaces = typeSymbol.AllInterfaces;
+
+            for (int i = 0; i < allInterfaces.Length; i++)
+            {
+                if (allInterfaces[i].Equals(interfaceSymbol))
                     return true;
             }
 

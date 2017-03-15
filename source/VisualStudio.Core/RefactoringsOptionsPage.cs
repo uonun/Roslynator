@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Josef Pihrt. All rights reserved. Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -17,43 +18,65 @@ namespace Roslynator.VisualStudio
         private const string RefactoringCategory = "Refactoring";
 
         private RefactoringsControl _refactoringsControl = new RefactoringsControl();
+        private HashSet<string> _disabledRefactorings = new HashSet<string>();
 
         protected override UIElement Child
         {
             get { return _refactoringsControl; }
         }
 
+        [Category(RefactoringCategory)]
+        [Browsable(false)]
+        public string DisabledRefactorings
+        {
+            get { return string.Join(",", _disabledRefactorings); }
+            set
+            {
+                _disabledRefactorings.Clear();
+
+                if (!string.IsNullOrEmpty(value))
+                {
+                    foreach (string id in value.Split(','))
+                        _disabledRefactorings.Add(id);
+                }
+            }
+        }
+
         protected override void OnActivate(CancelEventArgs e)
         {
             base.OnActivate(e);
 
-            _refactoringsControl.Refactorings.Clear();
-
-            SaveValuesToView(_refactoringsControl.Refactorings);
+            Fill(_refactoringsControl.Refactorings);
         }
 
         protected override void OnApply(PageApplyEventArgs e)
         {
             if (e.ApplyBehavior == ApplyKind.Apply)
             {
-                LoadValuesFromView(_refactoringsControl.Refactorings);
+                foreach (RefactoringModel refactoring in _refactoringsControl.Refactorings)
+                    SetIsEnabled(refactoring.Id, refactoring.Enabled);
 
-                Apply();
+                ApplyTo(RefactoringSettings.Current);
             }
 
             base.OnApply(e);
         }
 
-        private static void SetIsEnabled(string id, bool isEnabled)
+        private void SetIsEnabled(string id, bool isEnabled)
         {
-            if (!ConfigFileSettings.Current.Refactorings.ContainsKey(id))
+            if (isEnabled)
             {
-                RefactoringSettings.Current.SetRefactoring(id, isEnabled);
+                _disabledRefactorings.Remove(id);
             }
             else
             {
-                Debug.WriteLine("Cannot " + ((isEnabled) ? "enable" : "disable") + $" refactoring {id}, value is overridden by config file");
+                _disabledRefactorings.Add(id);
             }
+        }
+
+        private bool IsEnabled(string id)
+        {
+            return !_disabledRefactorings.Contains(id);
         }
     }
 }

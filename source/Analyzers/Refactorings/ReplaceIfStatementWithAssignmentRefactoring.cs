@@ -44,13 +44,13 @@ namespace Roslynator.CSharp.Refactorings
 
                         if (typeSymbol?.IsBoolean() == true)
                         {
-                            AssignmentExpressionSyntax trueExpression = GetSimpleAssignmentExpression(ifStatement.Statement);
+                            AssignmentExpressionSyntax trueExpression = GetSimpleAssignmentExpression(ifStatement.GetSingleStatementOrDefault());
 
                             ExpressionSyntax trueRight = trueExpression?.Right;
 
                             if (trueRight?.IsBooleanLiteralExpression() == true)
                             {
-                                AssignmentExpressionSyntax falseExpression = GetSimpleAssignmentExpression(elseClause.Statement);
+                                AssignmentExpressionSyntax falseExpression = GetSimpleAssignmentExpression(elseClause.GetSingleStatementOrDefault());
 
                                 ExpressionSyntax falseRight = falseExpression?.Right;
 
@@ -76,8 +76,6 @@ namespace Roslynator.CSharp.Refactorings
 
         private static AssignmentExpressionSyntax GetSimpleAssignmentExpression(StatementSyntax statement)
         {
-            statement = GetStatement(statement);
-
             if (statement?.IsKind(SyntaxKind.ExpressionStatement) == true)
             {
                 var expressionStatement = (ExpressionStatementSyntax)statement;
@@ -91,36 +89,14 @@ namespace Roslynator.CSharp.Refactorings
             return null;
         }
 
-        private static StatementSyntax GetStatement(StatementSyntax statement)
-        {
-            if (statement != null)
-            {
-                if (statement.IsKind(SyntaxKind.Block))
-                {
-                    var block = (BlockSyntax)statement;
-
-                    SyntaxList<StatementSyntax> statements = block.Statements;
-
-                    if (statements.Count == 1)
-                        return statements.First();
-                }
-                else
-                {
-                    return statement;
-                }
-            }
-
-            return null;
-        }
-
-        public static async Task<Document> RefactorAsync(
+        public static Task<Document> RefactorAsync(
             Document document,
             IfStatementSyntax ifStatement,
             CancellationToken cancellationToken)
         {
             ExpressionSyntax condition = ifStatement.Condition;
 
-            AssignmentExpressionSyntax assignment = GetSimpleAssignmentExpression(ifStatement.Statement);
+            AssignmentExpressionSyntax assignment = GetSimpleAssignmentExpression(ifStatement.GetSingleStatementOrDefault());
 
             if (assignment.Right.IsKind(SyntaxKind.FalseLiteralExpression))
                 condition = Negator.LogicallyNegate(condition);
@@ -129,7 +105,7 @@ namespace Roslynator.CSharp.Refactorings
                 .WithTriviaFrom(ifStatement)
                 .WithFormatterAnnotation();
 
-            return await document.ReplaceNodeAsync(ifStatement, newNode, cancellationToken).ConfigureAwait(false);
+            return document.ReplaceNodeAsync(ifStatement, newNode, cancellationToken);
         }
     }
 }

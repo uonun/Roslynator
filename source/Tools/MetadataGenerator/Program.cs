@@ -9,6 +9,7 @@ using System.Text;
 using System.Xml.Linq;
 using Microsoft.CodeAnalysis;
 using Roslynator.CSharp;
+using Roslynator.CSharp.Refactorings;
 using Roslynator.Metadata;
 
 namespace MetadataGenerator
@@ -141,13 +142,15 @@ namespace MetadataGenerator
                     }
                     else
                     {
-                        string id = $"RR{idNumber.ToString().PadLeft(4, '0')}";
+                        string id = $"{RefactoringIdentifiers.Prefix}{idNumber.ToString().PadLeft(4, '0')}";
                         f.ReplaceAttributes(new XAttribute("Id", id), f.Attributes());
                         idNumber++;
                         return f;
                     }
                 });
             }
+
+            newElements = newElements.OrderBy(f => f.Attribute("Id").Value, _invariantComparer);
 
             root.ReplaceAll(newElements);
 
@@ -171,23 +174,12 @@ namespace MetadataGenerator
 
                 AnalyzerDescriptor analyzer = analyzers.FirstOrDefault(f => string.Equals(f.Id, descriptor.Id, StringComparison.CurrentCulture));
 
-                string extensionVersion = "0.0.0";
-                string nugetVersion = "0.0.0";
-
-                if (analyzer != null)
-                {
-                    extensionVersion = analyzer.ExtensionVersion;
-                    nugetVersion = analyzer.NuGetVersion;
-                }
-
                 analyzer = new AnalyzerDescriptor(
                     fieldInfo.Name,
                     descriptor.Title.ToString(),
                     descriptor.Id,
                     descriptor.Category,
                     descriptor.DefaultSeverity.ToString(),
-                    extensionVersion,
-                    nugetVersion,
                     descriptor.IsEnabledByDefault,
                     descriptor.CustomTags.Contains(WellKnownDiagnosticTags.Unnecessary),
                     fieldInfos.Any(f => f.Name == fieldInfo.Name + "FadeOut"));
@@ -195,8 +187,6 @@ namespace MetadataGenerator
                 root.Add(new XElement(
                     "Analyzer",
                     new XAttribute("Identifier", analyzer.Identifier),
-                    new XAttribute("ExtensionVersion", analyzer.ExtensionVersion),
-                    new XAttribute("NuGetVersion", analyzer.NuGetVersion),
                     new XElement("Id", analyzer.Id),
                     new XElement("Title", analyzer.Title),
                     new XElement("Category", analyzer.Category),

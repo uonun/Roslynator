@@ -86,18 +86,9 @@ namespace Roslynator.CSharp.Refactorings
 
         private static bool AreEquivalent(SyntaxList<StatementSyntax> statements, SyntaxList<StatementSyntax> statements2)
         {
-            if (statements.Count == 1)
-            {
-                if (statements2.Count == 1)
-                    return AreEquivalent(statements.First(), statements2.First());
-            }
-            else if (statements.Count == 2)
-            {
-                if (statements2.Count == 2)
-                    return AreEquivalent(statements.First(), statements2.First());
-            }
-
-            return false;
+            return statements.Count == 1
+                && statements2.Count == 1
+                && AreEquivalent(statements[0], statements2[0]);
         }
 
         private static bool AreEquivalent(StatementSyntax statement, StatementSyntax statement2)
@@ -130,22 +121,22 @@ namespace Roslynator.CSharp.Refactorings
             return false;
         }
 
-        private static SyntaxList<StatementSyntax> GetStatements(SwitchSectionSyntax prev)
+        private static SyntaxList<StatementSyntax> GetStatements(SwitchSectionSyntax section)
         {
-            SyntaxList<StatementSyntax> statements = prev.Statements;
+            SyntaxList<StatementSyntax> statements = section.Statements;
 
             if (statements.Count == 1)
             {
-                StatementSyntax firstStatement = statements.First();
+                StatementSyntax statement = statements[0];
 
-                if (firstStatement.IsKind(SyntaxKind.Block))
-                    return ((BlockSyntax)firstStatement).Statements;
+                if (statement.IsKind(SyntaxKind.Block))
+                    return ((BlockSyntax)statement).Statements;
             }
 
             return statements;
         }
 
-        public static async Task<Document> RefactorAsync(
+        public static Task<Document> RefactorAsync(
             Document document,
             SwitchSectionSyntax switchSection,
             int numberOfAdditionalSectionsToMerge,
@@ -169,7 +160,7 @@ namespace Roslynator.CSharp.Refactorings
 
             SwitchStatementSyntax newSwitchStatement = switchStatement.WithSections(newSections);
 
-            return await document.ReplaceNodeAsync(switchStatement, newSwitchStatement, cancellationToken).ConfigureAwait(false);
+            return document.ReplaceNodeAsync(switchStatement, newSwitchStatement, cancellationToken);
         }
     }
 }

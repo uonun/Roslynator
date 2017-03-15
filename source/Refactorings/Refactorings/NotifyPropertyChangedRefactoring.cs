@@ -26,21 +26,16 @@ namespace Roslynator.CSharp.Refactorings
 
                 if (body != null)
                 {
-                    SyntaxList<StatementSyntax> statements = body.Statements;
+                    StatementSyntax statement = body.SingleStatementOrDefault();
 
-                    if (statements.Count == 1)
+                    if (statement?.IsKind(SyntaxKind.ExpressionStatement) == true)
                     {
-                        StatementSyntax statement = statements[0];
+                        var expressionStatement = (ExpressionStatementSyntax)statement;
 
-                        if (statement.IsKind(SyntaxKind.ExpressionStatement))
-                        {
-                            var expressionStatement = (ExpressionStatementSyntax)statement;
+                        ExpressionSyntax expression = expressionStatement.Expression;
 
-                            ExpressionSyntax expression = expressionStatement.Expression;
-
-                            return expression != null
-                                && await CanRefactorAsync(context, property, expression).ConfigureAwait(false);
-                        }
+                        return expression != null
+                            && await CanRefactorAsync(context, property, expression).ConfigureAwait(false);
                     }
                 }
                 else
@@ -92,7 +87,7 @@ namespace Roslynator.CSharp.Refactorings
             return false;
         }
 
-        public static async Task<Document> RefactorAsync(
+        public static Task<Document> RefactorAsync(
             Document document,
             PropertyDeclarationSyntax property,
             bool supportsCSharp6,
@@ -109,7 +104,7 @@ namespace Roslynator.CSharp.Refactorings
                 .WithTriviaFrom(property)
                 .WithFormatterAnnotation();
 
-            return await document.ReplaceNodeAsync(setter, newSetter, cancellationToken).ConfigureAwait(false);
+            return document.ReplaceNodeAsync(setter, newSetter, cancellationToken);
         }
 
         private static AccessorDeclarationSyntax CreateSetter(IdentifierNameSyntax fieldIdentifierName, string propertyName, bool supportsCSharp6)
@@ -138,7 +133,7 @@ namespace Roslynator.CSharp.Refactorings
                             ExpressionStatement(
                                 InvocationExpression(
                                     IdentifierName("OnPropertyChanged"),
-                                    SingletonArgumentList(Argument(argumentExpression))))))));
+                                    ArgumentList(Argument(argumentExpression))))))));
         }
 
         public static IdentifierNameSyntax GetBackingFieldIdentifierName(AccessorDeclarationSyntax accessor)

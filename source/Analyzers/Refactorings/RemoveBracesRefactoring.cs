@@ -20,7 +20,7 @@ namespace Roslynator.CSharp.Refactorings
             SyntaxNode node = context.Node;
 
             if (!node.IsKind(SyntaxKind.IfStatement)
-                || !IfElseChain.IsPartOfChain((IfStatementSyntax)node))
+                || ((IfStatementSyntax)node).IsSimpleIf())
             {
                 BlockSyntax block = GetBlockThatCanBeEmbeddedStatement(node);
 
@@ -53,18 +53,13 @@ namespace Roslynator.CSharp.Refactorings
             {
                 var block = (BlockSyntax)childStatement;
 
-                SyntaxList<StatementSyntax> statements = block.Statements;
+                StatementSyntax statement = block.SingleStatementOrDefault();
 
-                if (statements.Count == 1)
+                if (statement?.IsKind(SyntaxKind.LocalDeclarationStatement, SyntaxKind.LabeledStatement) == false
+                    && statement.IsSingleLine()
+                    && EmbeddedStatement.FormattingSupportsEmbeddedStatement(node))
                 {
-                    StatementSyntax statement = statements[0];
-
-                    if (!statement.IsKind(SyntaxKind.LocalDeclarationStatement, SyntaxKind.LabeledStatement)
-                        && statement.IsSingleLine()
-                        && EmbeddedStatement.FormattingSupportsEmbeddedStatement(node))
-                    {
-                        return block;
-                    }
+                    return block;
                 }
             }
 
@@ -102,7 +97,7 @@ namespace Roslynator.CSharp.Refactorings
             }
         }
 
-        public static async Task<Document> RefactorAsync(
+        public static Task<Document> RefactorAsync(
             Document document,
             BlockSyntax block,
             CancellationToken cancellationToken)
@@ -112,7 +107,7 @@ namespace Roslynator.CSharp.Refactorings
                 .TrimLeadingTrivia()
                 .WithFormatterAnnotation();
 
-            return await document.ReplaceNodeAsync(block, statement, cancellationToken).ConfigureAwait(false);
+            return document.ReplaceNodeAsync(block, statement, cancellationToken);
         }
     }
 }

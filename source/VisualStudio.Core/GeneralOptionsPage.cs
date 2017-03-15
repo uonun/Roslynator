@@ -24,15 +24,15 @@ namespace Roslynator.VisualStudio
         [Browsable(false)]
         public string ApplicationVersion { get; set; }
 
-        public void Apply()
+        public void ApplyTo(RefactoringSettings settings)
         {
-            RefactoringSettings.Current.PrefixFieldIdentifierWithUnderscore = PrefixFieldIdentifierWithUnderscore;
+            settings.PrefixFieldIdentifierWithUnderscore = PrefixFieldIdentifierWithUnderscore;
         }
 
         protected override void OnApply(PageApplyEventArgs e)
         {
             if (e.ApplyBehavior == ApplyKind.Apply)
-                Apply();
+                ApplyTo(RefactoringSettings.Current);
 
             base.OnApply(e);
         }

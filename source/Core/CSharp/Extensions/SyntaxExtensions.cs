@@ -58,14 +58,7 @@ namespace Roslynator.CSharp.Extensions
 
             BlockSyntax body = accessorDeclaration.Body;
 
-            if (body != null)
-            {
-                return body;
-            }
-            else
-            {
-                return accessorDeclaration.ExpressionBody;
-            }
+            return body ?? (CSharpSyntaxNode)accessorDeclaration.ExpressionBody;
         }
 
         public static AccessorDeclarationSyntax Getter(this AccessorListSyntax accessorList)
@@ -114,7 +107,7 @@ namespace Roslynator.CSharp.Extensions
             SyntaxList<StatementSyntax> statements = body.Statements;
 
             return (statements.Count == 1)
-                ? statements.First()
+                ? statements[0]
                 : null;
         }
 
@@ -273,14 +266,7 @@ namespace Roslynator.CSharp.Extensions
 
             BlockSyntax body = constructorDeclaration.Body;
 
-            if (body != null)
-            {
-                return body;
-            }
-            else
-            {
-                return constructorDeclaration.ExpressionBody;
-            }
+            return body ?? (CSharpSyntaxNode)constructorDeclaration.ExpressionBody;
         }
 
         public static TextSpan HeaderSpan(this ConversionOperatorDeclarationSyntax operatorDeclaration)
@@ -302,14 +288,7 @@ namespace Roslynator.CSharp.Extensions
 
             BlockSyntax body = conversionOperatorDeclaration.Body;
 
-            if (body != null)
-            {
-                return body;
-            }
-            else
-            {
-                return conversionOperatorDeclaration.ExpressionBody;
-            }
+            return body ?? (CSharpSyntaxNode)conversionOperatorDeclaration.ExpressionBody;
         }
 
         public static CSharpSyntaxNode BodyOrExpressionBody(this DestructorDeclarationSyntax destructorDeclaration)
@@ -319,14 +298,7 @@ namespace Roslynator.CSharp.Extensions
 
             BlockSyntax body = destructorDeclaration.Body;
 
-            if (body != null)
-            {
-                return body;
-            }
-            else
-            {
-                return destructorDeclaration.ExpressionBody;
-            }
+            return body ?? (CSharpSyntaxNode)destructorDeclaration.ExpressionBody;
         }
 
         public static XmlElementSyntax SummaryElement(this DocumentationCommentTriviaSyntax documentationComment)
@@ -496,6 +468,46 @@ namespace Roslynator.CSharp.Extensions
             return TextSpan.FromBounds(forStatement.OpenParenToken.Span.Start, forStatement.CloseParenToken.Span.End);
         }
 
+        internal static StatementSyntax GetSingleStatementOrDefault(this IfStatementSyntax ifStatement)
+        {
+            return GetSingleStatementOrDefault(ifStatement.Statement);
+        }
+
+        public static bool IsSimpleIf(this IfStatementSyntax ifStatement)
+        {
+            if (ifStatement == null)
+                throw new ArgumentNullException(nameof(ifStatement));
+
+            return !ifStatement.IsParentKind(SyntaxKind.ElseClause)
+                && ifStatement.Else == null;
+        }
+
+        public static bool IsSimpleIfElse(this IfStatementSyntax ifStatement)
+        {
+            if (ifStatement == null)
+                throw new ArgumentNullException(nameof(ifStatement));
+
+            return !ifStatement.IsParentKind(SyntaxKind.ElseClause)
+                && ifStatement.Else?.Statement?.IsKind(SyntaxKind.IfStatement) == false;
+        }
+
+        internal static StatementSyntax GetSingleStatementOrDefault(this ElseClauseSyntax elseClause)
+        {
+            return GetSingleStatementOrDefault(elseClause.Statement);
+        }
+
+        private static StatementSyntax GetSingleStatementOrDefault(StatementSyntax statement)
+        {
+            if (statement?.IsKind(SyntaxKind.Block) == true)
+            {
+                return ((BlockSyntax)statement).SingleStatementOrDefault();
+            }
+            else
+            {
+                return statement;
+            }
+        }
+
         public static TextSpan HeaderSpan(this IndexerDeclarationSyntax indexerDeclaration)
         {
             if (indexerDeclaration == null)
@@ -623,14 +635,7 @@ namespace Roslynator.CSharp.Extensions
 
             BlockSyntax body = localFunctionStatement.Body;
 
-            if (body != null)
-            {
-                return body;
-            }
-            else
-            {
-                return localFunctionStatement.ExpressionBody;
-            }
+            return body ?? (CSharpSyntaxNode)localFunctionStatement.ExpressionBody;
         }
 
         public static SyntaxTrivia GetSingleLineDocumentationCommentTrivia(this MemberDeclarationSyntax memberDeclaration)
@@ -1302,14 +1307,7 @@ namespace Roslynator.CSharp.Extensions
 
             BlockSyntax body = methodDeclaration.Body;
 
-            if (body != null)
-            {
-                return body;
-            }
-            else
-            {
-                return methodDeclaration.ExpressionBody;
-            }
+            return body ?? (CSharpSyntaxNode)methodDeclaration.ExpressionBody;
         }
 
         public static TextSpan HeaderSpan(this NamespaceDeclarationSyntax namespaceDeclaration)
@@ -1349,14 +1347,7 @@ namespace Roslynator.CSharp.Extensions
 
             BlockSyntax body = operatorDeclaration.Body;
 
-            if (body != null)
-            {
-                return body;
-            }
-            else
-            {
-                return operatorDeclaration.ExpressionBody;
-            }
+            return body ?? (CSharpSyntaxNode)operatorDeclaration.ExpressionBody;
         }
 
         public static bool IsThis(this ParameterSyntax parameter)
@@ -1489,6 +1480,18 @@ namespace Roslynator.CSharp.Extensions
             return TextSpan.FromBounds(
                 structDeclaration.OpenBraceToken.Span.Start,
                 structDeclaration.CloseBraceToken.Span.End);
+        }
+
+        public static StatementSyntax SingleStatementOrDefault(this SwitchSectionSyntax switchSection)
+        {
+            if (switchSection == null)
+                throw new ArgumentNullException(nameof(switchSection));
+
+            SyntaxList<StatementSyntax> statements = switchSection.Statements;
+
+            return (statements.Count == 1)
+                ? statements[0]
+                : null;
         }
 
         public static SwitchSectionSyntax WithoutStatements(this SwitchSectionSyntax switchSection)

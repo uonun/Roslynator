@@ -148,7 +148,7 @@ namespace Roslynator.CSharp.Refactorings
                     ThrowStatement(
                         ObjectCreationExpression(
                             type: ParseName(MetadataNames.System_ArgumentNullException).WithSimplifierAnnotation(),
-                            argumentList: SingletonArgumentList(Argument(NameOf(parameters[i].Identifier.ValueText))),
+                            argumentList: ArgumentList(Argument(NameOf(parameters[i].Identifier.ValueText))),
                             initializer: default(InitializerExpressionSyntax))));
 
                 if (i > 0)
@@ -213,7 +213,7 @@ namespace Roslynator.CSharp.Refactorings
 
                     if (left.IsKind(SyntaxKind.IdentifierName))
                     {
-                        var throwStatement = GetSingleStatementOrDefault(ifStatement) as ThrowStatementSyntax;
+                        var throwStatement = ifStatement.GetSingleStatementOrDefault() as ThrowStatementSyntax;
 
                         if (throwStatement?.Expression?.IsKind(SyntaxKind.ObjectCreationExpression) == true)
                         {
@@ -230,25 +230,6 @@ namespace Roslynator.CSharp.Refactorings
             }
 
             return false;
-        }
-
-        private static StatementSyntax GetSingleStatementOrDefault(IfStatementSyntax ifStatement)
-        {
-            StatementSyntax statement = ifStatement.Statement;
-
-            if (statement.IsKind(SyntaxKind.Block))
-            {
-                var block = (BlockSyntax)statement;
-
-                SyntaxList<StatementSyntax> statements = block.Statements;
-
-                if (statements.Count == 1)
-                    return statements[0];
-
-                return null;
-            }
-
-            return statement;
         }
 
         private static BlockSyntax GetBody(ParameterSyntax parameter)
@@ -270,7 +251,8 @@ namespace Roslynator.CSharp.Refactorings
                             Debug.Assert(parent?.IsKind(
                                 SyntaxKind.ParenthesizedLambdaExpression,
                                 SyntaxKind.AnonymousMethodExpression,
-                                SyntaxKind.LocalFunctionStatement) != false, parent?.Kind().ToString());
+                                SyntaxKind.LocalFunctionStatement,
+                                SyntaxKind.DelegateDeclaration) != false, parent?.Kind().ToString());
 
                             break;
                         }

@@ -24,7 +24,7 @@
 <h3>Settings</h3>
 <p>Analyzers can be enabled/disabled using <b>rule set</b>. Please see <a href="http://github.com/JosefPihrt/Roslynator/blob/master/docs/HowToCustomizeAnalyzers.md">How to Customize Analyzers</a>.</p>  
 <p>Refactorings can be enabled/disabled in Visual Studio options.</p>  
-<img src="http://pihrt.net/images/roslyn/RefactoringsOptions.png" alt="Refactorings Options">
+<img src="http://pihrt.net/images/roslynator/RefactoringsOptions.png" alt="Refactorings Options">
 
 <h3>List of Related Products</h3>
 
@@ -139,7 +139,7 @@
     <li>RCS1082 - Use 'Count/Length' property instead of 'Count' method.</li>
     <li>RCS1083 - Use 'Any' method instead of 'Count' method.</li>
     <li>RCS1084 - Use coalesce expression instead of conditional expression.</li>
-    <li>RCS1085 - Use auto-implemented property instead of expanded property.</li>
+    <li>RCS1085 - Use auto-implemented property.</li>
     <li>RCS1086 - Use linefeed as newline.</li>
     <li>RCS1087 - Use carriage return + linefeed as newline.</li>
     <li>RCS1088 - Use space(s) instead of tab.</li>
@@ -229,6 +229,7 @@
     <li>RCS1172 - Use is operator instead of as operator.</li>
     <li>RCS1173 - Use coalesce expression instead of if.</li>
     <li>RCS1174 - Remove redundant async/await.</li>
+    <li>RCS1175 - Unused this parameter.</li>
 </ul>
 <h3>List of Refactorings</h3>
 <ul>
@@ -267,6 +268,9 @@
     </li>
     <li>
         <a href="http://github.com/JosefPihrt/Roslynator/blob/master/source/Refactorings/Refactorings.md#add-parameter-name-to-parameter">Add parameter name to parameter</a>
+    </li>
+    <li>
+        <a href="http://github.com/JosefPihrt/Roslynator/blob/master/source/Refactorings/Refactorings.md#add-type-parameter">Add type parameter</a>
     </li>
     <li>
         <a href="http://github.com/JosefPihrt/Roslynator/blob/master/source/Refactorings/Refactorings.md#add-using-directive">Add using directive</a>
@@ -408,6 +412,9 @@
     </li>
     <li>
         <a href="http://github.com/JosefPihrt/Roslynator/blob/master/source/Refactorings/Refactorings.md#generate-switch-sections">Generate switch sections</a>
+    </li>
+    <li>
+        <a href="http://github.com/JosefPihrt/Roslynator/blob/master/source/Refactorings/Refactorings.md#implement-iequatablet">Implement IEquatable&lt;T&gt;</a>
     </li>
     <li>
         <a href="http://github.com/JosefPihrt/Roslynator/blob/master/source/Refactorings/Refactorings.md#initialize-local-with-default-value">Initialize local with default value</a>

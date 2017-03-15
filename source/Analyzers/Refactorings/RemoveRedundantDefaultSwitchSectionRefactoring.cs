@@ -31,39 +31,26 @@ namespace Roslynator.CSharp.Refactorings
 
         private static bool ContainsOnlyBreakStatement(SwitchSectionSyntax switchSection)
         {
-            SyntaxList<StatementSyntax> statements = switchSection.Statements;
+            StatementSyntax statement = switchSection.SingleStatementOrDefault();
 
-            if (statements.Count == 1)
+            switch (statement?.Kind())
             {
-                StatementSyntax statement = statements[0];
-
-                switch (statement.Kind())
-                {
-                    case SyntaxKind.Block:
-                        {
-                            var block = (BlockSyntax)statement;
-
-                            SyntaxList<StatementSyntax> blockStatements = block.Statements;
-
-                            if (blockStatements.Count == 1
-                                && blockStatements[0].IsKind(SyntaxKind.BreakStatement))
-                            {
-                                return true;
-                            }
-
-                            break;
-                        }
-                    case SyntaxKind.BreakStatement:
-                        {
-                            return true;
-                        }
-                }
+                case SyntaxKind.Block:
+                    {
+                        return ((BlockSyntax)statement)
+                            .SingleStatementOrDefault()?
+                            .IsKind(SyntaxKind.BreakStatement) == true;
+                    }
+                case SyntaxKind.BreakStatement:
+                    {
+                        return true;
+                    }
             }
 
             return false;
         }
 
-        public static async Task<Document> RefactorAsync(
+        public static Task<Document> RefactorAsync(
             Document document,
             SwitchSectionSyntax switchSection,
             CancellationToken cancellationToken)
@@ -72,7 +59,7 @@ namespace Roslynator.CSharp.Refactorings
 
             SwitchStatementSyntax newSwitchStatement = GetNewSwitchStatement(switchSection, switchStatement);
 
-            return await document.ReplaceNodeAsync(switchStatement, newSwitchStatement, cancellationToken).ConfigureAwait(false);
+            return document.ReplaceNodeAsync(switchStatement, newSwitchStatement, cancellationToken);
         }
 
         private static SwitchStatementSyntax GetNewSwitchStatement(SwitchSectionSyntax switchSection, SwitchStatementSyntax switchStatement)

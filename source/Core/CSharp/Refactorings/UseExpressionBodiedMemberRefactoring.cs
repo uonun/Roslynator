@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Roslynator.CSharp.Extensions;
 using Roslynator.Extensions;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 using static Roslynator.CSharp.CSharpFactory;
@@ -111,15 +112,10 @@ namespace Roslynator.CSharp.Refactorings
         {
             if (block != null)
             {
-                SyntaxList<StatementSyntax> statements = block.Statements;
+                StatementSyntax statement = block.SingleStatementOrDefault();
 
-                if (statements.Count == 1)
-                {
-                    StatementSyntax statement = statements[0];
-
-                    if (statement.IsKind(SyntaxKind.ReturnStatement))
-                        return ((ReturnStatementSyntax)statement).Expression;
-                }
+                if (statement?.IsKind(SyntaxKind.ReturnStatement) == true)
+                    return ((ReturnStatementSyntax)statement).Expression;
             }
 
             return default(ExpressionSyntax);
@@ -129,19 +125,14 @@ namespace Roslynator.CSharp.Refactorings
         {
             if (block != null)
             {
-                SyntaxList<StatementSyntax> statements = block.Statements;
+                StatementSyntax statement = block.SingleStatementOrDefault();
 
-                if (statements.Count == 1)
+                switch (statement?.Kind())
                 {
-                    StatementSyntax statement = statements[0];
-
-                    switch (statement.Kind())
-                    {
-                        case SyntaxKind.ReturnStatement:
-                            return ((ReturnStatementSyntax)statement).Expression;
-                        case SyntaxKind.ExpressionStatement:
-                            return ((ExpressionStatementSyntax)statement).Expression;
-                    }
+                    case SyntaxKind.ReturnStatement:
+                        return ((ReturnStatementSyntax)statement).Expression;
+                    case SyntaxKind.ExpressionStatement:
+                        return ((ExpressionStatementSyntax)statement).Expression;
                 }
             }
 
@@ -163,7 +154,7 @@ namespace Roslynator.CSharp.Refactorings
             }
         }
 
-        public static async Task<Document> RefactorAsync(
+        public static Task<Document> RefactorAsync(
             Document document,
             SyntaxNode node,
             CancellationToken cancellationToken = default(CancellationToken))
@@ -178,7 +169,7 @@ namespace Roslynator.CSharp.Refactorings
                 .WithTrailingTrivia(node.GetTrailingTrivia())
                 .WithFormatterAnnotation();
 
-            return await document.ReplaceNodeAsync(node, newNode, cancellationToken).ConfigureAwait(false);
+            return document.ReplaceNodeAsync(node, newNode, cancellationToken);
         }
 
         private static SyntaxNode GetNewNode(SyntaxNode node)

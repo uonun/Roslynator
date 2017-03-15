@@ -24,7 +24,7 @@ namespace Roslynator.CSharp.Refactorings
         {
             var ifStatement = (IfStatementSyntax)context.Node;
 
-            if (!IfElseChain.IsPartOfChain(ifStatement)
+            if (ifStatement.IsSimpleIf()
                 && !IsPartOfLazyInitialization(ifStatement))
             {
                 ExpressionSyntax condition = ifStatement.Condition;
@@ -41,9 +41,7 @@ namespace Roslynator.CSharp.Refactorings
 
                         if (right?.IsKind(SyntaxKind.NullLiteralExpression) == true)
                         {
-                            StatementSyntax blockOrStatement = ifStatement.Statement;
-
-                            StatementSyntax childStatement = GetSingleStatementOrDefault(blockOrStatement);
+                            StatementSyntax childStatement = ifStatement.GetSingleStatementOrDefault();
 
                             if (childStatement?.IsKind(SyntaxKind.ExpressionStatement) == true)
                             {
@@ -55,28 +53,33 @@ namespace Roslynator.CSharp.Refactorings
                                 {
                                     var assignment = (AssignmentExpressionSyntax)expression;
 
-                                    if (assignment.Left?.IsEquivalentTo(left, topLevel: false) == true
-                                        && assignment.Right?.IsMissing == false
-                                        && !ifStatement.SpanContainsDirectives())
+                                    if (assignment.Left?.IsEquivalentTo(left, topLevel: false) == true)
                                     {
-                                        StatementSyntax statementToReport = ifStatement;
+                                        ExpressionSyntax assignmentRight = assignment.Right;
 
-                                        SyntaxList<StatementSyntax> statements = StatementContainer.GetStatements(ifStatement);
-
-                                        if (statements.Any())
+                                        if (assignmentRight?.IsMissing == false
+                                            && assignmentRight.IsSingleLine()
+                                            && !ifStatement.SpanContainsDirectives())
                                         {
-                                            int index = statements.IndexOf(ifStatement);
+                                            StatementSyntax statementToReport = ifStatement;
 
-                                            if (index > 0)
+                                            SyntaxList<StatementSyntax> statements = StatementContainer.GetStatements(ifStatement);
+
+                                            if (statements.Any())
                                             {
-                                                StatementSyntax previousStatement = statements[index - 1];
+                                                int index = statements.IndexOf(ifStatement);
 
-                                                if (CanRefactor(previousStatement, ifStatement, left, ifStatement.Parent))
-                                                    statementToReport = previousStatement;
+                                                if (index > 0)
+                                                {
+                                                    StatementSyntax previousStatement = statements[index - 1];
+
+                                                    if (CanRefactor(previousStatement, ifStatement, left, ifStatement.Parent))
+                                                        statementToReport = previousStatement;
+                                                }
                                             }
-                                        }
 
-                                        context.ReportDiagnostic(DiagnosticDescriptors.UseCoalesceExpression, statementToReport);
+                                            context.ReportDiagnostic(DiagnosticDescriptors.UseCoalesceExpression, statementToReport);
+                                        }
                                     }
                                 }
                             }
@@ -167,28 +170,6 @@ namespace Roslynator.CSharp.Refactorings
             return false;
         }
 
-        private static StatementSyntax GetSingleStatementOrDefault(StatementSyntax statement)
-        {
-            if (statement != null)
-            {
-                if (statement.IsKind(SyntaxKind.Block))
-                {
-                    var block = (BlockSyntax)statement;
-
-                    SyntaxList<StatementSyntax> statements = block.Statements;
-
-                    if (statements.Count == 1)
-                        return statements[0];
-                }
-                else
-                {
-                    return statement;
-                }
-            }
-
-            return null;
-        }
-
         public static async Task<Document> RefactorAsync(
             Document document,
             StatementSyntax statement,
@@ -208,16 +189,25 @@ namespace Roslynator.CSharp.Refactorings
                         {
                             var ifStatement = (IfStatementSyntax)statement;
 
-                            var expressionStatement = (ExpressionStatementSyntax)GetSingleStatementOrDefault(ifStatement.Statement);
+                            var expressionStatement = (ExpressionStatementSyntax)ifStatement.GetSingleStatementOrDefault();
 
                             var assignment = (AssignmentExpressionSyntax)expressionStatement.Expression;
 
                             ExpressionSyntax left = assignment.Left;
                             ExpressionSyntax right = assignment.Right;
 
-                            BinaryExpressionSyntax coalesceExpression = CoalesceExpression(
-                                left.WithoutLeadingTrivia().WithTrailingTrivia(Space),
-                                right.WithLeadingTrivia(Space));
+                            ParenthesizedExpressionSyntax newLeft = left
+                                .WithoutLeadingTrivia()
+                                .WithTrailingTrivia(Space)
+                                .Parenthesize(moveTrivia: true)
+                                .WithSimplifierAnnotation();
+
+                            ParenthesizedExpressionSyntax newRight = right
+                                    .WithLeadingTrivia(Space)
+                                    .Parenthesize(moveTrivia: true)
+                                    .WithSimplifierAnnotation();
+
+                            BinaryExpressionSyntax coalesceExpression = CoalesceExpression(newLeft, newRight);
 
                             AssignmentExpressionSyntax newAssignment = assignment.WithRight(coalesceExpression.WithTriviaFrom(right));
 
@@ -267,7 +257,7 @@ namespace Roslynator.CSharp.Refactorings
             return document;
         }
 
-        private static async Task<Document> RefactorAsync(
+        private static Task<Document> RefactorAsync(
             Document document,
             StatementSyntax statement,
             IfStatementSyntax ifStatement,
@@ -276,15 +266,21 @@ namespace Roslynator.CSharp.Refactorings
             ExpressionSyntax expression,
             CancellationToken cancellationToken)
         {
-            var expressionStatement = (ExpressionStatementSyntax)GetSingleStatementOrDefault(ifStatement.Statement);
+            var expressionStatement = (ExpressionStatementSyntax)ifStatement.GetSingleStatementOrDefault();
 
             var assignment = (AssignmentExpressionSyntax)expressionStatement.Expression;
 
-            ExpressionSyntax right = assignment.Right;
+            ExpressionSyntax left = expression
+                .WithoutTrailingTrivia()
+                .Parenthesize(moveTrivia: true)
+                .WithSimplifierAnnotation();
 
-            BinaryExpressionSyntax newNode = CoalesceExpression(
-                expression.WithoutTrailingTrivia(),
-                right.WithTrailingTrivia(expression.GetTrailingTrivia()));
+            ExpressionSyntax right = assignment.Right
+                .WithTrailingTrivia(expression.GetTrailingTrivia())
+                .Parenthesize(moveTrivia: true)
+                .WithSimplifierAnnotation();
+
+            BinaryExpressionSyntax newNode = CoalesceExpression(left, right);
 
             StatementSyntax newStatement = statement.ReplaceNode(expression, newNode);
 
@@ -304,7 +300,7 @@ namespace Roslynator.CSharp.Refactorings
                 .Remove(ifStatement)
                 .ReplaceAt(statementIndex, newStatement);
 
-            return await document.ReplaceNodeAsync(container.Node, container.NodeWithStatements(newStatements), cancellationToken).ConfigureAwait(false);
+            return document.ReplaceNodeAsync(container.Node, container.NodeWithStatements(newStatements), cancellationToken);
         }
     }
 }

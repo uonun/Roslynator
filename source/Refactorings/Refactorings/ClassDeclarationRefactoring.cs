@@ -11,11 +11,17 @@ namespace Roslynator.CSharp.Refactorings
     {
         public static async Task ComputeRefactorings(RefactoringContext context, ClassDeclarationSyntax classDeclaration)
         {
+            if (context.IsRefactoringEnabled(RefactoringIdentifiers.AddTypeParameter))
+                AddTypeParameterRefactoring.ComputeRefactoring(context, classDeclaration);
+
             if (context.IsRefactoringEnabled(RefactoringIdentifiers.ExtractTypeDeclarationToNewFile))
                 ExtractTypeDeclarationToNewFileRefactoring.ComputeRefactorings(context, classDeclaration);
 
             if (context.IsRefactoringEnabled(RefactoringIdentifiers.GenerateBaseConstructors))
                 await GenerateBaseConstructorsRefactoring.ComputeRefactoringAsync(context, classDeclaration).ConfigureAwait(false);
+
+            if (context.IsRefactoringEnabled(RefactoringIdentifiers.ImplementIEquatableOfT))
+                await ImplementIEquatableOfTRefactoring.ComputeRefactoringAsync(context, classDeclaration).ConfigureAwait(false);
 
             if (context.IsRefactoringEnabled(RefactoringIdentifiers.SortMemberDeclarations)
                 && classDeclaration.BracesSpan().Contains(context.Span))

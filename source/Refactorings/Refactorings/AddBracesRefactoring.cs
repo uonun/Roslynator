@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Josef Pihrt. All rights reserved. Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,7 +31,7 @@ namespace Roslynator.CSharp.Refactorings
                     IfStatementSyntax topmostIf = GetTopmostIf(statement);
 
                     if (topmostIf?.Else != null
-                        && IfElseChain.GetEmbeddedStatements(topmostIf).Any(f => f != statement))
+                        && GetEmbeddedStatements(topmostIf).Any(f => f != statement))
                     {
                         context.RegisterRefactoring(
                             "Add braces to if-else",
@@ -43,6 +44,17 @@ namespace Roslynator.CSharp.Refactorings
                             });
                     }
                 }
+            }
+        }
+
+        private static IEnumerable<StatementSyntax> GetEmbeddedStatements(IfStatementSyntax topmostIf)
+        {
+            foreach (IfStatementOrElseClause ifOrElse in IfElseChain.GetChain(topmostIf))
+            {
+                StatementSyntax statement = ifOrElse.Statement;
+
+                if (statement?.IsKind(SyntaxKind.Block) == false)
+                    yield return statement;
             }
         }
 
@@ -81,7 +93,7 @@ namespace Roslynator.CSharp.Refactorings
             return null;
         }
 
-        public static async Task<Document> RefactorAsync(
+        public static Task<Document> RefactorAsync(
             Document document,
             StatementSyntax statement,
             CancellationToken cancellationToken = default(CancellationToken))
@@ -89,7 +101,7 @@ namespace Roslynator.CSharp.Refactorings
             BlockSyntax block = SyntaxFactory.Block(statement)
                 .WithFormatterAnnotation();
 
-            return await document.ReplaceNodeAsync(statement, block, cancellationToken).ConfigureAwait(false);
+            return document.ReplaceNodeAsync(statement, block, cancellationToken);
         }
     }
 }

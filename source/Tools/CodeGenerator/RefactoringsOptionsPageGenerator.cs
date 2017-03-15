@@ -28,7 +28,6 @@ namespace CodeGenerator
                 .WithUsings(List(new UsingDirectiveSyntax[] {
                     UsingDirective(ParseName(MetadataNames.System_Collections_Generic)),
                     UsingDirective(ParseName(MetadataNames.System_ComponentModel)),
-                    UsingDirective(ParseName(MetadataNames.System_Linq)),
                     UsingDirective(ParseName("Roslynator.CSharp.Refactorings")),
                     UsingDirective(ParseName("Roslynator.VisualStudio.TypeConverters"))}))
                 .WithMembers(
@@ -44,27 +43,31 @@ namespace CodeGenerator
         {
             yield return ConstructorDeclaration("RefactoringsOptionsPage")
                 .WithModifiers(Modifiers.Public())
-                .WithBody(
-                    Block(refactorings
-                        .OrderBy(f => f.Id, InvariantComparer)
-                        .Select(refactoring =>
+                .WithBody(Block(
+                    refactorings
+                        .Where(f => ShouldGenerateProperty(f))
+                        .Select(f => ExpressionStatement(ParseExpression($"{f.Identifier} = {TrueOrFalseLiteralExpression(f.IsEnabledByDefault)}")))
+                        .Concat(new StatementSyntax[]
                         {
-                            return SimpleAssignmentStatement(
-                                IdentifierName(refactoring.Id),
-                                (refactoring.IsEnabledByDefault) ? TrueLiteralExpression() : FalseLiteralExpression());
+                            SimpleAssignmentStatement(
+                                IdentifierName("DisabledRefactorings"),
+                                ParseExpression(
+                                    "$\"" +
+                                    string.Join(",", refactorings
+                                        .Where(f => !f.IsEnabledByDefault)
+                                        .OrderBy(f => f.Identifier, InvariantComparer)
+                                        .Select(f => $"{{RefactoringIdentifiers.{f.Identifier}}}")) +
+                                    "\""))
                         })));
 
-            yield return MethodDeclaration(VoidType(), "MigrateValuesFromIdentifierPropertiesToIdProperties")
+        yield return MethodDeclaration(VoidType(), "MigrateValuesFromIdentifierProperties")
                 .WithModifiers(Modifiers.Public())
                 .WithParameterList(ParameterList())
                 .WithBody(
                     Block(refactorings
+                        .Where(f => ShouldGenerateProperty(f))
                         .OrderBy(f => f.Id, InvariantComparer)
-                        .Select(refactoring =>
-                        {
-                            return ExpressionStatement(
-                                ParseExpression($"{refactoring.Id} = {refactoring.Identifier}"));
-                        })));
+                        .Select(refactoring => ExpressionStatement(ParseExpression($"SetIsEnabled(RefactoringIdentifiers.{refactoring.Identifier}, {refactoring.Identifier})")))));
 
             yield return MethodDeclaration(VoidType(), "SetRefactoringsDisabledByDefault")
                 .WithModifiers(Modifiers.PublicStatic())
@@ -79,72 +82,52 @@ namespace CodeGenerator
                                 ParseExpression($"settings.DisableRefactoring(RefactoringIdentifiers.{refactoring.Identifier})"));
                         })));
 
-            yield return MethodDeclaration(VoidType(), "SaveValuesToView")
+            yield return MethodDeclaration(VoidType(), "Fill")
                 .WithModifiers(Modifiers.Public())
                 .WithParameterList(ParameterList(Parameter(ParseTypeName("ICollection<RefactoringModel>"), Identifier("refactorings"))))
                 .WithBody(
-                    Block(refactorings
-                        .OrderBy(f => f.Id, InvariantComparer)
-                        .Select(refactoring =>
-                        {
-                            return ExpressionStatement(
-                                ParseExpression($"refactorings.Add(new RefactoringModel(\"{refactoring.Id}\", \"{StringUtility.EscapeQuote(refactoring.Title)}\", {refactoring.Id}))"));
-                        })));
+                    Block((new StatementSyntax[] { ExpressionStatement(ParseExpression("refactorings.Clear()")) })
+                        .Concat(refactorings
+                            .OrderBy(f => f.Id, InvariantComparer)
+                            .Select(refactoring =>
+                            {
+                                return ExpressionStatement(
+                                    ParseExpression($"refactorings.Add(new RefactoringModel(RefactoringIdentifiers.{refactoring.Identifier}, \"{StringUtility.EscapeQuote(refactoring.Title)}\", IsEnabled(RefactoringIdentifiers.{refactoring.Identifier})))"));
+                            }))));
 
-            yield return MethodDeclaration(VoidType(), "LoadValuesFromView")
+            yield return MethodDeclaration(VoidType(), "ApplyTo")
                 .WithModifiers(Modifiers.Public())
-                .WithParameterList(ParameterList(Parameter(ParseTypeName("ICollection<RefactoringModel>"), Identifier("refactorings"))))
-                .WithBody(
-                    Block(refactorings
-                        .OrderBy(f => f.Id, InvariantComparer)
-                        .Select(refactoring =>
-                        {
-                            return ExpressionStatement(
-                                ParseExpression($"{refactoring.Id} = refactorings.FirstOrDefault(f => f.Id == \"{refactoring.Id}\").Enabled"));
-                        })));
-
-            yield return MethodDeclaration(VoidType(), "Apply")
-                .WithModifiers(Modifiers.Public())
+                .WithParameterList(ParameterList(Parameter(IdentifierName("RefactoringSettings"), Identifier("settings"))))
                 .WithBody(
                     Block(refactorings
                         .OrderBy(f => f.Identifier, InvariantComparer)
-                        .Select(refactoring =>
-                        {
-                            return ExpressionStatement(
-                                InvocationExpression(
-                                    IdentifierName("SetIsEnabled"),
-                                    ArgumentList(
-                                        Argument(
-                                            SimpleMemberAccessExpression(
-                                                IdentifierName("RefactoringIdentifiers"),
-                                                IdentifierName(refactoring.Identifier))),
-                                        Argument(IdentifierName(refactoring.Id)))));
-                        })));
+                        .Select(refactoring => ExpressionStatement(ParseExpression($"settings.SetRefactoring(RefactoringIdentifiers.{refactoring.Identifier}, IsEnabled(RefactoringIdentifiers.{refactoring.Identifier}))")))));
 
-            foreach (RefactoringDescriptor info in refactorings.OrderBy(f => f.Id, InvariantComparer))
-                yield return PropertyDeclaration(BoolType(), info.Id)
-                    .WithAttributeLists(
-                        SingletonAttributeList(Attribute(IdentifierName("Category"), IdentifierName("RefactoringCategory"))),
-                        SingletonAttributeList(Attribute(IdentifierName("DisplayName"), StringLiteralExpression(info.Title))),
-                        SingletonAttributeList(Attribute(IdentifierName("Description"), StringLiteralExpression(CreateDescription(info)))),
-                        SingletonAttributeList(Attribute(IdentifierName("TypeConverter"), TypeOfExpression(IdentifierName("EnabledDisabledConverter")))))
-                    .WithModifiers(Modifiers.Public())
-                    .WithAccessorList(
-                        AccessorList(
-                            AutoGetAccessorDeclaration(),
-                            AutoSetAccessorDeclaration()));
-
-            foreach (RefactoringDescriptor info in refactorings.OrderBy(f => f.Identifier, InvariantComparer))
+            foreach (RefactoringDescriptor info in refactorings
+                .Where(f => ShouldGenerateProperty(f))
+                .OrderBy(f => f.Identifier, InvariantComparer))
+            {
                 yield return PropertyDeclaration(BoolType(), info.Identifier)
-                    .WithAttributeLists(
-                        SingletonAttributeList(Attribute(IdentifierName("Browsable"), FalseLiteralExpression())),
-                        SingletonAttributeList(Attribute(IdentifierName("Category"), IdentifierName("RefactoringCategory"))),
-                        SingletonAttributeList(Attribute(IdentifierName("TypeConverter"), TypeOfExpression(IdentifierName("EnabledDisabledConverter")))))
-                    .WithModifiers(Modifiers.Public())
-                    .WithAccessorList(
-                        AccessorList(
-                            AutoGetAccessorDeclaration(),
-                            AutoSetAccessorDeclaration()));
+                   .WithAttributeLists(
+                       AttributeList(Attribute(IdentifierName("Browsable"), FalseLiteralExpression())),
+                       AttributeList(Attribute(IdentifierName("Category"), IdentifierName("RefactoringCategory"))),
+                       AttributeList(Attribute(IdentifierName("TypeConverter"), TypeOfExpression(IdentifierName("EnabledDisabledConverter")))))
+                   .WithModifiers(Modifiers.Public())
+                   .WithAccessorList(
+                       AccessorList(
+                           AutoGetAccessorDeclaration(),
+                           AutoSetAccessorDeclaration()));
+            }
+        }
+
+        private LiteralExpressionSyntax TrueOrFalseLiteralExpression(bool value)
+        {
+            return (value) ? TrueLiteralExpression() : FalseLiteralExpression();
+        }
+
+        private static bool ShouldGenerateProperty(RefactoringDescriptor refactoring)
+        {
+            return int.Parse(refactoring.Id.Substring(2)) <= 177;
         }
 
         private static string CreateDescription(RefactoringDescriptor refactoring)

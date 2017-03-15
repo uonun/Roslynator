@@ -21,15 +21,14 @@ namespace Roslynator.CSharp.Refactorings
 
             if (expression != null)
             {
-                ExpressionSyntax right = logicalAndExpression.Right?.WalkDownParentheses();
+                ExpressionSyntax right = logicalAndExpression.Right;
 
                 if (right != null
                     && ValidateRightExpression(right, context.SemanticModel, context.CancellationToken))
                 {
                     SyntaxNode node = FindExpressionThatCanBeConditionallyAccessed(expression, right);
 
-                    if (node != null
-                        && !node.SpanContainsDirectives())
+                    if (node?.SpanContainsDirectives() == false)
                     {
                         context.ReportDiagnostic(DiagnosticDescriptors.UseConditionalAccess, logicalAndExpression);
                     }
@@ -112,7 +111,7 @@ namespace Roslynator.CSharp.Refactorings
                 && optional.Value != null;
         }
 
-        public static async Task<Document> RefactorAsync(
+        public static Task<Document> RefactorAsync(
             Document document,
             BinaryExpressionSyntax logicalAnd,
             CancellationToken cancellationToken)
@@ -123,7 +122,7 @@ namespace Roslynator.CSharp.Refactorings
                 .Parenthesize(moveTrivia: true)
                 .WithSimplifierAnnotation();
 
-            return await document.ReplaceNodeAsync(logicalAnd, newNode, cancellationToken).ConfigureAwait(false);
+            return document.ReplaceNodeAsync(logicalAnd, newNode, cancellationToken);
         }
 
         private static ExpressionSyntax CreateExpressionWithConditionalAccess(BinaryExpressionSyntax logicalAnd)
@@ -132,29 +131,29 @@ namespace Roslynator.CSharp.Refactorings
 
             ExpressionSyntax right = logicalAnd.Right;
 
-            ExpressionSyntax rightWithoutParentheses = right.WalkDownParentheses();
-
             SyntaxNode node = FindExpressionThatCanBeConditionallyAccessed(
                 expression,
-                rightWithoutParentheses.WalkDownParentheses());
+                right);
 
-            SyntaxKind kind = rightWithoutParentheses.Kind();
+            SyntaxKind kind = right.Kind();
 
             if (kind == SyntaxKind.LogicalNotExpression)
             {
-                var logicalNot = (PrefixUnaryExpressionSyntax)rightWithoutParentheses;
+                var logicalNot = (PrefixUnaryExpressionSyntax)right;
                 ExpressionSyntax operand = logicalNot.Operand;
                 SyntaxToken operatorToken = logicalNot.OperatorToken;
 
                 string s = operand.ToFullString();
 
                 int length = node.Span.End - operand.FullSpan.Start;
+                int trailingLength = operand.GetTrailingTrivia().Span.Length;
 
                 var sb = new StringBuilder();
                 sb.Append(s, 0, length);
                 sb.Append("?");
-                sb.Append(s, length, s.Length - length);
+                sb.Append(s, length, s.Length - length - trailingLength);
                 sb.Append(" == false");
+                sb.Append(s, s.Length - trailingLength, trailingLength);
 
                 return ParseExpression(sb.ToString());
             }
@@ -163,11 +162,12 @@ namespace Roslynator.CSharp.Refactorings
                 string s = right.ToFullString();
 
                 int length = node.Span.End - right.FullSpan.Start;
+                int trailingLength = right.GetTrailingTrivia().Span.Length;
 
                 var sb = new StringBuilder();
                 sb.Append(s, 0, length);
                 sb.Append("?");
-                sb.Append(s, length, s.Length - length);
+                sb.Append(s, length, s.Length - length - trailingLength);
 
                 switch (kind)
                 {
@@ -191,6 +191,8 @@ namespace Roslynator.CSharp.Refactorings
                             break;
                         }
                 }
+
+                sb.Append(s, s.Length - trailingLength, trailingLength);
 
                 return ParseExpression(sb.ToString());
             }

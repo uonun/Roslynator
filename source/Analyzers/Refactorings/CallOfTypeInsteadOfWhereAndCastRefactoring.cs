@@ -146,23 +146,16 @@ namespace Roslynator.CSharp.Refactorings
                     }
                 case SyntaxKind.Block:
                     {
-                        var block = (BlockSyntax)body;
+                        StatementSyntax statement = ((BlockSyntax)body).SingleStatementOrDefault();
 
-                        SyntaxList<StatementSyntax> statements = block.Statements;
-
-                        if (statements.Count == 1)
+                        if (statement?.IsKind(SyntaxKind.ReturnStatement) == true)
                         {
-                            StatementSyntax statement = statements.First();
+                            var returnStatement = (ReturnStatementSyntax)statement;
 
-                            if (statement.IsKind(SyntaxKind.ReturnStatement))
-                            {
-                                var returnStatement = (ReturnStatementSyntax)statement;
+                            ExpressionSyntax returnExpression = returnStatement.Expression;
 
-                                ExpressionSyntax returnExpression = returnStatement.Expression;
-
-                                if (returnExpression?.IsKind(SyntaxKind.IsExpression) == true)
-                                    return (BinaryExpressionSyntax)returnExpression;
-                            }
+                            if (returnExpression?.IsKind(SyntaxKind.IsExpression) == true)
+                                return (BinaryExpressionSyntax)returnExpression;
                         }
 
                         break;
@@ -172,7 +165,7 @@ namespace Roslynator.CSharp.Refactorings
             return null;
         }
 
-        public static async Task<Document> RefactorAsync(
+        public static Task<Document> RefactorAsync(
             Document document,
             InvocationExpressionSyntax invocation,
             CancellationToken cancellationToken)
@@ -189,7 +182,7 @@ namespace Roslynator.CSharp.Refactorings
                 memberAccess2.WithName(genericName.WithIdentifier(Identifier("OfType"))),
                 invocation.ArgumentList.WithArguments(SeparatedList<ArgumentSyntax>()));
 
-            return await document.ReplaceNodeAsync(invocation, newInvocation, cancellationToken).ConfigureAwait(false);
+            return document.ReplaceNodeAsync(invocation, newInvocation, cancellationToken);
         }
     }
 }

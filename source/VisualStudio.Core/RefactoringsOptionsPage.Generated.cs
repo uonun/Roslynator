@@ -4,7 +4,6 @@
 
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using Roslynator.CSharp.Refactorings;
 using Roslynator.VisualStudio.TypeConverters;
 
@@ -14,364 +13,365 @@ namespace Roslynator.VisualStudio
     {
         public RefactoringsOptionsPage()
         {
-            RR0001 = true;
-            RR0002 = true;
-            RR0003 = true;
-            RR0004 = true;
-            RR0005 = true;
-            RR0006 = true;
-            RR0007 = true;
-            RR0008 = true;
-            RR0009 = true;
-            RR0010 = true;
-            RR0011 = true;
-            RR0012 = true;
-            RR0013 = true;
-            RR0014 = true;
-            RR0015 = true;
-            RR0016 = true;
-            RR0017 = true;
-            RR0018 = true;
-            RR0019 = true;
-            RR0020 = true;
-            RR0021 = true;
-            RR0022 = true;
-            RR0023 = true;
-            RR0024 = true;
-            RR0025 = true;
-            RR0026 = true;
-            RR0027 = true;
-            RR0028 = true;
-            RR0029 = true;
-            RR0030 = true;
-            RR0031 = true;
-            RR0032 = true;
-            RR0033 = true;
-            RR0034 = true;
-            RR0035 = true;
-            RR0036 = true;
-            RR0037 = true;
-            RR0038 = true;
-            RR0039 = true;
-            RR0040 = true;
-            RR0041 = true;
-            RR0042 = true;
-            RR0043 = true;
-            RR0044 = true;
-            RR0045 = true;
-            RR0046 = true;
-            RR0047 = true;
-            RR0048 = true;
-            RR0049 = true;
-            RR0050 = true;
-            RR0051 = true;
-            RR0052 = true;
-            RR0053 = true;
-            RR0054 = true;
-            RR0055 = true;
-            RR0056 = true;
-            RR0057 = true;
-            RR0058 = true;
-            RR0059 = true;
-            RR0060 = true;
-            RR0061 = true;
-            RR0062 = true;
-            RR0063 = true;
-            RR0064 = true;
-            RR0065 = true;
-            RR0066 = false;
-            RR0067 = true;
-            RR0068 = true;
-            RR0069 = true;
-            RR0070 = true;
-            RR0071 = true;
-            RR0072 = true;
-            RR0073 = true;
-            RR0074 = true;
-            RR0075 = true;
-            RR0076 = true;
-            RR0077 = true;
-            RR0078 = true;
-            RR0079 = true;
-            RR0080 = true;
-            RR0081 = true;
-            RR0082 = true;
-            RR0083 = true;
-            RR0084 = true;
-            RR0085 = true;
-            RR0086 = true;
-            RR0087 = true;
-            RR0088 = false;
-            RR0089 = true;
-            RR0090 = true;
-            RR0091 = true;
-            RR0092 = true;
-            RR0093 = true;
-            RR0094 = true;
-            RR0095 = true;
-            RR0096 = true;
-            RR0097 = true;
-            RR0098 = true;
-            RR0099 = true;
-            RR0100 = true;
-            RR0101 = true;
-            RR0102 = true;
-            RR0103 = true;
-            RR0104 = true;
-            RR0105 = true;
-            RR0106 = true;
-            RR0107 = true;
-            RR0108 = true;
-            RR0109 = true;
-            RR0110 = true;
-            RR0111 = true;
-            RR0112 = true;
-            RR0113 = true;
-            RR0114 = true;
-            RR0115 = true;
-            RR0116 = true;
-            RR0117 = true;
-            RR0118 = true;
-            RR0119 = true;
-            RR0120 = true;
-            RR0121 = true;
-            RR0122 = true;
-            RR0123 = true;
-            RR0124 = true;
-            RR0125 = true;
-            RR0126 = true;
-            RR0127 = true;
-            RR0128 = true;
-            RR0129 = true;
-            RR0130 = true;
-            RR0131 = true;
-            RR0132 = true;
-            RR0133 = true;
-            RR0134 = true;
-            RR0135 = true;
-            RR0136 = true;
-            RR0137 = true;
-            RR0138 = false;
-            RR0139 = true;
-            RR0140 = true;
-            RR0141 = true;
-            RR0142 = true;
-            RR0143 = true;
-            RR0144 = true;
-            RR0145 = true;
-            RR0146 = true;
-            RR0147 = true;
-            RR0148 = true;
-            RR0149 = true;
-            RR0150 = true;
-            RR0151 = true;
-            RR0152 = true;
-            RR0153 = true;
-            RR0154 = true;
-            RR0155 = true;
-            RR0156 = true;
-            RR0157 = true;
-            RR0158 = true;
-            RR0159 = true;
-            RR0160 = true;
-            RR0161 = true;
-            RR0162 = true;
-            RR0163 = true;
-            RR0164 = true;
-            RR0165 = true;
-            RR0166 = true;
-            RR0167 = true;
-            RR0168 = true;
-            RR0169 = true;
-            RR0170 = true;
-            RR0171 = false;
-            RR0172 = true;
-            RR0173 = true;
-            RR0174 = true;
-            RR0175 = true;
-            RR0176 = true;
-            RR0177 = true;
+            AddBooleanComparison = true;
+            AddBraces = true;
+            AddBracesToIfElse = true;
+            AddBracesToSwitchSection = true;
+            AddBracesToSwitchSections = true;
+            AddCastExpression = true;
+            AddDefaultValueToParameter = true;
+            AddDefaultValueToReturnStatement = true;
+            AddExceptionToDocumentationComment = true;
+            AddIdentifierToVariableDeclaration = true;
+            AddParameterNameToArgument = true;
+            AddParameterNameToParameter = true;
+            AddUsingDirective = true;
+            AddUsingStaticDirective = true;
+            CallConfigureAwait = true;
+            CallExtensionMethodAsInstanceMethod = true;
+            CallToMethod = true;
+            ChangeExplicitTypeToVar = true;
+            ChangeMemberTypeAccordingToReturnExpression = true;
+            ChangeMemberTypeAccordingToYieldReturnExpression = true;
+            ChangeMethodReturnTypeToVoid = true;
+            ChangeTypeAccordingToExpression = true;
+            ChangeVarToExplicitType = true;
+            CheckExpressionForNull = true;
+            CheckParameterForNull = true;
+            CollapseToInitializer = true;
+            CommentOutMember = true;
+            CommentOutStatement = true;
+            CopyDocumentationCommentFromBaseMember = true;
+            DuplicateArgument = true;
+            DuplicateMember = true;
+            DuplicateParameter = true;
+            DuplicateStatement = true;
+            ExpandAssignmentExpression = true;
+            ExpandCoalesceExpression = true;
+            ExpandEvent = true;
+            ExpandExpressionBody = true;
+            ExpandInitializer = true;
+            ExpandLambdaExpressionBody = true;
+            ExpandProperty = true;
+            ExpandPropertyAndAddBackingField = true;
+            ExtractDeclarationFromUsingStatement = true;
+            ExtractExpressionFromCondition = true;
+            ExtractGenericType = true;
+            ExtractStatement = true;
+            ExtractTypeDeclarationToNewFile = true;
+            FormatAccessorBraces = true;
+            FormatArgumentList = true;
+            FormatBinaryExpression = true;
+            FormatConditionalExpression = true;
+            FormatExpressionChain = true;
+            FormatInitializer = true;
+            FormatParameterList = true;
+            GenerateBaseConstructors = true;
+            GenerateCombinedEnumMember = true;
+            GenerateEnumMember = true;
+            GenerateEnumValues = true;
+            GenerateEventInvokingMethod = true;
+            GenerateSwitchSections = true;
+            InitializeLocalWithDefaultValue = true;
+            InlineAliasExpression = true;
+            InlineMethod = true;
+            InsertStringInterpolation = true;
+            IntroduceAndInitializeField = true;
+            IntroduceAndInitializeProperty = true;
+            IntroduceConstructor = false;
+            IntroduceFieldToLockOn = true;
+            IntroduceLocalFromStatementThatReturnsValue = true;
+            MakeMemberAbstract = true;
+            MakeMemberVirtual = true;
+            MarkContainingClassAsAbstract = true;
+            MarkMemberAsStatic = true;
+            MergeAssignmentExpressionWithReturnStatement = true;
+            MergeAttributes = true;
+            MergeIfStatements = true;
+            MergeInterpolationIntoInterpolatedString = true;
+            MergeLocalDeclarations = true;
+            MergeStringExpressions = true;
+            NegateBinaryExpression = true;
+            NegateBooleanLiteral = true;
+            NegateIsExpression = true;
+            NegateOperator = true;
+            NotifyPropertyChanged = true;
+            ParenthesizeExpression = true;
+            PromoteLocalToParameter = true;
+            RemoveAllComments = true;
+            RemoveAllCommentsExceptDocumentationComments = true;
+            RemoveAllDocumentationComments = false;
+            RemoveAllMemberDeclarations = true;
+            RemoveAllPreprocessorDirectives = true;
+            RemoveAllRegionDirectives = true;
+            RemoveAllStatements = true;
+            RemoveAllSwitchSections = true;
+            RemoveBraces = true;
+            RemoveBracesFromIfElse = true;
+            RemoveBracesFromSwitchSection = true;
+            RemoveBracesFromSwitchSections = true;
+            RemoveComment = true;
+            RemoveConditionFromLastElse = true;
+            RemoveDirectiveAndRelatedDirectives = true;
+            RemoveEmptyLines = true;
+            RemoveInterpolation = true;
+            RemoveMember = true;
+            RemoveMemberDeclarations = true;
+            RemoveParameterNameFromArgument = true;
+            RemoveParentheses = true;
+            RemovePropertyInitializer = true;
+            RemoveRegion = true;
+            RemoveStatement = true;
+            RemoveStatementsFromSwitchSections = true;
+            RenameBackingFieldAccordingToPropertyName = true;
+            RenameIdentifierAccordingToTypeName = true;
+            RenameMethodAccordingToTypeName = true;
+            RenameParameterAccordingToTypeName = true;
+            RenamePropertyAccordingToTypeName = true;
+            ReplaceAnyWithAllOrAllWithAny = true;
+            ReplaceAsWithCast = true;
+            ReplaceCastWithAs = true;
+            ReplaceConditionalExpressionWithExpression = true;
+            ReplaceConditionalExpressionWithIfElse = true;
+            ReplaceConstantWithField = true;
+            ReplaceCountWithLengthOrLengthWithCount = true;
+            ReplaceDoStatementWithWhileStatement = true;
+            ReplaceEqualsExpressionWithStringEquals = true;
+            ReplaceEqualsExpressionWithStringIsNullOrEmpty = true;
+            ReplaceEqualsExpressionWithStringIsNullOrWhiteSpace = true;
+            ReplaceExpressionWithConstantValue = true;
+            ReplaceFieldWithConstant = true;
+            ReplaceForEachWithFor = true;
+            ReplaceForWithForEach = true;
+            ReplaceForWithWhile = true;
+            ReplaceHexadecimalLiteralWithDecimalLiteral = true;
+            ReplaceIfElseWithSwitch = true;
+            ReplaceIncrementOperatorWithDecrementOperator = true;
+            ReplaceInterpolatedStringWithInterpolationExpression = true;
+            ReplaceInterpolatedStringWithStringLiteral = true;
+            ReplaceMethodGroupWithLambda = true;
+            ReplaceMethodWithProperty = false;
+            ReplaceNullLiteralExpressionWithDefaultExpression = true;
+            ReplacePrefixOperatorWithPostfixOperator = true;
+            ReplacePropertyWithMethod = true;
+            ReplaceRegularStringLiteralWithVerbatimStringLiteral = true;
+            ReplaceStatementWithIfStatement = true;
+            ReplaceStringContainsWithStringIndexOf = true;
+            ReplaceStringFormatWithInterpolatedString = true;
+            ReplaceStringLiteralWithCharacterLiteral = true;
+            ReplaceSwitchWithIfElse = true;
+            ReplaceVerbatimStringLiteralWithRegularStringLiteral = true;
+            ReplaceVerbatimStringLiteralWithRegularStringLiterals = true;
+            ReplaceWhileStatementWithDoStatement = true;
+            ReplaceWhileWithFor = true;
+            ReverseForLoop = true;
+            SimplifyIf = true;
+            SimplifyLambdaExpression = true;
+            SortMemberDeclarations = true;
+            SplitAttributes = true;
+            SplitSwitchLabels = true;
+            SplitVariableDeclaration = true;
+            SwapExpressionsInBinaryExpression = true;
+            SwapExpressionsInConditionalExpression = true;
+            SwapMemberDeclarations = true;
+            SwapStatementsInIfElse = true;
+            Uncomment = true;
+            UseBitwiseOperationInsteadOfCallingHasFlag = true;
+            UseCoalesceExpressionInsteadOfIf = true;
+            UseConditionalExpressionInsteadOfIf = true;
+            UseElementAccessInsteadOfEnumerableMethod = true;
+            UseEmptyStringLiteralInsteadOfStringEmpty = true;
+            UseExpressionBodiedMember = true;
+            UseLambdaExpressionInsteadOfAnonymousMethod = true;
+            UseStringEmptyInsteadOfEmptyStringLiteral = false;
+            WrapInCondition = true;
+            WrapInElseClause = true;
+            WrapInIfDirective = true;
+            WrapInRegion = true;
+            WrapInTryCatch = true;
+            WrapInUsingStatement = true;
+            DisabledRefactorings = $"{RefactoringIdentifiers.IntroduceConstructor},{RefactoringIdentifiers.RemoveAllDocumentationComments},{RefactoringIdentifiers.ReplaceMethodWithProperty},{RefactoringIdentifiers.UseStringEmptyInsteadOfEmptyStringLiteral}";
         }
 
-        public void MigrateValuesFromIdentifierPropertiesToIdProperties()
+        public void MigrateValuesFromIdentifierProperties()
         {
-            RR0001 = AddBooleanComparison;
-            RR0002 = AddBraces;
-            RR0003 = AddBracesToIfElse;
-            RR0004 = AddBracesToSwitchSection;
-            RR0005 = AddBracesToSwitchSections;
-            RR0006 = AddCastExpression;
-            RR0007 = AddDefaultValueToParameter;
-            RR0008 = AddDefaultValueToReturnStatement;
-            RR0009 = AddExceptionToDocumentationComment;
-            RR0010 = AddIdentifierToVariableDeclaration;
-            RR0011 = AddParameterNameToArgument;
-            RR0012 = AddParameterNameToParameter;
-            RR0013 = AddUsingDirective;
-            RR0014 = AddUsingStaticDirective;
-            RR0015 = CallConfigureAwait;
-            RR0016 = CallExtensionMethodAsInstanceMethod;
-            RR0017 = CallToMethod;
-            RR0018 = ChangeExplicitTypeToVar;
-            RR0019 = ChangeMemberTypeAccordingToReturnExpression;
-            RR0020 = ChangeMemberTypeAccordingToYieldReturnExpression;
-            RR0021 = ChangeMethodReturnTypeToVoid;
-            RR0022 = ChangeTypeAccordingToExpression;
-            RR0023 = ChangeVarToExplicitType;
-            RR0024 = CheckExpressionForNull;
-            RR0025 = CheckParameterForNull;
-            RR0026 = CollapseToInitializer;
-            RR0027 = CommentOutMember;
-            RR0028 = CommentOutStatement;
-            RR0029 = CopyDocumentationCommentFromBaseMember;
-            RR0030 = DuplicateArgument;
-            RR0031 = DuplicateMember;
-            RR0032 = DuplicateParameter;
-            RR0033 = DuplicateStatement;
-            RR0034 = ExpandAssignmentExpression;
-            RR0035 = ExpandCoalesceExpression;
-            RR0036 = ExpandEvent;
-            RR0037 = ExpandExpressionBody;
-            RR0038 = ExpandInitializer;
-            RR0039 = ExpandLambdaExpressionBody;
-            RR0040 = ExpandProperty;
-            RR0041 = ExpandPropertyAndAddBackingField;
-            RR0042 = ExtractDeclarationFromUsingStatement;
-            RR0043 = ExtractExpressionFromCondition;
-            RR0044 = ExtractGenericType;
-            RR0045 = ExtractStatement;
-            RR0046 = ExtractTypeDeclarationToNewFile;
-            RR0047 = FormatAccessorBraces;
-            RR0048 = FormatArgumentList;
-            RR0049 = FormatBinaryExpression;
-            RR0050 = FormatConditionalExpression;
-            RR0051 = FormatExpressionChain;
-            RR0052 = FormatInitializer;
-            RR0053 = FormatParameterList;
-            RR0054 = GenerateBaseConstructors;
-            RR0055 = GenerateCombinedEnumMember;
-            RR0056 = GenerateEnumMember;
-            RR0057 = GenerateEnumValues;
-            RR0058 = GenerateEventInvokingMethod;
-            RR0059 = GenerateSwitchSections;
-            RR0060 = InitializeLocalWithDefaultValue;
-            RR0061 = InlineAliasExpression;
-            RR0062 = InlineMethod;
-            RR0063 = InsertStringInterpolation;
-            RR0064 = IntroduceAndInitializeField;
-            RR0065 = IntroduceAndInitializeProperty;
-            RR0066 = IntroduceConstructor;
-            RR0067 = IntroduceFieldToLockOn;
-            RR0068 = IntroduceLocalFromStatementThatReturnsValue;
-            RR0069 = MakeMemberAbstract;
-            RR0070 = MakeMemberVirtual;
-            RR0071 = MarkContainingClassAsAbstract;
-            RR0072 = MarkMemberAsStatic;
-            RR0073 = MergeAssignmentExpressionWithReturnStatement;
-            RR0074 = MergeAttributes;
-            RR0075 = MergeIfStatements;
-            RR0076 = MergeInterpolationIntoInterpolatedString;
-            RR0077 = MergeLocalDeclarations;
-            RR0078 = MergeStringExpressions;
-            RR0079 = NegateBinaryExpression;
-            RR0080 = NegateBooleanLiteral;
-            RR0081 = NegateIsExpression;
-            RR0082 = NegateOperator;
-            RR0083 = NotifyPropertyChanged;
-            RR0084 = ParenthesizeExpression;
-            RR0085 = PromoteLocalToParameter;
-            RR0086 = RemoveAllComments;
-            RR0087 = RemoveAllCommentsExceptDocumentationComments;
-            RR0088 = RemoveAllDocumentationComments;
-            RR0089 = RemoveAllMemberDeclarations;
-            RR0090 = RemoveAllPreprocessorDirectives;
-            RR0091 = RemoveAllRegionDirectives;
-            RR0092 = RemoveAllStatements;
-            RR0093 = RemoveAllSwitchSections;
-            RR0094 = RemoveBraces;
-            RR0095 = RemoveBracesFromIfElse;
-            RR0096 = RemoveBracesFromSwitchSection;
-            RR0097 = RemoveBracesFromSwitchSections;
-            RR0098 = RemoveComment;
-            RR0099 = RemoveConditionFromLastElse;
-            RR0100 = RemoveDirectiveAndRelatedDirectives;
-            RR0101 = RemoveEmptyLines;
-            RR0102 = RemoveInterpolation;
-            RR0103 = RemoveMember;
-            RR0104 = RemoveMemberDeclarations;
-            RR0105 = RemoveParameterNameFromArgument;
-            RR0106 = RemoveParentheses;
-            RR0107 = RemovePropertyInitializer;
-            RR0108 = RemoveRegion;
-            RR0109 = RemoveStatement;
-            RR0110 = RemoveStatementsFromSwitchSections;
-            RR0111 = RenameBackingFieldAccordingToPropertyName;
-            RR0112 = RenameIdentifierAccordingToTypeName;
-            RR0113 = RenameMethodAccordingToTypeName;
-            RR0114 = RenameParameterAccordingToTypeName;
-            RR0115 = RenamePropertyAccordingToTypeName;
-            RR0116 = ReplaceAnyWithAllOrAllWithAny;
-            RR0117 = ReplaceAsWithCast;
-            RR0118 = ReplaceCastWithAs;
-            RR0119 = ReplaceConditionalExpressionWithExpression;
-            RR0120 = ReplaceConditionalExpressionWithIfElse;
-            RR0121 = ReplaceConstantWithField;
-            RR0122 = ReplaceCountWithLengthOrLengthWithCount;
-            RR0123 = ReplaceDoStatementWithWhileStatement;
-            RR0124 = ReplaceEqualsExpressionWithStringEquals;
-            RR0125 = ReplaceEqualsExpressionWithStringIsNullOrEmpty;
-            RR0126 = ReplaceEqualsExpressionWithStringIsNullOrWhiteSpace;
-            RR0127 = ReplaceExpressionWithConstantValue;
-            RR0128 = ReplaceFieldWithConstant;
-            RR0129 = ReplaceForEachWithFor;
-            RR0130 = ReplaceForWithForEach;
-            RR0131 = ReplaceForWithWhile;
-            RR0132 = ReplaceHexadecimalLiteralWithDecimalLiteral;
-            RR0133 = ReplaceIfElseWithSwitch;
-            RR0134 = ReplaceIncrementOperatorWithDecrementOperator;
-            RR0135 = ReplaceInterpolatedStringWithInterpolationExpression;
-            RR0136 = ReplaceInterpolatedStringWithStringLiteral;
-            RR0137 = ReplaceMethodGroupWithLambda;
-            RR0138 = ReplaceMethodWithProperty;
-            RR0139 = ReplaceNullLiteralExpressionWithDefaultExpression;
-            RR0140 = ReplacePrefixOperatorWithPostfixOperator;
-            RR0141 = ReplacePropertyWithMethod;
-            RR0142 = ReplaceRegularStringLiteralWithVerbatimStringLiteral;
-            RR0143 = ReplaceStatementWithIfStatement;
-            RR0144 = ReplaceStringContainsWithStringIndexOf;
-            RR0145 = ReplaceStringFormatWithInterpolatedString;
-            RR0146 = ReplaceStringLiteralWithCharacterLiteral;
-            RR0147 = ReplaceSwitchWithIfElse;
-            RR0148 = ReplaceVerbatimStringLiteralWithRegularStringLiteral;
-            RR0149 = ReplaceVerbatimStringLiteralWithRegularStringLiterals;
-            RR0150 = ReplaceWhileStatementWithDoStatement;
-            RR0151 = ReplaceWhileWithFor;
-            RR0152 = ReverseForLoop;
-            RR0153 = SimplifyIf;
-            RR0154 = SimplifyLambdaExpression;
-            RR0155 = SortMemberDeclarations;
-            RR0156 = SplitAttributes;
-            RR0157 = SplitSwitchLabels;
-            RR0158 = SplitVariableDeclaration;
-            RR0159 = SwapExpressionsInBinaryExpression;
-            RR0160 = SwapExpressionsInConditionalExpression;
-            RR0161 = SwapMemberDeclarations;
-            RR0162 = SwapStatementsInIfElse;
-            RR0163 = Uncomment;
-            RR0164 = UseBitwiseOperationInsteadOfCallingHasFlag;
-            RR0165 = UseCoalesceExpressionInsteadOfIf;
-            RR0166 = UseConditionalExpressionInsteadOfIf;
-            RR0167 = UseElementAccessInsteadOfEnumerableMethod;
-            RR0168 = UseEmptyStringLiteralInsteadOfStringEmpty;
-            RR0169 = UseExpressionBodiedMember;
-            RR0170 = UseLambdaExpressionInsteadOfAnonymousMethod;
-            RR0171 = UseStringEmptyInsteadOfEmptyStringLiteral;
-            RR0172 = WrapInCondition;
-            RR0173 = WrapInElseClause;
-            RR0174 = WrapInIfDirective;
-            RR0175 = WrapInRegion;
-            RR0176 = WrapInTryCatch;
-            RR0177 = WrapInUsingStatement;
+            SetIsEnabled(RefactoringIdentifiers.AddBooleanComparison, AddBooleanComparison);
+            SetIsEnabled(RefactoringIdentifiers.AddBraces, AddBraces);
+            SetIsEnabled(RefactoringIdentifiers.AddBracesToIfElse, AddBracesToIfElse);
+            SetIsEnabled(RefactoringIdentifiers.AddBracesToSwitchSection, AddBracesToSwitchSection);
+            SetIsEnabled(RefactoringIdentifiers.AddBracesToSwitchSections, AddBracesToSwitchSections);
+            SetIsEnabled(RefactoringIdentifiers.AddCastExpression, AddCastExpression);
+            SetIsEnabled(RefactoringIdentifiers.AddDefaultValueToParameter, AddDefaultValueToParameter);
+            SetIsEnabled(RefactoringIdentifiers.AddDefaultValueToReturnStatement, AddDefaultValueToReturnStatement);
+            SetIsEnabled(RefactoringIdentifiers.AddExceptionToDocumentationComment, AddExceptionToDocumentationComment);
+            SetIsEnabled(RefactoringIdentifiers.AddIdentifierToVariableDeclaration, AddIdentifierToVariableDeclaration);
+            SetIsEnabled(RefactoringIdentifiers.AddParameterNameToArgument, AddParameterNameToArgument);
+            SetIsEnabled(RefactoringIdentifiers.AddParameterNameToParameter, AddParameterNameToParameter);
+            SetIsEnabled(RefactoringIdentifiers.AddUsingDirective, AddUsingDirective);
+            SetIsEnabled(RefactoringIdentifiers.AddUsingStaticDirective, AddUsingStaticDirective);
+            SetIsEnabled(RefactoringIdentifiers.CallConfigureAwait, CallConfigureAwait);
+            SetIsEnabled(RefactoringIdentifiers.CallExtensionMethodAsInstanceMethod, CallExtensionMethodAsInstanceMethod);
+            SetIsEnabled(RefactoringIdentifiers.CallToMethod, CallToMethod);
+            SetIsEnabled(RefactoringIdentifiers.ChangeExplicitTypeToVar, ChangeExplicitTypeToVar);
+            SetIsEnabled(RefactoringIdentifiers.ChangeMemberTypeAccordingToReturnExpression, ChangeMemberTypeAccordingToReturnExpression);
+            SetIsEnabled(RefactoringIdentifiers.ChangeMemberTypeAccordingToYieldReturnExpression, ChangeMemberTypeAccordingToYieldReturnExpression);
+            SetIsEnabled(RefactoringIdentifiers.ChangeMethodReturnTypeToVoid, ChangeMethodReturnTypeToVoid);
+            SetIsEnabled(RefactoringIdentifiers.ChangeTypeAccordingToExpression, ChangeTypeAccordingToExpression);
+            SetIsEnabled(RefactoringIdentifiers.ChangeVarToExplicitType, ChangeVarToExplicitType);
+            SetIsEnabled(RefactoringIdentifiers.CheckExpressionForNull, CheckExpressionForNull);
+            SetIsEnabled(RefactoringIdentifiers.CheckParameterForNull, CheckParameterForNull);
+            SetIsEnabled(RefactoringIdentifiers.CollapseToInitializer, CollapseToInitializer);
+            SetIsEnabled(RefactoringIdentifiers.CommentOutMember, CommentOutMember);
+            SetIsEnabled(RefactoringIdentifiers.CommentOutStatement, CommentOutStatement);
+            SetIsEnabled(RefactoringIdentifiers.CopyDocumentationCommentFromBaseMember, CopyDocumentationCommentFromBaseMember);
+            SetIsEnabled(RefactoringIdentifiers.DuplicateArgument, DuplicateArgument);
+            SetIsEnabled(RefactoringIdentifiers.DuplicateMember, DuplicateMember);
+            SetIsEnabled(RefactoringIdentifiers.DuplicateParameter, DuplicateParameter);
+            SetIsEnabled(RefactoringIdentifiers.DuplicateStatement, DuplicateStatement);
+            SetIsEnabled(RefactoringIdentifiers.ExpandAssignmentExpression, ExpandAssignmentExpression);
+            SetIsEnabled(RefactoringIdentifiers.ExpandCoalesceExpression, ExpandCoalesceExpression);
+            SetIsEnabled(RefactoringIdentifiers.ExpandEvent, ExpandEvent);
+            SetIsEnabled(RefactoringIdentifiers.ExpandExpressionBody, ExpandExpressionBody);
+            SetIsEnabled(RefactoringIdentifiers.ExpandInitializer, ExpandInitializer);
+            SetIsEnabled(RefactoringIdentifiers.ExpandLambdaExpressionBody, ExpandLambdaExpressionBody);
+            SetIsEnabled(RefactoringIdentifiers.ExpandProperty, ExpandProperty);
+            SetIsEnabled(RefactoringIdentifiers.ExpandPropertyAndAddBackingField, ExpandPropertyAndAddBackingField);
+            SetIsEnabled(RefactoringIdentifiers.ExtractDeclarationFromUsingStatement, ExtractDeclarationFromUsingStatement);
+            SetIsEnabled(RefactoringIdentifiers.ExtractExpressionFromCondition, ExtractExpressionFromCondition);
+            SetIsEnabled(RefactoringIdentifiers.ExtractGenericType, ExtractGenericType);
+            SetIsEnabled(RefactoringIdentifiers.ExtractStatement, ExtractStatement);
+            SetIsEnabled(RefactoringIdentifiers.ExtractTypeDeclarationToNewFile, ExtractTypeDeclarationToNewFile);
+            SetIsEnabled(RefactoringIdentifiers.FormatAccessorBraces, FormatAccessorBraces);
+            SetIsEnabled(RefactoringIdentifiers.FormatArgumentList, FormatArgumentList);
+            SetIsEnabled(RefactoringIdentifiers.FormatBinaryExpression, FormatBinaryExpression);
+            SetIsEnabled(RefactoringIdentifiers.FormatConditionalExpression, FormatConditionalExpression);
+            SetIsEnabled(RefactoringIdentifiers.FormatExpressionChain, FormatExpressionChain);
+            SetIsEnabled(RefactoringIdentifiers.FormatInitializer, FormatInitializer);
+            SetIsEnabled(RefactoringIdentifiers.FormatParameterList, FormatParameterList);
+            SetIsEnabled(RefactoringIdentifiers.GenerateBaseConstructors, GenerateBaseConstructors);
+            SetIsEnabled(RefactoringIdentifiers.GenerateCombinedEnumMember, GenerateCombinedEnumMember);
+            SetIsEnabled(RefactoringIdentifiers.GenerateEnumMember, GenerateEnumMember);
+            SetIsEnabled(RefactoringIdentifiers.GenerateEnumValues, GenerateEnumValues);
+            SetIsEnabled(RefactoringIdentifiers.GenerateEventInvokingMethod, GenerateEventInvokingMethod);
+            SetIsEnabled(RefactoringIdentifiers.GenerateSwitchSections, GenerateSwitchSections);
+            SetIsEnabled(RefactoringIdentifiers.InitializeLocalWithDefaultValue, InitializeLocalWithDefaultValue);
+            SetIsEnabled(RefactoringIdentifiers.InlineAliasExpression, InlineAliasExpression);
+            SetIsEnabled(RefactoringIdentifiers.InlineMethod, InlineMethod);
+            SetIsEnabled(RefactoringIdentifiers.InsertStringInterpolation, InsertStringInterpolation);
+            SetIsEnabled(RefactoringIdentifiers.IntroduceAndInitializeField, IntroduceAndInitializeField);
+            SetIsEnabled(RefactoringIdentifiers.IntroduceAndInitializeProperty, IntroduceAndInitializeProperty);
+            SetIsEnabled(RefactoringIdentifiers.IntroduceConstructor, IntroduceConstructor);
+            SetIsEnabled(RefactoringIdentifiers.IntroduceFieldToLockOn, IntroduceFieldToLockOn);
+            SetIsEnabled(RefactoringIdentifiers.IntroduceLocalFromStatementThatReturnsValue, IntroduceLocalFromStatementThatReturnsValue);
+            SetIsEnabled(RefactoringIdentifiers.MakeMemberAbstract, MakeMemberAbstract);
+            SetIsEnabled(RefactoringIdentifiers.MakeMemberVirtual, MakeMemberVirtual);
+            SetIsEnabled(RefactoringIdentifiers.MarkContainingClassAsAbstract, MarkContainingClassAsAbstract);
+            SetIsEnabled(RefactoringIdentifiers.MarkMemberAsStatic, MarkMemberAsStatic);
+            SetIsEnabled(RefactoringIdentifiers.MergeAssignmentExpressionWithReturnStatement, MergeAssignmentExpressionWithReturnStatement);
+            SetIsEnabled(RefactoringIdentifiers.MergeAttributes, MergeAttributes);
+            SetIsEnabled(RefactoringIdentifiers.MergeIfStatements, MergeIfStatements);
+            SetIsEnabled(RefactoringIdentifiers.MergeInterpolationIntoInterpolatedString, MergeInterpolationIntoInterpolatedString);
+            SetIsEnabled(RefactoringIdentifiers.MergeLocalDeclarations, MergeLocalDeclarations);
+            SetIsEnabled(RefactoringIdentifiers.MergeStringExpressions, MergeStringExpressions);
+            SetIsEnabled(RefactoringIdentifiers.NegateBinaryExpression, NegateBinaryExpression);
+            SetIsEnabled(RefactoringIdentifiers.NegateBooleanLiteral, NegateBooleanLiteral);
+            SetIsEnabled(RefactoringIdentifiers.NegateIsExpression, NegateIsExpression);
+            SetIsEnabled(RefactoringIdentifiers.NegateOperator, NegateOperator);
+            SetIsEnabled(RefactoringIdentifiers.NotifyPropertyChanged, NotifyPropertyChanged);
+            SetIsEnabled(RefactoringIdentifiers.ParenthesizeExpression, ParenthesizeExpression);
+            SetIsEnabled(RefactoringIdentifiers.PromoteLocalToParameter, PromoteLocalToParameter);
+            SetIsEnabled(RefactoringIdentifiers.RemoveAllComments, RemoveAllComments);
+            SetIsEnabled(RefactoringIdentifiers.RemoveAllCommentsExceptDocumentationComments, RemoveAllCommentsExceptDocumentationComments);
+            SetIsEnabled(RefactoringIdentifiers.RemoveAllDocumentationComments, RemoveAllDocumentationComments);
+            SetIsEnabled(RefactoringIdentifiers.RemoveAllMemberDeclarations, RemoveAllMemberDeclarations);
+            SetIsEnabled(RefactoringIdentifiers.RemoveAllPreprocessorDirectives, RemoveAllPreprocessorDirectives);
+            SetIsEnabled(RefactoringIdentifiers.RemoveAllRegionDirectives, RemoveAllRegionDirectives);
+            SetIsEnabled(RefactoringIdentifiers.RemoveAllStatements, RemoveAllStatements);
+            SetIsEnabled(RefactoringIdentifiers.RemoveAllSwitchSections, RemoveAllSwitchSections);
+            SetIsEnabled(RefactoringIdentifiers.RemoveBraces, RemoveBraces);
+            SetIsEnabled(RefactoringIdentifiers.RemoveBracesFromIfElse, RemoveBracesFromIfElse);
+            SetIsEnabled(RefactoringIdentifiers.RemoveBracesFromSwitchSection, RemoveBracesFromSwitchSection);
+            SetIsEnabled(RefactoringIdentifiers.RemoveBracesFromSwitchSections, RemoveBracesFromSwitchSections);
+            SetIsEnabled(RefactoringIdentifiers.RemoveComment, RemoveComment);
+            SetIsEnabled(RefactoringIdentifiers.RemoveConditionFromLastElse, RemoveConditionFromLastElse);
+            SetIsEnabled(RefactoringIdentifiers.RemoveDirectiveAndRelatedDirectives, RemoveDirectiveAndRelatedDirectives);
+            SetIsEnabled(RefactoringIdentifiers.RemoveEmptyLines, RemoveEmptyLines);
+            SetIsEnabled(RefactoringIdentifiers.RemoveInterpolation, RemoveInterpolation);
+            SetIsEnabled(RefactoringIdentifiers.RemoveMember, RemoveMember);
+            SetIsEnabled(RefactoringIdentifiers.RemoveMemberDeclarations, RemoveMemberDeclarations);
+            SetIsEnabled(RefactoringIdentifiers.RemoveParameterNameFromArgument, RemoveParameterNameFromArgument);
+            SetIsEnabled(RefactoringIdentifiers.RemoveParentheses, RemoveParentheses);
+            SetIsEnabled(RefactoringIdentifiers.RemovePropertyInitializer, RemovePropertyInitializer);
+            SetIsEnabled(RefactoringIdentifiers.RemoveRegion, RemoveRegion);
+            SetIsEnabled(RefactoringIdentifiers.RemoveStatement, RemoveStatement);
+            SetIsEnabled(RefactoringIdentifiers.RemoveStatementsFromSwitchSections, RemoveStatementsFromSwitchSections);
+            SetIsEnabled(RefactoringIdentifiers.RenameBackingFieldAccordingToPropertyName, RenameBackingFieldAccordingToPropertyName);
+            SetIsEnabled(RefactoringIdentifiers.RenameIdentifierAccordingToTypeName, RenameIdentifierAccordingToTypeName);
+            SetIsEnabled(RefactoringIdentifiers.RenameMethodAccordingToTypeName, RenameMethodAccordingToTypeName);
+            SetIsEnabled(RefactoringIdentifiers.RenameParameterAccordingToTypeName, RenameParameterAccordingToTypeName);
+            SetIsEnabled(RefactoringIdentifiers.RenamePropertyAccordingToTypeName, RenamePropertyAccordingToTypeName);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceAnyWithAllOrAllWithAny, ReplaceAnyWithAllOrAllWithAny);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceAsWithCast, ReplaceAsWithCast);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceCastWithAs, ReplaceCastWithAs);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceConditionalExpressionWithExpression, ReplaceConditionalExpressionWithExpression);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceConditionalExpressionWithIfElse, ReplaceConditionalExpressionWithIfElse);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceConstantWithField, ReplaceConstantWithField);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceCountWithLengthOrLengthWithCount, ReplaceCountWithLengthOrLengthWithCount);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceDoStatementWithWhileStatement, ReplaceDoStatementWithWhileStatement);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceEqualsExpressionWithStringEquals, ReplaceEqualsExpressionWithStringEquals);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceEqualsExpressionWithStringIsNullOrEmpty, ReplaceEqualsExpressionWithStringIsNullOrEmpty);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceEqualsExpressionWithStringIsNullOrWhiteSpace, ReplaceEqualsExpressionWithStringIsNullOrWhiteSpace);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceExpressionWithConstantValue, ReplaceExpressionWithConstantValue);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceFieldWithConstant, ReplaceFieldWithConstant);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceForEachWithFor, ReplaceForEachWithFor);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceForWithForEach, ReplaceForWithForEach);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceForWithWhile, ReplaceForWithWhile);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceHexadecimalLiteralWithDecimalLiteral, ReplaceHexadecimalLiteralWithDecimalLiteral);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceIfElseWithSwitch, ReplaceIfElseWithSwitch);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceIncrementOperatorWithDecrementOperator, ReplaceIncrementOperatorWithDecrementOperator);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceInterpolatedStringWithInterpolationExpression, ReplaceInterpolatedStringWithInterpolationExpression);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceInterpolatedStringWithStringLiteral, ReplaceInterpolatedStringWithStringLiteral);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceMethodGroupWithLambda, ReplaceMethodGroupWithLambda);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceMethodWithProperty, ReplaceMethodWithProperty);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceNullLiteralExpressionWithDefaultExpression, ReplaceNullLiteralExpressionWithDefaultExpression);
+            SetIsEnabled(RefactoringIdentifiers.ReplacePrefixOperatorWithPostfixOperator, ReplacePrefixOperatorWithPostfixOperator);
+            SetIsEnabled(RefactoringIdentifiers.ReplacePropertyWithMethod, ReplacePropertyWithMethod);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceRegularStringLiteralWithVerbatimStringLiteral, ReplaceRegularStringLiteralWithVerbatimStringLiteral);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceStatementWithIfStatement, ReplaceStatementWithIfStatement);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceStringContainsWithStringIndexOf, ReplaceStringContainsWithStringIndexOf);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceStringFormatWithInterpolatedString, ReplaceStringFormatWithInterpolatedString);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceStringLiteralWithCharacterLiteral, ReplaceStringLiteralWithCharacterLiteral);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceSwitchWithIfElse, ReplaceSwitchWithIfElse);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceVerbatimStringLiteralWithRegularStringLiteral, ReplaceVerbatimStringLiteralWithRegularStringLiteral);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceVerbatimStringLiteralWithRegularStringLiterals, ReplaceVerbatimStringLiteralWithRegularStringLiterals);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceWhileStatementWithDoStatement, ReplaceWhileStatementWithDoStatement);
+            SetIsEnabled(RefactoringIdentifiers.ReplaceWhileWithFor, ReplaceWhileWithFor);
+            SetIsEnabled(RefactoringIdentifiers.ReverseForLoop, ReverseForLoop);
+            SetIsEnabled(RefactoringIdentifiers.SimplifyIf, SimplifyIf);
+            SetIsEnabled(RefactoringIdentifiers.SimplifyLambdaExpression, SimplifyLambdaExpression);
+            SetIsEnabled(RefactoringIdentifiers.SortMemberDeclarations, SortMemberDeclarations);
+            SetIsEnabled(RefactoringIdentifiers.SplitAttributes, SplitAttributes);
+            SetIsEnabled(RefactoringIdentifiers.SplitSwitchLabels, SplitSwitchLabels);
+            SetIsEnabled(RefactoringIdentifiers.SplitVariableDeclaration, SplitVariableDeclaration);
+            SetIsEnabled(RefactoringIdentifiers.SwapExpressionsInBinaryExpression, SwapExpressionsInBinaryExpression);
+            SetIsEnabled(RefactoringIdentifiers.SwapExpressionsInConditionalExpression, SwapExpressionsInConditionalExpression);
+            SetIsEnabled(RefactoringIdentifiers.SwapMemberDeclarations, SwapMemberDeclarations);
+            SetIsEnabled(RefactoringIdentifiers.SwapStatementsInIfElse, SwapStatementsInIfElse);
+            SetIsEnabled(RefactoringIdentifiers.Uncomment, Uncomment);
+            SetIsEnabled(RefactoringIdentifiers.UseBitwiseOperationInsteadOfCallingHasFlag, UseBitwiseOperationInsteadOfCallingHasFlag);
+            SetIsEnabled(RefactoringIdentifiers.UseCoalesceExpressionInsteadOfIf, UseCoalesceExpressionInsteadOfIf);
+            SetIsEnabled(RefactoringIdentifiers.UseConditionalExpressionInsteadOfIf, UseConditionalExpressionInsteadOfIf);
+            SetIsEnabled(RefactoringIdentifiers.UseElementAccessInsteadOfEnumerableMethod, UseElementAccessInsteadOfEnumerableMethod);
+            SetIsEnabled(RefactoringIdentifiers.UseEmptyStringLiteralInsteadOfStringEmpty, UseEmptyStringLiteralInsteadOfStringEmpty);
+            SetIsEnabled(RefactoringIdentifiers.UseExpressionBodiedMember, UseExpressionBodiedMember);
+            SetIsEnabled(RefactoringIdentifiers.UseLambdaExpressionInsteadOfAnonymousMethod, UseLambdaExpressionInsteadOfAnonymousMethod);
+            SetIsEnabled(RefactoringIdentifiers.UseStringEmptyInsteadOfEmptyStringLiteral, UseStringEmptyInsteadOfEmptyStringLiteral);
+            SetIsEnabled(RefactoringIdentifiers.WrapInCondition, WrapInCondition);
+            SetIsEnabled(RefactoringIdentifiers.WrapInElseClause, WrapInElseClause);
+            SetIsEnabled(RefactoringIdentifiers.WrapInIfDirective, WrapInIfDirective);
+            SetIsEnabled(RefactoringIdentifiers.WrapInRegion, WrapInRegion);
+            SetIsEnabled(RefactoringIdentifiers.WrapInTryCatch, WrapInTryCatch);
+            SetIsEnabled(RefactoringIdentifiers.WrapInUsingStatement, WrapInUsingStatement);
         }
 
         public static void SetRefactoringsDisabledByDefault(RefactoringSettings settings)
@@ -382,2317 +382,371 @@ namespace Roslynator.VisualStudio
             settings.DisableRefactoring(RefactoringIdentifiers.UseStringEmptyInsteadOfEmptyStringLiteral);
         }
 
-        public void SaveValuesToView(ICollection<RefactoringModel> refactorings)
-        {
-            refactorings.Add(new RefactoringModel("RR0001", "Add boolean comparison", RR0001));
-            refactorings.Add(new RefactoringModel("RR0002", "Add braces", RR0002));
-            refactorings.Add(new RefactoringModel("RR0003", "Add braces to if-else", RR0003));
-            refactorings.Add(new RefactoringModel("RR0004", "Add braces to switch section", RR0004));
-            refactorings.Add(new RefactoringModel("RR0005", "Add braces to switch sections", RR0005));
-            refactorings.Add(new RefactoringModel("RR0006", "Add cast expression", RR0006));
-            refactorings.Add(new RefactoringModel("RR0007", "Add default value to parameter", RR0007));
-            refactorings.Add(new RefactoringModel("RR0008", "Add default value to return statement", RR0008));
-            refactorings.Add(new RefactoringModel("RR0009", "Add exception to documentation comment", RR0009));
-            refactorings.Add(new RefactoringModel("RR0010", "Add identifier to variable declaration", RR0010));
-            refactorings.Add(new RefactoringModel("RR0011", "Add parameter name to argument", RR0011));
-            refactorings.Add(new RefactoringModel("RR0012", "Add parameter name to parameter", RR0012));
-            refactorings.Add(new RefactoringModel("RR0013", "Add using directive", RR0013));
-            refactorings.Add(new RefactoringModel("RR0014", "Add using static directive", RR0014));
-            refactorings.Add(new RefactoringModel("RR0015", "Call 'ConfigureAwait(false)'", RR0015));
-            refactorings.Add(new RefactoringModel("RR0016", "Call extension method as instance method", RR0016));
-            refactorings.Add(new RefactoringModel("RR0017", "Call 'To...' method (ToString, ToArray, ToList)", RR0017));
-            refactorings.Add(new RefactoringModel("RR0018", "Change explicit type to 'var'", RR0018));
-            refactorings.Add(new RefactoringModel("RR0019", "Change method/property/indexer type according to return expression", RR0019));
-            refactorings.Add(new RefactoringModel("RR0020", "Change method/property/indexer type according to yield return expression", RR0020));
-            refactorings.Add(new RefactoringModel("RR0021", "Change method return type to 'void'", RR0021));
-            refactorings.Add(new RefactoringModel("RR0022", "Change type according to expression", RR0022));
-            refactorings.Add(new RefactoringModel("RR0023", "Change 'var' to explicit type", RR0023));
-            refactorings.Add(new RefactoringModel("RR0024", "Check expression for null", RR0024));
-            refactorings.Add(new RefactoringModel("RR0025", "Check parameter for null", RR0025));
-            refactorings.Add(new RefactoringModel("RR0026", "Collapse to initalizer", RR0026));
-            refactorings.Add(new RefactoringModel("RR0027", "Comment out member", RR0027));
-            refactorings.Add(new RefactoringModel("RR0028", "Comment out statement", RR0028));
-            refactorings.Add(new RefactoringModel("RR0029", "Copy documentation comment from base member", RR0029));
-            refactorings.Add(new RefactoringModel("RR0030", "Duplicate argument", RR0030));
-            refactorings.Add(new RefactoringModel("RR0031", "Duplicate member", RR0031));
-            refactorings.Add(new RefactoringModel("RR0032", "Duplicate parameter", RR0032));
-            refactorings.Add(new RefactoringModel("RR0033", "Duplicate statement", RR0033));
-            refactorings.Add(new RefactoringModel("RR0034", "Expand assignment expression", RR0034));
-            refactorings.Add(new RefactoringModel("RR0035", "Expand coalesce expression", RR0035));
-            refactorings.Add(new RefactoringModel("RR0036", "Expand event", RR0036));
-            refactorings.Add(new RefactoringModel("RR0037", "Expand expression body", RR0037));
-            refactorings.Add(new RefactoringModel("RR0038", "Expand initializer", RR0038));
-            refactorings.Add(new RefactoringModel("RR0039", "Expand lambda expression body", RR0039));
-            refactorings.Add(new RefactoringModel("RR0040", "Expand property", RR0040));
-            refactorings.Add(new RefactoringModel("RR0041", "Expand property and add backing field", RR0041));
-            refactorings.Add(new RefactoringModel("RR0042", "Extract declaration from using statement", RR0042));
-            refactorings.Add(new RefactoringModel("RR0043", "Extract expression from condition", RR0043));
-            refactorings.Add(new RefactoringModel("RR0044", "Extract generic type", RR0044));
-            refactorings.Add(new RefactoringModel("RR0045", "Extract statement(s)", RR0045));
-            refactorings.Add(new RefactoringModel("RR0046", "Extract type declaration to a new file", RR0046));
-            refactorings.Add(new RefactoringModel("RR0047", "Format accessor braces", RR0047));
-            refactorings.Add(new RefactoringModel("RR0048", "Format argument list", RR0048));
-            refactorings.Add(new RefactoringModel("RR0049", "Format binary expression", RR0049));
-            refactorings.Add(new RefactoringModel("RR0050", "Format conditional expression", RR0050));
-            refactorings.Add(new RefactoringModel("RR0051", "Format expression chain", RR0051));
-            refactorings.Add(new RefactoringModel("RR0052", "Format initializer", RR0052));
-            refactorings.Add(new RefactoringModel("RR0053", "Format parameter list", RR0053));
-            refactorings.Add(new RefactoringModel("RR0054", "Generate base constructors", RR0054));
-            refactorings.Add(new RefactoringModel("RR0055", "Generate combined enum member", RR0055));
-            refactorings.Add(new RefactoringModel("RR0056", "Generate enum member", RR0056));
-            refactorings.Add(new RefactoringModel("RR0057", "Generate enum values", RR0057));
-            refactorings.Add(new RefactoringModel("RR0058", "Generate event invoking method", RR0058));
-            refactorings.Add(new RefactoringModel("RR0059", "Generate switch sections", RR0059));
-            refactorings.Add(new RefactoringModel("RR0060", "Initialize local with default value", RR0060));
-            refactorings.Add(new RefactoringModel("RR0061", "Inline alias expression", RR0061));
-            refactorings.Add(new RefactoringModel("RR0062", "Inline method", RR0062));
-            refactorings.Add(new RefactoringModel("RR0063", "Insert string interpolation", RR0063));
-            refactorings.Add(new RefactoringModel("RR0064", "Introduce and initialize field", RR0064));
-            refactorings.Add(new RefactoringModel("RR0065", "Introduce and initialize property", RR0065));
-            refactorings.Add(new RefactoringModel("RR0066", "Introduce constructor", RR0066));
-            refactorings.Add(new RefactoringModel("RR0067", "Introduce field to lock on", RR0067));
-            refactorings.Add(new RefactoringModel("RR0068", "Introduce local from statement that returns value", RR0068));
-            refactorings.Add(new RefactoringModel("RR0069", "Make member abstract", RR0069));
-            refactorings.Add(new RefactoringModel("RR0070", "Make member virtual", RR0070));
-            refactorings.Add(new RefactoringModel("RR0071", "Mark containing class as abstract", RR0071));
-            refactorings.Add(new RefactoringModel("RR0072", "Mark member as static", RR0072));
-            refactorings.Add(new RefactoringModel("RR0073", "Merge assignment expression with return statement", RR0073));
-            refactorings.Add(new RefactoringModel("RR0074", "Merge attributes", RR0074));
-            refactorings.Add(new RefactoringModel("RR0075", "Merge if statements", RR0075));
-            refactorings.Add(new RefactoringModel("RR0076", "Merge interpolation into interpolated string", RR0076));
-            refactorings.Add(new RefactoringModel("RR0077", "Merge local declarations", RR0077));
-            refactorings.Add(new RefactoringModel("RR0078", "Merge string expressions", RR0078));
-            refactorings.Add(new RefactoringModel("RR0079", "Negate binary expression", RR0079));
-            refactorings.Add(new RefactoringModel("RR0080", "Negate boolean literal", RR0080));
-            refactorings.Add(new RefactoringModel("RR0081", "Negate is expression", RR0081));
-            refactorings.Add(new RefactoringModel("RR0082", "Negate operator", RR0082));
-            refactorings.Add(new RefactoringModel("RR0083", "Notify property changed", RR0083));
-            refactorings.Add(new RefactoringModel("RR0084", "Parenthesize expression", RR0084));
-            refactorings.Add(new RefactoringModel("RR0085", "Promote local to parameter", RR0085));
-            refactorings.Add(new RefactoringModel("RR0086", "Remove all comments", RR0086));
-            refactorings.Add(new RefactoringModel("RR0087", "Remove all comments (except documentation comments)", RR0087));
-            refactorings.Add(new RefactoringModel("RR0088", "Remove all documentation comments", RR0088));
-            refactorings.Add(new RefactoringModel("RR0089", "Remove all member declarations", RR0089));
-            refactorings.Add(new RefactoringModel("RR0090", "Remove all preprocessor directives", RR0090));
-            refactorings.Add(new RefactoringModel("RR0091", "Remove all region directives", RR0091));
-            refactorings.Add(new RefactoringModel("RR0092", "Remove all statements", RR0092));
-            refactorings.Add(new RefactoringModel("RR0093", "Remove all switch sections", RR0093));
-            refactorings.Add(new RefactoringModel("RR0094", "Remove braces", RR0094));
-            refactorings.Add(new RefactoringModel("RR0095", "Remove braces from if-else", RR0095));
-            refactorings.Add(new RefactoringModel("RR0096", "Remove braces from switch section", RR0096));
-            refactorings.Add(new RefactoringModel("RR0097", "Remove braces from switch sections", RR0097));
-            refactorings.Add(new RefactoringModel("RR0098", "Remove comment", RR0098));
-            refactorings.Add(new RefactoringModel("RR0099", "Remove condition from last else clause", RR0099));
-            refactorings.Add(new RefactoringModel("RR0100", "Remove directive and related directives", RR0100));
-            refactorings.Add(new RefactoringModel("RR0101", "Remove empty lines", RR0101));
-            refactorings.Add(new RefactoringModel("RR0102", "Remove interpolation", RR0102));
-            refactorings.Add(new RefactoringModel("RR0103", "Remove member", RR0103));
-            refactorings.Add(new RefactoringModel("RR0104", "Remove member declarations above/below", RR0104));
-            refactorings.Add(new RefactoringModel("RR0105", "Remove parameter name from argument", RR0105));
-            refactorings.Add(new RefactoringModel("RR0106", "Remove parentheses", RR0106));
-            refactorings.Add(new RefactoringModel("RR0107", "Remove property initializer", RR0107));
-            refactorings.Add(new RefactoringModel("RR0108", "Remove region", RR0108));
-            refactorings.Add(new RefactoringModel("RR0109", "Remove statement", RR0109));
-            refactorings.Add(new RefactoringModel("RR0110", "Remove statements from switch sections", RR0110));
-            refactorings.Add(new RefactoringModel("RR0111", "Rename backing field according to property name", RR0111));
-            refactorings.Add(new RefactoringModel("RR0112", "Rename identifier according to type name", RR0112));
-            refactorings.Add(new RefactoringModel("RR0113", "Rename method according to type name", RR0113));
-            refactorings.Add(new RefactoringModel("RR0114", "Rename parameter according to its type name", RR0114));
-            refactorings.Add(new RefactoringModel("RR0115", "Rename property according to type name", RR0115));
-            refactorings.Add(new RefactoringModel("RR0116", "Replace Any with All (or All with Any)", RR0116));
-            refactorings.Add(new RefactoringModel("RR0117", "Replace as expression with cast expression", RR0117));
-            refactorings.Add(new RefactoringModel("RR0118", "Replace cast expression with as expression", RR0118));
-            refactorings.Add(new RefactoringModel("RR0119", "Replace conditional expression with expression", RR0119));
-            refactorings.Add(new RefactoringModel("RR0120", "Replace conditional expression with if-else", RR0120));
-            refactorings.Add(new RefactoringModel("RR0121", "Replace constant with field", RR0121));
-            refactorings.Add(new RefactoringModel("RR0122", "Replace Count property with Length property (or Length with Count)", RR0122));
-            refactorings.Add(new RefactoringModel("RR0123", "Replace do statement with while statement", RR0123));
-            refactorings.Add(new RefactoringModel("RR0124", "Replace equals expression with String.Equals", RR0124));
-            refactorings.Add(new RefactoringModel("RR0125", "Replace equals expression with String.IsNullOrEmpty", RR0125));
-            refactorings.Add(new RefactoringModel("RR0126", "Replace equals expression with String.IsNullOrWhiteSpace", RR0126));
-            refactorings.Add(new RefactoringModel("RR0127", "Replace expression with constant value", RR0127));
-            refactorings.Add(new RefactoringModel("RR0128", "Replace field with constant", RR0128));
-            refactorings.Add(new RefactoringModel("RR0129", "Replace foreach statement with for statement", RR0129));
-            refactorings.Add(new RefactoringModel("RR0130", "Replace for statement with foreach statement", RR0130));
-            refactorings.Add(new RefactoringModel("RR0131", "Replace for statement with while statement", RR0131));
-            refactorings.Add(new RefactoringModel("RR0132", "Replace hexadecimal literal with decimal literal", RR0132));
-            refactorings.Add(new RefactoringModel("RR0133", "Replace if-else with switch statement", RR0133));
-            refactorings.Add(new RefactoringModel("RR0134", "Replace increment operator with decrement operator", RR0134));
-            refactorings.Add(new RefactoringModel("RR0135", "Replace interpolated string with interpolation expression", RR0135));
-            refactorings.Add(new RefactoringModel("RR0136", "Replace interpolated string with string literal", RR0136));
-            refactorings.Add(new RefactoringModel("RR0137", "Replace method group with lambda", RR0137));
-            refactorings.Add(new RefactoringModel("RR0138", "Replace method with property", RR0138));
-            refactorings.Add(new RefactoringModel("RR0139", "Replace null literal expression with default expression", RR0139));
-            refactorings.Add(new RefactoringModel("RR0140", "Replace prefix operator to postfix operator", RR0140));
-            refactorings.Add(new RefactoringModel("RR0141", "Replace property with method", RR0141));
-            refactorings.Add(new RefactoringModel("RR0142", "Replace regular string literal with verbatim string literal", RR0142));
-            refactorings.Add(new RefactoringModel("RR0143", "Replace statement with if statement", RR0143));
-            refactorings.Add(new RefactoringModel("RR0144", "Replace String.Contains with String.IndexOf", RR0144));
-            refactorings.Add(new RefactoringModel("RR0145", "Replace String.Format with interpolated string", RR0145));
-            refactorings.Add(new RefactoringModel("RR0146", "Replace string literal with character literal", RR0146));
-            refactorings.Add(new RefactoringModel("RR0147", "Replace switch statement with if-else", RR0147));
-            refactorings.Add(new RefactoringModel("RR0148", "Replace verbatim string literal with regular string literal", RR0148));
-            refactorings.Add(new RefactoringModel("RR0149", "Replace verbatim string literal with regular string literals", RR0149));
-            refactorings.Add(new RefactoringModel("RR0150", "Replace while statement with do statement", RR0150));
-            refactorings.Add(new RefactoringModel("RR0151", "Replace while statement with for statement", RR0151));
-            refactorings.Add(new RefactoringModel("RR0152", "Reverse for loop", RR0152));
-            refactorings.Add(new RefactoringModel("RR0153", "Simplify if", RR0153));
-            refactorings.Add(new RefactoringModel("RR0154", "Simplify lambda expression", RR0154));
-            refactorings.Add(new RefactoringModel("RR0155", "Sort member declarations", RR0155));
-            refactorings.Add(new RefactoringModel("RR0156", "Split attributes", RR0156));
-            refactorings.Add(new RefactoringModel("RR0157", "Split switch labels", RR0157));
-            refactorings.Add(new RefactoringModel("RR0158", "Split variable declaration", RR0158));
-            refactorings.Add(new RefactoringModel("RR0159", "Swap expressions in binary expression", RR0159));
-            refactorings.Add(new RefactoringModel("RR0160", "Swap expressions in conditional expression", RR0160));
-            refactorings.Add(new RefactoringModel("RR0161", "Swap member declarations", RR0161));
-            refactorings.Add(new RefactoringModel("RR0162", "Swap statements in if-else", RR0162));
-            refactorings.Add(new RefactoringModel("RR0163", "Uncomment", RR0163));
-            refactorings.Add(new RefactoringModel("RR0164", "Use bitwise operation instead of calling 'HasFlag'", RR0164));
-            refactorings.Add(new RefactoringModel("RR0165", "Use coalesce expression instead of if", RR0165));
-            refactorings.Add(new RefactoringModel("RR0166", "Use conditional expression instead of if", RR0166));
-            refactorings.Add(new RefactoringModel("RR0167", "Use element access instead of 'First/Last'ElementAt' method", RR0167));
-            refactorings.Add(new RefactoringModel("RR0168", "Use \"\" instead of String.Empty", RR0168));
-            refactorings.Add(new RefactoringModel("RR0169", "Use expression-bodied member", RR0169));
-            refactorings.Add(new RefactoringModel("RR0170", "Use lambda expression instead of anonymous method", RR0170));
-            refactorings.Add(new RefactoringModel("RR0171", "Use String.Empty instead of \"\"", RR0171));
-            refactorings.Add(new RefactoringModel("RR0172", "Wrap in condition", RR0172));
-            refactorings.Add(new RefactoringModel("RR0173", "Wrap in else clause", RR0173));
-            refactorings.Add(new RefactoringModel("RR0174", "Wrap in #if directive", RR0174));
-            refactorings.Add(new RefactoringModel("RR0175", "Wrap in region", RR0175));
-            refactorings.Add(new RefactoringModel("RR0176", "Wrap in try-catch", RR0176));
-            refactorings.Add(new RefactoringModel("RR0177", "Wrap in using statement", RR0177));
-        }
-
-        public void LoadValuesFromView(ICollection<RefactoringModel> refactorings)
-        {
-            RR0001 = refactorings.FirstOrDefault(f => f.Id == "RR0001").Enabled;
-            RR0002 = refactorings.FirstOrDefault(f => f.Id == "RR0002").Enabled;
-            RR0003 = refactorings.FirstOrDefault(f => f.Id == "RR0003").Enabled;
-            RR0004 = refactorings.FirstOrDefault(f => f.Id == "RR0004").Enabled;
-            RR0005 = refactorings.FirstOrDefault(f => f.Id == "RR0005").Enabled;
-            RR0006 = refactorings.FirstOrDefault(f => f.Id == "RR0006").Enabled;
-            RR0007 = refactorings.FirstOrDefault(f => f.Id == "RR0007").Enabled;
-            RR0008 = refactorings.FirstOrDefault(f => f.Id == "RR0008").Enabled;
-            RR0009 = refactorings.FirstOrDefault(f => f.Id == "RR0009").Enabled;
-            RR0010 = refactorings.FirstOrDefault(f => f.Id == "RR0010").Enabled;
-            RR0011 = refactorings.FirstOrDefault(f => f.Id == "RR0011").Enabled;
-            RR0012 = refactorings.FirstOrDefault(f => f.Id == "RR0012").Enabled;
-            RR0013 = refactorings.FirstOrDefault(f => f.Id == "RR0013").Enabled;
-            RR0014 = refactorings.FirstOrDefault(f => f.Id == "RR0014").Enabled;
-            RR0015 = refactorings.FirstOrDefault(f => f.Id == "RR0015").Enabled;
-            RR0016 = refactorings.FirstOrDefault(f => f.Id == "RR0016").Enabled;
-            RR0017 = refactorings.FirstOrDefault(f => f.Id == "RR0017").Enabled;
-            RR0018 = refactorings.FirstOrDefault(f => f.Id == "RR0018").Enabled;
-            RR0019 = refactorings.FirstOrDefault(f => f.Id == "RR0019").Enabled;
-            RR0020 = refactorings.FirstOrDefault(f => f.Id == "RR0020").Enabled;
-            RR0021 = refactorings.FirstOrDefault(f => f.Id == "RR0021").Enabled;
-            RR0022 = refactorings.FirstOrDefault(f => f.Id == "RR0022").Enabled;
-            RR0023 = refactorings.FirstOrDefault(f => f.Id == "RR0023").Enabled;
-            RR0024 = refactorings.FirstOrDefault(f => f.Id == "RR0024").Enabled;
-            RR0025 = refactorings.FirstOrDefault(f => f.Id == "RR0025").Enabled;
-            RR0026 = refactorings.FirstOrDefault(f => f.Id == "RR0026").Enabled;
-            RR0027 = refactorings.FirstOrDefault(f => f.Id == "RR0027").Enabled;
-            RR0028 = refactorings.FirstOrDefault(f => f.Id == "RR0028").Enabled;
-            RR0029 = refactorings.FirstOrDefault(f => f.Id == "RR0029").Enabled;
-            RR0030 = refactorings.FirstOrDefault(f => f.Id == "RR0030").Enabled;
-            RR0031 = refactorings.FirstOrDefault(f => f.Id == "RR0031").Enabled;
-            RR0032 = refactorings.FirstOrDefault(f => f.Id == "RR0032").Enabled;
-            RR0033 = refactorings.FirstOrDefault(f => f.Id == "RR0033").Enabled;
-            RR0034 = refactorings.FirstOrDefault(f => f.Id == "RR0034").Enabled;
-            RR0035 = refactorings.FirstOrDefault(f => f.Id == "RR0035").Enabled;
-            RR0036 = refactorings.FirstOrDefault(f => f.Id == "RR0036").Enabled;
-            RR0037 = refactorings.FirstOrDefault(f => f.Id == "RR0037").Enabled;
-            RR0038 = refactorings.FirstOrDefault(f => f.Id == "RR0038").Enabled;
-            RR0039 = refactorings.FirstOrDefault(f => f.Id == "RR0039").Enabled;
-            RR0040 = refactorings.FirstOrDefault(f => f.Id == "RR0040").Enabled;
-            RR0041 = refactorings.FirstOrDefault(f => f.Id == "RR0041").Enabled;
-            RR0042 = refactorings.FirstOrDefault(f => f.Id == "RR0042").Enabled;
-            RR0043 = refactorings.FirstOrDefault(f => f.Id == "RR0043").Enabled;
-            RR0044 = refactorings.FirstOrDefault(f => f.Id == "RR0044").Enabled;
-            RR0045 = refactorings.FirstOrDefault(f => f.Id == "RR0045").Enabled;
-            RR0046 = refactorings.FirstOrDefault(f => f.Id == "RR0046").Enabled;
-            RR0047 = refactorings.FirstOrDefault(f => f.Id == "RR0047").Enabled;
-            RR0048 = refactorings.FirstOrDefault(f => f.Id == "RR0048").Enabled;
-            RR0049 = refactorings.FirstOrDefault(f => f.Id == "RR0049").Enabled;
-            RR0050 = refactorings.FirstOrDefault(f => f.Id == "RR0050").Enabled;
-            RR0051 = refactorings.FirstOrDefault(f => f.Id == "RR0051").Enabled;
-            RR0052 = refactorings.FirstOrDefault(f => f.Id == "RR0052").Enabled;
-            RR0053 = refactorings.FirstOrDefault(f => f.Id == "RR0053").Enabled;
-            RR0054 = refactorings.FirstOrDefault(f => f.Id == "RR0054").Enabled;
-            RR0055 = refactorings.FirstOrDefault(f => f.Id == "RR0055").Enabled;
-            RR0056 = refactorings.FirstOrDefault(f => f.Id == "RR0056").Enabled;
-            RR0057 = refactorings.FirstOrDefault(f => f.Id == "RR0057").Enabled;
-            RR0058 = refactorings.FirstOrDefault(f => f.Id == "RR0058").Enabled;
-            RR0059 = refactorings.FirstOrDefault(f => f.Id == "RR0059").Enabled;
-            RR0060 = refactorings.FirstOrDefault(f => f.Id == "RR0060").Enabled;
-            RR0061 = refactorings.FirstOrDefault(f => f.Id == "RR0061").Enabled;
-            RR0062 = refactorings.FirstOrDefault(f => f.Id == "RR0062").Enabled;
-            RR0063 = refactorings.FirstOrDefault(f => f.Id == "RR0063").Enabled;
-            RR0064 = refactorings.FirstOrDefault(f => f.Id == "RR0064").Enabled;
-            RR0065 = refactorings.FirstOrDefault(f => f.Id == "RR0065").Enabled;
-            RR0066 = refactorings.FirstOrDefault(f => f.Id == "RR0066").Enabled;
-            RR0067 = refactorings.FirstOrDefault(f => f.Id == "RR0067").Enabled;
-            RR0068 = refactorings.FirstOrDefault(f => f.Id == "RR0068").Enabled;
-            RR0069 = refactorings.FirstOrDefault(f => f.Id == "RR0069").Enabled;
-            RR0070 = refactorings.FirstOrDefault(f => f.Id == "RR0070").Enabled;
-            RR0071 = refactorings.FirstOrDefault(f => f.Id == "RR0071").Enabled;
-            RR0072 = refactorings.FirstOrDefault(f => f.Id == "RR0072").Enabled;
-            RR0073 = refactorings.FirstOrDefault(f => f.Id == "RR0073").Enabled;
-            RR0074 = refactorings.FirstOrDefault(f => f.Id == "RR0074").Enabled;
-            RR0075 = refactorings.FirstOrDefault(f => f.Id == "RR0075").Enabled;
-            RR0076 = refactorings.FirstOrDefault(f => f.Id == "RR0076").Enabled;
-            RR0077 = refactorings.FirstOrDefault(f => f.Id == "RR0077").Enabled;
-            RR0078 = refactorings.FirstOrDefault(f => f.Id == "RR0078").Enabled;
-            RR0079 = refactorings.FirstOrDefault(f => f.Id == "RR0079").Enabled;
-            RR0080 = refactorings.FirstOrDefault(f => f.Id == "RR0080").Enabled;
-            RR0081 = refactorings.FirstOrDefault(f => f.Id == "RR0081").Enabled;
-            RR0082 = refactorings.FirstOrDefault(f => f.Id == "RR0082").Enabled;
-            RR0083 = refactorings.FirstOrDefault(f => f.Id == "RR0083").Enabled;
-            RR0084 = refactorings.FirstOrDefault(f => f.Id == "RR0084").Enabled;
-            RR0085 = refactorings.FirstOrDefault(f => f.Id == "RR0085").Enabled;
-            RR0086 = refactorings.FirstOrDefault(f => f.Id == "RR0086").Enabled;
-            RR0087 = refactorings.FirstOrDefault(f => f.Id == "RR0087").Enabled;
-            RR0088 = refactorings.FirstOrDefault(f => f.Id == "RR0088").Enabled;
-            RR0089 = refactorings.FirstOrDefault(f => f.Id == "RR0089").Enabled;
-            RR0090 = refactorings.FirstOrDefault(f => f.Id == "RR0090").Enabled;
-            RR0091 = refactorings.FirstOrDefault(f => f.Id == "RR0091").Enabled;
-            RR0092 = refactorings.FirstOrDefault(f => f.Id == "RR0092").Enabled;
-            RR0093 = refactorings.FirstOrDefault(f => f.Id == "RR0093").Enabled;
-            RR0094 = refactorings.FirstOrDefault(f => f.Id == "RR0094").Enabled;
-            RR0095 = refactorings.FirstOrDefault(f => f.Id == "RR0095").Enabled;
-            RR0096 = refactorings.FirstOrDefault(f => f.Id == "RR0096").Enabled;
-            RR0097 = refactorings.FirstOrDefault(f => f.Id == "RR0097").Enabled;
-            RR0098 = refactorings.FirstOrDefault(f => f.Id == "RR0098").Enabled;
-            RR0099 = refactorings.FirstOrDefault(f => f.Id == "RR0099").Enabled;
-            RR0100 = refactorings.FirstOrDefault(f => f.Id == "RR0100").Enabled;
-            RR0101 = refactorings.FirstOrDefault(f => f.Id == "RR0101").Enabled;
-            RR0102 = refactorings.FirstOrDefault(f => f.Id == "RR0102").Enabled;
-            RR0103 = refactorings.FirstOrDefault(f => f.Id == "RR0103").Enabled;
-            RR0104 = refactorings.FirstOrDefault(f => f.Id == "RR0104").Enabled;
-            RR0105 = refactorings.FirstOrDefault(f => f.Id == "RR0105").Enabled;
-            RR0106 = refactorings.FirstOrDefault(f => f.Id == "RR0106").Enabled;
-            RR0107 = refactorings.FirstOrDefault(f => f.Id == "RR0107").Enabled;
-            RR0108 = refactorings.FirstOrDefault(f => f.Id == "RR0108").Enabled;
-            RR0109 = refactorings.FirstOrDefault(f => f.Id == "RR0109").Enabled;
-            RR0110 = refactorings.FirstOrDefault(f => f.Id == "RR0110").Enabled;
-            RR0111 = refactorings.FirstOrDefault(f => f.Id == "RR0111").Enabled;
-            RR0112 = refactorings.FirstOrDefault(f => f.Id == "RR0112").Enabled;
-            RR0113 = refactorings.FirstOrDefault(f => f.Id == "RR0113").Enabled;
-            RR0114 = refactorings.FirstOrDefault(f => f.Id == "RR0114").Enabled;
-            RR0115 = refactorings.FirstOrDefault(f => f.Id == "RR0115").Enabled;
-            RR0116 = refactorings.FirstOrDefault(f => f.Id == "RR0116").Enabled;
-            RR0117 = refactorings.FirstOrDefault(f => f.Id == "RR0117").Enabled;
-            RR0118 = refactorings.FirstOrDefault(f => f.Id == "RR0118").Enabled;
-            RR0119 = refactorings.FirstOrDefault(f => f.Id == "RR0119").Enabled;
-            RR0120 = refactorings.FirstOrDefault(f => f.Id == "RR0120").Enabled;
-            RR0121 = refactorings.FirstOrDefault(f => f.Id == "RR0121").Enabled;
-            RR0122 = refactorings.FirstOrDefault(f => f.Id == "RR0122").Enabled;
-            RR0123 = refactorings.FirstOrDefault(f => f.Id == "RR0123").Enabled;
-            RR0124 = refactorings.FirstOrDefault(f => f.Id == "RR0124").Enabled;
-            RR0125 = refactorings.FirstOrDefault(f => f.Id == "RR0125").Enabled;
-            RR0126 = refactorings.FirstOrDefault(f => f.Id == "RR0126").Enabled;
-            RR0127 = refactorings.FirstOrDefault(f => f.Id == "RR0127").Enabled;
-            RR0128 = refactorings.FirstOrDefault(f => f.Id == "RR0128").Enabled;
-            RR0129 = refactorings.FirstOrDefault(f => f.Id == "RR0129").Enabled;
-            RR0130 = refactorings.FirstOrDefault(f => f.Id == "RR0130").Enabled;
-            RR0131 = refactorings.FirstOrDefault(f => f.Id == "RR0131").Enabled;
-            RR0132 = refactorings.FirstOrDefault(f => f.Id == "RR0132").Enabled;
-            RR0133 = refactorings.FirstOrDefault(f => f.Id == "RR0133").Enabled;
-            RR0134 = refactorings.FirstOrDefault(f => f.Id == "RR0134").Enabled;
-            RR0135 = refactorings.FirstOrDefault(f => f.Id == "RR0135").Enabled;
-            RR0136 = refactorings.FirstOrDefault(f => f.Id == "RR0136").Enabled;
-            RR0137 = refactorings.FirstOrDefault(f => f.Id == "RR0137").Enabled;
-            RR0138 = refactorings.FirstOrDefault(f => f.Id == "RR0138").Enabled;
-            RR0139 = refactorings.FirstOrDefault(f => f.Id == "RR0139").Enabled;
-            RR0140 = refactorings.FirstOrDefault(f => f.Id == "RR0140").Enabled;
-            RR0141 = refactorings.FirstOrDefault(f => f.Id == "RR0141").Enabled;
-            RR0142 = refactorings.FirstOrDefault(f => f.Id == "RR0142").Enabled;
-            RR0143 = refactorings.FirstOrDefault(f => f.Id == "RR0143").Enabled;
-            RR0144 = refactorings.FirstOrDefault(f => f.Id == "RR0144").Enabled;
-            RR0145 = refactorings.FirstOrDefault(f => f.Id == "RR0145").Enabled;
-            RR0146 = refactorings.FirstOrDefault(f => f.Id == "RR0146").Enabled;
-            RR0147 = refactorings.FirstOrDefault(f => f.Id == "RR0147").Enabled;
-            RR0148 = refactorings.FirstOrDefault(f => f.Id == "RR0148").Enabled;
-            RR0149 = refactorings.FirstOrDefault(f => f.Id == "RR0149").Enabled;
-            RR0150 = refactorings.FirstOrDefault(f => f.Id == "RR0150").Enabled;
-            RR0151 = refactorings.FirstOrDefault(f => f.Id == "RR0151").Enabled;
-            RR0152 = refactorings.FirstOrDefault(f => f.Id == "RR0152").Enabled;
-            RR0153 = refactorings.FirstOrDefault(f => f.Id == "RR0153").Enabled;
-            RR0154 = refactorings.FirstOrDefault(f => f.Id == "RR0154").Enabled;
-            RR0155 = refactorings.FirstOrDefault(f => f.Id == "RR0155").Enabled;
-            RR0156 = refactorings.FirstOrDefault(f => f.Id == "RR0156").Enabled;
-            RR0157 = refactorings.FirstOrDefault(f => f.Id == "RR0157").Enabled;
-            RR0158 = refactorings.FirstOrDefault(f => f.Id == "RR0158").Enabled;
-            RR0159 = refactorings.FirstOrDefault(f => f.Id == "RR0159").Enabled;
-            RR0160 = refactorings.FirstOrDefault(f => f.Id == "RR0160").Enabled;
-            RR0161 = refactorings.FirstOrDefault(f => f.Id == "RR0161").Enabled;
-            RR0162 = refactorings.FirstOrDefault(f => f.Id == "RR0162").Enabled;
-            RR0163 = refactorings.FirstOrDefault(f => f.Id == "RR0163").Enabled;
-            RR0164 = refactorings.FirstOrDefault(f => f.Id == "RR0164").Enabled;
-            RR0165 = refactorings.FirstOrDefault(f => f.Id == "RR0165").Enabled;
-            RR0166 = refactorings.FirstOrDefault(f => f.Id == "RR0166").Enabled;
-            RR0167 = refactorings.FirstOrDefault(f => f.Id == "RR0167").Enabled;
-            RR0168 = refactorings.FirstOrDefault(f => f.Id == "RR0168").Enabled;
-            RR0169 = refactorings.FirstOrDefault(f => f.Id == "RR0169").Enabled;
-            RR0170 = refactorings.FirstOrDefault(f => f.Id == "RR0170").Enabled;
-            RR0171 = refactorings.FirstOrDefault(f => f.Id == "RR0171").Enabled;
-            RR0172 = refactorings.FirstOrDefault(f => f.Id == "RR0172").Enabled;
-            RR0173 = refactorings.FirstOrDefault(f => f.Id == "RR0173").Enabled;
-            RR0174 = refactorings.FirstOrDefault(f => f.Id == "RR0174").Enabled;
-            RR0175 = refactorings.FirstOrDefault(f => f.Id == "RR0175").Enabled;
-            RR0176 = refactorings.FirstOrDefault(f => f.Id == "RR0176").Enabled;
-            RR0177 = refactorings.FirstOrDefault(f => f.Id == "RR0177").Enabled;
-        }
-
-        public void Apply()
-        {
-            SetIsEnabled(RefactoringIdentifiers.AddBooleanComparison, RR0001);
-            SetIsEnabled(RefactoringIdentifiers.AddBraces, RR0002);
-            SetIsEnabled(RefactoringIdentifiers.AddBracesToIfElse, RR0003);
-            SetIsEnabled(RefactoringIdentifiers.AddBracesToSwitchSection, RR0004);
-            SetIsEnabled(RefactoringIdentifiers.AddBracesToSwitchSections, RR0005);
-            SetIsEnabled(RefactoringIdentifiers.AddCastExpression, RR0006);
-            SetIsEnabled(RefactoringIdentifiers.AddDefaultValueToParameter, RR0007);
-            SetIsEnabled(RefactoringIdentifiers.AddDefaultValueToReturnStatement, RR0008);
-            SetIsEnabled(RefactoringIdentifiers.AddExceptionToDocumentationComment, RR0009);
-            SetIsEnabled(RefactoringIdentifiers.AddIdentifierToVariableDeclaration, RR0010);
-            SetIsEnabled(RefactoringIdentifiers.AddParameterNameToArgument, RR0011);
-            SetIsEnabled(RefactoringIdentifiers.AddParameterNameToParameter, RR0012);
-            SetIsEnabled(RefactoringIdentifiers.AddUsingDirective, RR0013);
-            SetIsEnabled(RefactoringIdentifiers.AddUsingStaticDirective, RR0014);
-            SetIsEnabled(RefactoringIdentifiers.CallConfigureAwait, RR0015);
-            SetIsEnabled(RefactoringIdentifiers.CallExtensionMethodAsInstanceMethod, RR0016);
-            SetIsEnabled(RefactoringIdentifiers.CallToMethod, RR0017);
-            SetIsEnabled(RefactoringIdentifiers.ChangeExplicitTypeToVar, RR0018);
-            SetIsEnabled(RefactoringIdentifiers.ChangeMemberTypeAccordingToReturnExpression, RR0019);
-            SetIsEnabled(RefactoringIdentifiers.ChangeMemberTypeAccordingToYieldReturnExpression, RR0020);
-            SetIsEnabled(RefactoringIdentifiers.ChangeMethodReturnTypeToVoid, RR0021);
-            SetIsEnabled(RefactoringIdentifiers.ChangeTypeAccordingToExpression, RR0022);
-            SetIsEnabled(RefactoringIdentifiers.ChangeVarToExplicitType, RR0023);
-            SetIsEnabled(RefactoringIdentifiers.CheckExpressionForNull, RR0024);
-            SetIsEnabled(RefactoringIdentifiers.CheckParameterForNull, RR0025);
-            SetIsEnabled(RefactoringIdentifiers.CollapseToInitializer, RR0026);
-            SetIsEnabled(RefactoringIdentifiers.CommentOutMember, RR0027);
-            SetIsEnabled(RefactoringIdentifiers.CommentOutStatement, RR0028);
-            SetIsEnabled(RefactoringIdentifiers.CopyDocumentationCommentFromBaseMember, RR0029);
-            SetIsEnabled(RefactoringIdentifiers.DuplicateArgument, RR0030);
-            SetIsEnabled(RefactoringIdentifiers.DuplicateMember, RR0031);
-            SetIsEnabled(RefactoringIdentifiers.DuplicateParameter, RR0032);
-            SetIsEnabled(RefactoringIdentifiers.DuplicateStatement, RR0033);
-            SetIsEnabled(RefactoringIdentifiers.ExpandAssignmentExpression, RR0034);
-            SetIsEnabled(RefactoringIdentifiers.ExpandCoalesceExpression, RR0035);
-            SetIsEnabled(RefactoringIdentifiers.ExpandEvent, RR0036);
-            SetIsEnabled(RefactoringIdentifiers.ExpandExpressionBody, RR0037);
-            SetIsEnabled(RefactoringIdentifiers.ExpandInitializer, RR0038);
-            SetIsEnabled(RefactoringIdentifiers.ExpandLambdaExpressionBody, RR0039);
-            SetIsEnabled(RefactoringIdentifiers.ExpandProperty, RR0040);
-            SetIsEnabled(RefactoringIdentifiers.ExpandPropertyAndAddBackingField, RR0041);
-            SetIsEnabled(RefactoringIdentifiers.ExtractDeclarationFromUsingStatement, RR0042);
-            SetIsEnabled(RefactoringIdentifiers.ExtractExpressionFromCondition, RR0043);
-            SetIsEnabled(RefactoringIdentifiers.ExtractGenericType, RR0044);
-            SetIsEnabled(RefactoringIdentifiers.ExtractStatement, RR0045);
-            SetIsEnabled(RefactoringIdentifiers.ExtractTypeDeclarationToNewFile, RR0046);
-            SetIsEnabled(RefactoringIdentifiers.FormatAccessorBraces, RR0047);
-            SetIsEnabled(RefactoringIdentifiers.FormatArgumentList, RR0048);
-            SetIsEnabled(RefactoringIdentifiers.FormatBinaryExpression, RR0049);
-            SetIsEnabled(RefactoringIdentifiers.FormatConditionalExpression, RR0050);
-            SetIsEnabled(RefactoringIdentifiers.FormatExpressionChain, RR0051);
-            SetIsEnabled(RefactoringIdentifiers.FormatInitializer, RR0052);
-            SetIsEnabled(RefactoringIdentifiers.FormatParameterList, RR0053);
-            SetIsEnabled(RefactoringIdentifiers.GenerateBaseConstructors, RR0054);
-            SetIsEnabled(RefactoringIdentifiers.GenerateCombinedEnumMember, RR0055);
-            SetIsEnabled(RefactoringIdentifiers.GenerateEnumMember, RR0056);
-            SetIsEnabled(RefactoringIdentifiers.GenerateEnumValues, RR0057);
-            SetIsEnabled(RefactoringIdentifiers.GenerateEventInvokingMethod, RR0058);
-            SetIsEnabled(RefactoringIdentifiers.GenerateSwitchSections, RR0059);
-            SetIsEnabled(RefactoringIdentifiers.InitializeLocalWithDefaultValue, RR0060);
-            SetIsEnabled(RefactoringIdentifiers.InlineAliasExpression, RR0061);
-            SetIsEnabled(RefactoringIdentifiers.InlineMethod, RR0062);
-            SetIsEnabled(RefactoringIdentifiers.InsertStringInterpolation, RR0063);
-            SetIsEnabled(RefactoringIdentifiers.IntroduceAndInitializeField, RR0064);
-            SetIsEnabled(RefactoringIdentifiers.IntroduceAndInitializeProperty, RR0065);
-            SetIsEnabled(RefactoringIdentifiers.IntroduceConstructor, RR0066);
-            SetIsEnabled(RefactoringIdentifiers.IntroduceFieldToLockOn, RR0067);
-            SetIsEnabled(RefactoringIdentifiers.IntroduceLocalFromStatementThatReturnsValue, RR0068);
-            SetIsEnabled(RefactoringIdentifiers.MakeMemberAbstract, RR0069);
-            SetIsEnabled(RefactoringIdentifiers.MakeMemberVirtual, RR0070);
-            SetIsEnabled(RefactoringIdentifiers.MarkContainingClassAsAbstract, RR0071);
-            SetIsEnabled(RefactoringIdentifiers.MarkMemberAsStatic, RR0072);
-            SetIsEnabled(RefactoringIdentifiers.MergeAssignmentExpressionWithReturnStatement, RR0073);
-            SetIsEnabled(RefactoringIdentifiers.MergeAttributes, RR0074);
-            SetIsEnabled(RefactoringIdentifiers.MergeIfStatements, RR0075);
-            SetIsEnabled(RefactoringIdentifiers.MergeInterpolationIntoInterpolatedString, RR0076);
-            SetIsEnabled(RefactoringIdentifiers.MergeLocalDeclarations, RR0077);
-            SetIsEnabled(RefactoringIdentifiers.MergeStringExpressions, RR0078);
-            SetIsEnabled(RefactoringIdentifiers.NegateBinaryExpression, RR0079);
-            SetIsEnabled(RefactoringIdentifiers.NegateBooleanLiteral, RR0080);
-            SetIsEnabled(RefactoringIdentifiers.NegateIsExpression, RR0081);
-            SetIsEnabled(RefactoringIdentifiers.NegateOperator, RR0082);
-            SetIsEnabled(RefactoringIdentifiers.NotifyPropertyChanged, RR0083);
-            SetIsEnabled(RefactoringIdentifiers.ParenthesizeExpression, RR0084);
-            SetIsEnabled(RefactoringIdentifiers.PromoteLocalToParameter, RR0085);
-            SetIsEnabled(RefactoringIdentifiers.RemoveAllComments, RR0086);
-            SetIsEnabled(RefactoringIdentifiers.RemoveAllCommentsExceptDocumentationComments, RR0087);
-            SetIsEnabled(RefactoringIdentifiers.RemoveAllDocumentationComments, RR0088);
-            SetIsEnabled(RefactoringIdentifiers.RemoveAllMemberDeclarations, RR0089);
-            SetIsEnabled(RefactoringIdentifiers.RemoveAllPreprocessorDirectives, RR0090);
-            SetIsEnabled(RefactoringIdentifiers.RemoveAllRegionDirectives, RR0091);
-            SetIsEnabled(RefactoringIdentifiers.RemoveAllStatements, RR0092);
-            SetIsEnabled(RefactoringIdentifiers.RemoveAllSwitchSections, RR0093);
-            SetIsEnabled(RefactoringIdentifiers.RemoveBraces, RR0094);
-            SetIsEnabled(RefactoringIdentifiers.RemoveBracesFromIfElse, RR0095);
-            SetIsEnabled(RefactoringIdentifiers.RemoveBracesFromSwitchSection, RR0096);
-            SetIsEnabled(RefactoringIdentifiers.RemoveBracesFromSwitchSections, RR0097);
-            SetIsEnabled(RefactoringIdentifiers.RemoveComment, RR0098);
-            SetIsEnabled(RefactoringIdentifiers.RemoveConditionFromLastElse, RR0099);
-            SetIsEnabled(RefactoringIdentifiers.RemoveDirectiveAndRelatedDirectives, RR0100);
-            SetIsEnabled(RefactoringIdentifiers.RemoveEmptyLines, RR0101);
-            SetIsEnabled(RefactoringIdentifiers.RemoveInterpolation, RR0102);
-            SetIsEnabled(RefactoringIdentifiers.RemoveMember, RR0103);
-            SetIsEnabled(RefactoringIdentifiers.RemoveMemberDeclarations, RR0104);
-            SetIsEnabled(RefactoringIdentifiers.RemoveParameterNameFromArgument, RR0105);
-            SetIsEnabled(RefactoringIdentifiers.RemoveParentheses, RR0106);
-            SetIsEnabled(RefactoringIdentifiers.RemovePropertyInitializer, RR0107);
-            SetIsEnabled(RefactoringIdentifiers.RemoveRegion, RR0108);
-            SetIsEnabled(RefactoringIdentifiers.RemoveStatement, RR0109);
-            SetIsEnabled(RefactoringIdentifiers.RemoveStatementsFromSwitchSections, RR0110);
-            SetIsEnabled(RefactoringIdentifiers.RenameBackingFieldAccordingToPropertyName, RR0111);
-            SetIsEnabled(RefactoringIdentifiers.RenameIdentifierAccordingToTypeName, RR0112);
-            SetIsEnabled(RefactoringIdentifiers.RenameMethodAccordingToTypeName, RR0113);
-            SetIsEnabled(RefactoringIdentifiers.RenameParameterAccordingToTypeName, RR0114);
-            SetIsEnabled(RefactoringIdentifiers.RenamePropertyAccordingToTypeName, RR0115);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceAnyWithAllOrAllWithAny, RR0116);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceAsWithCast, RR0117);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceCastWithAs, RR0118);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceConditionalExpressionWithExpression, RR0119);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceConditionalExpressionWithIfElse, RR0120);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceConstantWithField, RR0121);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceCountWithLengthOrLengthWithCount, RR0122);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceDoStatementWithWhileStatement, RR0123);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceEqualsExpressionWithStringEquals, RR0124);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceEqualsExpressionWithStringIsNullOrEmpty, RR0125);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceEqualsExpressionWithStringIsNullOrWhiteSpace, RR0126);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceExpressionWithConstantValue, RR0127);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceFieldWithConstant, RR0128);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceForEachWithFor, RR0129);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceForWithForEach, RR0130);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceForWithWhile, RR0131);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceHexadecimalLiteralWithDecimalLiteral, RR0132);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceIfElseWithSwitch, RR0133);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceIncrementOperatorWithDecrementOperator, RR0134);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceInterpolatedStringWithInterpolationExpression, RR0135);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceInterpolatedStringWithStringLiteral, RR0136);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceMethodGroupWithLambda, RR0137);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceMethodWithProperty, RR0138);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceNullLiteralExpressionWithDefaultExpression, RR0139);
-            SetIsEnabled(RefactoringIdentifiers.ReplacePrefixOperatorWithPostfixOperator, RR0140);
-            SetIsEnabled(RefactoringIdentifiers.ReplacePropertyWithMethod, RR0141);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceRegularStringLiteralWithVerbatimStringLiteral, RR0142);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceStatementWithIfStatement, RR0143);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceStringContainsWithStringIndexOf, RR0144);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceStringFormatWithInterpolatedString, RR0145);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceStringLiteralWithCharacterLiteral, RR0146);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceSwitchWithIfElse, RR0147);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceVerbatimStringLiteralWithRegularStringLiteral, RR0148);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceVerbatimStringLiteralWithRegularStringLiterals, RR0149);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceWhileStatementWithDoStatement, RR0150);
-            SetIsEnabled(RefactoringIdentifiers.ReplaceWhileWithFor, RR0151);
-            SetIsEnabled(RefactoringIdentifiers.ReverseForLoop, RR0152);
-            SetIsEnabled(RefactoringIdentifiers.SimplifyIf, RR0153);
-            SetIsEnabled(RefactoringIdentifiers.SimplifyLambdaExpression, RR0154);
-            SetIsEnabled(RefactoringIdentifiers.SortMemberDeclarations, RR0155);
-            SetIsEnabled(RefactoringIdentifiers.SplitAttributes, RR0156);
-            SetIsEnabled(RefactoringIdentifiers.SplitSwitchLabels, RR0157);
-            SetIsEnabled(RefactoringIdentifiers.SplitVariableDeclaration, RR0158);
-            SetIsEnabled(RefactoringIdentifiers.SwapExpressionsInBinaryExpression, RR0159);
-            SetIsEnabled(RefactoringIdentifiers.SwapExpressionsInConditionalExpression, RR0160);
-            SetIsEnabled(RefactoringIdentifiers.SwapMemberDeclarations, RR0161);
-            SetIsEnabled(RefactoringIdentifiers.SwapStatementsInIfElse, RR0162);
-            SetIsEnabled(RefactoringIdentifiers.Uncomment, RR0163);
-            SetIsEnabled(RefactoringIdentifiers.UseBitwiseOperationInsteadOfCallingHasFlag, RR0164);
-            SetIsEnabled(RefactoringIdentifiers.UseCoalesceExpressionInsteadOfIf, RR0165);
-            SetIsEnabled(RefactoringIdentifiers.UseConditionalExpressionInsteadOfIf, RR0166);
-            SetIsEnabled(RefactoringIdentifiers.UseElementAccessInsteadOfEnumerableMethod, RR0167);
-            SetIsEnabled(RefactoringIdentifiers.UseEmptyStringLiteralInsteadOfStringEmpty, RR0168);
-            SetIsEnabled(RefactoringIdentifiers.UseExpressionBodiedMember, RR0169);
-            SetIsEnabled(RefactoringIdentifiers.UseLambdaExpressionInsteadOfAnonymousMethod, RR0170);
-            SetIsEnabled(RefactoringIdentifiers.UseStringEmptyInsteadOfEmptyStringLiteral, RR0171);
-            SetIsEnabled(RefactoringIdentifiers.WrapInCondition, RR0172);
-            SetIsEnabled(RefactoringIdentifiers.WrapInElseClause, RR0173);
-            SetIsEnabled(RefactoringIdentifiers.WrapInIfDirective, RR0174);
-            SetIsEnabled(RefactoringIdentifiers.WrapInRegion, RR0175);
-            SetIsEnabled(RefactoringIdentifiers.WrapInTryCatch, RR0176);
-            SetIsEnabled(RefactoringIdentifiers.WrapInUsingStatement, RR0177);
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Add boolean comparison")]
-        [Description("Syntax: boolean? expression in place where must be boolean expression")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0001
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Add braces")]
-        [Description("Syntax: do statement, else clause, fixed statement, for statement, foreach statement, if statement, lock statement, using statement, while statement\r\nScope: embedded statement")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0002
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Add braces to if-else")]
-        [Description("Syntax: if-else chain\r\nScope: embedded statement")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0003
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Add braces to switch section")]
-        [Description("Syntax: switch section\r\nScope: statements")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0004
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Add braces to switch sections")]
-        [Description("Syntax: switch statement\r\nScope: switch keyword")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0005
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Add cast expression")]
-        [Description("Syntax: argument, assignment expression, return statement, variable declaration")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0006
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Add default value to parameter")]
-        [Description("Syntax: parameter without default value\r\nScope: identifier")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0007
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Add default value to return statement")]
-        [Description("Syntax: return statement without expression")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0008
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Add exception to documentation comment")]
-        [Description("Syntax: throw statement")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0009
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Add identifier to variable declaration")]
-        [Description("Syntax: variable declaration")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0010
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Add parameter name to argument")]
-        [Description("Syntax: argument list")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0011
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Add parameter name to parameter")]
-        [Description("Syntax: parameter\r\nScope: missing identifier")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0012
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Add using directive")]
-        [Description("Syntax: qualified name\r\nScope: selected namespace")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0013
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Add using static directive")]
-        [Description("Syntax: member access expression (public or internal static class)\r\nScope: selected class name")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0014
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Call 'ConfigureAwait(false)'")]
-        [Description("Syntax: awaitable method invocation\r\nScope: method name")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0015
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Call extension method as instance method")]
-        [Description("Syntax: method invocation")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0016
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Call 'To...' method (ToString, ToArray, ToList)")]
-        [Description("Syntax: argument, assignment expression, return statement, variable declaration")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0017
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Change explicit type to 'var'")]
-        [Description("Syntax: variable declaration, foreach statement\r\nScope: type")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0018
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Change method/property/indexer type according to return expression")]
-        [Description("Syntax: return statement in method/property/indexer")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0019
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Change method/property/indexer type according to yield return expression")]
-        [Description("Syntax: yield return statement in method/property/indexer")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0020
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Change method return type to 'void'")]
-        [Description("Syntax: method")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0021
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Change type according to expression")]
-        [Description("Syntax: variable declaration, foreach statement\r\nScope: type")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0022
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Change 'var' to explicit type")]
-        [Description("Syntax: variable declaration, foreach statetement\r\nScope: type")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0023
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Check expression for null")]
-        [Description("Syntax: local declaration (identifier), assignment expression (left)")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0024
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Check parameter for null")]
-        [Description("Syntax: parameter\r\nScope: parameter identifier")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0025
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Collapse to initalizer")]
-        [Description("Syntax: object creation followed with assignment(s)")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0026
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Comment out member")]
-        [Description("Syntax: method, constructor, property, indexer, operator, event, namespace, class, struct, interface\r\nScope: opening or closing brace")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0027
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Comment out statement")]
-        [Description("Syntax: do statement, fixed statement, for statement, foreach statement, checked statement, if statement, lock statement, switch statement, try statement, unchecked statement, unsafe statement, using statement, while statement\r\nScope: opening or closing brace")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0028
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Copy documentation comment from base member")]
-        [Description("Syntax: constructor, method, property, indexer, event")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0029
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Duplicate argument")]
-        [Description("Syntax: missing argument")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0030
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Duplicate member")]
-        [Description("Syntax: method, constructor, property, indexer, operator, event, namespace, class, struct, interface\r\nScope: opening or closing brace")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0031
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Duplicate parameter")]
-        [Description("Syntax: missing parameter")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0032
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Duplicate statement")]
-        [Description("Syntax: do statement, fixed statement, for statement, foreach statement, checked statement, if statement, lock statement, switch statement, try statement, unchecked statement, unsafe statement, using statement, while statement\r\nScope: opening or closing brace")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0033
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Expand assignment expression")]
-        [Description("Syntax: assignment expression\r\nScope: operator")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0034
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Expand coalesce expression")]
-        [Description("Syntax: coalesce expression\r\nScope: ?? operator")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0035
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Expand event")]
-        [Description("Syntax: event field declaration")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0036
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Expand expression body")]
-        [Description("Syntax: expression body")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0037
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Expand initializer")]
-        [Description("Syntax: initializer")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0038
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Expand lambda expression body")]
-        [Description("Syntax: lambda expression\r\nScope: body")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0039
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Expand property")]
-        [Description("Syntax: auto-property")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0040
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Expand property and add backing field")]
-        [Description("Syntax: auto-property")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0041
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Extract declaration from using statement")]
-        [Description("Syntax: using statement\r\nScope: declaration")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0042
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Extract expression from condition")]
-        [Description("Syntax: if statement, while statement\r\nScope: condition")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0043
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Extract generic type")]
-        [Description("Syntax: generic name with single type argument\r\nScope: type argument")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0044
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Extract statement(s)")]
-        [Description("Syntax: else clause, fixed statement, for statement, foreach statement, checked statement, if statement, lock statement, try statement, unsafe statement, using statement, while statement")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0045
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Extract type declaration to a new file")]
-        [Description("Syntax: class declaration, struct declaration, interface declaration, enum declaration, delegate declaration\r\nScope: identifier")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0046
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Format accessor braces")]
-        [Description("Syntax: get accessor, set accessor, add accessor, remove accessor\r\nScope: block")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0047
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Format argument list")]
-        [Description("Syntax: argument list")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0048
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Format binary expression")]
-        [Description("Syntax: logical and/or expression, bitwise and/or expression")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0049
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Format conditional expression")]
-        [Description("Syntax: conditional expression")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0050
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Format expression chain")]
-        [Description("Syntax: expression chain")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0051
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Format initializer")]
-        [Description("Syntax: initializer")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0052
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Format parameter list")]
-        [Description("Syntax: parameter list")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0053
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Generate base constructors")]
-        [Description("Syntax: class declaration\r\nScope: identifier")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0054
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Generate combined enum member")]
-        [Description("Syntax: enum declaration (with FlagsAttribute)")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0055
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Generate enum member")]
-        [Description("Syntax: enum declaration (with FlagsAttribute)")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0056
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Generate enum values")]
-        [Description("Syntax: enum declaration (with FlagsAttribute)")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0057
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Generate event invoking method")]
-        [Description("Syntax: event\r\nScope: identifier")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0058
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Generate switch sections")]
-        [Description("Syntax: switch statement (that is empty or contains only default section)")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0059
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Initialize local with default value")]
-        [Description("Syntax: local declaration without initializer\r\nScope: identifier")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0060
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Inline alias expression")]
-        [Description("Syntax: using alias directive\r\nScope: identifier")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0061
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Inline method")]
-        [Description("Syntax: static/extension method invocation")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0062
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Insert string interpolation")]
-        [Description("Syntax: string literal, interpolated string")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0063
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Introduce and initialize field")]
-        [Description("Syntax: constructor parameter")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0064
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Introduce and initialize property")]
-        [Description("Syntax: constructor parameter")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0065
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Introduce constructor")]
-        [Description("Syntax: field, property")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0066
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Introduce field to lock on")]
-        [Description("Syntax: lock statement\r\nScope: missing expression")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0067
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Introduce local from statement that returns value")]
-        [Description("Syntax: expression statement")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0068
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Make member abstract")]
-        [Description("Syntax: non-abstract indexer/method/property in abstract class\r\nScope: indexer/method/property header")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0069
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Make member virtual")]
-        [Description("Syntax: method declaration, indexer declaration")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0070
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Mark containing class as abstract")]
-        [Description("Syntax: method declaration, property declaration, indexer declaration, event declaration")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0071
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Mark member as static")]
-        [Description("Syntax: non-static field/method/property/event in static class")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0072
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Merge assignment expression with return statement")]
-        [Description("Syntax: assignment expression followed with return statement")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0073
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Merge attributes")]
-        [Description("Syntax: selected attribute lists")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0074
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Merge if statements")]
-        [Description("Syntax: selected if statements")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0075
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Merge interpolation into interpolated string")]
-        [Description("Syntax: interpolation")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0076
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Merge local declarations")]
-        [Description("Syntax: local declarations with same type")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0077
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Merge string expressions")]
-        [Description("Syntax: concatenated string expressions")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0078
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Negate binary expression")]
-        [Description("Syntax: logical and/or expression")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0079
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Negate boolean literal")]
-        [Description("Syntax: boolean literal")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0080
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Negate is expression")]
-        [Description("Syntax: is expression\r\nScope: operator")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0081
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Negate operator")]
-        [Description("Syntax: !=, &&, ||, <, <=, ==, >, >=")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0082
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Notify property changed")]
-        [Description("Syntax: property in class/struct that implements INotifyPropertyChanged\r\nScope: setter")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0083
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Parenthesize expression")]
-        [Description("Syntax: selected expression")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0084
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Promote local to parameter")]
-        [Description("Syntax: local declaration in method")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0085
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Remove all comments")]
-        [Description("Syntax: singleline/multiline comment, singleline/multiline documentation documentation comment")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0086
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Remove all comments (except documentation comments)")]
-        [Description("Syntax: singleline/multiline comment")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0087
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Remove all documentation comments")]
-        [Description("Syntax: singleline/multiline documentation comment")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0088
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Remove all member declarations")]
-        [Description("Syntax: namespace, class, struct, interface\r\nScope: opening or closing brace")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0089
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Remove all preprocessor directives")]
-        [Description("Syntax: preprocessor directive")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0090
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Remove all region directives")]
-        [Description("Syntax: region directive")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0091
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Remove all statements")]
-        [Description("Syntax: method, constructor, operator\r\nScope: opening or closing brace")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0092
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Remove all switch sections")]
-        [Description("Syntax: switch statement\r\nScope: opening or closing brace")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0093
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Remove braces")]
-        [Description("Syntax: do statement, else clause, fixed statement, for statement, foreach statement, if statement, lock statement, using statement, while statement\r\nScope: block with a single statement")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0094
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Remove braces from if-else")]
-        [Description("Syntax: if-else chain\r\nScope: embedded statement")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0095
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Remove braces from switch section")]
-        [Description("Syntax: switch section\r\nScope: block")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0096
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Remove braces from switch sections")]
-        [Description("Syntax: switch statement\r\nScope: switch keyword")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0097
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Remove comment")]
-        [Description("Syntax: singleline/multiline comment, singleline/multiline xml documentation comment")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0098
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Remove condition from last else clause")]
-        [Description("Syntax: else clause\r\nScope: else keyword")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0099
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Remove directive and related directives")]
-        [Description("Syntax: preprocessor directive, region directive")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0100
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Remove empty lines")]
-        [Description("Syntax: selected lines")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0101
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Remove interpolation")]
-        [Description("Syntax: string interpolation\r\nScope: opening or closing brace")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0102
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Remove member")]
-        [Description("Syntax: method, constructor, property, indexer, operator, event, namespace, class, struct, interface\r\nScope: opening or closing brace")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0103
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Remove member declarations above/below")]
-        [Description("Syntax: empty line between member declarations")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0104
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Remove parameter name from argument")]
-        [Description("Syntax: selected argument(s)")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0105
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Remove parentheses")]
-        [Description("Syntax: parenthesized expression\r\nScope: opening or closing parenthesis")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0106
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Remove property initializer")]
-        [Description("Syntax: property initializer")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0107
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Remove region")]
-        [Description("Syntax: region directive")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0108
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Remove statement")]
-        [Description("Syntax: do statement, fixed statement, for statement, foreach statement, checked statement, if statement, lock statement, switch statement, try statement, unchecked statement, unsafe statement, using statement, while statement\r\nScope: open/close brace")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0109
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Remove statements from switch sections")]
-        [Description("Syntax: selected switch sections")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0110
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Rename backing field according to property name")]
-        [Description("Syntax: field identifier inside property declaration")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0111
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Rename identifier according to type name")]
-        [Description("Syntax: foreach statement, local/field/constant declaration\r\nScope: identifier")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0112
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Rename method according to type name")]
-        [Description("Syntax: method")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0113
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Rename parameter according to its type name")]
-        [Description("Syntax: parameter\r\nScope: parameter identifier")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0114
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Rename property according to type name")]
-        [Description("Syntax: property identifier")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0115
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace Any with All (or All with Any)")]
-        [Description("Syntax: Any(Func<T, bool> or All(Func<T, bool> from System.Linq.Enumerable namespace\r\nScope: method name")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0116
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace as expression with cast expression")]
-        [Description("Syntax: as expression")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0117
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace cast expression with as expression")]
-        [Description("Syntax: cast expression")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0118
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace conditional expression with expression")]
-        [Description("Syntax: conditional expression\r\nScope: selected true/false expression")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0119
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace conditional expression with if-else")]
-        [Description("Syntax: conditional expression")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0120
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace constant with field")]
-        [Description("Syntax: constant declaration")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0121
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace Count property with Length property (or Length with Count)")]
-        [Description("Syntax: member access expression\r\nScope: name")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0122
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace do statement with while statement")]
-        [Description("Syntax: do statement\r\nScope: do keyword")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0123
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace equals expression with String.Equals")]
-        [Description("Syntax: equals expression, not equals expression\r\nScope: operator")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0124
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace equals expression with String.IsNullOrEmpty")]
-        [Description("Syntax: equals expression, not equals expression\r\nScope: operator")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0125
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace equals expression with String.IsNullOrWhiteSpace")]
-        [Description("Syntax: equals expression, not equals expression\r\nScope: operator")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0126
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace expression with constant value")]
-        [Description("Syntax: expression that has constant value")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0127
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace field with constant")]
-        [Description("Syntax: read-only field")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0128
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace foreach statement with for statement")]
-        [Description("Syntax: foreach statement")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0129
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace for statement with foreach statement")]
-        [Description("Syntax: for statement")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0130
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace for statement with while statement")]
-        [Description("Syntax: for statement")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0131
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace hexadecimal literal with decimal literal")]
-        [Description("Syntax: hexadecimal literal")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0132
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace if-else with switch statement")]
-        [Description("Syntax: if statement")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0133
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace increment operator with decrement operator")]
-        [Description("Syntax: prefix/postfix unary expression")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0134
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace interpolated string with interpolation expression")]
-        [Description("Syntax: interpolated string with single interpolation and no text\r\nScope: interpolation")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0135
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace interpolated string with string literal")]
-        [Description("Syntax: Interpolated string without any interpolation")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0136
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace method group with lambda")]
-        [Description("Syntax: method group")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0137
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace method with property")]
-        [Description("Syntax: method\r\nScope: method header")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0138
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace null literal expression with default expression")]
-        [Description("Syntax: argument")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0139
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace prefix operator to postfix operator")]
-        [Description("Syntax: prefix/postfix unary expression")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0140
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace property with method")]
-        [Description("Syntax: read-only property\r\nScope: property header")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0141
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace regular string literal with verbatim string literal")]
-        [Description("Syntax: regular string literal")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0142
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace statement with if statement")]
-        [Description("Syntax: return statement, yield return statement, assignment statement, local declaration statement")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0143
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace String.Contains with String.IndexOf")]
-        [Description("Syntax: method invocation\r\nScope: method name")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0144
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace String.Format with interpolated string")]
-        [Description("Syntax: String.Format method")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0145
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace string literal with character literal")]
-        [Description("Syntax: string literal")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0146
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace switch statement with if-else")]
-        [Description("Syntax: switch statement\r\nScope: switch keyword")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0147
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace verbatim string literal with regular string literal")]
-        [Description("Syntax: verbatim string literal")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0148
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace verbatim string literal with regular string literals")]
-        [Description("Syntax: multiline verbatim string literal")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0149
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace while statement with do statement")]
-        [Description("Syntax: while statement\r\nScope: while keyword")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0150
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Replace while statement with for statement")]
-        [Description("Syntax: while statement")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0151
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Reverse for loop")]
-        [Description("Syntax: for statement")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0152
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Simplify if")]
-        [Description("Syntax: if statement")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0153
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Simplify lambda expression")]
-        [Description("Syntax: lambda expression with block with single single-line statement\r\nScope: body")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0154
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Sort member declarations")]
-        [Description("Syntax: namespace declarations, class declarations, struct declarations, interface declarations, enum declarations\r\nScope: selected member declarations")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0155
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Split attributes")]
-        [Description("Syntax: selected attribute list")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0156
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Split switch labels")]
-        [Description("Syntax: selected switch labels")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0157
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Split variable declaration")]
-        [Description("Syntax: local declaration, field declaration, event field declaration")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0158
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Swap expressions in binary expression")]
-        [Description("Syntax: logical and/or expression\r\nScope: binary operator")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0159
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Swap expressions in conditional expression")]
-        [Description("Syntax: conditional expression\r\nScope: condition")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0160
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Swap member declarations")]
-        [Description("Syntax: empty line between member declarations")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0161
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Swap statements in if-else")]
-        [Description("Syntax: if statement\r\nScope: if keyword")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0162
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Uncomment")]
-        [Description("Syntax: single-line comment(s)")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0163
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Use bitwise operation instead of calling 'HasFlag'")]
-        [Description("Syntax: Enum.HasFlag method invocation")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0164
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Use coalesce expression instead of if")]
-        [Description("Syntax: if statement")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0165
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Use conditional expression instead of if")]
-        [Description("Syntax: if statement")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0166
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Use element access instead of 'First/Last'ElementAt' method")]
-        [Description("Syntax: First/Last/ElementAt method invocation\r\nScope: method name")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0167
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Use \"\" instead of String.Empty")]
-        [Description("Syntax: String.Empty field")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0168
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Use expression-bodied member")]
-        [Description("Syntax: method, property, indexer, operator\r\nScope: body or accessor list")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0169
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Use lambda expression instead of anonymous method")]
-        [Description("Syntax: anonymous method\r\nScope: delegate keyword")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0170
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Use String.Empty instead of \"\"")]
-        [Description("Syntax: empty string literal")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0171
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Wrap in condition")]
-        [Description("Syntax: selected statements")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0172
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Wrap in else clause")]
-        [Description("Syntax: statement")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0173
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Wrap in #if directive")]
-        [Description("Syntax: selected lines")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0174
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Wrap in region")]
-        [Description("Syntax: selected lines")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0175
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Wrap in try-catch")]
-        [Description("Syntax: selected statements")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0176
-        {
-            get;
-            set;
-        }
-
-        [Category(RefactoringCategory)]
-        [DisplayName("Wrap in using statement")]
-        [Description("Syntax: local declaration of type that implements IDisposable")]
-        [TypeConverter(typeof (EnabledDisabledConverter))]
-        public bool RR0177
-        {
-            get;
-            set;
+        public void Fill(ICollection<RefactoringModel> refactorings)
+        {
+            refactorings.Clear();
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.AddBooleanComparison, "Add boolean comparison", IsEnabled(RefactoringIdentifiers.AddBooleanComparison)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.AddBraces, "Add braces", IsEnabled(RefactoringIdentifiers.AddBraces)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.AddBracesToIfElse, "Add braces to if-else", IsEnabled(RefactoringIdentifiers.AddBracesToIfElse)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.AddBracesToSwitchSection, "Add braces to switch section", IsEnabled(RefactoringIdentifiers.AddBracesToSwitchSection)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.AddBracesToSwitchSections, "Add braces to switch sections", IsEnabled(RefactoringIdentifiers.AddBracesToSwitchSections)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.AddCastExpression, "Add cast expression", IsEnabled(RefactoringIdentifiers.AddCastExpression)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.AddDefaultValueToParameter, "Add default value to parameter", IsEnabled(RefactoringIdentifiers.AddDefaultValueToParameter)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.AddDefaultValueToReturnStatement, "Add default value to return statement", IsEnabled(RefactoringIdentifiers.AddDefaultValueToReturnStatement)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.AddExceptionToDocumentationComment, "Add exception to documentation comment", IsEnabled(RefactoringIdentifiers.AddExceptionToDocumentationComment)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.AddIdentifierToVariableDeclaration, "Add identifier to variable declaration", IsEnabled(RefactoringIdentifiers.AddIdentifierToVariableDeclaration)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.AddParameterNameToArgument, "Add parameter name to argument", IsEnabled(RefactoringIdentifiers.AddParameterNameToArgument)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.AddParameterNameToParameter, "Add parameter name to parameter", IsEnabled(RefactoringIdentifiers.AddParameterNameToParameter)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.AddUsingDirective, "Add using directive", IsEnabled(RefactoringIdentifiers.AddUsingDirective)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.AddUsingStaticDirective, "Add using static directive", IsEnabled(RefactoringIdentifiers.AddUsingStaticDirective)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.CallConfigureAwait, "Call 'ConfigureAwait(false)'", IsEnabled(RefactoringIdentifiers.CallConfigureAwait)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.CallExtensionMethodAsInstanceMethod, "Call extension method as instance method", IsEnabled(RefactoringIdentifiers.CallExtensionMethodAsInstanceMethod)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.CallToMethod, "Call 'To...' method (ToString, ToArray, ToList)", IsEnabled(RefactoringIdentifiers.CallToMethod)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ChangeExplicitTypeToVar, "Change explicit type to 'var'", IsEnabled(RefactoringIdentifiers.ChangeExplicitTypeToVar)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ChangeMemberTypeAccordingToReturnExpression, "Change method/property/indexer type according to return expression", IsEnabled(RefactoringIdentifiers.ChangeMemberTypeAccordingToReturnExpression)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ChangeMemberTypeAccordingToYieldReturnExpression, "Change method/property/indexer type according to yield return expression", IsEnabled(RefactoringIdentifiers.ChangeMemberTypeAccordingToYieldReturnExpression)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ChangeMethodReturnTypeToVoid, "Change method return type to 'void'", IsEnabled(RefactoringIdentifiers.ChangeMethodReturnTypeToVoid)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ChangeTypeAccordingToExpression, "Change type according to expression", IsEnabled(RefactoringIdentifiers.ChangeTypeAccordingToExpression)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ChangeVarToExplicitType, "Change 'var' to explicit type", IsEnabled(RefactoringIdentifiers.ChangeVarToExplicitType)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.CheckExpressionForNull, "Check expression for null", IsEnabled(RefactoringIdentifiers.CheckExpressionForNull)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.CheckParameterForNull, "Check parameter for null", IsEnabled(RefactoringIdentifiers.CheckParameterForNull)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.CollapseToInitializer, "Collapse to initalizer", IsEnabled(RefactoringIdentifiers.CollapseToInitializer)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.CommentOutMember, "Comment out member", IsEnabled(RefactoringIdentifiers.CommentOutMember)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.CommentOutStatement, "Comment out statement", IsEnabled(RefactoringIdentifiers.CommentOutStatement)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.CopyDocumentationCommentFromBaseMember, "Copy documentation comment from base member", IsEnabled(RefactoringIdentifiers.CopyDocumentationCommentFromBaseMember)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.DuplicateArgument, "Duplicate argument", IsEnabled(RefactoringIdentifiers.DuplicateArgument)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.DuplicateMember, "Duplicate member", IsEnabled(RefactoringIdentifiers.DuplicateMember)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.DuplicateParameter, "Duplicate parameter", IsEnabled(RefactoringIdentifiers.DuplicateParameter)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.DuplicateStatement, "Duplicate statement", IsEnabled(RefactoringIdentifiers.DuplicateStatement)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ExpandAssignmentExpression, "Expand assignment expression", IsEnabled(RefactoringIdentifiers.ExpandAssignmentExpression)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ExpandCoalesceExpression, "Expand coalesce expression", IsEnabled(RefactoringIdentifiers.ExpandCoalesceExpression)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ExpandEvent, "Expand event", IsEnabled(RefactoringIdentifiers.ExpandEvent)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ExpandExpressionBody, "Expand expression body", IsEnabled(RefactoringIdentifiers.ExpandExpressionBody)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ExpandInitializer, "Expand initializer", IsEnabled(RefactoringIdentifiers.ExpandInitializer)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ExpandLambdaExpressionBody, "Expand lambda expression body", IsEnabled(RefactoringIdentifiers.ExpandLambdaExpressionBody)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ExpandProperty, "Expand property", IsEnabled(RefactoringIdentifiers.ExpandProperty)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ExpandPropertyAndAddBackingField, "Expand property and add backing field", IsEnabled(RefactoringIdentifiers.ExpandPropertyAndAddBackingField)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ExtractDeclarationFromUsingStatement, "Extract declaration from using statement", IsEnabled(RefactoringIdentifiers.ExtractDeclarationFromUsingStatement)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ExtractExpressionFromCondition, "Extract expression from condition", IsEnabled(RefactoringIdentifiers.ExtractExpressionFromCondition)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ExtractGenericType, "Extract generic type", IsEnabled(RefactoringIdentifiers.ExtractGenericType)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ExtractStatement, "Extract statement(s)", IsEnabled(RefactoringIdentifiers.ExtractStatement)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ExtractTypeDeclarationToNewFile, "Extract type declaration to a new file", IsEnabled(RefactoringIdentifiers.ExtractTypeDeclarationToNewFile)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.FormatAccessorBraces, "Format accessor braces", IsEnabled(RefactoringIdentifiers.FormatAccessorBraces)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.FormatArgumentList, "Format argument list", IsEnabled(RefactoringIdentifiers.FormatArgumentList)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.FormatBinaryExpression, "Format binary expression", IsEnabled(RefactoringIdentifiers.FormatBinaryExpression)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.FormatConditionalExpression, "Format conditional expression", IsEnabled(RefactoringIdentifiers.FormatConditionalExpression)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.FormatExpressionChain, "Format expression chain", IsEnabled(RefactoringIdentifiers.FormatExpressionChain)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.FormatInitializer, "Format initializer", IsEnabled(RefactoringIdentifiers.FormatInitializer)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.FormatParameterList, "Format parameter list", IsEnabled(RefactoringIdentifiers.FormatParameterList)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.GenerateBaseConstructors, "Generate base constructors", IsEnabled(RefactoringIdentifiers.GenerateBaseConstructors)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.GenerateCombinedEnumMember, "Generate combined enum member", IsEnabled(RefactoringIdentifiers.GenerateCombinedEnumMember)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.GenerateEnumMember, "Generate enum member", IsEnabled(RefactoringIdentifiers.GenerateEnumMember)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.GenerateEnumValues, "Generate enum values", IsEnabled(RefactoringIdentifiers.GenerateEnumValues)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.GenerateEventInvokingMethod, "Generate event invoking method", IsEnabled(RefactoringIdentifiers.GenerateEventInvokingMethod)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.GenerateSwitchSections, "Generate switch sections", IsEnabled(RefactoringIdentifiers.GenerateSwitchSections)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.InitializeLocalWithDefaultValue, "Initialize local with default value", IsEnabled(RefactoringIdentifiers.InitializeLocalWithDefaultValue)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.InlineAliasExpression, "Inline alias expression", IsEnabled(RefactoringIdentifiers.InlineAliasExpression)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.InlineMethod, "Inline method", IsEnabled(RefactoringIdentifiers.InlineMethod)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.InsertStringInterpolation, "Insert string interpolation", IsEnabled(RefactoringIdentifiers.InsertStringInterpolation)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.IntroduceAndInitializeField, "Introduce and initialize field", IsEnabled(RefactoringIdentifiers.IntroduceAndInitializeField)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.IntroduceAndInitializeProperty, "Introduce and initialize property", IsEnabled(RefactoringIdentifiers.IntroduceAndInitializeProperty)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.IntroduceConstructor, "Introduce constructor", IsEnabled(RefactoringIdentifiers.IntroduceConstructor)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.IntroduceFieldToLockOn, "Introduce field to lock on", IsEnabled(RefactoringIdentifiers.IntroduceFieldToLockOn)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.IntroduceLocalFromStatementThatReturnsValue, "Introduce local from statement that returns value", IsEnabled(RefactoringIdentifiers.IntroduceLocalFromStatementThatReturnsValue)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.MakeMemberAbstract, "Make member abstract", IsEnabled(RefactoringIdentifiers.MakeMemberAbstract)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.MakeMemberVirtual, "Make member virtual", IsEnabled(RefactoringIdentifiers.MakeMemberVirtual)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.MarkContainingClassAsAbstract, "Mark containing class as abstract", IsEnabled(RefactoringIdentifiers.MarkContainingClassAsAbstract)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.MarkMemberAsStatic, "Mark member as static", IsEnabled(RefactoringIdentifiers.MarkMemberAsStatic)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.MergeAssignmentExpressionWithReturnStatement, "Merge assignment expression with return statement", IsEnabled(RefactoringIdentifiers.MergeAssignmentExpressionWithReturnStatement)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.MergeAttributes, "Merge attributes", IsEnabled(RefactoringIdentifiers.MergeAttributes)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.MergeIfStatements, "Merge if statements", IsEnabled(RefactoringIdentifiers.MergeIfStatements)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.MergeInterpolationIntoInterpolatedString, "Merge interpolation into interpolated string", IsEnabled(RefactoringIdentifiers.MergeInterpolationIntoInterpolatedString)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.MergeLocalDeclarations, "Merge local declarations", IsEnabled(RefactoringIdentifiers.MergeLocalDeclarations)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.MergeStringExpressions, "Merge string expressions", IsEnabled(RefactoringIdentifiers.MergeStringExpressions)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.NegateBinaryExpression, "Negate binary expression", IsEnabled(RefactoringIdentifiers.NegateBinaryExpression)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.NegateBooleanLiteral, "Negate boolean literal", IsEnabled(RefactoringIdentifiers.NegateBooleanLiteral)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.NegateIsExpression, "Negate is expression", IsEnabled(RefactoringIdentifiers.NegateIsExpression)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.NegateOperator, "Negate operator", IsEnabled(RefactoringIdentifiers.NegateOperator)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.NotifyPropertyChanged, "Notify property changed", IsEnabled(RefactoringIdentifiers.NotifyPropertyChanged)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ParenthesizeExpression, "Parenthesize expression", IsEnabled(RefactoringIdentifiers.ParenthesizeExpression)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.PromoteLocalToParameter, "Promote local to parameter", IsEnabled(RefactoringIdentifiers.PromoteLocalToParameter)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.RemoveAllComments, "Remove all comments", IsEnabled(RefactoringIdentifiers.RemoveAllComments)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.RemoveAllCommentsExceptDocumentationComments, "Remove all comments (except documentation comments)", IsEnabled(RefactoringIdentifiers.RemoveAllCommentsExceptDocumentationComments)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.RemoveAllDocumentationComments, "Remove all documentation comments", IsEnabled(RefactoringIdentifiers.RemoveAllDocumentationComments)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.RemoveAllMemberDeclarations, "Remove all member declarations", IsEnabled(RefactoringIdentifiers.RemoveAllMemberDeclarations)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.RemoveAllPreprocessorDirectives, "Remove all preprocessor directives", IsEnabled(RefactoringIdentifiers.RemoveAllPreprocessorDirectives)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.RemoveAllRegionDirectives, "Remove all region directives", IsEnabled(RefactoringIdentifiers.RemoveAllRegionDirectives)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.RemoveAllStatements, "Remove all statements", IsEnabled(RefactoringIdentifiers.RemoveAllStatements)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.RemoveAllSwitchSections, "Remove all switch sections", IsEnabled(RefactoringIdentifiers.RemoveAllSwitchSections)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.RemoveBraces, "Remove braces", IsEnabled(RefactoringIdentifiers.RemoveBraces)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.RemoveBracesFromIfElse, "Remove braces from if-else", IsEnabled(RefactoringIdentifiers.RemoveBracesFromIfElse)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.RemoveBracesFromSwitchSection, "Remove braces from switch section", IsEnabled(RefactoringIdentifiers.RemoveBracesFromSwitchSection)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.RemoveBracesFromSwitchSections, "Remove braces from switch sections", IsEnabled(RefactoringIdentifiers.RemoveBracesFromSwitchSections)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.RemoveComment, "Remove comment", IsEnabled(RefactoringIdentifiers.RemoveComment)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.RemoveConditionFromLastElse, "Remove condition from last else clause", IsEnabled(RefactoringIdentifiers.RemoveConditionFromLastElse)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.RemoveDirectiveAndRelatedDirectives, "Remove directive and related directives", IsEnabled(RefactoringIdentifiers.RemoveDirectiveAndRelatedDirectives)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.RemoveEmptyLines, "Remove empty lines", IsEnabled(RefactoringIdentifiers.RemoveEmptyLines)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.RemoveInterpolation, "Remove interpolation", IsEnabled(RefactoringIdentifiers.RemoveInterpolation)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.RemoveMember, "Remove member", IsEnabled(RefactoringIdentifiers.RemoveMember)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.RemoveMemberDeclarations, "Remove member declarations above/below", IsEnabled(RefactoringIdentifiers.RemoveMemberDeclarations)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.RemoveParameterNameFromArgument, "Remove parameter name from argument", IsEnabled(RefactoringIdentifiers.RemoveParameterNameFromArgument)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.RemoveParentheses, "Remove parentheses", IsEnabled(RefactoringIdentifiers.RemoveParentheses)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.RemovePropertyInitializer, "Remove property initializer", IsEnabled(RefactoringIdentifiers.RemovePropertyInitializer)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.RemoveRegion, "Remove region", IsEnabled(RefactoringIdentifiers.RemoveRegion)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.RemoveStatement, "Remove statement", IsEnabled(RefactoringIdentifiers.RemoveStatement)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.RemoveStatementsFromSwitchSections, "Remove statements from switch sections", IsEnabled(RefactoringIdentifiers.RemoveStatementsFromSwitchSections)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.RenameBackingFieldAccordingToPropertyName, "Rename backing field according to property name", IsEnabled(RefactoringIdentifiers.RenameBackingFieldAccordingToPropertyName)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.RenameIdentifierAccordingToTypeName, "Rename identifier according to type name", IsEnabled(RefactoringIdentifiers.RenameIdentifierAccordingToTypeName)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.RenameMethodAccordingToTypeName, "Rename method according to type name", IsEnabled(RefactoringIdentifiers.RenameMethodAccordingToTypeName)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.RenameParameterAccordingToTypeName, "Rename parameter according to its type name", IsEnabled(RefactoringIdentifiers.RenameParameterAccordingToTypeName)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.RenamePropertyAccordingToTypeName, "Rename property according to type name", IsEnabled(RefactoringIdentifiers.RenamePropertyAccordingToTypeName)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceAnyWithAllOrAllWithAny, "Replace Any with All (or All with Any)", IsEnabled(RefactoringIdentifiers.ReplaceAnyWithAllOrAllWithAny)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceAsWithCast, "Replace as expression with cast expression", IsEnabled(RefactoringIdentifiers.ReplaceAsWithCast)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceCastWithAs, "Replace cast expression with as expression", IsEnabled(RefactoringIdentifiers.ReplaceCastWithAs)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceConditionalExpressionWithExpression, "Replace conditional expression with expression", IsEnabled(RefactoringIdentifiers.ReplaceConditionalExpressionWithExpression)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceConditionalExpressionWithIfElse, "Replace conditional expression with if-else", IsEnabled(RefactoringIdentifiers.ReplaceConditionalExpressionWithIfElse)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceConstantWithField, "Replace constant with field", IsEnabled(RefactoringIdentifiers.ReplaceConstantWithField)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceCountWithLengthOrLengthWithCount, "Replace Count property with Length property (or Length with Count)", IsEnabled(RefactoringIdentifiers.ReplaceCountWithLengthOrLengthWithCount)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceDoStatementWithWhileStatement, "Replace do statement with while statement", IsEnabled(RefactoringIdentifiers.ReplaceDoStatementWithWhileStatement)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceEqualsExpressionWithStringEquals, "Replace equals expression with String.Equals", IsEnabled(RefactoringIdentifiers.ReplaceEqualsExpressionWithStringEquals)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceEqualsExpressionWithStringIsNullOrEmpty, "Replace equals expression with String.IsNullOrEmpty", IsEnabled(RefactoringIdentifiers.ReplaceEqualsExpressionWithStringIsNullOrEmpty)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceEqualsExpressionWithStringIsNullOrWhiteSpace, "Replace equals expression with String.IsNullOrWhiteSpace", IsEnabled(RefactoringIdentifiers.ReplaceEqualsExpressionWithStringIsNullOrWhiteSpace)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceExpressionWithConstantValue, "Replace expression with constant value", IsEnabled(RefactoringIdentifiers.ReplaceExpressionWithConstantValue)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceFieldWithConstant, "Replace field with constant", IsEnabled(RefactoringIdentifiers.ReplaceFieldWithConstant)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceForEachWithFor, "Replace foreach statement with for statement", IsEnabled(RefactoringIdentifiers.ReplaceForEachWithFor)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceForWithForEach, "Replace for statement with foreach statement", IsEnabled(RefactoringIdentifiers.ReplaceForWithForEach)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceForWithWhile, "Replace for statement with while statement", IsEnabled(RefactoringIdentifiers.ReplaceForWithWhile)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceHexadecimalLiteralWithDecimalLiteral, "Replace hexadecimal literal with decimal literal", IsEnabled(RefactoringIdentifiers.ReplaceHexadecimalLiteralWithDecimalLiteral)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceIfElseWithSwitch, "Replace if-else with switch statement", IsEnabled(RefactoringIdentifiers.ReplaceIfElseWithSwitch)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceIncrementOperatorWithDecrementOperator, "Replace increment operator with decrement operator", IsEnabled(RefactoringIdentifiers.ReplaceIncrementOperatorWithDecrementOperator)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceInterpolatedStringWithInterpolationExpression, "Replace interpolated string with interpolation expression", IsEnabled(RefactoringIdentifiers.ReplaceInterpolatedStringWithInterpolationExpression)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceInterpolatedStringWithStringLiteral, "Replace interpolated string with string literal", IsEnabled(RefactoringIdentifiers.ReplaceInterpolatedStringWithStringLiteral)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceMethodGroupWithLambda, "Replace method group with lambda", IsEnabled(RefactoringIdentifiers.ReplaceMethodGroupWithLambda)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceMethodWithProperty, "Replace method with property", IsEnabled(RefactoringIdentifiers.ReplaceMethodWithProperty)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceNullLiteralExpressionWithDefaultExpression, "Replace null literal expression with default expression", IsEnabled(RefactoringIdentifiers.ReplaceNullLiteralExpressionWithDefaultExpression)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplacePrefixOperatorWithPostfixOperator, "Replace prefix operator to postfix operator", IsEnabled(RefactoringIdentifiers.ReplacePrefixOperatorWithPostfixOperator)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplacePropertyWithMethod, "Replace property with method", IsEnabled(RefactoringIdentifiers.ReplacePropertyWithMethod)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceRegularStringLiteralWithVerbatimStringLiteral, "Replace regular string literal with verbatim string literal", IsEnabled(RefactoringIdentifiers.ReplaceRegularStringLiteralWithVerbatimStringLiteral)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceStatementWithIfStatement, "Replace statement with if statement", IsEnabled(RefactoringIdentifiers.ReplaceStatementWithIfStatement)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceStringContainsWithStringIndexOf, "Replace String.Contains with String.IndexOf", IsEnabled(RefactoringIdentifiers.ReplaceStringContainsWithStringIndexOf)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceStringFormatWithInterpolatedString, "Replace String.Format with interpolated string", IsEnabled(RefactoringIdentifiers.ReplaceStringFormatWithInterpolatedString)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceStringLiteralWithCharacterLiteral, "Replace string literal with character literal", IsEnabled(RefactoringIdentifiers.ReplaceStringLiteralWithCharacterLiteral)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceSwitchWithIfElse, "Replace switch statement with if-else", IsEnabled(RefactoringIdentifiers.ReplaceSwitchWithIfElse)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceVerbatimStringLiteralWithRegularStringLiteral, "Replace verbatim string literal with regular string literal", IsEnabled(RefactoringIdentifiers.ReplaceVerbatimStringLiteralWithRegularStringLiteral)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceVerbatimStringLiteralWithRegularStringLiterals, "Replace verbatim string literal with regular string literals", IsEnabled(RefactoringIdentifiers.ReplaceVerbatimStringLiteralWithRegularStringLiterals)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceWhileStatementWithDoStatement, "Replace while statement with do statement", IsEnabled(RefactoringIdentifiers.ReplaceWhileStatementWithDoStatement)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReplaceWhileWithFor, "Replace while statement with for statement", IsEnabled(RefactoringIdentifiers.ReplaceWhileWithFor)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ReverseForLoop, "Reverse for loop", IsEnabled(RefactoringIdentifiers.ReverseForLoop)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.SimplifyIf, "Simplify if", IsEnabled(RefactoringIdentifiers.SimplifyIf)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.SimplifyLambdaExpression, "Simplify lambda expression", IsEnabled(RefactoringIdentifiers.SimplifyLambdaExpression)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.SortMemberDeclarations, "Sort member declarations", IsEnabled(RefactoringIdentifiers.SortMemberDeclarations)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.SplitAttributes, "Split attributes", IsEnabled(RefactoringIdentifiers.SplitAttributes)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.SplitSwitchLabels, "Split switch labels", IsEnabled(RefactoringIdentifiers.SplitSwitchLabels)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.SplitVariableDeclaration, "Split variable declaration", IsEnabled(RefactoringIdentifiers.SplitVariableDeclaration)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.SwapExpressionsInBinaryExpression, "Swap expressions in binary expression", IsEnabled(RefactoringIdentifiers.SwapExpressionsInBinaryExpression)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.SwapExpressionsInConditionalExpression, "Swap expressions in conditional expression", IsEnabled(RefactoringIdentifiers.SwapExpressionsInConditionalExpression)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.SwapMemberDeclarations, "Swap member declarations", IsEnabled(RefactoringIdentifiers.SwapMemberDeclarations)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.SwapStatementsInIfElse, "Swap statements in if-else", IsEnabled(RefactoringIdentifiers.SwapStatementsInIfElse)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.Uncomment, "Uncomment", IsEnabled(RefactoringIdentifiers.Uncomment)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.UseBitwiseOperationInsteadOfCallingHasFlag, "Use bitwise operation instead of calling 'HasFlag'", IsEnabled(RefactoringIdentifiers.UseBitwiseOperationInsteadOfCallingHasFlag)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.UseCoalesceExpressionInsteadOfIf, "Use coalesce expression instead of if", IsEnabled(RefactoringIdentifiers.UseCoalesceExpressionInsteadOfIf)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.UseConditionalExpressionInsteadOfIf, "Use conditional expression instead of if", IsEnabled(RefactoringIdentifiers.UseConditionalExpressionInsteadOfIf)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.UseElementAccessInsteadOfEnumerableMethod, "Use element access instead of 'First/Last'ElementAt' method", IsEnabled(RefactoringIdentifiers.UseElementAccessInsteadOfEnumerableMethod)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.UseEmptyStringLiteralInsteadOfStringEmpty, "Use \"\" instead of String.Empty", IsEnabled(RefactoringIdentifiers.UseEmptyStringLiteralInsteadOfStringEmpty)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.UseExpressionBodiedMember, "Use expression-bodied member", IsEnabled(RefactoringIdentifiers.UseExpressionBodiedMember)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.UseLambdaExpressionInsteadOfAnonymousMethod, "Use lambda expression instead of anonymous method", IsEnabled(RefactoringIdentifiers.UseLambdaExpressionInsteadOfAnonymousMethod)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.UseStringEmptyInsteadOfEmptyStringLiteral, "Use String.Empty instead of \"\"", IsEnabled(RefactoringIdentifiers.UseStringEmptyInsteadOfEmptyStringLiteral)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.WrapInCondition, "Wrap in condition", IsEnabled(RefactoringIdentifiers.WrapInCondition)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.WrapInElseClause, "Wrap in else clause", IsEnabled(RefactoringIdentifiers.WrapInElseClause)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.WrapInIfDirective, "Wrap in #if directive", IsEnabled(RefactoringIdentifiers.WrapInIfDirective)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.WrapInRegion, "Wrap in region", IsEnabled(RefactoringIdentifiers.WrapInRegion)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.WrapInTryCatch, "Wrap in try-catch", IsEnabled(RefactoringIdentifiers.WrapInTryCatch)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.WrapInUsingStatement, "Wrap in using statement", IsEnabled(RefactoringIdentifiers.WrapInUsingStatement)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.AddTypeParameter, "Add type parameter", IsEnabled(RefactoringIdentifiers.AddTypeParameter)));
+            refactorings.Add(new RefactoringModel(RefactoringIdentifiers.ImplementIEquatableOfT, "Implement IEquatable<T>", IsEnabled(RefactoringIdentifiers.ImplementIEquatableOfT)));
+        }
+
+        public void ApplyTo(RefactoringSettings settings)
+        {
+            settings.SetRefactoring(RefactoringIdentifiers.AddBooleanComparison, IsEnabled(RefactoringIdentifiers.AddBooleanComparison));
+            settings.SetRefactoring(RefactoringIdentifiers.AddBraces, IsEnabled(RefactoringIdentifiers.AddBraces));
+            settings.SetRefactoring(RefactoringIdentifiers.AddBracesToIfElse, IsEnabled(RefactoringIdentifiers.AddBracesToIfElse));
+            settings.SetRefactoring(RefactoringIdentifiers.AddBracesToSwitchSection, IsEnabled(RefactoringIdentifiers.AddBracesToSwitchSection));
+            settings.SetRefactoring(RefactoringIdentifiers.AddBracesToSwitchSections, IsEnabled(RefactoringIdentifiers.AddBracesToSwitchSections));
+            settings.SetRefactoring(RefactoringIdentifiers.AddCastExpression, IsEnabled(RefactoringIdentifiers.AddCastExpression));
+            settings.SetRefactoring(RefactoringIdentifiers.AddDefaultValueToParameter, IsEnabled(RefactoringIdentifiers.AddDefaultValueToParameter));
+            settings.SetRefactoring(RefactoringIdentifiers.AddDefaultValueToReturnStatement, IsEnabled(RefactoringIdentifiers.AddDefaultValueToReturnStatement));
+            settings.SetRefactoring(RefactoringIdentifiers.AddExceptionToDocumentationComment, IsEnabled(RefactoringIdentifiers.AddExceptionToDocumentationComment));
+            settings.SetRefactoring(RefactoringIdentifiers.AddIdentifierToVariableDeclaration, IsEnabled(RefactoringIdentifiers.AddIdentifierToVariableDeclaration));
+            settings.SetRefactoring(RefactoringIdentifiers.AddParameterNameToArgument, IsEnabled(RefactoringIdentifiers.AddParameterNameToArgument));
+            settings.SetRefactoring(RefactoringIdentifiers.AddParameterNameToParameter, IsEnabled(RefactoringIdentifiers.AddParameterNameToParameter));
+            settings.SetRefactoring(RefactoringIdentifiers.AddTypeParameter, IsEnabled(RefactoringIdentifiers.AddTypeParameter));
+            settings.SetRefactoring(RefactoringIdentifiers.AddUsingDirective, IsEnabled(RefactoringIdentifiers.AddUsingDirective));
+            settings.SetRefactoring(RefactoringIdentifiers.AddUsingStaticDirective, IsEnabled(RefactoringIdentifiers.AddUsingStaticDirective));
+            settings.SetRefactoring(RefactoringIdentifiers.CallConfigureAwait, IsEnabled(RefactoringIdentifiers.CallConfigureAwait));
+            settings.SetRefactoring(RefactoringIdentifiers.CallExtensionMethodAsInstanceMethod, IsEnabled(RefactoringIdentifiers.CallExtensionMethodAsInstanceMethod));
+            settings.SetRefactoring(RefactoringIdentifiers.CallToMethod, IsEnabled(RefactoringIdentifiers.CallToMethod));
+            settings.SetRefactoring(RefactoringIdentifiers.ChangeExplicitTypeToVar, IsEnabled(RefactoringIdentifiers.ChangeExplicitTypeToVar));
+            settings.SetRefactoring(RefactoringIdentifiers.ChangeMemberTypeAccordingToReturnExpression, IsEnabled(RefactoringIdentifiers.ChangeMemberTypeAccordingToReturnExpression));
+            settings.SetRefactoring(RefactoringIdentifiers.ChangeMemberTypeAccordingToYieldReturnExpression, IsEnabled(RefactoringIdentifiers.ChangeMemberTypeAccordingToYieldReturnExpression));
+            settings.SetRefactoring(RefactoringIdentifiers.ChangeMethodReturnTypeToVoid, IsEnabled(RefactoringIdentifiers.ChangeMethodReturnTypeToVoid));
+            settings.SetRefactoring(RefactoringIdentifiers.ChangeTypeAccordingToExpression, IsEnabled(RefactoringIdentifiers.ChangeTypeAccordingToExpression));
+            settings.SetRefactoring(RefactoringIdentifiers.ChangeVarToExplicitType, IsEnabled(RefactoringIdentifiers.ChangeVarToExplicitType));
+            settings.SetRefactoring(RefactoringIdentifiers.CheckExpressionForNull, IsEnabled(RefactoringIdentifiers.CheckExpressionForNull));
+            settings.SetRefactoring(RefactoringIdentifiers.CheckParameterForNull, IsEnabled(RefactoringIdentifiers.CheckParameterForNull));
+            settings.SetRefactoring(RefactoringIdentifiers.CollapseToInitializer, IsEnabled(RefactoringIdentifiers.CollapseToInitializer));
+            settings.SetRefactoring(RefactoringIdentifiers.CommentOutMember, IsEnabled(RefactoringIdentifiers.CommentOutMember));
+            settings.SetRefactoring(RefactoringIdentifiers.CommentOutStatement, IsEnabled(RefactoringIdentifiers.CommentOutStatement));
+            settings.SetRefactoring(RefactoringIdentifiers.CopyDocumentationCommentFromBaseMember, IsEnabled(RefactoringIdentifiers.CopyDocumentationCommentFromBaseMember));
+            settings.SetRefactoring(RefactoringIdentifiers.DuplicateArgument, IsEnabled(RefactoringIdentifiers.DuplicateArgument));
+            settings.SetRefactoring(RefactoringIdentifiers.DuplicateMember, IsEnabled(RefactoringIdentifiers.DuplicateMember));
+            settings.SetRefactoring(RefactoringIdentifiers.DuplicateParameter, IsEnabled(RefactoringIdentifiers.DuplicateParameter));
+            settings.SetRefactoring(RefactoringIdentifiers.DuplicateStatement, IsEnabled(RefactoringIdentifiers.DuplicateStatement));
+            settings.SetRefactoring(RefactoringIdentifiers.ExpandAssignmentExpression, IsEnabled(RefactoringIdentifiers.ExpandAssignmentExpression));
+            settings.SetRefactoring(RefactoringIdentifiers.ExpandCoalesceExpression, IsEnabled(RefactoringIdentifiers.ExpandCoalesceExpression));
+            settings.SetRefactoring(RefactoringIdentifiers.ExpandEvent, IsEnabled(RefactoringIdentifiers.ExpandEvent));
+            settings.SetRefactoring(RefactoringIdentifiers.ExpandExpressionBody, IsEnabled(RefactoringIdentifiers.ExpandExpressionBody));
+            settings.SetRefactoring(RefactoringIdentifiers.ExpandInitializer, IsEnabled(RefactoringIdentifiers.ExpandInitializer));
+            settings.SetRefactoring(RefactoringIdentifiers.ExpandLambdaExpressionBody, IsEnabled(RefactoringIdentifiers.ExpandLambdaExpressionBody));
+            settings.SetRefactoring(RefactoringIdentifiers.ExpandProperty, IsEnabled(RefactoringIdentifiers.ExpandProperty));
+            settings.SetRefactoring(RefactoringIdentifiers.ExpandPropertyAndAddBackingField, IsEnabled(RefactoringIdentifiers.ExpandPropertyAndAddBackingField));
+            settings.SetRefactoring(RefactoringIdentifiers.ExtractDeclarationFromUsingStatement, IsEnabled(RefactoringIdentifiers.ExtractDeclarationFromUsingStatement));
+            settings.SetRefactoring(RefactoringIdentifiers.ExtractExpressionFromCondition, IsEnabled(RefactoringIdentifiers.ExtractExpressionFromCondition));
+            settings.SetRefactoring(RefactoringIdentifiers.ExtractGenericType, IsEnabled(RefactoringIdentifiers.ExtractGenericType));
+            settings.SetRefactoring(RefactoringIdentifiers.ExtractStatement, IsEnabled(RefactoringIdentifiers.ExtractStatement));
+            settings.SetRefactoring(RefactoringIdentifiers.ExtractTypeDeclarationToNewFile, IsEnabled(RefactoringIdentifiers.ExtractTypeDeclarationToNewFile));
+            settings.SetRefactoring(RefactoringIdentifiers.FormatAccessorBraces, IsEnabled(RefactoringIdentifiers.FormatAccessorBraces));
+            settings.SetRefactoring(RefactoringIdentifiers.FormatArgumentList, IsEnabled(RefactoringIdentifiers.FormatArgumentList));
+            settings.SetRefactoring(RefactoringIdentifiers.FormatBinaryExpression, IsEnabled(RefactoringIdentifiers.FormatBinaryExpression));
+            settings.SetRefactoring(RefactoringIdentifiers.FormatConditionalExpression, IsEnabled(RefactoringIdentifiers.FormatConditionalExpression));
+            settings.SetRefactoring(RefactoringIdentifiers.FormatExpressionChain, IsEnabled(RefactoringIdentifiers.FormatExpressionChain));
+            settings.SetRefactoring(RefactoringIdentifiers.FormatInitializer, IsEnabled(RefactoringIdentifiers.FormatInitializer));
+            settings.SetRefactoring(RefactoringIdentifiers.FormatParameterList, IsEnabled(RefactoringIdentifiers.FormatParameterList));
+            settings.SetRefactoring(RefactoringIdentifiers.GenerateBaseConstructors, IsEnabled(RefactoringIdentifiers.GenerateBaseConstructors));
+            settings.SetRefactoring(RefactoringIdentifiers.GenerateCombinedEnumMember, IsEnabled(RefactoringIdentifiers.GenerateCombinedEnumMember));
+            settings.SetRefactoring(RefactoringIdentifiers.GenerateEnumMember, IsEnabled(RefactoringIdentifiers.GenerateEnumMember));
+            settings.SetRefactoring(RefactoringIdentifiers.GenerateEnumValues, IsEnabled(RefactoringIdentifiers.GenerateEnumValues));
+            settings.SetRefactoring(RefactoringIdentifiers.GenerateEventInvokingMethod, IsEnabled(RefactoringIdentifiers.GenerateEventInvokingMethod));
+            settings.SetRefactoring(RefactoringIdentifiers.GenerateSwitchSections, IsEnabled(RefactoringIdentifiers.GenerateSwitchSections));
+            settings.SetRefactoring(RefactoringIdentifiers.ImplementIEquatableOfT, IsEnabled(RefactoringIdentifiers.ImplementIEquatableOfT));
+            settings.SetRefactoring(RefactoringIdentifiers.InitializeLocalWithDefaultValue, IsEnabled(RefactoringIdentifiers.InitializeLocalWithDefaultValue));
+            settings.SetRefactoring(RefactoringIdentifiers.InlineAliasExpression, IsEnabled(RefactoringIdentifiers.InlineAliasExpression));
+            settings.SetRefactoring(RefactoringIdentifiers.InlineMethod, IsEnabled(RefactoringIdentifiers.InlineMethod));
+            settings.SetRefactoring(RefactoringIdentifiers.InsertStringInterpolation, IsEnabled(RefactoringIdentifiers.InsertStringInterpolation));
+            settings.SetRefactoring(RefactoringIdentifiers.IntroduceAndInitializeField, IsEnabled(RefactoringIdentifiers.IntroduceAndInitializeField));
+            settings.SetRefactoring(RefactoringIdentifiers.IntroduceAndInitializeProperty, IsEnabled(RefactoringIdentifiers.IntroduceAndInitializeProperty));
+            settings.SetRefactoring(RefactoringIdentifiers.IntroduceConstructor, IsEnabled(RefactoringIdentifiers.IntroduceConstructor));
+            settings.SetRefactoring(RefactoringIdentifiers.IntroduceFieldToLockOn, IsEnabled(RefactoringIdentifiers.IntroduceFieldToLockOn));
+            settings.SetRefactoring(RefactoringIdentifiers.IntroduceLocalFromStatementThatReturnsValue, IsEnabled(RefactoringIdentifiers.IntroduceLocalFromStatementThatReturnsValue));
+            settings.SetRefactoring(RefactoringIdentifiers.MakeMemberAbstract, IsEnabled(RefactoringIdentifiers.MakeMemberAbstract));
+            settings.SetRefactoring(RefactoringIdentifiers.MakeMemberVirtual, IsEnabled(RefactoringIdentifiers.MakeMemberVirtual));
+            settings.SetRefactoring(RefactoringIdentifiers.MarkContainingClassAsAbstract, IsEnabled(RefactoringIdentifiers.MarkContainingClassAsAbstract));
+            settings.SetRefactoring(RefactoringIdentifiers.MarkMemberAsStatic, IsEnabled(RefactoringIdentifiers.MarkMemberAsStatic));
+            settings.SetRefactoring(RefactoringIdentifiers.MergeAssignmentExpressionWithReturnStatement, IsEnabled(RefactoringIdentifiers.MergeAssignmentExpressionWithReturnStatement));
+            settings.SetRefactoring(RefactoringIdentifiers.MergeAttributes, IsEnabled(RefactoringIdentifiers.MergeAttributes));
+            settings.SetRefactoring(RefactoringIdentifiers.MergeIfStatements, IsEnabled(RefactoringIdentifiers.MergeIfStatements));
+            settings.SetRefactoring(RefactoringIdentifiers.MergeInterpolationIntoInterpolatedString, IsEnabled(RefactoringIdentifiers.MergeInterpolationIntoInterpolatedString));
+            settings.SetRefactoring(RefactoringIdentifiers.MergeLocalDeclarations, IsEnabled(RefactoringIdentifiers.MergeLocalDeclarations));
+            settings.SetRefactoring(RefactoringIdentifiers.MergeStringExpressions, IsEnabled(RefactoringIdentifiers.MergeStringExpressions));
+            settings.SetRefactoring(RefactoringIdentifiers.NegateBinaryExpression, IsEnabled(RefactoringIdentifiers.NegateBinaryExpression));
+            settings.SetRefactoring(RefactoringIdentifiers.NegateBooleanLiteral, IsEnabled(RefactoringIdentifiers.NegateBooleanLiteral));
+            settings.SetRefactoring(RefactoringIdentifiers.NegateIsExpression, IsEnabled(RefactoringIdentifiers.NegateIsExpression));
+            settings.SetRefactoring(RefactoringIdentifiers.NegateOperator, IsEnabled(RefactoringIdentifiers.NegateOperator));
+            settings.SetRefactoring(RefactoringIdentifiers.NotifyPropertyChanged, IsEnabled(RefactoringIdentifiers.NotifyPropertyChanged));
+            settings.SetRefactoring(RefactoringIdentifiers.ParenthesizeExpression, IsEnabled(RefactoringIdentifiers.ParenthesizeExpression));
+            settings.SetRefactoring(RefactoringIdentifiers.PromoteLocalToParameter, IsEnabled(RefactoringIdentifiers.PromoteLocalToParameter));
+            settings.SetRefactoring(RefactoringIdentifiers.RemoveAllComments, IsEnabled(RefactoringIdentifiers.RemoveAllComments));
+            settings.SetRefactoring(RefactoringIdentifiers.RemoveAllCommentsExceptDocumentationComments, IsEnabled(RefactoringIdentifiers.RemoveAllCommentsExceptDocumentationComments));
+            settings.SetRefactoring(RefactoringIdentifiers.RemoveAllDocumentationComments, IsEnabled(RefactoringIdentifiers.RemoveAllDocumentationComments));
+            settings.SetRefactoring(RefactoringIdentifiers.RemoveAllMemberDeclarations, IsEnabled(RefactoringIdentifiers.RemoveAllMemberDeclarations));
+            settings.SetRefactoring(RefactoringIdentifiers.RemoveAllPreprocessorDirectives, IsEnabled(RefactoringIdentifiers.RemoveAllPreprocessorDirectives));
+            settings.SetRefactoring(RefactoringIdentifiers.RemoveAllRegionDirectives, IsEnabled(RefactoringIdentifiers.RemoveAllRegionDirectives));
+            settings.SetRefactoring(RefactoringIdentifiers.RemoveAllStatements, IsEnabled(RefactoringIdentifiers.RemoveAllStatements));
+            settings.SetRefactoring(RefactoringIdentifiers.RemoveAllSwitchSections, IsEnabled(RefactoringIdentifiers.RemoveAllSwitchSections));
+            settings.SetRefactoring(RefactoringIdentifiers.RemoveBraces, IsEnabled(RefactoringIdentifiers.RemoveBraces));
+            settings.SetRefactoring(RefactoringIdentifiers.RemoveBracesFromIfElse, IsEnabled(RefactoringIdentifiers.RemoveBracesFromIfElse));
+            settings.SetRefactoring(RefactoringIdentifiers.RemoveBracesFromSwitchSection, IsEnabled(RefactoringIdentifiers.RemoveBracesFromSwitchSection));
+            settings.SetRefactoring(RefactoringIdentifiers.RemoveBracesFromSwitchSections, IsEnabled(RefactoringIdentifiers.RemoveBracesFromSwitchSections));
+            settings.SetRefactoring(RefactoringIdentifiers.RemoveComment, IsEnabled(RefactoringIdentifiers.RemoveComment));
+            settings.SetRefactoring(RefactoringIdentifiers.RemoveConditionFromLastElse, IsEnabled(RefactoringIdentifiers.RemoveConditionFromLastElse));
+            settings.SetRefactoring(RefactoringIdentifiers.RemoveDirectiveAndRelatedDirectives, IsEnabled(RefactoringIdentifiers.RemoveDirectiveAndRelatedDirectives));
+            settings.SetRefactoring(RefactoringIdentifiers.RemoveEmptyLines, IsEnabled(RefactoringIdentifiers.RemoveEmptyLines));
+            settings.SetRefactoring(RefactoringIdentifiers.RemoveInterpolation, IsEnabled(RefactoringIdentifiers.RemoveInterpolation));
+            settings.SetRefactoring(RefactoringIdentifiers.RemoveMember, IsEnabled(RefactoringIdentifiers.RemoveMember));
+            settings.SetRefactoring(RefactoringIdentifiers.RemoveMemberDeclarations, IsEnabled(RefactoringIdentifiers.RemoveMemberDeclarations));
+            settings.SetRefactoring(RefactoringIdentifiers.RemoveParameterNameFromArgument, IsEnabled(RefactoringIdentifiers.RemoveParameterNameFromArgument));
+            settings.SetRefactoring(RefactoringIdentifiers.RemoveParentheses, IsEnabled(RefactoringIdentifiers.RemoveParentheses));
+            settings.SetRefactoring(RefactoringIdentifiers.RemovePropertyInitializer, IsEnabled(RefactoringIdentifiers.RemovePropertyInitializer));
+            settings.SetRefactoring(RefactoringIdentifiers.RemoveRegion, IsEnabled(RefactoringIdentifiers.RemoveRegion));
+            settings.SetRefactoring(RefactoringIdentifiers.RemoveStatement, IsEnabled(RefactoringIdentifiers.RemoveStatement));
+            settings.SetRefactoring(RefactoringIdentifiers.RemoveStatementsFromSwitchSections, IsEnabled(RefactoringIdentifiers.RemoveStatementsFromSwitchSections));
+            settings.SetRefactoring(RefactoringIdentifiers.RenameBackingFieldAccordingToPropertyName, IsEnabled(RefactoringIdentifiers.RenameBackingFieldAccordingToPropertyName));
+            settings.SetRefactoring(RefactoringIdentifiers.RenameIdentifierAccordingToTypeName, IsEnabled(RefactoringIdentifiers.RenameIdentifierAccordingToTypeName));
+            settings.SetRefactoring(RefactoringIdentifiers.RenameMethodAccordingToTypeName, IsEnabled(RefactoringIdentifiers.RenameMethodAccordingToTypeName));
+            settings.SetRefactoring(RefactoringIdentifiers.RenameParameterAccordingToTypeName, IsEnabled(RefactoringIdentifiers.RenameParameterAccordingToTypeName));
+            settings.SetRefactoring(RefactoringIdentifiers.RenamePropertyAccordingToTypeName, IsEnabled(RefactoringIdentifiers.RenamePropertyAccordingToTypeName));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceAnyWithAllOrAllWithAny, IsEnabled(RefactoringIdentifiers.ReplaceAnyWithAllOrAllWithAny));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceAsWithCast, IsEnabled(RefactoringIdentifiers.ReplaceAsWithCast));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceCastWithAs, IsEnabled(RefactoringIdentifiers.ReplaceCastWithAs));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceConditionalExpressionWithExpression, IsEnabled(RefactoringIdentifiers.ReplaceConditionalExpressionWithExpression));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceConditionalExpressionWithIfElse, IsEnabled(RefactoringIdentifiers.ReplaceConditionalExpressionWithIfElse));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceConstantWithField, IsEnabled(RefactoringIdentifiers.ReplaceConstantWithField));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceCountWithLengthOrLengthWithCount, IsEnabled(RefactoringIdentifiers.ReplaceCountWithLengthOrLengthWithCount));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceDoStatementWithWhileStatement, IsEnabled(RefactoringIdentifiers.ReplaceDoStatementWithWhileStatement));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceEqualsExpressionWithStringEquals, IsEnabled(RefactoringIdentifiers.ReplaceEqualsExpressionWithStringEquals));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceEqualsExpressionWithStringIsNullOrEmpty, IsEnabled(RefactoringIdentifiers.ReplaceEqualsExpressionWithStringIsNullOrEmpty));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceEqualsExpressionWithStringIsNullOrWhiteSpace, IsEnabled(RefactoringIdentifiers.ReplaceEqualsExpressionWithStringIsNullOrWhiteSpace));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceExpressionWithConstantValue, IsEnabled(RefactoringIdentifiers.ReplaceExpressionWithConstantValue));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceFieldWithConstant, IsEnabled(RefactoringIdentifiers.ReplaceFieldWithConstant));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceForEachWithFor, IsEnabled(RefactoringIdentifiers.ReplaceForEachWithFor));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceForWithForEach, IsEnabled(RefactoringIdentifiers.ReplaceForWithForEach));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceForWithWhile, IsEnabled(RefactoringIdentifiers.ReplaceForWithWhile));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceHexadecimalLiteralWithDecimalLiteral, IsEnabled(RefactoringIdentifiers.ReplaceHexadecimalLiteralWithDecimalLiteral));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceIfElseWithSwitch, IsEnabled(RefactoringIdentifiers.ReplaceIfElseWithSwitch));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceIncrementOperatorWithDecrementOperator, IsEnabled(RefactoringIdentifiers.ReplaceIncrementOperatorWithDecrementOperator));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceInterpolatedStringWithInterpolationExpression, IsEnabled(RefactoringIdentifiers.ReplaceInterpolatedStringWithInterpolationExpression));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceInterpolatedStringWithStringLiteral, IsEnabled(RefactoringIdentifiers.ReplaceInterpolatedStringWithStringLiteral));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceMethodGroupWithLambda, IsEnabled(RefactoringIdentifiers.ReplaceMethodGroupWithLambda));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceMethodWithProperty, IsEnabled(RefactoringIdentifiers.ReplaceMethodWithProperty));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceNullLiteralExpressionWithDefaultExpression, IsEnabled(RefactoringIdentifiers.ReplaceNullLiteralExpressionWithDefaultExpression));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplacePrefixOperatorWithPostfixOperator, IsEnabled(RefactoringIdentifiers.ReplacePrefixOperatorWithPostfixOperator));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplacePropertyWithMethod, IsEnabled(RefactoringIdentifiers.ReplacePropertyWithMethod));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceRegularStringLiteralWithVerbatimStringLiteral, IsEnabled(RefactoringIdentifiers.ReplaceRegularStringLiteralWithVerbatimStringLiteral));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceStatementWithIfStatement, IsEnabled(RefactoringIdentifiers.ReplaceStatementWithIfStatement));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceStringContainsWithStringIndexOf, IsEnabled(RefactoringIdentifiers.ReplaceStringContainsWithStringIndexOf));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceStringFormatWithInterpolatedString, IsEnabled(RefactoringIdentifiers.ReplaceStringFormatWithInterpolatedString));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceStringLiteralWithCharacterLiteral, IsEnabled(RefactoringIdentifiers.ReplaceStringLiteralWithCharacterLiteral));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceSwitchWithIfElse, IsEnabled(RefactoringIdentifiers.ReplaceSwitchWithIfElse));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceVerbatimStringLiteralWithRegularStringLiteral, IsEnabled(RefactoringIdentifiers.ReplaceVerbatimStringLiteralWithRegularStringLiteral));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceVerbatimStringLiteralWithRegularStringLiterals, IsEnabled(RefactoringIdentifiers.ReplaceVerbatimStringLiteralWithRegularStringLiterals));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceWhileStatementWithDoStatement, IsEnabled(RefactoringIdentifiers.ReplaceWhileStatementWithDoStatement));
+            settings.SetRefactoring(RefactoringIdentifiers.ReplaceWhileWithFor, IsEnabled(RefactoringIdentifiers.ReplaceWhileWithFor));
+            settings.SetRefactoring(RefactoringIdentifiers.ReverseForLoop, IsEnabled(RefactoringIdentifiers.ReverseForLoop));
+            settings.SetRefactoring(RefactoringIdentifiers.SimplifyIf, IsEnabled(RefactoringIdentifiers.SimplifyIf));
+            settings.SetRefactoring(RefactoringIdentifiers.SimplifyLambdaExpression, IsEnabled(RefactoringIdentifiers.SimplifyLambdaExpression));
+            settings.SetRefactoring(RefactoringIdentifiers.SortMemberDeclarations, IsEnabled(RefactoringIdentifiers.SortMemberDeclarations));
+            settings.SetRefactoring(RefactoringIdentifiers.SplitAttributes, IsEnabled(RefactoringIdentifiers.SplitAttributes));
+            settings.SetRefactoring(RefactoringIdentifiers.SplitSwitchLabels, IsEnabled(RefactoringIdentifiers.SplitSwitchLabels));
+            settings.SetRefactoring(RefactoringIdentifiers.SplitVariableDeclaration, IsEnabled(RefactoringIdentifiers.SplitVariableDeclaration));
+            settings.SetRefactoring(RefactoringIdentifiers.SwapExpressionsInBinaryExpression, IsEnabled(RefactoringIdentifiers.SwapExpressionsInBinaryExpression));
+            settings.SetRefactoring(RefactoringIdentifiers.SwapExpressionsInConditionalExpression, IsEnabled(RefactoringIdentifiers.SwapExpressionsInConditionalExpression));
+            settings.SetRefactoring(RefactoringIdentifiers.SwapMemberDeclarations, IsEnabled(RefactoringIdentifiers.SwapMemberDeclarations));
+            settings.SetRefactoring(RefactoringIdentifiers.SwapStatementsInIfElse, IsEnabled(RefactoringIdentifiers.SwapStatementsInIfElse));
+            settings.SetRefactoring(RefactoringIdentifiers.Uncomment, IsEnabled(RefactoringIdentifiers.Uncomment));
+            settings.SetRefactoring(RefactoringIdentifiers.UseBitwiseOperationInsteadOfCallingHasFlag, IsEnabled(RefactoringIdentifiers.UseBitwiseOperationInsteadOfCallingHasFlag));
+            settings.SetRefactoring(RefactoringIdentifiers.UseCoalesceExpressionInsteadOfIf, IsEnabled(RefactoringIdentifiers.UseCoalesceExpressionInsteadOfIf));
+            settings.SetRefactoring(RefactoringIdentifiers.UseConditionalExpressionInsteadOfIf, IsEnabled(RefactoringIdentifiers.UseConditionalExpressionInsteadOfIf));
+            settings.SetRefactoring(RefactoringIdentifiers.UseElementAccessInsteadOfEnumerableMethod, IsEnabled(RefactoringIdentifiers.UseElementAccessInsteadOfEnumerableMethod));
+            settings.SetRefactoring(RefactoringIdentifiers.UseEmptyStringLiteralInsteadOfStringEmpty, IsEnabled(RefactoringIdentifiers.UseEmptyStringLiteralInsteadOfStringEmpty));
+            settings.SetRefactoring(RefactoringIdentifiers.UseExpressionBodiedMember, IsEnabled(RefactoringIdentifiers.UseExpressionBodiedMember));
+            settings.SetRefactoring(RefactoringIdentifiers.UseLambdaExpressionInsteadOfAnonymousMethod, IsEnabled(RefactoringIdentifiers.UseLambdaExpressionInsteadOfAnonymousMethod));
+            settings.SetRefactoring(RefactoringIdentifiers.UseStringEmptyInsteadOfEmptyStringLiteral, IsEnabled(RefactoringIdentifiers.UseStringEmptyInsteadOfEmptyStringLiteral));
+            settings.SetRefactoring(RefactoringIdentifiers.WrapInCondition, IsEnabled(RefactoringIdentifiers.WrapInCondition));
+            settings.SetRefactoring(RefactoringIdentifiers.WrapInElseClause, IsEnabled(RefactoringIdentifiers.WrapInElseClause));
+            settings.SetRefactoring(RefactoringIdentifiers.WrapInIfDirective, IsEnabled(RefactoringIdentifiers.WrapInIfDirective));
+            settings.SetRefactoring(RefactoringIdentifiers.WrapInRegion, IsEnabled(RefactoringIdentifiers.WrapInRegion));
+            settings.SetRefactoring(RefactoringIdentifiers.WrapInTryCatch, IsEnabled(RefactoringIdentifiers.WrapInTryCatch));
+            settings.SetRefactoring(RefactoringIdentifiers.WrapInUsingStatement, IsEnabled(RefactoringIdentifiers.WrapInUsingStatement));
         }
 
         [Browsable(false)]
