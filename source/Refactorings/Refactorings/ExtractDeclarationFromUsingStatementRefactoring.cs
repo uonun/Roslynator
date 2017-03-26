@@ -23,7 +23,7 @@ namespace Roslynator.CSharp.Refactorings
             {
                 SemanticModel semanticModel = await context.GetSemanticModelAsync().ConfigureAwait(false);
 
-                if (semanticModel.ContainsDiagnostic(
+                if (semanticModel.ContainsCompilerDiagnostic(
                     CSharpErrorCodes.TypeUsedInUsingStatementMustBeImplicitlyConvertibleToIDisposable,
                     declaration.Span,
                     context.CancellationToken))

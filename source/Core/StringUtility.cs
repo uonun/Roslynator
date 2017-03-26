@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Roslynator
 {
-    public static class StringUtility
+    internal static class StringUtility
     {
         public static string FirstCharToLower(string value)
         {

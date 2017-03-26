@@ -177,10 +177,7 @@ namespace Roslynator.CSharp.Analysis
             return false;
         }
 
-        public static TypeAnalysisFlags AnalyzeType(
-            ForEachStatementSyntax forEachStatement,
-            SemanticModel semanticModel,
-            CancellationToken cancellationToken = default(CancellationToken))
+        public static TypeAnalysisFlags AnalyzeType(ForEachStatementSyntax forEachStatement, SemanticModel semanticModel)
         {
             if (forEachStatement == null)
                 throw new ArgumentNullException(nameof(forEachStatement));

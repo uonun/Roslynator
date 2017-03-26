@@ -7,14 +7,14 @@ using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
 namespace Roslynator.CSharp.Extensions
 {
-    public static class SyntaxTokenListExtensions
+    internal static class SyntaxTokenListExtensions
     {
-        public static SyntaxTokenList RemoveAccessModifiers(this SyntaxTokenList tokenList)
+        internal static SyntaxTokenList RemoveAccessModifiers(this SyntaxTokenList tokenList)
         {
             return TokenList(tokenList.Where(token => !token.IsAccessModifier()));
         }
 
-        public static bool ContainsAccessModifier(this SyntaxTokenList tokenList)
+        internal static bool ContainsAccessModifier(this SyntaxTokenList tokenList)
         {
             return tokenList.Any(token => token.IsAccessModifier());
         }

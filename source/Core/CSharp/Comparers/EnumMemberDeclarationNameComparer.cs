@@ -4,10 +4,16 @@ using System;
 using System.Collections.Generic;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace Roslynator.CSharp
+namespace Roslynator.CSharp.Comparers
 {
-    public class EnumMemberDeclarationNameComparer : IComparer<EnumMemberDeclarationSyntax>
+    internal class EnumMemberDeclarationNameComparer : IComparer<EnumMemberDeclarationSyntax>
     {
+        private EnumMemberDeclarationNameComparer()
+        {
+        }
+
+        public static readonly EnumMemberDeclarationNameComparer Instance = new EnumMemberDeclarationNameComparer();
+
         public int Compare(EnumMemberDeclarationSyntax x, EnumMemberDeclarationSyntax y)
         {
             return CompareCore(x, y);

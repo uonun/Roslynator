@@ -105,7 +105,7 @@ namespace Roslynator
             bool allowImmutableArrayExtension = false)
         {
             return IsLinqExtensionOfIEnumerableOfT("ElementAt", parameterCount: 2, allowImmutableArrayExtension: allowImmutableArrayExtension)
-                && Parameters[1].Type.IsInt32();
+                && Parameters[1].Type.IsInt();
         }
 
         public bool IsLinqWhere(

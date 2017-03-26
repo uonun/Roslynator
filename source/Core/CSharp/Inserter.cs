@@ -4,6 +4,7 @@ using System;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Roslynator.CSharp.Comparers;
 using Roslynator.CSharp.Documentation;
 using Roslynator.CSharp.Extensions;
 using Roslynator.Extensions;

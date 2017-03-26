@@ -165,7 +165,7 @@ namespace Roslynator.CSharp.Refactorings
 
             if (expression.IsSingleLine())
             {
-                return Remover.RemoveWhitespaceOrEndOfLine(accessorList)
+                return Remover.RemoveWhitespaceOrEndOfLineTrivia(accessorList)
                     .WithCloseBraceToken(accessorList.CloseBraceToken.WithLeadingTrivia(NewLineTrivia()));
             }
             else

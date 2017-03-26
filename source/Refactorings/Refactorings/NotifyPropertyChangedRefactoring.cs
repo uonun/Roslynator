@@ -76,10 +76,10 @@ namespace Roslynator.CSharp.Refactorings
                     {
                         SemanticModel semanticModel = await context.GetSemanticModelAsync().ConfigureAwait(false);
 
-                        INamedTypeSymbol containingType = semanticModel.GetDeclaredSymbol(property, context.CancellationToken)?.ContainingType;
-
-                        return containingType != null
-                            && SymbolUtility.ImplementsINotifyPropertyChanged(containingType, semanticModel);
+                        return semanticModel
+                            .GetDeclaredSymbol(property, context.CancellationToken)?
+                            .ContainingType?
+                            .Implements(semanticModel.GetTypeByMetadataName(MetadataNames.System_ComponentModel_INotifyPropertyChanged)) == true;
                     }
                 }
             }

@@ -4,15 +4,15 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Roslynator.CSharp
+namespace Roslynator.CSharp.Comparers
 {
-    public class EnumMemberValueComparer : IComparer<object>
+    internal class EnumMemberValueComparer : IComparer<object>
     {
         private EnumMemberValueComparer()
         {
         }
 
-        public static EnumMemberValueComparer Instance { get; } = new EnumMemberValueComparer();
+        public static readonly EnumMemberValueComparer Instance = new EnumMemberValueComparer();
 
         public int Compare(object x, object y)
         {

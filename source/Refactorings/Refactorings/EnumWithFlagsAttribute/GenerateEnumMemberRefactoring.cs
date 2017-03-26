@@ -16,9 +16,9 @@ namespace Roslynator.CSharp.Refactorings.EnumWithFlagsAttribute
         {
             SemanticModel semanticModel = await context.GetSemanticModelAsync().ConfigureAwait(false);
 
-            var enumSymbol = semanticModel.GetDeclaredSymbol(enumDeclaration, context.CancellationToken) as INamedTypeSymbol;
+            INamedTypeSymbol enumSymbol = semanticModel.GetDeclaredSymbol(enumDeclaration, context.CancellationToken);
 
-            if (SymbolUtility.IsEnumWithFlagsAttribute(enumSymbol, semanticModel))
+            if (enumSymbol.IsEnumWithFlagsAttribute(semanticModel))
             {
                 object[] values = EnumHelper.GetValues(enumSymbol).ToArray();
 
@@ -58,11 +58,28 @@ namespace Roslynator.CSharp.Refactorings.EnumWithFlagsAttribute
             object value,
             CancellationToken cancellationToken)
         {
-            EnumMemberDeclarationSyntax newEnumMember = GenerateEnumHelper.CreateEnumMember(enumSymbol, Identifier.DefaultEnumMemberName, value);
+            EnumMemberDeclarationSyntax newEnumMember = CreateEnumMember(enumSymbol, Identifier.DefaultEnumMemberName, value);
 
             EnumDeclarationSyntax newNode = enumDeclaration.AddMembers(newEnumMember);
 
             return document.ReplaceNodeAsync(enumDeclaration, newNode, cancellationToken);
+        }
+
+        private static EnumMemberDeclarationSyntax CreateEnumMember(INamedTypeSymbol enumSymbol, string name, object value)
+        {
+            EqualsValueClauseSyntax equalsValue = null;
+
+            if (value != null)
+                equalsValue = SyntaxFactory.EqualsValueClause(CSharpFactory.ConstantExpression(value));
+
+            name = Identifier.EnsureUniqueEnumMemberName(enumSymbol, name);
+
+            SyntaxToken identifier = SyntaxFactory.Identifier(name).WithRenameAnnotation();
+
+            return SyntaxFactory.EnumMemberDeclaration(
+                default(SyntaxList<AttributeListSyntax>),
+                identifier,
+                equalsValue);
         }
     }
 }

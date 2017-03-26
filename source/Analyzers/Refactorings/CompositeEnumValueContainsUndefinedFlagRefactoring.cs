@@ -11,6 +11,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
+using Roslynator.Diagnostics.Extensions;
 using Roslynator.Extensions;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 using static Roslynator.CSharp.CSharpFactory;
@@ -23,13 +24,8 @@ namespace Roslynator.CSharp.Refactorings
         {
             var namedType = (INamedTypeSymbol)context.Symbol;
 
-            if (namedType.IsEnum()
-                && namedType
-                    .GetAttributes()
-                    .Any(f => f.AttributeClass.Equals(context.Compilation.GetTypeByMetadataName(MetadataNames.System_FlagsAttribute))))
-            {
+            if (namedType.IsEnumWithFlagsAttribute(context.Compilation))
                 Analyze(context, namedType);
-            }
         }
 
         private static void Analyze(SymbolAnalysisContext context, INamedTypeSymbol enumType)

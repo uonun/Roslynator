@@ -38,7 +38,7 @@ namespace Roslynator.CSharp.Refactorings
                 AddAccessorDeclaration(Block()),
                 RemoveAccessorDeclaration(Block()));
 
-            accessorList = Remover.RemoveWhitespaceOrEndOfLine(accessorList)
+            accessorList = Remover.RemoveWhitespaceOrEndOfLineTrivia(accessorList)
                 .WithCloseBraceToken(accessorList.CloseBraceToken.WithLeadingTrivia(NewLineTrivia()));
 
             VariableDeclaratorSyntax declarator = eventDeclaration.Declaration.Variables[0];

@@ -2,20 +2,18 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Formatting;
 using Microsoft.CodeAnalysis.Simplification;
 using Microsoft.CodeAnalysis.Text;
-using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
 namespace Roslynator.Extensions
 {
     public static class SyntaxNodeExtensions
     {
-        public static IEnumerable<SyntaxTrivia> GetLeadingAndTrailingTrivia(this SyntaxNode node)
+        public static IEnumerable<SyntaxTrivia> GetLeadingTrailingTrivia(this SyntaxNode node)
         {
             if (node == null)
                 throw new ArgumentNullException(nameof(node));
@@ -71,7 +69,7 @@ namespace Roslynator.Extensions
                 && !node.GetTrailingTrivia().Any(f => f.IsDirective);
         }
 
-        public static bool SpanOrLeadingTriviaContainsDirectives(this SyntaxNode node)
+        internal static bool SpanOrLeadingTriviaContainsDirectives(this SyntaxNode node)
         {
             if (node == null)
                 throw new ArgumentNullException(nameof(node));
@@ -80,7 +78,7 @@ namespace Roslynator.Extensions
                 && !node.GetTrailingTrivia().Any(f => f.IsDirective);
         }
 
-        public static bool SpanOrTrailingTriviaContainsDirectives(this SyntaxNode node)
+        internal static bool SpanOrTrailingTriviaContainsDirectives(this SyntaxNode node)
         {
             if (node == null)
                 throw new ArgumentNullException(nameof(node));
@@ -95,12 +93,12 @@ namespace Roslynator.Extensions
                 && node.DescendantTrivia(span).Any(f => f.IsDirective);
         }
 
-        public static TNode WithTriviaFrom<TNode>(this TNode syntax, SyntaxToken token) where TNode : SyntaxNode
+        public static TNode WithTriviaFrom<TNode>(this TNode node, SyntaxToken token) where TNode : SyntaxNode
         {
-            if (syntax == null)
-                throw new ArgumentNullException(nameof(syntax));
+            if (node == null)
+                throw new ArgumentNullException(nameof(node));
 
-            return syntax
+            return node
                 .WithLeadingTrivia(token.LeadingTrivia)
                 .WithTrailingTrivia(token.TrailingTrivia);
         }

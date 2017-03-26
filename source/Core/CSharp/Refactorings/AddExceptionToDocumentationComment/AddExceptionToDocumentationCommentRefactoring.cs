@@ -60,7 +60,7 @@ namespace Roslynator.CSharp.Refactorings.AddExceptionToDocumentationComment
             ITypeSymbol exceptionSymbol = semanticModel.GetTypeSymbol(expression, cancellationToken);
 
             if (exceptionSymbol?.IsErrorType() == false
-                && SymbolUtility.IsException(exceptionSymbol, semanticModel))
+                && exceptionSymbol.IsException(semanticModel))
             {
                 ISymbol declarationSymbol = GetDeclarationSymbol(node.SpanStart, semanticModel, cancellationToken);
 
@@ -146,7 +146,7 @@ namespace Roslynator.CSharp.Refactorings.AddExceptionToDocumentationComment
                 ITypeSymbol typeSymbol = semanticModel.GetTypeSymbol(expression, cancellationToken);
 
                 if (typeSymbol?.IsErrorType() == false
-                    && SymbolUtility.IsException(typeSymbol, semanticModel))
+                    && typeSymbol.IsException(semanticModel))
                 {
                     DocumentationCommentTriviaSyntax comment = declaration.GetSingleLineDocumentationComment();
 

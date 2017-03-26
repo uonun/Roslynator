@@ -84,11 +84,12 @@ namespace Roslynator.Internal
                 case SymbolKind.NamedType:
                     {
                         var namedTypeSymbol = (INamedTypeSymbol)typeSymbol;
+                        ImmutableArray<ITypeSymbol> typeArguments = namedTypeSymbol.TypeArguments;
 
-                        if (namedTypeSymbol.TypeArguments.Length == 1
+                        if (typeArguments.Length == 1
                             && namedTypeSymbol.Implements(SpecialType.System_Collections_IEnumerable))
                         {
-                            return namedTypeSymbol.TypeArguments[0];
+                            return typeArguments[0];
                         }
 
                         break;

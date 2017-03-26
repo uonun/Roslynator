@@ -12,10 +12,15 @@ namespace Roslynator
     {
         public static IEnumerable<object> GetValues(ITypeSymbol enumSymbol)
         {
-            foreach (IFieldSymbol fieldSymbol in enumSymbol.GetFields())
+            foreach (ISymbol member in enumSymbol.GetMembers())
             {
-                if (fieldSymbol.HasConstantValue)
-                    yield return fieldSymbol.ConstantValue;
+                if (member.IsField())
+                {
+                    var fieldSymbol = (IFieldSymbol)member;
+
+                    if (fieldSymbol.HasConstantValue)
+                        yield return fieldSymbol.ConstantValue;
+                }
             }
         }
 

@@ -26,8 +26,7 @@ namespace Roslynator.CSharp.Refactorings.EnumWithFlagsAttribute
 
                 INamedTypeSymbol enumSymbol = semanticModel.GetDeclaredSymbol(enumDeclaration, context.CancellationToken);
 
-                if (enumSymbol != null
-                    && SymbolUtility.IsEnumWithFlagsAttribute(enumSymbol, semanticModel))
+                if (enumSymbol?.IsEnumWithFlagsAttribute(semanticModel) == true)
                 {
                     IFieldSymbol[] fieldSymbols = selectedMembers
                         .Select(f => semanticModel.GetDeclaredSymbol(f, context.CancellationToken))

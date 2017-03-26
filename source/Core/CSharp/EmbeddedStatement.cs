@@ -137,7 +137,7 @@ namespace Roslynator.CSharp
             return null;
         }
 
-        public static bool FormattingSupportsEmbeddedStatement(SyntaxNode containingNode)
+        internal static bool FormattingSupportsEmbeddedStatement(SyntaxNode containingNode)
         {
             switch (containingNode.Kind())
             {

@@ -55,7 +55,7 @@ namespace Roslynator.CSharp.Refactorings
         {
             AccessorListSyntax accessorList = AccessorList(List(CreateAccessors(propertyDeclaration)));
 
-            accessorList = Remover.RemoveWhitespaceOrEndOfLine(accessorList)
+            accessorList = Remover.RemoveWhitespaceOrEndOfLineTrivia(accessorList)
                 .WithCloseBraceToken(accessorList.CloseBraceToken.WithLeadingTrivia(CSharpFactory.NewLineTrivia()));
 
             return propertyDeclaration

@@ -8,6 +8,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Roslynator.CSharp.Extensions;
 using Roslynator.Extensions;
+using Roslynator.FindSymbols;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 using static Roslynator.CSharp.CSharpFactory;
 
@@ -49,7 +50,7 @@ namespace Roslynator.CSharp.Refactorings
             {
                 IPropertySymbol propertySymbol = semanticModel.GetDeclaredSymbol(propertyDeclaration, cancellationToken);
 
-                ImmutableArray<SyntaxNode> oldNodes = await document.FindSymbolNodesAsync(propertySymbol, cancellationToken).ConfigureAwait(false);
+                ImmutableArray<SyntaxNode> oldNodes = await SymbolFinder.FindNodesAsync(propertySymbol, document, cancellationToken).ConfigureAwait(false);
 
                 IdentifierNameSyntax newNode = IdentifierName(fieldName);
 
@@ -103,7 +104,7 @@ namespace Roslynator.CSharp.Refactorings
                 propertyDeclaration = propertyDeclaration.ReplaceNode(setter, newSetter);
             }
 
-            AccessorListSyntax accessorList = Remover.RemoveWhitespaceOrEndOfLine(propertyDeclaration.AccessorList)
+            AccessorListSyntax accessorList = Remover.RemoveWhitespaceOrEndOfLineTrivia(propertyDeclaration.AccessorList)
                 .WithCloseBraceToken(propertyDeclaration.AccessorList.CloseBraceToken.WithLeadingTrivia(NewLineTrivia()));
 
             return propertyDeclaration

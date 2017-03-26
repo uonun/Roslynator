@@ -111,7 +111,7 @@ namespace Roslynator.CSharp.Extensions
             if (node == null)
                 throw new ArgumentNullException(nameof(node));
 
-            foreach (SyntaxNode descendant in node.DescendantNodesAndSelf(descendIntoTrivia: true))
+            foreach (SyntaxNode descendant in node.DescendantNodes(descendIntoTrivia: true))
             {
                 if (descendant.IsKind(SyntaxKind.RegionDirectiveTrivia, SyntaxKind.EndRegionDirectiveTrivia))
                     yield return (DirectiveTriviaSyntax)descendant;
@@ -142,22 +142,6 @@ namespace Roslynator.CSharp.Extensions
 
                 return tokenValue is int
                     && (int)tokenValue == value;
-            }
-
-            return false;
-        }
-
-        public static bool IsCharacterLiteralExpression(this SyntaxNode node, char value)
-        {
-            if (node == null)
-                throw new ArgumentNullException(nameof(node));
-
-            if (node.IsKind(SyntaxKind.CharacterLiteralExpression))
-            {
-                object tokenValue = ((LiteralExpressionSyntax)node).Token.Value;
-
-                return tokenValue is char
-                    && (char)tokenValue == value;
             }
 
             return false;
@@ -393,7 +377,7 @@ namespace Roslynator.CSharp.Extensions
                 .TrimTrailingTrivia();
         }
 
-        public static TextSpan TrimmedSpan(this SyntaxNode node)
+        internal static TextSpan TrimmedSpan(this SyntaxNode node)
         {
             if (node == null)
                 throw new ArgumentNullException(nameof(node));

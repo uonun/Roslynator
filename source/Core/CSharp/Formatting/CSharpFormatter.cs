@@ -31,7 +31,7 @@ namespace Roslynator.CSharp.Formatting
 
         public static TNode ToSingleLine<TNode>(TNode node) where TNode : SyntaxNode
         {
-            return Remover.RemoveWhitespaceOrEndOfLine(node, node.Span)
+            return Remover.RemoveWhitespaceOrEndOfLineTrivia(node, node.Span)
                 .WithFormatterAnnotation();
         }
 
@@ -147,14 +147,14 @@ namespace Roslynator.CSharp.Formatting
 
                 while (en.MoveNext())
                 {
-                    nodesAndTokens.Add(CommaToken().WithTrailingNewLine());
+                    nodesAndTokens.Add(CommaToken().WithTrailingTrivia(NewLineTrivia()));
 
                     nodesAndTokens.Add(en.Current.WithLeadingTrivia(trivia));
                 }
             }
 
             return ParameterList(
-                OpenParenToken().WithTrailingNewLine(),
+                OpenParenToken().WithTrailingTrivia(NewLineTrivia()),
                 SeparatedList<ParameterSyntax>(nodesAndTokens),
                 parameterList.CloseParenToken);
         }
@@ -226,7 +226,7 @@ namespace Roslynator.CSharp.Formatting
 
                 while (en.MoveNext())
                 {
-                    nodesAndTokens.Add(CommaToken().WithTrailingNewLine());
+                    nodesAndTokens.Add(CommaToken().WithTrailingTrivia(NewLineTrivia()));
 
                     nodesAndTokens.Add(en.Current
                         .TrimTrailingTrivia()
@@ -235,7 +235,7 @@ namespace Roslynator.CSharp.Formatting
             }
 
             return ArgumentList(
-                OpenParenToken().WithTrailingNewLine(),
+                OpenParenToken().WithTrailingTrivia(NewLineTrivia()),
                 SeparatedList<ArgumentSyntax>(nodesAndTokens),
                 argumentList.CloseParenToken.WithoutLeadingTrivia());
         }
@@ -298,7 +298,7 @@ namespace Roslynator.CSharp.Formatting
 
                 while (en.MoveNext())
                 {
-                    nodesAndTokens.Add(CommaToken().WithTrailingNewLine());
+                    nodesAndTokens.Add(CommaToken().WithTrailingTrivia(NewLineTrivia()));
 
                     nodesAndTokens.Add(en.Current
                         .TrimTrailingTrivia()
@@ -307,7 +307,7 @@ namespace Roslynator.CSharp.Formatting
             }
 
             return AttributeArgumentList(
-                OpenParenToken().WithTrailingNewLine(),
+                OpenParenToken().WithTrailingTrivia(NewLineTrivia()),
                 SeparatedList<AttributeArgumentSyntax>(nodesAndTokens),
                 argumentList.CloseParenToken.WithoutLeadingTrivia());
         }

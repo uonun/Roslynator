@@ -120,10 +120,10 @@ namespace Roslynator.CSharp.Refactorings
                 case SyntaxKind.AddAssignmentExpression:
                 case SyntaxKind.SubtractAssignmentExpression:
                     {
-                        trivia.AddRange(assignment.OperatorToken.GetLeadingAndTrailingTrivia());
+                        trivia.AddRange(assignment.OperatorToken.GetLeadingTrailingTrivia());
 
                         if (right?.IsMissing == false)
-                            trivia.AddRange(right.GetLeadingAndTrailingTrivia());
+                            trivia.AddRange(right.GetLeadingTrailingTrivia());
 
                         return trivia;
                     }
@@ -134,7 +134,7 @@ namespace Roslynator.CSharp.Refactorings
                 case SyntaxKind.AddExpression:
                 case SyntaxKind.SubtractExpression:
                     {
-                        trivia.AddRange(assignment.OperatorToken.GetLeadingAndTrailingTrivia());
+                        trivia.AddRange(assignment.OperatorToken.GetLeadingTrailingTrivia());
 
                         if (right?.IsMissing == false)
                         {

@@ -56,7 +56,7 @@ namespace Roslynator.CSharp.Refactorings
                     ITypeSymbol typeSymbol = semanticModel.GetTypeSymbol(memberAccess.Expression, context.CancellationToken);
 
                     if (typeSymbol != null
-                        && (typeSymbol.IsArrayType() || SymbolUtility.FindGetItemMethodWithInt32Parameter(typeSymbol)?.IsAccessible(invocation.SpanStart, semanticModel) == true))
+                        && (typeSymbol.IsArrayType() || SymbolUtility.FindGetItemMethodWithInt32Parameter(typeSymbol)?.IsAccessible(semanticModel, invocation.SpanStart) == true))
                     {
                         string propertyName = GetCountOrLengthPropertyName(memberAccess.Expression, semanticModel, context.CancellationToken);
 
@@ -92,7 +92,7 @@ namespace Roslynator.CSharp.Refactorings
                 ITypeSymbol typeSymbol = semanticModel.GetTypeSymbol(memberAccess.Expression, context.CancellationToken);
 
                 if (typeSymbol != null
-                    && (typeSymbol.IsArrayType() || SymbolUtility.FindGetItemMethodWithInt32Parameter(typeSymbol)?.IsAccessible(invocation.SpanStart, semanticModel) == true))
+                    && (typeSymbol.IsArrayType() || SymbolUtility.FindGetItemMethodWithInt32Parameter(typeSymbol)?.IsAccessible(semanticModel, invocation.SpanStart) == true))
                 {
                     context.RegisterRefactoring(
                         "Use [] instead of calling 'ElementAt'",
@@ -117,7 +117,7 @@ namespace Roslynator.CSharp.Refactorings
                     return "Length";
                 }
 
-                if (SymbolUtility.ImplementsICollectionOfT(typeSymbol))
+                if (typeSymbol.ImplementsICollectionOfT())
                     return "Count";
             }
 
@@ -178,7 +178,7 @@ namespace Roslynator.CSharp.Refactorings
                 .DescendantTrivia(expression.Span)
                 .All(f => f.IsWhitespaceOrEndOfLineTrivia()))
             {
-                expression = Remover.RemoveWhitespaceOrEndOfLine(expression)
+                expression = Remover.RemoveWhitespaceOrEndOfLineTrivia(expression)
                     .WithFormatterAnnotation();
             }
 

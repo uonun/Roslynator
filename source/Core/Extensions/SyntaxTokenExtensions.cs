@@ -39,7 +39,7 @@ namespace Roslynator.Extensions
             return token.WithTrailingTrivia(token.TrailingTrivia.Add(trivia));
         }
 
-        public static IEnumerable<SyntaxTrivia> GetLeadingAndTrailingTrivia(this SyntaxToken token)
+        public static IEnumerable<SyntaxTrivia> GetLeadingTrailingTrivia(this SyntaxToken token)
         {
             return token.LeadingTrivia.Concat(token.TrailingTrivia);
         }

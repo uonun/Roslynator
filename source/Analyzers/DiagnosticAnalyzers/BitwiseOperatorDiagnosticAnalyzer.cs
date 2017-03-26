@@ -62,30 +62,8 @@ namespace Roslynator.CSharp.DiagnosticAnalyzers
             {
                 ITypeSymbol typeSymbol = context.SemanticModel.GetTypeSymbol(expression, context.CancellationToken);
 
-                return IsEnumWithoutFlags(typeSymbol, context.SemanticModel);
-            }
-
-            return false;
-        }
-
-        public static bool IsEnumWithoutFlags(ITypeSymbol typeSymbol, SemanticModel semanticModel)
-        {
-            if (typeSymbol?.IsEnum() == true)
-            {
-                ImmutableArray<AttributeData> attributes = typeSymbol.GetAttributes();
-
-                if (attributes.Any())
-                {
-                    INamedTypeSymbol flagsAttribute = semanticModel.GetTypeByMetadataName("System.FlagsAttribute");
-
-                    for (int i = 0; i < attributes.Length; i++)
-                    {
-                        if (attributes[i].AttributeClass.Equals(flagsAttribute))
-                            return false;
-                    }
-                }
-
-                return true;
+                return typeSymbol?.IsEnum() == true
+                    && !typeSymbol.HasAttribute(context.SemanticModel.GetTypeByMetadataName(MetadataNames.System_FlagsAttribute));
             }
 
             return false;

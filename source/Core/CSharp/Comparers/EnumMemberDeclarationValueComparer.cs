@@ -8,9 +8,9 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace Roslynator.CSharp
+namespace Roslynator.CSharp.Comparers
 {
-    public class EnumMemberDeclarationValueComparer : IComparer<EnumMemberDeclarationSyntax>
+    internal class EnumMemberDeclarationValueComparer : IComparer<EnumMemberDeclarationSyntax>
     {
         private readonly SemanticModel _semanticModel;
         private readonly CancellationToken _cancellationToken;

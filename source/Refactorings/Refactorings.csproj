@@ -55,7 +55,6 @@
     <Compile Include="Refactorings\InterfaceDeclarationRefactoring.cs" />
     <Compile Include="Refactorings\LocalFunctionStatementRefactoring.cs" />
     <Compile Include="Refactorings\NamespaceDeclarationRefactoring.cs" />
-    <Compile Include="Refactorings\EnumWithFlagsAttribute\GenerateEnumHelper.cs" />
     <Compile Include="Refactorings\EnumWithFlagsAttribute\GenerateCombinedEnumMemberRefactoring.cs" />
     <Compile Include="Refactorings\EnumWithFlagsAttribute\GenerateEnumMemberRefactoring.cs" />
     <Compile Include="Refactorings\EnumMemberDeclarationRefactoring.cs" />

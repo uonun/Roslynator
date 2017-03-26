@@ -34,8 +34,7 @@ namespace Roslynator.CSharp.Refactorings
                         title,
                         cancellationToken =>
                         {
-                            return Remover.RemoveDirectivesAsync(
-                                context.Document,
+                            return context.Document.RemoveDirectivesAsync(
                                 directives.ToImmutableArray(),
                                 cancellationToken);
                         });

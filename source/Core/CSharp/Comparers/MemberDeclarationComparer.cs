@@ -7,9 +7,9 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Roslynator.CSharp.Extensions;
 
-namespace Roslynator.CSharp
+namespace Roslynator.CSharp.Comparers
 {
-    public class MemberDeclarationComparer : IComparer<MemberDeclarationSyntax>
+    internal class MemberDeclarationComparer : IComparer<MemberDeclarationSyntax>
     {
         internal static readonly int MaxOrderIndex = 18;
 

@@ -19,9 +19,9 @@ namespace Roslynator.CSharp.Refactorings.EnumWithFlagsAttribute
         {
             SemanticModel semanticModel = await context.GetSemanticModelAsync().ConfigureAwait(false);
 
-            var enumSymbol = semanticModel.GetDeclaredSymbol(enumDeclaration, context.CancellationToken) as INamedTypeSymbol;
+            INamedTypeSymbol enumSymbol = semanticModel.GetDeclaredSymbol(enumDeclaration, context.CancellationToken);
 
-            if (SymbolUtility.IsEnumWithFlagsAttribute(enumSymbol, semanticModel))
+            if (enumSymbol.IsEnumWithFlagsAttribute(semanticModel))
             {
                 SeparatedSyntaxList<EnumMemberDeclarationSyntax> members = enumDeclaration.Members;
 
@@ -29,7 +29,7 @@ namespace Roslynator.CSharp.Refactorings.EnumWithFlagsAttribute
                 {
                     SpecialType specialType = enumSymbol.EnumUnderlyingType.SpecialType;
 
-                    List<object> values = GenerateEnumHelper.GetExplicitValues(enumDeclaration, semanticModel, context.CancellationToken);
+                    List<object> values = GetExplicitValues(enumDeclaration, semanticModel, context.CancellationToken);
 
                     Optional<object> optional = EnumHelper.GetUniquePowerOfTwo(specialType, values);
 
@@ -69,7 +69,7 @@ namespace Roslynator.CSharp.Refactorings.EnumWithFlagsAttribute
 
             SpecialType specialType = enumSymbol.EnumUnderlyingType.SpecialType;
 
-            List<object> values = GenerateEnumHelper.GetExplicitValues(enumDeclaration, semanticModel, cancellationToken);
+            List<object> values = GetExplicitValues(enumDeclaration, semanticModel, cancellationToken);
 
             for (int i = 0; i < members.Count; i++)
             {
@@ -99,6 +99,34 @@ namespace Roslynator.CSharp.Refactorings.EnumWithFlagsAttribute
             EnumDeclarationSyntax newNode = enumDeclaration.WithMembers(members);
 
             return await document.ReplaceNodeAsync(enumDeclaration, newNode, cancellationToken).ConfigureAwait(false);
+        }
+
+        private static List<object> GetExplicitValues(
+            EnumDeclarationSyntax enumDeclaration,
+            SemanticModel semanticModel,
+            CancellationToken cancellationToken)
+        {
+            var values = new List<object>();
+
+            foreach (EnumMemberDeclarationSyntax member in enumDeclaration.Members)
+            {
+                EqualsValueClauseSyntax equalsValue = member.EqualsValue;
+
+                if (equalsValue != null)
+                {
+                    ExpressionSyntax value = equalsValue.Value;
+
+                    if (value != null)
+                    {
+                        IFieldSymbol fieldSymbol = semanticModel.GetDeclaredSymbol(member, cancellationToken);
+
+                        if (fieldSymbol?.HasConstantValue == true)
+                            values.Add(fieldSymbol.ConstantValue);
+                    }
+                }
+            }
+
+            return values;
         }
     }
 }

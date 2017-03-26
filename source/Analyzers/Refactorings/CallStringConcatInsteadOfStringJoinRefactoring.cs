@@ -98,7 +98,7 @@ namespace Roslynator.CSharp.Refactorings
 
             ArgumentListSyntax newArgumentList = argumentList
                 .WithArguments(arguments.RemoveAt(0))
-                .WithOpenParenToken(argumentList.OpenParenToken.AppendToTrailingTrivia(arguments[0].GetLeadingAndTrailingTrivia()));
+                .WithOpenParenToken(argumentList.OpenParenToken.AppendToTrailingTrivia(arguments[0].GetLeadingTrailingTrivia()));
 
             InvocationExpressionSyntax newInvocation = invocation
                 .WithExpression(newMemberAccess)

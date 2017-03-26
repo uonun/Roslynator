@@ -104,11 +104,6 @@ namespace Roslynator.CSharp.Extensions
             }
         }
 
-        public static SyntaxToken WithTrailingNewLine(this SyntaxToken token)
-        {
-            return token.WithTrailingTrivia(NewLineTrivia());
-        }
-
         public static bool Contains(this SyntaxTokenList tokenList, SyntaxKind kind)
         {
             return tokenList.IndexOf(kind) != -1;

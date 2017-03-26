@@ -45,7 +45,7 @@ namespace Roslynator.CSharp.Refactorings
                                 {
                                     context.RegisterRefactoring(
                                         "Remove " + member.GetTitle(),
-                                        cancellationToken => Remover.RemoveMemberAsync(context.Document, member, cancellationToken));
+                                        cancellationToken => context.Document.RemoveMemberAsync(member, cancellationToken));
                                 }
 
                                 if (context.IsRefactoringEnabled(RefactoringIdentifiers.DuplicateMember))

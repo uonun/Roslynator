@@ -12,19 +12,6 @@ namespace Roslynator.Extensions
 {
     public static class SemanticModelExtensions
     {
-        public static IEnumerable<Diagnostic> GetCompilerDiagnostics(
-            this SemanticModel semanticModel,
-            TextSpan? span = null,
-            CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (semanticModel == null)
-                throw new ArgumentNullException(nameof(semanticModel));
-
-            return semanticModel
-                .GetDiagnostics(span, cancellationToken)
-                .Where(f => f.IsCompilerDiagnostic());
-        }
-
         public static bool ContainsDiagnostic(
             this SemanticModel semanticModel,
             string id,
@@ -145,7 +132,7 @@ namespace Roslynator.Extensions
                 .GetTypeByMetadataName(fullyQualifiedMetadataName);
         }
 
-        public static IMethodSymbol GetSpeculativeMethodSymbol(
+        internal static IMethodSymbol GetSpeculativeMethodSymbol(
             this SemanticModel semanticModel,
             int position,
             SyntaxNode expression)

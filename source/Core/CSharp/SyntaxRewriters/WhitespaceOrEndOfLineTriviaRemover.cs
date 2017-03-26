@@ -8,18 +8,18 @@ using Roslynator.CSharp.Extensions;
 
 namespace Roslynator.CSharp.SyntaxRewriters
 {
-    internal class WhitespaceOrEndOfLineRemover : CSharpSyntaxRewriter
+    internal class WhitespaceOrEndOfLineTriviaRemover : CSharpSyntaxRewriter
     {
-        private static readonly WhitespaceOrEndOfLineRemover _instance = new WhitespaceOrEndOfLineRemover();
+        private static readonly WhitespaceOrEndOfLineTriviaRemover _instance = new WhitespaceOrEndOfLineTriviaRemover();
 
         private readonly TextSpan? _span;
 
-        private WhitespaceOrEndOfLineRemover(TextSpan? span = null)
+        private WhitespaceOrEndOfLineTriviaRemover(TextSpan? span = null)
         {
             _span = span;
         }
 
-        public static TNode RemoveWhitespaceOrEndOfLine<TNode>(TNode node, TextSpan? span = null) where TNode : SyntaxNode
+        public static TNode RemoveWhitespaceOrEndOfLineTrivia<TNode>(TNode node, TextSpan? span = null) where TNode : SyntaxNode
         {
             if (node == null)
                 throw new ArgumentNullException(nameof(node));
@@ -30,7 +30,7 @@ namespace Roslynator.CSharp.SyntaxRewriters
             }
             else
             {
-                var remover = new WhitespaceOrEndOfLineRemover(span);
+                var remover = new WhitespaceOrEndOfLineTriviaRemover(span);
 
                 return (TNode)remover.Visit(node);
             }

@@ -50,7 +50,7 @@ namespace Roslynator.CSharp.Refactorings
 
             SemanticModel semanticModel = await context.GetSemanticModelAsync().ConfigureAwait(false);
 
-            TypeAnalysisFlags flags = CSharpAnalysis.AnalyzeType(forEachStatement, semanticModel, context.CancellationToken);
+            TypeAnalysisFlags flags = CSharpAnalysis.AnalyzeType(forEachStatement, semanticModel);
 
             if (flags.IsExplicit())
             {

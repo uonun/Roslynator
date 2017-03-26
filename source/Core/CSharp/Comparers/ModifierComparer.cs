@@ -5,9 +5,9 @@ using System.Diagnostics;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 
-namespace Roslynator.CSharp
+namespace Roslynator.CSharp.Comparers
 {
-    public sealed class ModifierComparer : IComparer<SyntaxToken>
+    internal class ModifierComparer : IComparer<SyntaxToken>
     {
         public static readonly ModifierComparer Instance = new ModifierComparer();
 

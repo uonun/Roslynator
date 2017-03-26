@@ -84,7 +84,7 @@ namespace Roslynator.CSharp.Refactorings
                 if (typeSymbol.IsArrayType())
                     return "Length";
 
-                if (SymbolUtility.ImplementsICollectionOfT(typeSymbol))
+                if (typeSymbol.ImplementsICollectionOfT())
                     return "Count";
             }
 

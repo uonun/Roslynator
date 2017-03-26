@@ -88,7 +88,7 @@ namespace Roslynator.Diagnostics.Extensions
 
         public static SyntaxTree SyntaxTree(this SyntaxNodeAnalysisContext context)
         {
-            return context.Node?.SyntaxTree;
+            return context.Node.SyntaxTree;
         }
 
         internal static void ReportToken(this SyntaxNodeAnalysisContext context, DiagnosticDescriptor descriptor, SyntaxToken token)

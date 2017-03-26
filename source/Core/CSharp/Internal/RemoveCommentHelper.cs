@@ -8,11 +8,11 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Roslynator.Extensions;
 
-namespace Roslynator.CSharp.Refactorings
+namespace Roslynator.CSharp.Internal
 {
-    internal static class RemoveCommentRefactoring
+    internal static class RemoveCommentHelper
     {
-        public static Task<Document> RefactorAsync(
+        public static Task<Document> RemoveCommentAsync(
             Document document,
             SyntaxTrivia comment,
             CancellationToken cancellationToken = default(CancellationToken))

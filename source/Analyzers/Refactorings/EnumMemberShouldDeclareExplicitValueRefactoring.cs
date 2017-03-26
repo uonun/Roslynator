@@ -63,7 +63,7 @@ namespace Roslynator.CSharp.Refactorings
 
             INamedTypeSymbol enumSymbol = fieldSymbol.ContainingType;
 
-            if (SymbolUtility.IsEnumWithFlagsAttribute(enumSymbol, semanticModel))
+            if (enumSymbol.IsEnumWithFlagsAttribute(semanticModel))
             {
                 return GetFlagsValue(enumMember, enumSymbol, semanticModel, cancellationToken);
             }
@@ -143,7 +143,7 @@ namespace Roslynator.CSharp.Refactorings
 
                 if (value != null)
                 {
-                    var fieldSymbol = semanticModel.GetDeclaredSymbol(enumMember, cancellationToken) as IFieldSymbol;
+                    IFieldSymbol fieldSymbol = semanticModel.GetDeclaredSymbol(enumMember, cancellationToken);
 
                     if (fieldSymbol?.HasConstantValue == true)
                         yield return fieldSymbol.ConstantValue;

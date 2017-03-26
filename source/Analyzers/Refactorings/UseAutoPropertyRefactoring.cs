@@ -12,6 +12,7 @@ using Microsoft.CodeAnalysis.Diagnostics;
 using Roslynator.CSharp.Extensions;
 using Roslynator.Diagnostics.Extensions;
 using Roslynator.Extensions;
+using Roslynator.FindSymbols;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 using static Roslynator.CSharp.CSharpFactory;
 
@@ -333,7 +334,7 @@ namespace Roslynator.CSharp.Refactorings
 
             int fieldIndex = members.IndexOf((FieldDeclarationSyntax)variableDeclaration.Parent);
 
-            ImmutableArray<SyntaxNode> oldNodes = await document.FindSymbolNodesAsync(fieldSymbol, cancellationToken).ConfigureAwait(false);
+            ImmutableArray<SyntaxNode> oldNodes = await SymbolFinder.FindNodesAsync(fieldSymbol, document, cancellationToken).ConfigureAwait(false);
 
             IdentifierNameSyntax newNode = IdentifierName(property.Identifier);
 
@@ -411,7 +412,7 @@ namespace Roslynator.CSharp.Refactorings
                 .DescendantTrivia()
                 .All(f => f.IsWhitespaceOrEndOfLineTrivia()))
             {
-                accessorList = Remover.RemoveWhitespaceOrEndOfLine(accessorList);
+                accessorList = Remover.RemoveWhitespaceOrEndOfLineTrivia(accessorList);
             }
 
             PropertyDeclarationSyntax newProperty = property

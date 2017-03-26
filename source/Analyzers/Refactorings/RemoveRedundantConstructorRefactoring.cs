@@ -57,7 +57,7 @@ namespace Roslynator.CSharp.Refactorings
             ConstructorDeclarationSyntax constructorDeclaration,
             CancellationToken cancellationToken)
         {
-            return Remover.RemoveMemberAsync(document, constructorDeclaration, cancellationToken);
+            return document.RemoveMemberAsync(constructorDeclaration, cancellationToken);
         }
     }
 }

@@ -299,7 +299,7 @@ namespace Roslynator.CSharp.Refactorings.InlineMethod
 
                 DocumentId documentId = document.Solution().GetDocumentId(methodDeclaration.SyntaxTree);
 
-                newDocument = await Remover.RemoveMemberAsync(newDocument.Solution().GetDocument(documentId), methodDeclaration, cancellationToken).ConfigureAwait(false);
+                newDocument = await newDocument.Solution().GetDocument(documentId).RemoveMemberAsync(methodDeclaration, cancellationToken).ConfigureAwait(false);
 
                 return newDocument.Solution();
             }
@@ -351,7 +351,7 @@ namespace Roslynator.CSharp.Refactorings.InlineMethod
 
                 DocumentId documentId = document.Solution().GetDocumentId(methodDeclaration.SyntaxTree);
 
-                newDocument = await Remover.RemoveMemberAsync(newDocument.Solution().GetDocument(documentId), methodDeclaration, cancellationToken).ConfigureAwait(false);
+                newDocument = await newDocument.Solution().GetDocument(documentId).RemoveMemberAsync(methodDeclaration, cancellationToken).ConfigureAwait(false);
 
                 return newDocument.Solution();
             }

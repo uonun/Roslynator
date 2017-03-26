@@ -2,7 +2,6 @@
 
 using System;
 using System.Collections.Immutable;
-using System.Linq;
 using Microsoft.CodeAnalysis;
 using Roslynator.Extensions;
 
@@ -30,20 +29,6 @@ namespace Roslynator
             return false;
         }
 
-        public static bool IsEnumWithFlagsAttribute(ITypeSymbol typeSymbol, SemanticModel semanticModel)
-        {
-            if (typeSymbol == null)
-                throw new ArgumentNullException(nameof(typeSymbol));
-
-            if (semanticModel == null)
-                throw new ArgumentNullException(nameof(semanticModel));
-
-            return typeSymbol.IsEnum()
-                && typeSymbol
-                    .GetAttributes()
-                    .Any(f => f.AttributeClass.Equals(semanticModel.Compilation.GetTypeByMetadataName(MetadataNames.System_FlagsAttribute)));
-        }
-
         public static IMethodSymbol FindGetItemMethodWithInt32Parameter(ITypeSymbol typeSymbol)
         {
             if (typeSymbol == null)
@@ -52,7 +37,7 @@ namespace Roslynator
             foreach (IMethodSymbol methodSymbol in typeSymbol.GetMethods("get_Item"))
             {
                 if (!methodSymbol.IsStatic
-                    && methodSymbol.SingleParameterOrDefault()?.Type.IsInt32() == true)
+                    && methodSymbol.SingleParameterOrDefault()?.Type.IsInt() == true)
                 {
                     return methodSymbol;
                 }
@@ -73,18 +58,6 @@ namespace Roslynator
 
             return typeSymbol.Equals(semanticModel.GetTypeByMetadataName(MetadataNames.System_EventHandler))
                 || typeSymbol.IsConstructedFrom(semanticModel.GetTypeByMetadataName(MetadataNames.System_EventHandler_T));
-        }
-
-        public static bool IsException(ITypeSymbol typeSymbol, SemanticModel semanticModel)
-        {
-            if (typeSymbol == null)
-                throw new ArgumentNullException(nameof(typeSymbol));
-
-            if (semanticModel == null)
-                throw new ArgumentNullException(nameof(semanticModel));
-
-            return typeSymbol.IsClass()
-                && typeSymbol.EqualsOrInheritsFrom(semanticModel.GetTypeByMetadataName(MetadataNames.System_Exception));
         }
 
         public static bool IsFunc(ISymbol symbol, ITypeSymbol parameter1, ITypeSymbol parameter2, SemanticModel semanticModel)
@@ -216,35 +189,6 @@ namespace Roslynator
             }
 
             return false;
-        }
-
-        public static bool ImplementsINotifyPropertyChanged(ITypeSymbol typeSymbol, SemanticModel semanticModel)
-        {
-            if (typeSymbol == null)
-                throw new ArgumentNullException(nameof(typeSymbol));
-
-            if (semanticModel == null)
-                throw new ArgumentNullException(nameof(semanticModel));
-
-            if (typeSymbol != null)
-            {
-                INamedTypeSymbol notifyPropertyChanged = semanticModel.GetTypeByMetadataName(MetadataNames.System_ComponentModel_INotifyPropertyChanged);
-
-                return notifyPropertyChanged != null
-                    && typeSymbol.AllInterfaces.Contains(notifyPropertyChanged);
-            }
-
-            return false;
-        }
-
-        public static bool ImplementsICollectionOfT(ITypeSymbol symbol)
-        {
-            if (symbol == null)
-                throw new ArgumentNullException(nameof(symbol));
-
-            return symbol
-                .AllInterfaces
-                .Any(f => f.IsConstructedFrom(SpecialType.System_Collections_Generic_ICollection_T));
         }
     }
 }

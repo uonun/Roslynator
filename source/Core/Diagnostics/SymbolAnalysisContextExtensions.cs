@@ -52,5 +52,10 @@ namespace Roslynator.Diagnostics.Extensions
             context.ReportDiagnostic(
                 Diagnostic.Create(descriptor, location, messageArgs));
         }
+
+        internal static INamedTypeSymbol GetTypeByMetadataName(this SymbolAnalysisContext context, string fullyQualifiedMetadataName)
+        {
+            return context.Compilation.GetTypeByMetadataName(fullyQualifiedMetadataName);
+        }
     }
 }

@@ -31,8 +31,8 @@ namespace Roslynator.CSharp.Refactorings
 
                     if (!openBrace.IsMissing
                         && !closeBrace.IsMissing
-                        && openBrace.GetLeadingAndTrailingTrivia().All(f => f.IsWhitespaceOrEndOfLineTrivia())
-                        && closeBrace.GetLeadingAndTrailingTrivia().All(f => f.IsWhitespaceOrEndOfLineTrivia()))
+                        && openBrace.GetLeadingTrailingTrivia().All(f => f.IsWhitespaceOrEndOfLineTrivia())
+                        && closeBrace.GetLeadingTrailingTrivia().All(f => f.IsWhitespaceOrEndOfLineTrivia()))
                     {
                         context.ReportDiagnostic(
                             DiagnosticDescriptors.RemoveBraces,

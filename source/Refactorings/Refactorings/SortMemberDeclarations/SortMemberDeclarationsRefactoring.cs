@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Roslynator.CSharp.Comparers;
 using Roslynator.CSharp.Extensions;
 using Roslynator.CSharp.SyntaxRewriters.SortMembers;
 using Roslynator.Extensions;

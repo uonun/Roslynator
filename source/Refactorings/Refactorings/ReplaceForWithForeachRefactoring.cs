@@ -9,6 +9,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Roslynator.CSharp.Extensions;
 using Roslynator.Extensions;
+using Roslynator.FindSymbols;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 using static Roslynator.CSharp.CSharpFactory;
 
@@ -33,7 +34,7 @@ namespace Roslynator.CSharp.Refactorings
             ExpressionSyntax expression = memberAccessExpression.Expression;
 
             ISymbol symbol = semanticModel.GetDeclaredSymbol(forStatement.Declaration.Variables.First(), cancellationToken);
-            ImmutableArray<SyntaxNode> nodes = await document.FindSymbolNodesAsync(symbol, cancellationToken).ConfigureAwait(false);
+            ImmutableArray<SyntaxNode> nodes = await SymbolFinder.FindNodesAsync(symbol, document, cancellationToken).ConfigureAwait(false);
 
             StatementSyntax newStatement = statement.ReplaceNodes(
                 nodes.Select(f => f.Parent.Parent.Parent),
@@ -112,7 +113,7 @@ namespace Roslynator.CSharp.Refactorings
             {
                 ISymbol variableSymbol = semanticModel.GetDeclaredSymbol(variableDeclarator, context.CancellationToken);
 
-                ImmutableArray<SyntaxNode> nodes = await context.Document.FindSymbolNodesAsync(variableSymbol, context.CancellationToken).ConfigureAwait(false);
+                ImmutableArray<SyntaxNode> nodes = await SymbolFinder.FindNodesAsync(variableSymbol, context.Document, context.CancellationToken).ConfigureAwait(false);
 
                 StatementSyntax statement = forStatement.Statement;
 

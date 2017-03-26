@@ -63,9 +63,13 @@ namespace Roslynator.CSharp.DiagnosticAnalyzers
                         if (previousLineIsEmpty)
                         {
                             if (emptyLines.IsEmpty)
+                            {
                                 emptyLines = endOfLine.Span;
+                            }
                             else
+                            {
                                 emptyLines = TextSpan.FromBounds(emptyLines.Start, endOfLine.Span.End);
+                            }
                         }
                     }
                     else

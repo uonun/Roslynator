@@ -22,7 +22,7 @@ namespace Roslynator.CSharp.Refactorings
             if (methodSymbol?.IsAsync == false
                 && !methodSymbol.IsAbstract
                 && methodSymbol.Name.EndsWith(AsyncSuffix, StringComparison.Ordinal)
-                && !methodSymbol.ReturnType.IsTaskOrDerivedFromTask(context.SemanticModel))
+                && !methodSymbol.ReturnType.IsTaskOrInheritsFromTask(context.SemanticModel))
             {
                 SyntaxToken identifier = methodDeclaration.Identifier;
 

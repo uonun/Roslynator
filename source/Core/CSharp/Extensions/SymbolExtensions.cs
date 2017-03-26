@@ -45,6 +45,12 @@ namespace Roslynator.CSharp.Extensions
             return ParseTypeName(typeSymbol.ToMinimalDisplayString(semanticModel, position, symbolDisplayFormat));
         }
 
+        private static void ThrowIfExplicitDeclarationIsNotSupported(ITypeSymbol typeSymbol, SymbolDisplayFormat symbolDisplayFormat)
+        {
+            if (!typeSymbol.SupportsExplicitDeclaration())
+                throw new ArgumentException($"Type '{typeSymbol.ToDisplayString(symbolDisplayFormat)}' does not support explicit declaration.", nameof(typeSymbol));
+        }
+
         public static ExpressionSyntax ToDefaultExpression(this ITypeSymbol typeSymbol, TypeSyntax type = null)
         {
             if (typeSymbol == null)
@@ -158,12 +164,6 @@ namespace Roslynator.CSharp.Extensions
             }
 
             return null;
-        }
-
-        private static void ThrowIfExplicitDeclarationIsNotSupported(ITypeSymbol typeSymbol, SymbolDisplayFormat symbolDisplayFormat)
-        {
-            if (!typeSymbol.SupportsExplicitDeclaration())
-                throw new ArgumentException($"Type '{typeSymbol.ToDisplayString(symbolDisplayFormat)}' does not support explicit declaration.", nameof(typeSymbol));
         }
 
         public static bool SupportsPredefinedType(this ITypeSymbol typeSymbol)

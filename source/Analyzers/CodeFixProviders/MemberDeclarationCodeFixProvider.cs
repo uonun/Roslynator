@@ -101,7 +101,7 @@ namespace Roslynator.CSharp.CodeFixProviders
                         {
                             CodeAction codeAction = CodeAction.Create(
                                 $"Remove redundant overridding {memberDeclaration.GetTitle()}",
-                                cancellationToken => Remover.RemoveMemberAsync(context.Document, memberDeclaration, cancellationToken),
+                                cancellationToken => context.Document.RemoveMemberAsync(memberDeclaration, cancellationToken),
                                 diagnostic.Id + EquivalenceKeySuffix);
 
                             context.RegisterCodeFix(codeAction, diagnostic);
