@@ -22,16 +22,16 @@ namespace Roslynator.CSharp.Refactorings
 
                 if (sections.Any())
                 {
-                    var selectedSections = new SelectedNodeCollection<SwitchSectionSyntax>(sections, context.Span);
+                    var slice = new ListSlice<SwitchSectionSyntax>(sections, context.Span);
 
-                    if (selectedSections.Any())
+                    if (slice.Any())
                     {
                         if (fAddBraces || fRemoveBraces)
                         {
                             var addBraces = new List<SwitchSectionSyntax>();
                             var removeBraces = new List<SwitchSectionSyntax>();
 
-                            foreach (SwitchSectionSyntax section in selectedSections)
+                            foreach (SwitchSectionSyntax section in slice)
                             {
                                 if (addBraces.Count > 0
                                     && removeBraces.Count > 0)
@@ -97,7 +97,7 @@ namespace Roslynator.CSharp.Refactorings
                         {
                             string title = "Remove statements from section";
 
-                            if (selectedSections.IsMultiple)
+                            if (slice.Count > 1)
                                 title += "s";
 
                             context.RegisterRefactoring(
@@ -107,7 +107,7 @@ namespace Roslynator.CSharp.Refactorings
                                     return RemoveStatementsFromSwitchSectionsRefactoring.RefactorAsync(
                                         context.Document,
                                         switchStatement,
-                                        selectedSections.ToImmutableArray(),
+                                        slice.ToImmutableArray(),
                                         cancellationToken);
                                 });
                         }

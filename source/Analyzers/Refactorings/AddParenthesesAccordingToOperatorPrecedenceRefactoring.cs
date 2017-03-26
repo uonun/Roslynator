@@ -27,7 +27,7 @@ namespace Roslynator.CSharp.Refactorings
         {
             if (expression != null
                 && GetGroupNumber(kind) == GetGroupNumber(expression.Kind())
-                && CSharpAnalysis.GetOperatorPrecedence(expression) < CSharpAnalysis.GetOperatorPrecedence(kind))
+                && CSharpUtility.GetOperatorPrecedence(expression) < CSharpUtility.GetOperatorPrecedence(kind))
             {
                 context.ReportDiagnostic(
                     DiagnosticDescriptors.AddParenthesesAccordingToOperatorPrecedence,

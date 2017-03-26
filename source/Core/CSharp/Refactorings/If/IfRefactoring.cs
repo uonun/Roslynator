@@ -236,22 +236,22 @@ namespace Roslynator.CSharp.Refactorings.If
         }
 
         public static ImmutableArray<IfRefactoring> Analyze(
-            SelectedStatementCollection selectedStatements,
+            StatementContainerSlice slice,
             SemanticModel semanticModel,
             CancellationToken cancellationToken)
         {
-            return Analyze(selectedStatements, DefaultOptions, semanticModel, cancellationToken);
+            return Analyze(slice, DefaultOptions, semanticModel, cancellationToken);
         }
 
         public static ImmutableArray<IfRefactoring> Analyze(
-            SelectedStatementCollection selectedStatements,
+            StatementContainerSlice slice,
             IfAnalysisOptions options,
             SemanticModel semanticModel,
             CancellationToken cancellationToken)
         {
-            if (selectedStatements.Count == 2)
+            if (slice.Count == 2)
             {
-                StatementSyntax[] statements = selectedStatements.ToArray();
+                StatementSyntax[] statements = slice.ToArray();
 
                 StatementSyntax statement1 = statements[0];
                 StatementSyntax statement2 = statements[1];

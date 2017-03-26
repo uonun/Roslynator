@@ -43,8 +43,9 @@
   <ItemGroup>
     <Compile Include="AsyncMethodNameGenerator.cs" />
     <Compile Include="CSharp\Analysis\BracesAnalysisResult.cs" />
-    <Compile Include="CSharp\Analysis\CSharpAnalysis.cs" />
+    <Compile Include="CSharp\CSharpUtility.cs" />
     <Compile Include="CSharp\Analysis\TypeAnalysisFlagsExtensions.cs" />
+    <Compile Include="CSharp\Analysis\CSharpAnalysis.cs" />
     <Compile Include="CSharp\CSharpErrorCodes.cs" />
     <Compile Include="CSharp\Documentation\AddBaseOrNewDocumentationCommentRewriter.cs" />
     <Compile Include="CSharp\Documentation\BaseDocumentationCommentInfo.cs" />
@@ -120,7 +121,7 @@
     <Compile Include="CSharp\Refactorings\RemoveCommentRefactoring.cs" />
     <Compile Include="CSharp\Refactorings\UseBitwiseOperationInsteadOfCallingHasFlagRefactoring.cs" />
     <Compile Include="CSharp\BinaryExpressionSpan.cs" />
-    <Compile Include="CSharp\SelectedMemberDeclarationCollection.cs" />
+    <Compile Include="CSharp\MemberDeclarationSlice.cs" />
     <Compile Include="CSharp\StringExpressionChain.cs" />
     <Compile Include="CSharp\SwitchSectionStatementContainer.cs" />
     <Compile Include="CommentRemoveOptions.cs" />
@@ -173,9 +174,9 @@
     <Compile Include="MetadataNames.cs" />
     <Compile Include="CSharp\Modifiers.cs" />
     <Compile Include="Identifier.cs" />
-    <Compile Include="Text\SelectedTextLineCollection.cs" />
-    <Compile Include="CSharp\SelectedStatementCollection.cs" />
-    <Compile Include="SelectedNodeCollection.cs" />
+    <Compile Include="Text\TextLineCollectionSlice.cs" />
+    <Compile Include="CSharp\StatementContainerSlice.cs" />
+    <Compile Include="ListSlice`1.cs" />
     <Compile Include="CSharp\BlockStatementContainer.cs" />
     <Compile Include="CSharp\StatementContainer.cs" />
     <Compile Include="Rename\SymbolRenamer.cs" />

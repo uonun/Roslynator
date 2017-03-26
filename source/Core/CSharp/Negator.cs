@@ -282,7 +282,7 @@ namespace Roslynator.CSharp
         private static ExpressionSyntax ParenthesizeIfNecessary(this ExpressionSyntax expression, SyntaxKind kind)
         {
             if (expression != null
-                && CSharpAnalysis.GetOperatorPrecedence(expression) > CSharpAnalysis.GetOperatorPrecedence(kind))
+                && CSharpUtility.GetOperatorPrecedence(expression) > CSharpUtility.GetOperatorPrecedence(kind))
             {
                 expression = expression.Parenthesize(moveTrivia: true);
             }

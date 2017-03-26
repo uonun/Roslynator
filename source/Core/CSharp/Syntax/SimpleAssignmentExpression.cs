@@ -9,7 +9,7 @@ using Roslynator.Extensions;
 
 namespace Roslynator.CSharp.Syntax
 {
-    internal struct SimpleAssignmentExpression : IEquatable<SimpleAssignmentExpression>
+    public struct SimpleAssignmentExpression : IEquatable<SimpleAssignmentExpression>
     {
         private SimpleAssignmentExpression(ExpressionSyntax left, ExpressionSyntax right)
         {

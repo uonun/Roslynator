@@ -6,7 +6,7 @@ using Microsoft.CodeAnalysis.Text;
 
 namespace Roslynator.Text.Extensions
 {
-    public static class TextSpanExtensions
+    internal static class TextSpanExtensions
     {
         public static bool IsBetweenSpans(this TextSpan span, SyntaxNode node)
         {

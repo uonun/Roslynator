@@ -6,32 +6,32 @@ using Microsoft.CodeAnalysis.Text;
 
 namespace Roslynator.CSharp
 {
-    public class SelectedStatementCollection : SelectedNodeCollection<StatementSyntax>
+    public class StatementContainerSlice : ListSlice<StatementSyntax>
     {
-        private SelectedStatementCollection(IStatementContainer container, TextSpan span)
+        private StatementContainerSlice(IStatementContainer container, TextSpan span)
              : base(container.Statements, span)
         {
             Container = container;
         }
 
-        public static SelectedStatementCollection Create(BlockSyntax block, TextSpan span)
+        public static StatementContainerSlice Create(BlockSyntax block, TextSpan span)
         {
             if (block == null)
                 throw new ArgumentNullException(nameof(block));
 
             var container = new BlockStatementContainer(block);
 
-            return new SelectedStatementCollection(container, span);
+            return new StatementContainerSlice(container, span);
         }
 
-        public static SelectedStatementCollection Create(SwitchSectionSyntax switchSection, TextSpan span)
+        public static StatementContainerSlice Create(SwitchSectionSyntax switchSection, TextSpan span)
         {
             if (switchSection == null)
                 throw new ArgumentNullException(nameof(switchSection));
 
             var container = new SwitchSectionStatementContainer(switchSection);
 
-            return new SelectedStatementCollection(container, span);
+            return new StatementContainerSlice(container, span);
         }
 
         public IStatementContainer Container { get; }

@@ -9,7 +9,7 @@ using Roslynator.Extensions;
 
 namespace Roslynator.CSharp.Syntax
 {
-    internal struct NotEqualsToNullExpression : IEquatable<NotEqualsToNullExpression>
+    public struct NotEqualsToNullExpression : IEquatable<NotEqualsToNullExpression>
     {
         private NotEqualsToNullExpression(ExpressionSyntax left, ExpressionSyntax right)
         {

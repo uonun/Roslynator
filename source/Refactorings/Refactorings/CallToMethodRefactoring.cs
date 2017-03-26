@@ -83,7 +83,7 @@ namespace Roslynator.CSharp.Refactorings
                 INamespaceSymbol namespaceSymbol = methodSymbol.ContainingNamespace;
 
                 if (namespaceSymbol != null
-                    && !CSharpAnalysis.IsNamespaceInScope(expression, namespaceSymbol, semanticModel, cancellationToken))
+                    && !CSharpUtility.IsNamespaceInScope(expression, namespaceSymbol, semanticModel, cancellationToken))
                 {
                     newRoot = ((CompilationUnitSyntax)newRoot)
                         .AddUsings(UsingDirective(ParseName(namespaceSymbol.ToString())));

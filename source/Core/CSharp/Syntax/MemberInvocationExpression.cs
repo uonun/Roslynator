@@ -9,7 +9,7 @@ using Roslynator.Extensions;
 
 namespace Roslynator.CSharp.Syntax
 {
-    internal struct MemberInvocationExpression : IEquatable<MemberInvocationExpression>
+    public struct MemberInvocationExpression : IEquatable<MemberInvocationExpression>
     {
         public MemberInvocationExpression(ExpressionSyntax expression, SimpleNameSyntax name, ArgumentListSyntax argumentList)
         {

@@ -18,31 +18,31 @@ namespace Roslynator.CSharp.Refactorings.SortMemberDeclarations
     {
         public static void ComputeRefactoring(RefactoringContext context, NamespaceDeclarationSyntax namespaceDeclaration)
         {
-            ComputeRefactoring(context, SelectedMemberDeclarationCollection.Create(namespaceDeclaration, context.Span));
+            ComputeRefactoring(context, MemberDeclarationSlice.Create(namespaceDeclaration, context.Span));
         }
 
         public static void ComputeRefactoring(RefactoringContext context, ClassDeclarationSyntax classDeclaration)
         {
-            ComputeRefactoring(context, SelectedMemberDeclarationCollection.Create(classDeclaration, context.Span));
+            ComputeRefactoring(context, MemberDeclarationSlice.Create(classDeclaration, context.Span));
         }
 
         public static void ComputeRefactoring(RefactoringContext context, StructDeclarationSyntax structDeclaration)
         {
-            ComputeRefactoring(context, SelectedMemberDeclarationCollection.Create(structDeclaration, context.Span));
+            ComputeRefactoring(context, MemberDeclarationSlice.Create(structDeclaration, context.Span));
         }
 
         public static void ComputeRefactoring(RefactoringContext context, InterfaceDeclarationSyntax interfaceDeclaration)
         {
-            ComputeRefactoring(context, SelectedMemberDeclarationCollection.Create(interfaceDeclaration, context.Span));
+            ComputeRefactoring(context, MemberDeclarationSlice.Create(interfaceDeclaration, context.Span));
         }
 
-        private static void ComputeRefactoring(RefactoringContext context, SelectedMemberDeclarationCollection selectedMembers)
+        private static void ComputeRefactoring(RefactoringContext context, MemberDeclarationSlice slice)
         {
-            if (selectedMembers.IsMultiple)
+            if (slice.Count > 1)
             {
-                ImmutableArray<MemberDeclarationSyntax> selectedMemberArray = selectedMembers.ToImmutableArray();
+                ImmutableArray<MemberDeclarationSyntax> members = slice.Nodes;
 
-                SyntaxKind kind = GetSingleKindOrDefault(selectedMemberArray);
+                SyntaxKind kind = GetSingleKindOrDefault(members);
 
                 if (kind != SyntaxKind.None)
                 {
@@ -52,8 +52,8 @@ namespace Roslynator.CSharp.Refactorings.SortMemberDeclarations
                             context,
                             MemberDeclarationSortMode.ByKindThenByName,
                             "Sort members by name",
-                            selectedMembers,
-                            selectedMemberArray);
+                            slice,
+                            members);
                     }
                 }
                 else
@@ -62,15 +62,15 @@ namespace Roslynator.CSharp.Refactorings.SortMemberDeclarations
                         context,
                         MemberDeclarationSortMode.ByKind,
                         "Sort members by kind",
-                        selectedMembers,
-                        selectedMemberArray);
+                        slice,
+                        members);
 
                     ComputeRefactoring(
                         context,
                         MemberDeclarationSortMode.ByKindThenByName,
                         "Sort members by kind then by name",
-                        selectedMembers,
-                        selectedMemberArray);
+                        slice,
+                        members);
                 }
             }
         }
@@ -79,33 +79,33 @@ namespace Roslynator.CSharp.Refactorings.SortMemberDeclarations
             RefactoringContext context,
             MemberDeclarationSortMode sortMode,
             string title,
-            SelectedMemberDeclarationCollection selectedMembers,
-            ImmutableArray<MemberDeclarationSyntax> selectedMemberArray)
+            MemberDeclarationSlice slice,
+            ImmutableArray<MemberDeclarationSyntax> members)
         {
-            if (!MemberDeclarationComparer.IsSorted(selectedMemberArray, sortMode))
+            if (!MemberDeclarationComparer.IsSorted(members, sortMode))
             {
                 context.RegisterRefactoring(
                     title,
-                    cancellationToken => RefactorAsync(context.Document, selectedMembers, sortMode, cancellationToken));
+                    cancellationToken => RefactorAsync(context.Document, slice, sortMode, cancellationToken));
             }
         }
 
         private static Task<Document> RefactorAsync(
             Document document,
-            SelectedMemberDeclarationCollection selectedMembers,
+            MemberDeclarationSlice slice,
             MemberDeclarationSortMode sortMode,
             CancellationToken cancellationToken)
         {
             var comparer = new MemberDeclarationComparer(sortMode);
 
-            MemberDeclarationSyntax containingMember = selectedMembers.ContainingMember;
+            MemberDeclarationSyntax containingMember = slice.ContainingMember;
 
             SyntaxList<MemberDeclarationSyntax> members = containingMember.GetMembers();
 
             SyntaxList<MemberDeclarationSyntax> newMembers = members
-                .Take(selectedMembers.FirstIndex)
-                .Concat(selectedMembers.OrderBy(f => f, comparer))
-                .Concat(members.Skip(selectedMembers.LastIndex + 1))
+                .Take(slice.StartIndex)
+                .Concat(slice.OrderBy(f => f, comparer))
+                .Concat(members.Skip(slice.EndIndex + 1))
                 .ToSyntaxList();
 
             MemberDeclarationSyntax newNode = containingMember.SetMembers(newMembers);

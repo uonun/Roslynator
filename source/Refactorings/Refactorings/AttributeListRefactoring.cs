@@ -26,10 +26,10 @@ namespace Roslynator.CSharp.Refactorings
 
                 if (lists.Any())
                 {
-                    var selectedLists = new SelectedNodeCollection<AttributeListSyntax>(lists, context.Span);
+                    var slice = new ListSlice<AttributeListSyntax>(lists, context.Span);
 
                     if (context.IsRefactoringEnabled(RefactoringIdentifiers.SplitAttributes)
-                        && selectedLists.Any(f => f.Attributes.Count > 1))
+                        && slice.Any(f => f.Attributes.Count > 1))
                     {
                         context.RegisterRefactoring(
                             "Split attributes",
@@ -38,13 +38,13 @@ namespace Roslynator.CSharp.Refactorings
                                 return SplitAsync(
                                     context.Document,
                                     member,
-                                    selectedLists.ToArray(),
+                                    slice.ToArray(),
                                     cancellationToken);
                             });
                     }
 
                     if (context.IsRefactoringEnabled(RefactoringIdentifiers.MergeAttributes)
-                        && selectedLists.IsMultiple)
+                        && slice.Count > 1)
                     {
                         context.RegisterRefactoring(
                             "Merge attributes",
@@ -53,7 +53,7 @@ namespace Roslynator.CSharp.Refactorings
                                 return MergeAsync(
                                     context.Document,
                                     member,
-                                    selectedLists.ToArray(),
+                                    slice.ToArray(),
                                     cancellationToken);
                             });
                     }
