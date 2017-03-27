@@ -12,7 +12,7 @@ using Roslynator.Extensions;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 using static Roslynator.CSharp.CSharpFactory;
 
-namespace Roslynator.CSharp.Refactorings.EnumWithFlagsAttribute
+namespace Roslynator.CSharp.Refactorings
 {
     internal static class GenerateCombinedEnumMemberRefactoring
     {
@@ -28,11 +28,8 @@ namespace Roslynator.CSharp.Refactorings.EnumWithFlagsAttribute
 
                 if (enumSymbol?.IsEnumWithFlagsAttribute(semanticModel) == true)
                 {
-                    IFieldSymbol[] fieldSymbols = selectedMembers
+                    object[] constantValues = selectedMembers
                         .Select(f => semanticModel.GetDeclaredSymbol(f, context.CancellationToken))
-                        .ToArray();
-
-                    object[] constantValues = fieldSymbols
                         .Where(f => f.HasConstantValue)
                         .Select(f => f.ConstantValue)
                         .ToArray();
@@ -40,7 +37,7 @@ namespace Roslynator.CSharp.Refactorings.EnumWithFlagsAttribute
                     object combinedValue = GetCombinedValue(constantValues, enumSymbol);
 
                     if (combinedValue != null
-                        && !EnumHelper.IsValueDefined(enumSymbol, combinedValue))
+                        && !IsValueDefined(enumSymbol, combinedValue))
                     {
                         SeparatedSyntaxList<EnumMemberDeclarationSyntax> enumMembers = enumDeclaration.Members;
 
@@ -213,7 +210,26 @@ namespace Roslynator.CSharp.Refactorings.EnumWithFlagsAttribute
             return null;
         }
 
-        public static EnumMemberDeclarationSyntax CreateEnumMember(string name, EnumMemberDeclarationSyntax[] enumMembers)
+        private static bool IsValueDefined(INamedTypeSymbol enumSymbol, object value)
+        {
+            foreach (ISymbol member in enumSymbol.GetMembers())
+            {
+                if (member.IsField())
+                {
+                    var fieldSymbol = (IFieldSymbol)member;
+
+                    if (fieldSymbol.HasConstantValue
+                        && object.Equals(fieldSymbol.ConstantValue, value))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        private static EnumMemberDeclarationSyntax CreateEnumMember(string name, EnumMemberDeclarationSyntax[] enumMembers)
         {
             ExpressionSyntax expression = IdentifierName(enumMembers.Last().Identifier.WithoutTrivia());
 

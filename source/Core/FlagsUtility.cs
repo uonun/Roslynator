@@ -4,54 +4,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
-using Roslynator.Extensions;
 
 namespace Roslynator
 {
-    public static class EnumHelper
+    internal static class FlagsUtility
     {
-        public static IEnumerable<object> GetValues(ITypeSymbol enumSymbol)
-        {
-            foreach (ISymbol member in enumSymbol.GetMembers())
-            {
-                if (member.IsField())
-                {
-                    var fieldSymbol = (IFieldSymbol)member;
-
-                    if (fieldSymbol.HasConstantValue)
-                        yield return fieldSymbol.ConstantValue;
-                }
-            }
-        }
-
-        public static bool IsValueDefined(INamedTypeSymbol enumSymbol, object value)
-        {
-            foreach (object value2 in GetValues(enumSymbol))
-            {
-                if (object.Equals(value2, value))
-                    return true;
-            }
-
-            return false;
-        }
-
-        public static Optional<object> GetUniquePowerOfTwo(INamedTypeSymbol enumSymbol, bool startFromHighestExistingValue = false)
-        {
-            if (enumSymbol == null)
-                throw new ArgumentNullException(nameof(enumSymbol));
-
-            return GetUniquePowerOfTwo(
-                enumSymbol.EnumUnderlyingType.SpecialType,
-                GetValues(enumSymbol),
-                startFromHighestExistingValue);
-        }
-
         public static Optional<object> GetUniquePowerOfTwo(
-            SpecialType enumUnderlyingType,
+            SpecialType enumType,
             IEnumerable<object> reservedValues,
             bool startFromHighestExistingValue = false)
         {
-            switch (enumUnderlyingType)
+            switch (enumType)
             {
                 case SpecialType.System_SByte:
                     {

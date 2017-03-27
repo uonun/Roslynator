@@ -22,7 +22,7 @@ namespace Roslynator.CSharp.Refactorings
             MethodInfo info = semanticModel.GetMethodInfo(invocation, context.CancellationToken);
 
             if (info.IsValid
-                && info.HasName("Contains")
+                && info.IsName("Contains")
                 && info.IsContainingType(SpecialType.System_String)
                 && info.Symbol.SingleParameterOrDefault()?.Type.IsString() == true)
             {

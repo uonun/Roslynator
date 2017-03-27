@@ -86,7 +86,7 @@ namespace Roslynator.CSharp.Refactorings
 
                 propertyDeclaration = propertyDeclaration
                     .ReplaceNode(getter, newGetter)
-                    .WithoutInitializer()
+                    .WithInitializer(null)
                     .WithoutSemicolonToken();
             }
 

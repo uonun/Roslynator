@@ -37,9 +37,11 @@ namespace Roslynator.CSharp.Refactorings
 
                         if (semanticModel
                                 .GetExtensionMethodInfo(invocation, cancellationToken)
+                                .MethodInfo
                                 .IsLinqExtensionOfIEnumerableOfTWithoutParameters(methodName)
                             && semanticModel
                                 .GetExtensionMethodInfo(invocation2, cancellationToken)
+                                .MethodInfo
                                 .IsLinqWhere(allowImmutableArrayExtension: true))
                         {
                             TextSpan span = TextSpan.FromBounds(memberAccess2.Name.Span.Start, invocation.Span.End);

@@ -8,9 +8,9 @@ namespace Roslynator.CSharp.Refactorings.ExtractCondition
 {
     internal static class ExtractConditionRefactoring
     {
-        internal static void ComputeRefactoring(RefactoringContext context, BinaryExpressionSpan binaryExpressionSpan)
+        internal static void ComputeRefactoring(RefactoringContext context, BinaryExpressionSlice binaryExpressionSlice)
         {
-            BinaryExpressionSyntax binaryExpression = binaryExpressionSpan.BinaryExpression;
+            BinaryExpressionSyntax binaryExpression = binaryExpressionSlice.BinaryExpression;
 
             SyntaxKind kind = binaryExpression.Kind();
 
@@ -32,7 +32,7 @@ namespace Roslynator.CSharp.Refactorings.ExtractCondition
                                     var refactoring = new ExtractConditionFromIfToNestedIfRefactoring();
                                     context.RegisterRefactoring(
                                         refactoring.Title,
-                                        cancellationToken => refactoring.RefactorAsync(context.Document, (IfStatementSyntax)parent, condition, binaryExpressionSpan, cancellationToken));
+                                        cancellationToken => refactoring.RefactorAsync(context.Document, (IfStatementSyntax)parent, condition, binaryExpressionSlice, cancellationToken));
                                 }
                                 else if (kind == SyntaxKind.LogicalOrExpression)
                                 {
@@ -42,7 +42,7 @@ namespace Roslynator.CSharp.Refactorings.ExtractCondition
                                         var refactoring = new ExtractConditionFromIfToIfRefactoring();
                                         context.RegisterRefactoring(
                                             refactoring.Title,
-                                            cancellationToken => refactoring.RefactorAsync(context.Document, container, condition, binaryExpressionSpan, cancellationToken));
+                                            cancellationToken => refactoring.RefactorAsync(context.Document, container, condition, binaryExpressionSlice, cancellationToken));
                                     }
                                 }
 
@@ -55,7 +55,7 @@ namespace Roslynator.CSharp.Refactorings.ExtractCondition
                                     var refactoring = new ExtractConditionFromWhileToNestedIfRefactoring();
                                     context.RegisterRefactoring(
                                         refactoring.Title,
-                                        cancellationToken => refactoring.RefactorAsync(context.Document, (WhileStatementSyntax)parent, condition, binaryExpressionSpan, cancellationToken));
+                                        cancellationToken => refactoring.RefactorAsync(context.Document, (WhileStatementSyntax)parent, condition, binaryExpressionSlice, cancellationToken));
                                 }
 
                                 break;

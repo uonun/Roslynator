@@ -46,7 +46,7 @@ namespace Roslynator.CSharp.Refactorings
                             {
                                 context.ReportDiagnostic(
                                     DiagnosticDescriptors.RemoveRedundantCast,
-                                    Location.Create(castExpression.SyntaxTree, castExpression.BracesSpan()));
+                                    Location.Create(castExpression.SyntaxTree, castExpression.ParenthesesSpan()));
                             }
                         }
                     }
@@ -148,9 +148,9 @@ namespace Roslynator.CSharp.Refactorings
 
                                 ExtensionMethodInfo info = semanticModel.GetExtensionMethodInfo(invocation, ExtensionMethodKind.Reduced, cancellationToken);
 
-                                if (info.IsLinqCast())
+                                if (info.MethodInfo.IsLinqCast())
                                 {
-                                    ImmutableArray<ITypeSymbol> typeArguments = info.OriginalSymbol.TypeArguments;
+                                    ImmutableArray<ITypeSymbol> typeArguments = info.ReducedSymbol.TypeArguments;
 
                                     if (typeArguments.Length == 1)
                                     {

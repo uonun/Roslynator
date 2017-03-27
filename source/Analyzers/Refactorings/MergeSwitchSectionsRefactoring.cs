@@ -12,6 +12,7 @@ using Microsoft.CodeAnalysis.Text;
 using Roslynator.CSharp.Extensions;
 using Roslynator.Diagnostics.Extensions;
 using Roslynator.Extensions;
+using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
 namespace Roslynator.CSharp.Refactorings
 {
@@ -163,7 +164,7 @@ namespace Roslynator.CSharp.Refactorings
             IEnumerable<SwitchSectionSyntax> sectionsWithoutStatements = sections
                 .Skip(index)
                 .Take(numberOfAdditionalSectionsToMerge + 1)
-                .Select(f => f.WithoutStatements());
+                .Select(f => f.WithStatements(List<StatementSyntax>()));
 
             SyntaxList<SwitchSectionSyntax> newSections = sections.Take(index)
                 .Concat(sectionsWithoutStatements)

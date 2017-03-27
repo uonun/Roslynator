@@ -26,7 +26,7 @@ namespace Roslynator.CSharp.Refactorings
                 .Select(section =>
                 {
                     return (sections.Contains(section))
-                        ? section.WithoutStatements()
+                        ? section.WithStatements(List<StatementSyntax>())
                         : section;
                 });
 

@@ -15,7 +15,7 @@ using Roslynator.CSharp.Extensions;
 using Roslynator.Extensions;
 using static Roslynator.StringUtility;
 
-namespace Roslynator.CSharp
+namespace Roslynator.CSharp.Syntax
 {
     internal class StringExpressionChain
     {
@@ -119,17 +119,17 @@ namespace Roslynator.CSharp
         }
 
         public static StringExpressionChain TryCreate(
-            BinaryExpressionSpan binaryExpressionSpan,
+            BinaryExpressionSlice binaryExpressionSlice,
             SemanticModel semanticModel,
             CancellationToken cancellationToken)
         {
-            BinaryExpressionSyntax binaryExpression = binaryExpressionSpan.BinaryExpression;
-            ImmutableArray<ExpressionSyntax> expressions = binaryExpressionSpan.SelectedExpressions;
+            BinaryExpressionSyntax binaryExpression = binaryExpressionSlice.BinaryExpression;
+            ImmutableArray<ExpressionSyntax> expressions = binaryExpressionSlice.Expressions;
 
             if (binaryExpression.IsKind(SyntaxKind.AddExpression)
                 && expressions.All(expression => IsStringExpression(expression, semanticModel, cancellationToken)))
             {
-                return new StringExpressionChain(binaryExpression, expressions, binaryExpressionSpan.Span);
+                return new StringExpressionChain(binaryExpression, expressions, binaryExpressionSlice.Span);
             }
 
             return null;

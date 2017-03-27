@@ -28,6 +28,7 @@ namespace Roslynator.CSharp.Refactorings
 
                 if (semanticModel
                     .GetExtensionMethodInfo(invocation, ExtensionMethodKind.Reduced, cancellationToken)
+                    .MethodInfo
                     .IsLinqExtensionOfIEnumerableOfTWithoutParameters("Any"))
                 {
                     string propertyName = GetCountOrLengthPropertyName(memberAccess.Expression, semanticModel, cancellationToken);

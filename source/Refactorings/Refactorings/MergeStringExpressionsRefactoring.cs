@@ -7,19 +7,20 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
+using Roslynator.CSharp.Syntax;
 using Roslynator.Extensions;
 
 namespace Roslynator.CSharp.Refactorings
 {
     internal static class MergeStringExpressionsRefactoring
     {
-        public static async Task ComputeRefactoringAsync(RefactoringContext context, BinaryExpressionSpan binaryExpressionSpan)
+        public static async Task ComputeRefactoringAsync(RefactoringContext context, BinaryExpressionSlice binaryExpressionSlice)
         {
-            if (binaryExpressionSpan.BinaryExpression.IsKind(SyntaxKind.AddExpression))
+            if (binaryExpressionSlice.BinaryExpression.IsKind(SyntaxKind.AddExpression))
             {
                 SemanticModel semanticModel = await context.GetSemanticModelAsync().ConfigureAwait(false);
 
-                StringExpressionChain chain = StringExpressionChain.TryCreate(binaryExpressionSpan, semanticModel, context.CancellationToken);
+                StringExpressionChain chain = StringExpressionChain.TryCreate(binaryExpressionSlice, semanticModel, context.CancellationToken);
 
                 if (chain != null)
                     ComputeRefactoring(context, chain);

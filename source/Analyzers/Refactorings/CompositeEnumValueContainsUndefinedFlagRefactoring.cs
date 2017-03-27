@@ -41,9 +41,9 @@ namespace Roslynator.CSharp.Refactorings
                         for (int i = 0; i < values.Length; i++)
                         {
                             if (values[i] != 0
-                                && EnumHelper.IsComposite(values[i]))
+                                && FlagsUtility.IsComposite(values[i]))
                             {
-                                foreach (sbyte value in EnumHelper.Decompose(values[i]))
+                                foreach (sbyte value in FlagsUtility.Decompose(values[i]))
                                 {
                                     if (Array.IndexOf(values, value) == -1)
                                         ReportDiagnostic(context, fields[i], value.ToString());
@@ -60,9 +60,9 @@ namespace Roslynator.CSharp.Refactorings
                         for (int i = 0; i < values.Length; i++)
                         {
                             if (values[i] != 0
-                                && EnumHelper.IsComposite(values[i]))
+                                && FlagsUtility.IsComposite(values[i]))
                             {
-                                foreach (byte value in EnumHelper.Decompose(values[i]))
+                                foreach (byte value in FlagsUtility.Decompose(values[i]))
                                 {
                                     if (Array.IndexOf(values, value) == -1)
                                         ReportDiagnostic(context, fields[i], value.ToString());
@@ -79,9 +79,9 @@ namespace Roslynator.CSharp.Refactorings
                         for (int i = 0; i < values.Length; i++)
                         {
                             if (values[i] != 0
-                                && EnumHelper.IsComposite(values[i]))
+                                && FlagsUtility.IsComposite(values[i]))
                             {
-                                foreach (short value in EnumHelper.Decompose(values[i]))
+                                foreach (short value in FlagsUtility.Decompose(values[i]))
                                 {
                                     if (Array.IndexOf(values, value) == -1)
                                         ReportDiagnostic(context, fields[i], value.ToString());
@@ -98,9 +98,9 @@ namespace Roslynator.CSharp.Refactorings
                         for (int i = 0; i < values.Length; i++)
                         {
                             if (values[i] != 0
-                                && EnumHelper.IsComposite(values[i]))
+                                && FlagsUtility.IsComposite(values[i]))
                             {
-                                foreach (ushort value in EnumHelper.Decompose(values[i]))
+                                foreach (ushort value in FlagsUtility.Decompose(values[i]))
                                 {
                                     if (Array.IndexOf(values, value) == -1)
                                         ReportDiagnostic(context, fields[i], value.ToString());
@@ -117,9 +117,9 @@ namespace Roslynator.CSharp.Refactorings
                         for (int i = 0; i < values.Length; i++)
                         {
                             if (values[i] != 0
-                                && EnumHelper.IsComposite(values[i]))
+                                && FlagsUtility.IsComposite(values[i]))
                             {
-                                foreach (int value in EnumHelper.Decompose(values[i]))
+                                foreach (int value in FlagsUtility.Decompose(values[i]))
                                 {
                                     if (Array.IndexOf(values, value) == -1)
                                         ReportDiagnostic(context, fields[i], value.ToString());
@@ -136,9 +136,9 @@ namespace Roslynator.CSharp.Refactorings
                         for (int i = 0; i < values.Length; i++)
                         {
                             if (values[i] != 0
-                                && EnumHelper.IsComposite(values[i]))
+                                && FlagsUtility.IsComposite(values[i]))
                             {
-                                foreach (uint value in EnumHelper.Decompose(values[i]))
+                                foreach (uint value in FlagsUtility.Decompose(values[i]))
                                 {
                                     if (Array.IndexOf(values, value) == -1)
                                         ReportDiagnostic(context, fields[i], value.ToString());
@@ -155,9 +155,9 @@ namespace Roslynator.CSharp.Refactorings
                         for (int i = 0; i < values.Length; i++)
                         {
                             if (values[i] != 0
-                                && EnumHelper.IsComposite(values[i]))
+                                && FlagsUtility.IsComposite(values[i]))
                             {
-                                foreach (long value in EnumHelper.Decompose(values[i]))
+                                foreach (long value in FlagsUtility.Decompose(values[i]))
                                 {
                                     if (Array.IndexOf(values, value) == -1)
                                         ReportDiagnostic(context, fields[i], value.ToString());
@@ -174,9 +174,9 @@ namespace Roslynator.CSharp.Refactorings
                         for (int i = 0; i < values.Length; i++)
                         {
                             if (values[i] != 0
-                                && EnumHelper.IsComposite(values[i]))
+                                && FlagsUtility.IsComposite(values[i]))
                             {
-                                foreach (ulong value in EnumHelper.Decompose(values[i]))
+                                foreach (ulong value in FlagsUtility.Decompose(values[i]))
                                 {
                                     if (Array.IndexOf(values, value) == -1)
                                         ReportDiagnostic(context, fields[i], value.ToString());

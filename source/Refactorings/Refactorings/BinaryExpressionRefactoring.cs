@@ -79,15 +79,15 @@ namespace Roslynator.CSharp.Refactorings
                     RefactoringIdentifiers.ExtractExpressionFromCondition,
                     RefactoringIdentifiers.MergeStringExpressions))
             {
-                BinaryExpressionSpan binaryExpressionSpan = BinaryExpressionSpan.Create(binaryExpression, context.Span);
+                BinaryExpressionSlice binaryExpressionSlice = BinaryExpressionSlice.Create(binaryExpression, context.Span);
 
-                if (binaryExpressionSpan.SelectedExpressions.Length > 1)
+                if (binaryExpressionSlice.Expressions.Length > 1)
                 {
                     if (context.IsRefactoringEnabled(RefactoringIdentifiers.ExtractExpressionFromCondition))
-                        ExtractConditionRefactoring.ComputeRefactoring(context, binaryExpressionSpan);
+                        ExtractConditionRefactoring.ComputeRefactoring(context, binaryExpressionSlice);
 
                     if (context.IsRefactoringEnabled(RefactoringIdentifiers.MergeStringExpressions))
-                        await MergeStringExpressionsRefactoring.ComputeRefactoringAsync(context, binaryExpressionSpan).ConfigureAwait(false);
+                        await MergeStringExpressionsRefactoring.ComputeRefactoringAsync(context, binaryExpressionSlice).ConfigureAwait(false);
                 }
             }
         }

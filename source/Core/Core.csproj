@@ -121,9 +121,9 @@
     <Compile Include="CSharp\Refactorings\MergeInterpolationIntoInterpolatedStringRefactoring.cs" />
     <Compile Include="CSharp\Internal\RemoveCommentHelper.cs" />
     <Compile Include="CSharp\Refactorings\UseBitwiseOperationInsteadOfCallingHasFlagRefactoring.cs" />
-    <Compile Include="CSharp\BinaryExpressionSpan.cs" />
+    <Compile Include="CSharp\BinaryExpressionSlice.cs" />
     <Compile Include="CSharp\MemberDeclarationSlice.cs" />
-    <Compile Include="CSharp\StringExpressionChain.cs" />
+    <Compile Include="CSharp\Syntax\StringExpressionChain.cs" />
     <Compile Include="CSharp\SwitchSectionStatementContainer.cs" />
     <Compile Include="CommentRemoveOptions.cs" />
     <Compile Include="CSharp\CSharpFactory.cs" />
@@ -150,10 +150,10 @@
     <Compile Include="Diagnostics\SyntaxTreeAnalysisContextExtensions.cs" />
     <Compile Include="ExtensionMethodInfo.cs" />
     <Compile Include="ExtensionMethodKind.cs" />
-    <Compile Include="EnumHelper.cs" />
     <Compile Include="Extensions\DiagnosticExtensions.cs" />
     <Compile Include="CodeFixes\Extensions\CodeFixContextExtensions.cs" />
     <Compile Include="FindSymbols\SymbolFinder.cs" />
+    <Compile Include="FlagsUtility.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="MethodInfo.cs" />
     <Compile Include="SymbolUtility.cs" />

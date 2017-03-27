@@ -51,15 +51,15 @@ namespace Roslynator.CSharp.Extensions
                 throw new ArgumentException($"Type '{typeSymbol.ToDisplayString(symbolDisplayFormat)}' does not support explicit declaration.", nameof(typeSymbol));
         }
 
-        public static ExpressionSyntax ToDefaultExpression(this ITypeSymbol typeSymbol, TypeSyntax type = null)
+        public static ExpressionSyntax ToDefaultValueSyntax(this ITypeSymbol typeSymbol, TypeSyntax type = null)
         {
             if (typeSymbol == null)
                 throw new ArgumentNullException(nameof(typeSymbol));
 
-            return ToDefaultExpression(typeSymbol, type, default(SemanticModel), -1, default(SymbolDisplayFormat));
+            return ToDefaultValueSyntax(typeSymbol, type, default(SemanticModel), -1, default(SymbolDisplayFormat));
         }
 
-        public static ExpressionSyntax ToDefaultExpression(this ITypeSymbol typeSymbol, SemanticModel semanticModel, int position, SymbolDisplayFormat format = null)
+        public static ExpressionSyntax ToDefaultValueSyntax(this ITypeSymbol typeSymbol, SemanticModel semanticModel, int position, SymbolDisplayFormat format = null)
         {
             if (typeSymbol == null)
                 throw new ArgumentNullException(nameof(typeSymbol));
@@ -67,10 +67,10 @@ namespace Roslynator.CSharp.Extensions
             if (semanticModel == null)
                 throw new ArgumentNullException(nameof(semanticModel));
 
-            return ToDefaultExpression(typeSymbol, default(TypeSyntax), semanticModel, position, format);
+            return ToDefaultValueSyntax(typeSymbol, default(TypeSyntax), semanticModel, position, format);
         }
 
-        private static ExpressionSyntax ToDefaultExpression(ITypeSymbol typeSymbol, TypeSyntax type, SemanticModel semanticModel, int position, SymbolDisplayFormat format = null)
+        private static ExpressionSyntax ToDefaultValueSyntax(ITypeSymbol typeSymbol, TypeSyntax type, SemanticModel semanticModel, int position, SymbolDisplayFormat format = null)
         {
             if (typeSymbol.IsErrorType())
                 return null;
@@ -130,7 +130,7 @@ namespace Roslynator.CSharp.Extensions
             return DefaultExpression(type);
         }
 
-        public static ExpressionSyntax ToDefaultExpression(this IParameterSymbol parameterSymbol)
+        internal static ExpressionSyntax GetDefaultValueSyntax(this IParameterSymbol parameterSymbol)
         {
             if (parameterSymbol == null)
                 throw new ArgumentNullException(nameof(parameterSymbol));

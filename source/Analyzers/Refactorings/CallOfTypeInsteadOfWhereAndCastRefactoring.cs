@@ -45,9 +45,11 @@ namespace Roslynator.CSharp.Refactorings
 
                             if (semanticModel
                                     .GetExtensionMethodInfo(invocation, ExtensionMethodKind.Reduced, cancellationToken)
+                                    .MethodInfo
                                     .IsLinqCast()
                                 && semanticModel
                                     .GetExtensionMethodInfo(invocation2, ExtensionMethodKind.Reduced, cancellationToken)
+                                    .MethodInfo
                                     .IsLinqWhere())
                             {
                                 BinaryExpressionSyntax isExpression = GetIsExpression(arguments.First().Expression);

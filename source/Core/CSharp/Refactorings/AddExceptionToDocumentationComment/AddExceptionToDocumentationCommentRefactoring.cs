@@ -163,7 +163,7 @@ namespace Roslynator.CSharp.Refactorings.AddExceptionToDocumentationComment
 
         private static bool ContainsException(DocumentationCommentTriviaSyntax comment, ITypeSymbol exceptionSymbol, SemanticModel semanticModel, CancellationToken cancellationToken)
         {
-            foreach (XmlElementSyntax xmlElement in comment.ExceptionElements())
+            foreach (XmlElementSyntax xmlElement in comment.Elements("exception"))
             {
                 XmlElementStartTagSyntax startTag = xmlElement.StartTag;
 

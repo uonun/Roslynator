@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Josef Pihrt. All rights reserved. Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using System.Linq;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
@@ -8,7 +8,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Roslynator.Extensions;
 
-namespace Roslynator.CSharp.Refactorings.EnumWithFlagsAttribute
+namespace Roslynator.CSharp.Refactorings
 {
     internal static class GenerateEnumMemberRefactoring
     {
@@ -20,11 +20,11 @@ namespace Roslynator.CSharp.Refactorings.EnumWithFlagsAttribute
 
             if (enumSymbol.IsEnumWithFlagsAttribute(semanticModel))
             {
-                object[] values = EnumHelper.GetValues(enumSymbol).ToArray();
+                List<object> values = GetConstantValues(enumSymbol);
 
                 SpecialType specialType = enumSymbol.EnumUnderlyingType.SpecialType;
 
-                Optional<object> optional = EnumHelper.GetUniquePowerOfTwo(specialType, values);
+                Optional<object> optional = FlagsUtility.GetUniquePowerOfTwo(specialType, values);
 
                 if (optional.HasValue)
                 {
@@ -32,7 +32,7 @@ namespace Roslynator.CSharp.Refactorings.EnumWithFlagsAttribute
                         "Generate enum member",
                         cancellationToken => RefactorAsync(context.Document, enumDeclaration, enumSymbol, optional.Value, cancellationToken));
 
-                    Optional<object> optional2 = EnumHelper.GetUniquePowerOfTwo(specialType, values, startFromHighestExistingValue: true);
+                    Optional<object> optional2 = FlagsUtility.GetUniquePowerOfTwo(specialType, values, startFromHighestExistingValue: true);
 
                     if (optional2.HasValue
                         && !optional.Value.Equals(optional2.Value))
@@ -49,6 +49,24 @@ namespace Roslynator.CSharp.Refactorings.EnumWithFlagsAttribute
                     "Generate enum member",
                     cancellationToken => RefactorAsync(context.Document, enumDeclaration, enumSymbol, null, cancellationToken));
             }
+        }
+
+        private static List<object> GetConstantValues(ITypeSymbol enumSymbol)
+        {
+            var values = new List<object>();
+
+            foreach (ISymbol member in enumSymbol.GetMembers())
+            {
+                if (member.IsField())
+                {
+                    var fieldSymbol = (IFieldSymbol)member;
+
+                    if (fieldSymbol.HasConstantValue)
+                        values.Add(fieldSymbol.ConstantValue);
+                }
+            }
+
+            return values;
         }
 
         private static Task<Document> RefactorAsync(

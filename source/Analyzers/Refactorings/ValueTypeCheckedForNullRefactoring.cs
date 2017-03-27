@@ -74,7 +74,7 @@ namespace Roslynator.CSharp.Refactorings
             if (typeSymbol.IsPredefinedValueType()
                 || typeSymbol.GetMethods(WellKnownMemberNames.EqualityOperatorName).Any())
             {
-                newNode = typeSymbol.ToDefaultExpression(semanticModel, right.SpanStart)
+                newNode = typeSymbol.ToDefaultValueSyntax(semanticModel, right.SpanStart)
                     .WithTriviaFrom(right)
                     .WithFormatterAnnotation();
 

@@ -157,7 +157,7 @@ namespace Roslynator.CSharp.CodeFixProviders
                             if (typeSymbol.IsPredefinedValueType()
                                 || typeSymbol.GetMethods(WellKnownMemberNames.EqualityOperatorName).Any())
                             {
-                                ExpressionSyntax expression = typeSymbol.ToDefaultExpression(semanticModel, binaryExpression.Right.SpanStart);
+                                ExpressionSyntax expression = typeSymbol.ToDefaultValueSyntax(semanticModel, binaryExpression.Right.SpanStart);
 
                                 title = $"Replace 'null' with '{expression}'";
                             }

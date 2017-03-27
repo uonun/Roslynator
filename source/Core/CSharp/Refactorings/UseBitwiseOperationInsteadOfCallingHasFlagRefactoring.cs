@@ -31,7 +31,7 @@ namespace Roslynator.CSharp.Refactorings
                     MethodInfo info = semanticModel.GetMethodInfo(memberAccess, cancellationToken);
 
                     if (info.IsValid
-                        && info.HasName("HasFlag")
+                        && info.IsName("HasFlag")
                         && !info.IsExtensionMethod
                         && info.IsReturnType(SpecialType.System_Boolean)
                         && info.Symbol.SingleParameterOrDefault()?.Type.SpecialType == SpecialType.System_Enum

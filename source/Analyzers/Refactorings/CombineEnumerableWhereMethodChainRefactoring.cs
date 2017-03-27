@@ -43,7 +43,7 @@ namespace Roslynator.CSharp.Refactorings
                     {
                         ExtensionMethodInfo info2 = semanticModel.GetExtensionMethodInfo(invocation2, ExtensionMethodKind.Reduced, cancellationToken);
 
-                        if (info2.IsLinqExtensionOfIEnumerableOfT("Where", parameterCount: 2))
+                        if (info2.MethodInfo.IsLinqExtensionOfIEnumerableOfT("Where", parameterCount: 2))
                         {
                             if (SymbolUtility.IsPredicateFunc(
                                 info2.Symbol.Parameters[1].Type,
@@ -52,6 +52,7 @@ namespace Roslynator.CSharp.Refactorings
                             {
                                 if (semanticModel
                                     .GetExtensionMethodInfo(invocation, ExtensionMethodKind.Reduced, cancellationToken)
+                                    .MethodInfo
                                     .IsLinqWhere())
                                 {
                                     Analyze(context, invocation, invocation2, memberAccess, memberAccess2);
@@ -65,6 +66,7 @@ namespace Roslynator.CSharp.Refactorings
                             {
                                 if (semanticModel
                                     .GetExtensionMethodInfo(invocation, ExtensionMethodKind.Reduced, cancellationToken)
+                                    .MethodInfo
                                     .IsLinqWhereWithIndex())
                                 {
                                     Analyze(context, invocation, invocation2, memberAccess, memberAccess2);

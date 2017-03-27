@@ -59,7 +59,7 @@ namespace Roslynator.CSharp.Refactorings
                 .WithCloseBraceToken(accessorList.CloseBraceToken.WithLeadingTrivia(CSharpFactory.NewLineTrivia()));
 
             return propertyDeclaration
-                .WithoutInitializer()
+                .WithInitializer(null)
                 .WithoutSemicolonToken()
                 .WithAccessorList(accessorList);
         }

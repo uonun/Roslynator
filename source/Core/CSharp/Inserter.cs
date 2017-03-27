@@ -12,6 +12,7 @@ using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
 namespace Roslynator.CSharp
 {
+    //TODO: Inserter
     public static class Inserter
     {
         public static MemberDeclarationSyntax InsertDocumentationComment(MemberDeclarationSyntax memberDeclaration, SyntaxTrivia comment, bool indent = false)

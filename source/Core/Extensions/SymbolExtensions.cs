@@ -27,6 +27,7 @@ namespace Roslynator.Extensions
             }
         }
 
+        //TODO: SingleParameterOrDefault
         public static IParameterSymbol SingleParameterOrDefault(this IMethodSymbol methodSymbol)
         {
             if (methodSymbol == null)
@@ -47,6 +48,7 @@ namespace Roslynator.Extensions
             return methodSymbol.ReducedFrom ?? methodSymbol;
         }
 
+        //TODO: SingleParameterOrDefault
         public static IParameterSymbol SingleParameterOrDefault(this IPropertySymbol propertySymbol)
         {
             if (propertySymbol == null)

@@ -29,6 +29,7 @@ namespace Roslynator.CSharp.Refactorings
         {
             if (semanticModel
                 .GetExtensionMethodInfo(invocation, context.CancellationToken)
+                .MethodInfo
                 .IsLinqExtensionOfIEnumerableOfTWithPredicate(fromMethodName))
             {
                 ExpressionSyntax expression = GetExpression(invocation);

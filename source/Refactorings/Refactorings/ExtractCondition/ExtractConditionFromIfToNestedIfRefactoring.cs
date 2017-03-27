@@ -37,12 +37,12 @@ namespace Roslynator.CSharp.Refactorings.ExtractCondition
             Document document,
             IfStatementSyntax ifStatement,
             BinaryExpressionSyntax condition,
-            BinaryExpressionSpan binaryExpressionSpan,
+            BinaryExpressionSlice binaryExpressionSlice,
             CancellationToken cancellationToken)
         {
-            IfStatementSyntax newNode = RemoveExpressionsFromCondition(ifStatement, condition, binaryExpressionSpan);
+            IfStatementSyntax newNode = RemoveExpressionsFromCondition(ifStatement, condition, binaryExpressionSlice);
 
-            ExpressionSyntax expression = SyntaxFactory.ParseExpression(binaryExpressionSpan.ToString());
+            ExpressionSyntax expression = SyntaxFactory.ParseExpression(binaryExpressionSlice.ToString());
 
             newNode = AddNestedIf(newNode, expression)
                 .WithFormatterAnnotation();

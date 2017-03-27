@@ -11,7 +11,7 @@ using Roslynator.CSharp.Extensions;
 using Roslynator.Extensions;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
-namespace Roslynator.CSharp.Refactorings.EnumWithFlagsAttribute
+namespace Roslynator.CSharp.Refactorings
 {
     internal static class GenerateEnumValuesRefactoring
     {
@@ -31,7 +31,7 @@ namespace Roslynator.CSharp.Refactorings.EnumWithFlagsAttribute
 
                     List<object> values = GetExplicitValues(enumDeclaration, semanticModel, context.CancellationToken);
 
-                    Optional<object> optional = EnumHelper.GetUniquePowerOfTwo(specialType, values);
+                    Optional<object> optional = FlagsUtility.GetUniquePowerOfTwo(specialType, values);
 
                     if (optional.HasValue)
                     {
@@ -41,7 +41,7 @@ namespace Roslynator.CSharp.Refactorings.EnumWithFlagsAttribute
 
                         if (members.Any(f => f.EqualsValue != null))
                         {
-                            Optional<object> optional2 = EnumHelper.GetUniquePowerOfTwo(specialType, values, startFromHighestExistingValue: true);
+                            Optional<object> optional2 = FlagsUtility.GetUniquePowerOfTwo(specialType, values, startFromHighestExistingValue: true);
 
                             if (optional2.HasValue
                                 && !optional.Value.Equals(optional2.Value))
@@ -75,7 +75,7 @@ namespace Roslynator.CSharp.Refactorings.EnumWithFlagsAttribute
             {
                 if (members[i].EqualsValue == null)
                 {
-                    Optional<object> optional = EnumHelper.GetUniquePowerOfTwo(specialType, values, startFromHighestExistingValue);
+                    Optional<object> optional = FlagsUtility.GetUniquePowerOfTwo(specialType, values, startFromHighestExistingValue);
 
                     if (optional.HasValue)
                     {

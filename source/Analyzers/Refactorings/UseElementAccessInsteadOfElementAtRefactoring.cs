@@ -25,6 +25,7 @@ namespace Roslynator.CSharp.Refactorings
 
             if (semanticModel
                 .GetExtensionMethodInfo(invocation, cancellationToken)
+                .MethodInfo
                 .IsLinqElementAt(allowImmutableArrayExtension: true))
             {
                 ITypeSymbol typeSymbol = semanticModel.GetTypeSymbol(memberAccess.Expression, cancellationToken);

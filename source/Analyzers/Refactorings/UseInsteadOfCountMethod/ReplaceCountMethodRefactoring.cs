@@ -24,6 +24,7 @@ namespace Roslynator.CSharp.Refactorings.UseInsteadOfCountMethod
 
             if (semanticModel
                 .GetExtensionMethodInfo(invocation, ExtensionMethodKind.Reduced, cancellationToken)
+                .MethodInfo
                 .IsLinqExtensionOfIEnumerableOfTWithoutParameters("Count"))
             {
                 string propertyName = GetCountOrLengthPropertyName(memberAccess.Expression, semanticModel, cancellationToken);

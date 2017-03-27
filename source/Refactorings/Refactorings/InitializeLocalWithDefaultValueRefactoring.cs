@@ -79,7 +79,7 @@ namespace Roslynator.CSharp.Refactorings
             TypeSyntax type,
             ITypeSymbol typeSymbol)
         {
-            ExpressionSyntax value = typeSymbol.ToDefaultExpression(type);
+            ExpressionSyntax value = typeSymbol.ToDefaultValueSyntax(type);
 
             EqualsValueClauseSyntax initializer = declarator.Initializer;
             EqualsValueClauseSyntax newInitializer = EqualsValueClause(value);

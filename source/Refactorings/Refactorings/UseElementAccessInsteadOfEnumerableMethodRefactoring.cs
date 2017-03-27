@@ -49,6 +49,7 @@ namespace Roslynator.CSharp.Refactorings
 
                 if (semanticModel
                     .GetExtensionMethodInfo(invocation, ExtensionMethodKind.Reduced, context.CancellationToken)
+                    .MethodInfo
                     .IsLinqExtensionOfIEnumerableOfTWithoutParameters(methodName, allowImmutableArrayExtension: true))
                 {
                     var memberAccess = (MemberAccessExpressionSyntax)invocation.Expression;
@@ -85,6 +86,7 @@ namespace Roslynator.CSharp.Refactorings
             if (invocation.ArgumentList?.Arguments.Count == 1
                 && semanticModel
                     .GetExtensionMethodInfo(invocation, ExtensionMethodKind.Reduced, context.CancellationToken)
+                    .MethodInfo
                     .IsLinqElementAt(allowImmutableArrayExtension: true))
             {
                 var memberAccess = (MemberAccessExpressionSyntax)invocation.Expression;

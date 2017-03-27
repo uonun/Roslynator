@@ -51,12 +51,12 @@ namespace Roslynator.CSharp.Refactorings.ExtractCondition
             Document document,
             WhileStatementSyntax whileStatement,
             BinaryExpressionSyntax condition,
-            BinaryExpressionSpan binaryExpressionSpan,
+            BinaryExpressionSlice binaryExpressionSlice,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            WhileStatementSyntax newNode = RemoveExpressionsFromCondition(whileStatement, condition, binaryExpressionSpan);
+            WhileStatementSyntax newNode = RemoveExpressionsFromCondition(whileStatement, condition, binaryExpressionSlice);
 
-            newNode = AddNestedIf(newNode, binaryExpressionSpan)
+            newNode = AddNestedIf(newNode, binaryExpressionSlice)
                 .WithFormatterAnnotation();
 
             return document.ReplaceNodeAsync(whileStatement, newNode, cancellationToken);

@@ -79,7 +79,7 @@ namespace Roslynator.CSharp.Refactorings
             object[] values = GetExplicitValues(enumDeclaration, semanticModel, cancellationToken).ToArray();
             SpecialType specialType = enumSymbol.EnumUnderlyingType.SpecialType;
 
-            Optional<object> optional = EnumHelper.GetUniquePowerOfTwo(
+            Optional<object> optional = FlagsUtility.GetUniquePowerOfTwo(
                 specialType,
                 values,
                 startFromHighestExistingValue: false);

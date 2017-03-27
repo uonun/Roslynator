@@ -26,6 +26,7 @@ namespace Roslynator.CSharp.Refactorings
 
             if (semanticModel
                 .GetExtensionMethodInfo(invocation, ExtensionMethodKind.Reduced, cancellationToken)
+                .MethodInfo
                 .IsLinqExtensionOfIEnumerableOfTWithPredicate("FirstOrDefault"))
             {
                 ExpressionSyntax expression = memberAccess.Expression;

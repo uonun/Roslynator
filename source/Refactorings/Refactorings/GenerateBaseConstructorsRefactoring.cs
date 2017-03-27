@@ -106,7 +106,7 @@ namespace Roslynator.CSharp.Refactorings
 
                 if (parameterSymbol.HasExplicitDefaultValue)
                 {
-                    ExpressionSyntax defaultValue = parameterSymbol.ToDefaultExpression();
+                    ExpressionSyntax defaultValue = parameterSymbol.GetDefaultValueSyntax();
 
                     if (defaultValue != null)
                         @default = EqualsValueClause(defaultValue.WithSimplifierAnnotation());

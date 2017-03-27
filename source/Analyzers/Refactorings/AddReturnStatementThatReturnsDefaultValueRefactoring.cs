@@ -55,7 +55,7 @@ namespace Roslynator.CSharp.Refactorings
             }
 
             MethodDeclarationSyntax newNode = methodDeclaration
-                .AddBodyStatements(ReturnStatement(typeSymbol.ToDefaultExpression(semanticModel, position)));
+                .AddBodyStatements(ReturnStatement(typeSymbol.ToDefaultValueSyntax(semanticModel, position)));
 
             return await document.ReplaceNodeAsync(methodDeclaration, newNode, cancellationToken).ConfigureAwait(false);
         }

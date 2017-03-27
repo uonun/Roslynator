@@ -48,7 +48,7 @@ namespace Roslynator.CSharp.Refactorings
                         MethodInfo info = semanticModel.GetMethodInfo(invocation, cancellationToken);
 
                         if (info.IsValid
-                            && info.HasName("ToCharArray")
+                            && info.IsName("ToCharArray")
                             && info.IsPublic
                             && info.IsInstance
                             && !info.IsGenericMethod

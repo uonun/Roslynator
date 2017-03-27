@@ -45,7 +45,7 @@ namespace Roslynator.CSharp.Refactorings
                             MethodInfo info = semanticModel.GetMethodInfo(invocation, cancellationToken);
 
                             if (info.IsValid
-                                && info.HasName("Join")
+                                && info.IsName("Join")
                                 && info.IsContainingType(SpecialType.System_String)
                                 && info.IsPublic
                                 && info.IsStatic

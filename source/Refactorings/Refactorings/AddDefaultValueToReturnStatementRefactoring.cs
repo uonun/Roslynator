@@ -100,7 +100,7 @@ namespace Roslynator.CSharp.Refactorings
             ITypeSymbol typeSymbol,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            ExpressionSyntax expression = typeSymbol.ToDefaultExpression();
+            ExpressionSyntax expression = typeSymbol.ToDefaultValueSyntax();
 
             ReturnStatementSyntax newReturnStatement = returnStatement.WithExpression(expression);
 
