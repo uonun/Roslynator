@@ -8,6 +8,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Roslynator.CSharp.Extensions;
+using Roslynator.Diagnostics.Extensions;
 using Roslynator.Extensions;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 using static Roslynator.CSharp.CSharpFactory;
@@ -74,7 +75,7 @@ namespace Roslynator.CSharp.Refactorings
                 || typeSymbol.GetMethods(WellKnownMemberNames.EqualityOperatorName).Any())
             {
                 newNode = typeSymbol.ToDefaultExpression(semanticModel, right.SpanStart)
-                    .WithTriviaFrom(binaryExpression)
+                    .WithTriviaFrom(right)
                     .WithFormatterAnnotation();
 
                 return await document.ReplaceNodeAsync(right, newNode, cancellationToken).ConfigureAwait(false);

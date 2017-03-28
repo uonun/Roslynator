@@ -40,6 +40,9 @@ namespace Roslynator.CSharp.Refactorings.InlineMethod
 
                             if (parameterInfos != null)
                             {
+                                if (invocation.SyntaxTree != method.SyntaxTree)
+                                    semanticModel = await context.Solution.GetDocument(method.SyntaxTree).GetSemanticModelAsync(context.CancellationToken).ConfigureAwait(false);
+
                                 context.RegisterRefactoring(
                                     "Inline method",
                                     c => InlineMethodAsync(context.Document, invocation, expression, methodSymbol, parameterInfos.ToArray(), semanticModel, c));
@@ -61,6 +64,9 @@ namespace Roslynator.CSharp.Refactorings.InlineMethod
                                 if (parameterInfos != null)
                                 {
                                     var expressionStatement = (ExpressionStatementSyntax)invocation.Parent;
+
+                                    if (invocation.SyntaxTree != method.SyntaxTree)
+                                        semanticModel = await context.Solution.GetDocument(method.SyntaxTree).GetSemanticModelAsync(context.CancellationToken).ConfigureAwait(false);
 
                                     context.RegisterRefactoring(
                                         "Inline method",
@@ -252,7 +258,7 @@ namespace Roslynator.CSharp.Refactorings.InlineMethod
             statements[0] = statements[0].WithLeadingTrivia(expressionStatement.GetLeadingTrivia());
             statements[statements.Length - 1] = statements[statements.Length - 1].WithTrailingTrivia(expressionStatement.GetTrailingTrivia());
 
-            StatementContainer container;
+            IStatementContainer container;
             if (StatementContainer.TryCreate(expressionStatement, out container))
             {
                 SyntaxNode newNode = container.NodeWithStatements(container.Statements.ReplaceRange(expressionStatement, statements));
@@ -275,7 +281,7 @@ namespace Roslynator.CSharp.Refactorings.InlineMethod
             SemanticModel semanticModel,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            if (invocation.SyntaxTree.Equals(methodDeclaration.SyntaxTree))
+            if (invocation.SyntaxTree == methodDeclaration.SyntaxTree)
             {
                 DocumentEditor editor = await DocumentEditor.CreateAsync(document, cancellationToken).ConfigureAwait(false);
 
@@ -309,7 +315,7 @@ namespace Roslynator.CSharp.Refactorings.InlineMethod
             SemanticModel semanticModel,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            if (expressionStatement.SyntaxTree.Equals(methodDeclaration.SyntaxTree))
+            if (expressionStatement.SyntaxTree == methodDeclaration.SyntaxTree)
             {
                 DocumentEditor editor = await DocumentEditor.CreateAsync(document, cancellationToken).ConfigureAwait(false);
 
@@ -323,7 +329,7 @@ namespace Roslynator.CSharp.Refactorings.InlineMethod
                 newStatements[0] = newStatements[0].WithLeadingTrivia(expressionStatement.GetLeadingTrivia());
                 newStatements[statements.Length - 1] = newStatements[statements.Length - 1].WithTrailingTrivia(expressionStatement.GetTrailingTrivia());
 
-                StatementContainer container;
+                IStatementContainer container;
                 if (StatementContainer.TryCreate(expressionStatement, out container))
                 {
                     SyntaxNode newNode = container.NodeWithStatements(container.Statements.ReplaceRange(expressionStatement, newStatements));

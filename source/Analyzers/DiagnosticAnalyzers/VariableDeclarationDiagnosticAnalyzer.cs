@@ -7,7 +7,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Roslynator.CSharp.Analysis;
-using Roslynator.Extensions;
+using Roslynator.Diagnostics.Extensions;
 
 namespace Roslynator.CSharp.DiagnosticAnalyzers
 {
@@ -19,9 +19,9 @@ namespace Roslynator.CSharp.DiagnosticAnalyzers
             get
             {
                 return ImmutableArray.Create(
-                    DiagnosticDescriptors.UseExplicitTypeInsteadOfVar,
-                    DiagnosticDescriptors.UseExplicitTypeInsteadOfVarEvenIfObvious,
-                    DiagnosticDescriptors.UseVarInsteadOfExplicitType);
+                    DiagnosticDescriptors.UseExplicitTypeInsteadOfVarWhenTypeIsNotObvious,
+                    DiagnosticDescriptors.UseExplicitTypeInsteadOfVarWhenTypeIsObvious,
+                    DiagnosticDescriptors.UseVarInsteadOfExplicitTypeWhenTypeIsObvious);
             }
         }
 
@@ -39,36 +39,32 @@ namespace Roslynator.CSharp.DiagnosticAnalyzers
         {
             var variableDeclaration = (VariableDeclarationSyntax)context.Node;
 
-            switch (CSharpAnalysis.AnalyzeType(variableDeclaration, context.SemanticModel, context.CancellationToken))
+            TypeAnalysisFlags flags = CSharpAnalysis.AnalyzeType(variableDeclaration, context.SemanticModel, context.CancellationToken);
+
+            if (flags.IsExplicit())
             {
-                case TypeAnalysisResult.Explicit:
-                    {
-                        break;
-                    }
-                case TypeAnalysisResult.ExplicitButShouldBeImplicit:
-                    {
-                        context.ReportDiagnostic(
-                            DiagnosticDescriptors.UseVarInsteadOfExplicitType,
-                            variableDeclaration.Type);
-
-                        break;
-                    }
-                case TypeAnalysisResult.Implicit:
-                    {
-                        context.ReportDiagnostic(
-                            DiagnosticDescriptors.UseExplicitTypeInsteadOfVarEvenIfObvious,
-                            variableDeclaration.Type);
-
-                        break;
-                    }
-                case TypeAnalysisResult.ImplicitButShouldBeExplicit:
-                    {
-                        context.ReportDiagnostic(
-                            DiagnosticDescriptors.UseExplicitTypeInsteadOfVar,
-                            variableDeclaration.Type);
-
-                        break;
-                    }
+                if (flags.SupportsImplicit()
+                    && flags.IsTypeObvious())
+                {
+                    context.ReportDiagnostic(
+                        DiagnosticDescriptors.UseVarInsteadOfExplicitTypeWhenTypeIsObvious,
+                        variableDeclaration.Type);
+                }
+            }
+            else if (flags.SupportsExplicit())
+            {
+                if (flags.IsTypeObvious())
+                {
+                    context.ReportDiagnostic(
+                        DiagnosticDescriptors.UseExplicitTypeInsteadOfVarWhenTypeIsObvious,
+                        variableDeclaration.Type);
+                }
+                else if (flags.IsValidSymbol())
+                {
+                    context.ReportDiagnostic(
+                        DiagnosticDescriptors.UseExplicitTypeInsteadOfVarWhenTypeIsNotObvious,
+                        variableDeclaration.Type);
+                }
             }
         }
     }

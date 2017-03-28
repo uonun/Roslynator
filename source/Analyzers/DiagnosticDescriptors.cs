@@ -77,8 +77,8 @@ namespace Roslynator.CSharp
             isEnabledByDefault: false
         );
 
-        public static readonly DiagnosticDescriptor UseExplicitTypeInsteadOfVar = new DiagnosticDescriptor(
-            id: DiagnosticIdentifiers.UseExplicitTypeInsteadOfVar,
+        public static readonly DiagnosticDescriptor UseExplicitTypeInsteadOfVarWhenTypeIsNotObvious = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.UseExplicitTypeInsteadOfVarWhenTypeIsNotObvious,
             title: "Use explicit type instead of 'var' (when the type is not obvious).",
             messageFormat: "Use explicit type instead of 'var'.",
             category: DiagnosticCategories.Readability,
@@ -95,8 +95,8 @@ namespace Roslynator.CSharp
             isEnabledByDefault: true
         );
 
-        public static readonly DiagnosticDescriptor UseVarInsteadOfExplicitType = new DiagnosticDescriptor(
-            id: DiagnosticIdentifiers.UseVarInsteadOfExplicitType,
+        public static readonly DiagnosticDescriptor UseVarInsteadOfExplicitTypeWhenTypeIsObvious = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.UseVarInsteadOfExplicitTypeWhenTypeIsObvious,
             title: "Use 'var' instead of explicit type (when the type is obvious).",
             messageFormat: "Use 'var' instead of explicit type.",
             category: DiagnosticCategories.Simplification,
@@ -105,9 +105,9 @@ namespace Roslynator.CSharp
             customTags: WellKnownDiagnosticTags.Unnecessary
         );
 
-        public static readonly DiagnosticDescriptor UseExplicitTypeInsteadOfVarEvenIfObvious = new DiagnosticDescriptor(
-            id: DiagnosticIdentifiers.UseExplicitTypeInsteadOfVarEvenIfObvious,
-            title: "Use explicit type instead of 'var' (even if the type is obvious).",
+        public static readonly DiagnosticDescriptor UseExplicitTypeInsteadOfVarWhenTypeIsObvious = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.UseExplicitTypeInsteadOfVarWhenTypeIsObvious,
+            title: "Use explicit type instead of 'var' (when the type is obvious).",
             messageFormat: "Use explicit type instead of 'var'.",
             category: DiagnosticCategories.Readability,
             defaultSeverity: DiagnosticSeverity.Hidden,
@@ -1182,16 +1182,16 @@ namespace Roslynator.CSharp
             isEnabledByDefault: false
         );
 
-        public static readonly DiagnosticDescriptor MergeLocalDeclarationWithInitialization = new DiagnosticDescriptor(
-            id: DiagnosticIdentifiers.MergeLocalDeclarationWithInitialization,
-            title: "Merge local declaration with initialization.",
-            messageFormat: "Merge local declaration with initialization.",
+        public static readonly DiagnosticDescriptor MergeLocalDeclarationWithAssignment = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.MergeLocalDeclarationWithAssignment,
+            title: "Merge local declaration with assignment.",
+            messageFormat: "Merge local declaration with assignment.",
             category: DiagnosticCategories.Simplification,
             defaultSeverity: DiagnosticSeverity.Info,
             isEnabledByDefault: true
         );
 
-        public static readonly DiagnosticDescriptor MergeLocalDeclarationWithInitializationFadeOut = MergeLocalDeclarationWithInitialization.CreateFadeOut();
+        public static readonly DiagnosticDescriptor MergeLocalDeclarationWithAssignmentFadeOut = MergeLocalDeclarationWithAssignment.CreateFadeOut();
 
         public static readonly DiagnosticDescriptor UseCoalesceExpression = new DiagnosticDescriptor(
             id: DiagnosticIdentifiers.UseCoalesceExpression,
@@ -1311,7 +1311,7 @@ namespace Roslynator.CSharp
             title: "Add exception to documentation comment.",
             messageFormat: "Add exception to documentation comment.",
             category: DiagnosticCategories.Maintainability,
-            defaultSeverity: DiagnosticSeverity.Info,
+            defaultSeverity: DiagnosticSeverity.Hidden,
             isEnabledByDefault: true
         );
 
@@ -1506,7 +1506,7 @@ namespace Roslynator.CSharp
             title: "Enum member should declare explicit value.",
             messageFormat: "Enum member should declare explicit value.",
             category: DiagnosticCategories.Readability,
-            defaultSeverity: DiagnosticSeverity.Info,
+            defaultSeverity: DiagnosticSeverity.Hidden,
             isEnabledByDefault: true
         );
 
@@ -1633,13 +1633,31 @@ namespace Roslynator.CSharp
         public static readonly DiagnosticDescriptor RemoveRedundantAsyncAwaitFadeOut = RemoveRedundantAsyncAwait.CreateFadeOut();
 
         public static readonly DiagnosticDescriptor UnusedThisParameter = new DiagnosticDescriptor(
-        id: DiagnosticIdentifiers.UnusedThisParameter,
-        title: "Unused this parameter.",
-        messageFormat: "Unused this parameter '{0}'.",
-        category: DiagnosticCategories.Redundancy,
-        defaultSeverity: DiagnosticSeverity.Info,
-        isEnabledByDefault: true,
-        customTags: WellKnownDiagnosticTags.Unnecessary
-    );
+            id: DiagnosticIdentifiers.UnusedThisParameter,
+            title: "Unused this parameter.",
+            messageFormat: "Unused this parameter '{0}'.",
+            category: DiagnosticCategories.Redundancy,
+            defaultSeverity: DiagnosticSeverity.Info,
+            isEnabledByDefault: true,
+            customTags: WellKnownDiagnosticTags.Unnecessary
+        );
+
+        public static readonly DiagnosticDescriptor UseVarInsteadOfExplicitTypeWhenTypeIsNotObvious = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.UseVarInsteadOfExplicitTypeWhenTypeIsNotObvious,
+            title: "Use 'var' instead of explicit type (when the type is not obvious).",
+            messageFormat: "Use 'var' instead of explicit type.",
+            category: DiagnosticCategories.Simplification,
+            defaultSeverity: DiagnosticSeverity.Hidden,
+            isEnabledByDefault: true
+        );
+
+        public static readonly DiagnosticDescriptor UseVarInsteadOfExplicitTypeInForEach = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.UseVarInsteadOfExplicitTypeInForEach,
+            title: "Use 'var' instead of explicit type (in foreach).",
+            messageFormat: "Use 'var' instead of explicit type.",
+            category: DiagnosticCategories.Simplification,
+            defaultSeverity: DiagnosticSeverity.Hidden,
+            isEnabledByDefault: true
+        );
     }
 }

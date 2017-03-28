@@ -1,14 +1,13 @@
 ﻿// Copyright (c) Josef Pihrt. All rights reserved. Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Roslynator.CSharp.Syntax;
 using Roslynator.Extensions;
-using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
 namespace Roslynator.CSharp.Refactorings
 {
@@ -20,8 +19,7 @@ namespace Roslynator.CSharp.Refactorings
 
             if (expression != null)
             {
-                StatementContainer container;
-
+                IStatementContainer container;
                 if (StatementContainer.TryCreate(returnStatement, out container))
                 {
                     SyntaxList<StatementSyntax> statements = container.Statements;
@@ -38,10 +36,10 @@ namespace Roslynator.CSharp.Refactorings
                             {
                                 var ifStatement = (IfStatementSyntax)prevStatement;
 
-                                IfElseChain chain = IfElseChain.Create(ifStatement);
+                                IfStatement ifElse = IfStatement.Create(ifStatement);
 
-                                if (chain.EndsWithIf
-                                    && chain
+                                if (ifElse.EndsWithIf
+                                    && ifElse
                                         .Nodes
                                         .Where(f => f.IsIf)
                                         .All(f => IsLastStatementReturnStatement(f)))
@@ -89,21 +87,21 @@ namespace Roslynator.CSharp.Refactorings
             Document document,
             IfStatementSyntax ifStatement,
             ReturnStatementSyntax returnStatement,
-            StatementContainer container,
+            IStatementContainer container,
             CancellationToken cancellationToken)
         {
             SyntaxList<StatementSyntax> statements = container.Statements;
 
-            IEnumerable<IfStatementSyntax> chain = IfElseChain.GetChain(ifStatement).Cast<IfStatementSyntax>();
+            IfStatement ifElse = IfStatement.Create(ifStatement);
 
             StatementSyntax statement = returnStatement;
 
-            if (chain.Any(f => f.Statement?.IsKind(SyntaxKind.Block) == true))
-                statement = Block(statement);
+            if (ifElse.Nodes.Any(f => f.Statement?.IsKind(SyntaxKind.Block) == true))
+                statement = SyntaxFactory.Block(statement);
 
-            ElseClauseSyntax elseClause = ElseClause(statement).WithFormatterAnnotation();
+            ElseClauseSyntax elseClause = SyntaxFactory.ElseClause(statement).WithFormatterAnnotation();
 
-            IfStatementSyntax lastIfStatement = chain.Last();
+            IfStatementSyntax lastIfStatement = ifElse.Nodes.Last();
 
             IfStatementSyntax newIfStatement = ifStatement.ReplaceNode(
                 lastIfStatement,

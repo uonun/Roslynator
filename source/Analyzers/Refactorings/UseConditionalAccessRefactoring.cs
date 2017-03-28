@@ -1,5 +1,7 @@
 ﻿// Copyright (c) Josef Pihrt. All rights reserved. Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -7,7 +9,10 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
+using Microsoft.CodeAnalysis.Text;
 using Roslynator.CSharp.Extensions;
+using Roslynator.CSharp.Syntax;
+using Roslynator.Diagnostics.Extensions;
 using Roslynator.Extensions;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
@@ -15,8 +20,30 @@ namespace Roslynator.CSharp.Refactorings
 {
     internal static class UseConditionalAccessRefactoring
     {
-        public static void Analyze(SyntaxNodeAnalysisContext context, BinaryExpressionSyntax logicalAndExpression)
+        public static void AnalyzeIfStatement(SyntaxNodeAnalysisContext context)
         {
+            var ifStatement = (IfStatementSyntax)context.Node;
+
+            if (ifStatement.IsSimpleIf())
+            {
+                NotEqualsToNullExpression notEqualsToNull;
+                if (NotEqualsToNullExpression.TryCreate(ifStatement.Condition, out notEqualsToNull))
+                {
+                    MemberInvocationExpression memberInvocation;
+                    if (MemberInvocationExpression.TryCreate(ifStatement.GetSingleStatementOrDefault(), out memberInvocation)
+                        && notEqualsToNull.Left.IsEquivalentTo(memberInvocation.Expression, topLevel: false)
+                        && !ifStatement.SpanContainsDirectives())
+                    {
+                        context.ReportDiagnostic(DiagnosticDescriptors.UseConditionalAccess, ifStatement);
+                    }
+                }
+            }
+        }
+
+        public static void AnalyzeLogicalAndExpression(SyntaxNodeAnalysisContext context)
+        {
+            var logicalAndExpression = (BinaryExpressionSyntax)context.Node;
+
             ExpressionSyntax expression = FindExpressionCheckedForNull(logicalAndExpression);
 
             if (expression != null)
@@ -24,7 +51,8 @@ namespace Roslynator.CSharp.Refactorings
                 ExpressionSyntax right = logicalAndExpression.Right;
 
                 if (right != null
-                    && ValidateRightExpression(right, context.SemanticModel, context.CancellationToken))
+                    && ValidateRightExpression(right, context.SemanticModel, context.CancellationToken)
+                    && !ContainsOutArgumentWithLocal(right, context.SemanticModel, context.CancellationToken))
                 {
                     SyntaxNode node = FindExpressionThatCanBeConditionallyAccessed(expression, right);
 
@@ -101,6 +129,30 @@ namespace Roslynator.CSharp.Refactorings
             {
                 return true;
             }
+        }
+
+        private static bool ContainsOutArgumentWithLocal(ExpressionSyntax expression, SemanticModel semanticModel, CancellationToken cancellationToken)
+        {
+            foreach (SyntaxNode node in expression.DescendantNodes())
+            {
+                if (node.IsKind(SyntaxKind.Argument))
+                {
+                    var argument = (ArgumentSyntax)node;
+
+                    if (argument.RefOrOutKeyword.IsKind(SyntaxKind.OutKeyword))
+                    {
+                        ExpressionSyntax argumentExpression = argument.Expression;
+
+                        if (argumentExpression?.IsMissing == false
+                            && semanticModel.GetSymbol(argumentExpression, cancellationToken)?.IsLocal() == true)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            return false;
         }
 
         private static bool HasConstantNonNullValue(this ExpressionSyntax expression, SemanticModel semanticModel, CancellationToken cancellationToken)
@@ -184,6 +236,7 @@ namespace Roslynator.CSharp.Refactorings
                     case SyntaxKind.GreaterThanOrEqualExpression:
                     case SyntaxKind.IsExpression:
                     case SyntaxKind.AsExpression:
+                    case SyntaxKind.IsPatternExpression:
                         break;
                     default:
                         {
@@ -196,6 +249,34 @@ namespace Roslynator.CSharp.Refactorings
 
                 return ParseExpression(sb.ToString());
             }
+        }
+
+        public static Task<Document> RefactorAsync(
+            Document document,
+            IfStatementSyntax ifStatement,
+            CancellationToken cancellationToken)
+        {
+            StatementSyntax statement = (ExpressionStatementSyntax)ifStatement.GetSingleStatementOrDefault();
+
+            MemberInvocationExpression memberInvocation;
+            MemberInvocationExpression.TryCreate(statement, out memberInvocation);
+
+            int insertIndex = memberInvocation.Expression.Span.End - statement.FullSpan.Start;
+            StatementSyntax newStatement = ParseStatement(statement.ToFullString().Insert(insertIndex, "?"));
+
+            IEnumerable<SyntaxTrivia> leading = ifStatement.DescendantTrivia(TextSpan.FromBounds(ifStatement.SpanStart, statement.SpanStart));
+
+            newStatement = (leading.All(f => f.IsWhitespaceOrEndOfLineTrivia()))
+                ? newStatement.WithLeadingTrivia(ifStatement.GetLeadingTrivia())
+                : newStatement.WithLeadingTrivia(ifStatement.GetLeadingTrivia().Concat(leading));
+
+            IEnumerable<SyntaxTrivia> trailing = ifStatement.DescendantTrivia(TextSpan.FromBounds(statement.Span.End, ifStatement.Span.End));
+
+            newStatement = (leading.All(f => f.IsWhitespaceOrEndOfLineTrivia()))
+                ? newStatement.WithTrailingTrivia(ifStatement.GetTrailingTrivia())
+                : newStatement.WithTrailingTrivia(trailing.Concat(ifStatement.GetTrailingTrivia()));
+
+            return document.ReplaceNodeAsync(ifStatement, newStatement, cancellationToken);
         }
     }
 }

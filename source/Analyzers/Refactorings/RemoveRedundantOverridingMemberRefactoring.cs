@@ -9,6 +9,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Roslynator.CSharp.Extensions;
+using Roslynator.Diagnostics.Extensions;
 using Roslynator.Extensions;
 
 namespace Roslynator.CSharp.Refactorings
@@ -56,7 +57,7 @@ namespace Roslynator.CSharp.Refactorings
                                         context.ReportDiagnostic(
                                             DiagnosticDescriptors.RemoveRedundantOverridingMember,
                                             methodDeclaration,
-                                            "method");
+                                            methodDeclaration.GetTitle());
                                     }
                                 }
                             }
@@ -139,7 +140,7 @@ namespace Roslynator.CSharp.Refactorings
                 context.ReportDiagnostic(
                     DiagnosticDescriptors.RemoveRedundantOverridingMember,
                     propertyDeclaration,
-                    "property");
+                    propertyDeclaration.GetTitle());
             }
         }
 
@@ -260,7 +261,7 @@ namespace Roslynator.CSharp.Refactorings
                 context.ReportDiagnostic(
                     DiagnosticDescriptors.RemoveRedundantOverridingMember,
                     indexerDeclaration,
-                    "indexer");
+                    indexerDeclaration.GetTitle());
             }
         }
 

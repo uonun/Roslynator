@@ -8,6 +8,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Roslynator.CodeFixes.Extensions;
 using Roslynator.CSharp.Refactorings;
 
 namespace Roslynator.CSharp.CodeFixProviders
@@ -18,12 +19,12 @@ namespace Roslynator.CSharp.CodeFixProviders
     {
         public sealed override ImmutableArray<string> FixableDiagnosticIds
         {
-            get { return ImmutableArray.Create(DiagnosticIdentifiers.MergeLocalDeclarationWithInitialization); }
+            get { return ImmutableArray.Create(DiagnosticIdentifiers.MergeLocalDeclarationWithAssignment); }
         }
 
         public sealed override async Task RegisterCodeFixesAsync(CodeFixContext context)
         {
-            SyntaxNode root = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);
+            SyntaxNode root = await context.GetSyntaxRootAsync().ConfigureAwait(false);
 
             VariableDeclaratorSyntax declarator = root
                 .FindNode(context.Span, getInnermostNodeForTie: true)?
@@ -32,9 +33,9 @@ namespace Roslynator.CSharp.CodeFixProviders
             Debug.Assert(declarator != null, $"{nameof(declarator)} is null");
 
             CodeAction codeAction = CodeAction.Create(
-                "Merge local declaration with initialization",
-                cancellationToken => MergeLocalDeclarationWithInitializationRefactoring.RefactorAsync(context.Document, declarator, cancellationToken),
-                DiagnosticIdentifiers.MergeLocalDeclarationWithInitialization + EquivalenceKeySuffix);
+                "Merge local declaration with assignment",
+                cancellationToken => MergeLocalDeclarationWithAssignmentRefactoring.RefactorAsync(context.Document, declarator, cancellationToken),
+                DiagnosticIdentifiers.MergeLocalDeclarationWithAssignment + EquivalenceKeySuffix);
 
             context.RegisterCodeFix(codeAction, context.Diagnostics);
         }

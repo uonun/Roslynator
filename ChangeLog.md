@@ -1,3 +1,28 @@
+### 1.2.53 (2017-03-27)
+
+* Filter list of refactorings in options.
+* Bug fixes.
+
+#### Analyzers
+
+* Change default severity of AddExceptionToDocumentationComment (RCS1140) from Warning to Hidden.
+* Change default severity of EnumMemberShouldDeclareExplicitValue (RCS1161) from Warning to Hidden.
+
+### 1.2.52 (2017-03-22)
+
+#### Analyzers
+
+##### New Analyzers
+
+* UseVarInsteadOfExplicitTypeWhenTypeIsNotObvious (RCS1176)
+* UseVarInsteadOfExplicitTypeInForEach (RCS1177)
+
+#### Refactorings
+
+##### New Refactorings
+
+* InlineUsingStatic (RR0180)
+
 ### 1.2.51 (2017-03-14)
 
 * Bug fixes.

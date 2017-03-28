@@ -10,6 +10,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Roslynator.CSharp.Extensions;
+using Roslynator.Diagnostics.Extensions;
 using Roslynator.Extensions;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 using static Roslynator.CSharp.CSharpFactory;
@@ -25,8 +26,6 @@ namespace Roslynator.CSharp.Refactorings
             if (expressions.Count == 2)
             {
                 SyntaxNode parent = initializer.Parent;
-
-                Debug.Assert(parent?.IsKind(SyntaxKind.CollectionInitializerExpression) == true, parent.Kind().ToString());
 
                 if (parent?.IsKind(SyntaxKind.CollectionInitializerExpression) == true)
                 {
@@ -87,19 +86,36 @@ namespace Roslynator.CSharp.Refactorings
             CancellationToken cancellationToken)
         {
             SeparatedSyntaxList<ExpressionSyntax> expressions = initializer.Expressions;
+            SyntaxTriviaList openBraceTrailing = initializer.OpenBraceToken.TrailingTrivia;
+            SyntaxTriviaList closeBraceLeading = initializer.CloseBraceToken.LeadingTrivia;
+
+            SyntaxToken openBracket = Token(
+                        initializer.OpenBraceToken.LeadingTrivia,
+                        SyntaxKind.OpenBracketToken,
+                        (openBraceTrailing.All(f => f.IsWhitespaceTrivia())) ? default(SyntaxTriviaList) : openBraceTrailing);
 
             ImplicitElementAccessSyntax implicitElementAccess = ImplicitElementAccess(
                 BracketedArgumentList(
-                    OpenBracketToken().WithTriviaFrom(initializer.OpenBraceToken),
-                    SingletonSeparatedList(Argument(expressions[0]).WithFormatterAnnotation()),
+                    openBracket,
+                    SingletonSeparatedList(Argument(expressions[0])),
                     CloseBracketToken()));
 
-            AssignmentExpressionSyntax assignment = SimpleAssignmentExpression(
-                implicitElementAccess,
-                EqualsToken().WithTriviaFrom(initializer.ChildTokens().FirstOrDefault()),
-                expressions[1]
-                    .AppendToTrailingTrivia(initializer.CloseBraceToken.GetLeadingAndTrailingTrivia())
-                    .WithFormatterAnnotation());
+            SyntaxToken comma = initializer.ChildTokens().FirstOrDefault(f => f.IsKind(SyntaxKind.CommaToken));
+
+            SyntaxTriviaList commaLeading = comma.LeadingTrivia;
+
+            SyntaxToken equalsToken = Token(
+                (commaLeading.Any()) ? commaLeading : TriviaList(Space),
+                SyntaxKind.EqualsToken,
+                comma.TrailingTrivia);
+
+            ExpressionSyntax valueExpression = expressions[1];
+
+            if (closeBraceLeading.Any(f => !f.IsWhitespaceTrivia()))
+                valueExpression = valueExpression.AppendToTrailingTrivia(closeBraceLeading);
+
+            AssignmentExpressionSyntax assignment = SimpleAssignmentExpression(implicitElementAccess, equalsToken, valueExpression)
+                .WithTriviaFrom(initializer);
 
             return document.ReplaceNodeAsync(initializer, assignment, cancellationToken);
         }

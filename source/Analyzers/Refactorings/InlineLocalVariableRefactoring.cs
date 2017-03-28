@@ -12,6 +12,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Text;
 using Roslynator.CSharp.Extensions;
+using Roslynator.Diagnostics.Extensions;
 using Roslynator.Extensions;
 
 namespace Roslynator.CSharp.Refactorings
@@ -37,9 +38,8 @@ namespace Roslynator.CSharp.Refactorings
 
                         if (value != null)
                         {
-                            SyntaxList<StatementSyntax> statements = StatementContainer.GetStatements(localDeclaration);
-
-                            if (statements.Any())
+                            SyntaxList<StatementSyntax> statements;
+                            if (localDeclaration.TryGetContainingList(out statements))
                             {
                                 int index = statements.IndexOf(localDeclaration);
 
@@ -222,8 +222,7 @@ namespace Roslynator.CSharp.Refactorings
             LocalDeclarationStatementSyntax localDeclaration,
             CancellationToken cancellationToken)
         {
-            StatementContainer container;
-
+            IStatementContainer container;
             if (StatementContainer.TryCreate(localDeclaration, out container))
             {
                 SyntaxList<StatementSyntax> statements = container.Statements;

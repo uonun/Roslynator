@@ -10,6 +10,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Text;
 using Roslynator.CSharp.Extensions;
+using Roslynator.Diagnostics.Extensions;
 using Roslynator.Extensions;
 
 namespace Roslynator.CSharp.Refactorings
@@ -86,9 +87,20 @@ namespace Roslynator.CSharp.Refactorings
 
         private static bool AreEquivalent(SyntaxList<StatementSyntax> statements, SyntaxList<StatementSyntax> statements2)
         {
-            return statements.Count == 1
-                && statements2.Count == 1
-                && AreEquivalent(statements[0], statements2[0]);
+            if (statements.Count == 1)
+            {
+                if (statements2.Count == 1)
+                    return AreEquivalent(statements[0], statements2[0]);
+            }
+            else if (statements.Count == 2
+                && statements2.Count == 2
+                && statements[1].IsKind(SyntaxKind.BreakStatement)
+                && statements2[1].IsKind(SyntaxKind.BreakStatement))
+            {
+                return AreEquivalent(statements[0], statements2[0]);
+            }
+
+            return false;
         }
 
         private static bool AreEquivalent(StatementSyntax statement, StatementSyntax statement2)

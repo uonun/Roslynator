@@ -11,6 +11,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Text;
 using Roslynator.CSharp.Extensions;
+using Roslynator.Diagnostics.Extensions;
 using Roslynator.Extensions;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 using static Roslynator.CSharp.CSharpFactory;
@@ -26,7 +27,7 @@ namespace Roslynator.CSharp.Refactorings
 
             if (!localDeclaration.IsConst)
             {
-                StatementContainer container;
+                IStatementContainer container;
                 if (StatementContainer.TryCreate(localDeclaration, out container))
                 {
                     SyntaxList<StatementSyntax> statements = container.Statements;

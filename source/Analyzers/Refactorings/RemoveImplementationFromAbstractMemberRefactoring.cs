@@ -8,6 +8,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Roslynator.CSharp.Extensions;
+using Roslynator.Diagnostics.Extensions;
 using Roslynator.Extensions;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 using static Roslynator.CSharp.CSharpFactory;
@@ -33,7 +34,16 @@ namespace Roslynator.CSharp.Refactorings
             if (propertyDeclaration.IsParentKind(SyntaxKind.InterfaceDeclaration)
                 || propertyDeclaration.Modifiers.Contains(SyntaxKind.AbstractKeyword))
             {
-                Analyze(context, propertyDeclaration, propertyDeclaration.AccessorList);
+                ArrowExpressionClauseSyntax expressionBody = propertyDeclaration.ExpressionBody;
+
+                if (expressionBody != null)
+                {
+                    ReportDiagnostic(context, propertyDeclaration, expressionBody);
+                }
+                else
+                {
+                    Analyze(context, propertyDeclaration, propertyDeclaration.AccessorList);
+                }
             }
         }
 
@@ -42,7 +52,16 @@ namespace Roslynator.CSharp.Refactorings
             if (indexerDeclaration.IsParentKind(SyntaxKind.InterfaceDeclaration)
                 || indexerDeclaration.Modifiers.Contains(SyntaxKind.AbstractKeyword))
             {
-                Analyze(context, indexerDeclaration, indexerDeclaration.AccessorList);
+                ArrowExpressionClauseSyntax expressionBody = indexerDeclaration.ExpressionBody;
+
+                if (expressionBody != null)
+                {
+                    ReportDiagnostic(context, indexerDeclaration, expressionBody);
+                }
+                else
+                {
+                    Analyze(context, indexerDeclaration, indexerDeclaration.AccessorList);
+                }
             }
         }
 
@@ -79,59 +98,11 @@ namespace Roslynator.CSharp.Refactorings
             context.ReportDiagnostic(DiagnosticDescriptors.RemoveImplementationFromAbstractMember, node, GetName(declaration));
         }
 
-        private static object GetName(SyntaxNode declaration)
+        private static string GetName(SyntaxNode declaration)
         {
-            switch (declaration.Kind())
-            {
-                case SyntaxKind.MethodDeclaration:
-                    {
-                        if (declaration.IsParentKind(SyntaxKind.InterfaceDeclaration))
-                        {
-                            return "interface method";
-                        }
-                        else
-                        {
-                            return "abstract method";
-                        }
-                    }
-                case SyntaxKind.PropertyDeclaration:
-                    {
-                        if (declaration.IsParentKind(SyntaxKind.InterfaceDeclaration))
-                        {
-                            return "interface property";
-                        }
-                        else
-                        {
-                            return "abstract property";
-                        }
-                    }
-                case SyntaxKind.IndexerDeclaration:
-                    {
-                        if (declaration.IsParentKind(SyntaxKind.InterfaceDeclaration))
-                        {
-                            return "interface indexer";
-                        }
-                        else
-                        {
-                            return "abstract indexer";
-                        }
-                    }
-                case SyntaxKind.EventDeclaration:
-                    {
-                        if (declaration.IsParentKind(SyntaxKind.InterfaceDeclaration))
-                        {
-                            return "interface event";
-                        }
-                        else
-                        {
-                            return "abstract event";
-                        }
-                    }
-            }
-
-            Debug.Assert(false, declaration.Kind().ToString());
-
-            return "member";
+            return ((declaration.IsParentKind(SyntaxKind.InterfaceDeclaration)) ? "interface" : "abstract")
+                + " "
+                + declaration.GetTitle();
         }
 
         public static async Task<Document> RefactorAsync(Document document, SyntaxNode node, CancellationToken cancellationToken)
@@ -142,13 +113,36 @@ namespace Roslynator.CSharp.Refactorings
                     {
                         var methodDeclaration = (MethodDeclarationSyntax)node;
 
-                        CSharpSyntaxNode body = methodDeclaration.BodyOrExpressionBody();
+                        MethodDeclarationSyntax newNode = methodDeclaration
+                            .WithBody(null)
+                            .WithExpressionBody(null)
+                            .WithSemicolonToken(SemicolonToken());
 
-                        MethodDeclarationSyntax newMethodDeclaration = methodDeclaration.RemoveNode(body, SyntaxRemoveOptions.KeepUnbalancedDirectives);
+                        return await document.ReplaceNodeAsync(methodDeclaration, newNode, cancellationToken).ConfigureAwait(false);
+                    }
+                case SyntaxKind.PropertyDeclaration:
+                    {
+                        var propertyDeclaration = (PropertyDeclarationSyntax)node;
+                        ArrowExpressionClauseSyntax expressionBody = propertyDeclaration.ExpressionBody;
 
-                        newMethodDeclaration = newMethodDeclaration.WithSemicolonToken(SemicolonToken());
+                        PropertyDeclarationSyntax newNode = propertyDeclaration
+                            .WithExpressionBody(null)
+                            .WithoutSemicolonToken()
+                            .WithAccessorList(AccessorList(AutoGetAccessorDeclaration()).WithTriviaFrom(expressionBody));
 
-                        return await document.ReplaceNodeAsync(methodDeclaration, newMethodDeclaration, cancellationToken).ConfigureAwait(false);
+                        return await document.ReplaceNodeAsync(propertyDeclaration, newNode, cancellationToken).ConfigureAwait(false);
+                    }
+                case SyntaxKind.IndexerDeclaration:
+                    {
+                        var indexerDeclaration = (IndexerDeclarationSyntax)node;
+                        ArrowExpressionClauseSyntax expressionBody = indexerDeclaration.ExpressionBody;
+
+                        IndexerDeclarationSyntax newNode = indexerDeclaration
+                            .WithExpressionBody(null)
+                            .WithoutSemicolonToken()
+                            .WithAccessorList(AccessorList(AutoGetAccessorDeclaration()).WithTriviaFrom(expressionBody));
+
+                        return await document.ReplaceNodeAsync(indexerDeclaration, newNode, cancellationToken).ConfigureAwait(false);
                     }
                 case SyntaxKind.EventDeclaration:
                     {
@@ -170,11 +164,10 @@ namespace Roslynator.CSharp.Refactorings
                     {
                         var accessor = (AccessorDeclarationSyntax)node;
 
-                        CSharpSyntaxNode body = accessor.BodyOrExpressionBody();
-
-                        AccessorDeclarationSyntax newAccessor = accessor.RemoveNode(body, SyntaxRemoveOptions.KeepUnbalancedDirectives);
-
-                        newAccessor = newAccessor.WithSemicolonToken(SemicolonToken());
+                        AccessorDeclarationSyntax newAccessor = accessor
+                            .WithBody(null)
+                            .WithExpressionBody(null)
+                            .WithSemicolonToken(SemicolonToken());
 
                         return await document.ReplaceNodeAsync(accessor, newAccessor, cancellationToken).ConfigureAwait(false);
                     }

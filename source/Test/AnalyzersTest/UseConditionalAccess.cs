@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 
-#pragma warning disable RCS1023, RCS1029, RCS1118
+#pragma warning disable RCS1002, RCS1023, RCS1029, RCS1118
 
 namespace Roslynator.CSharp.Analyzers.Test
 {
@@ -23,6 +23,14 @@ namespace Roslynator.CSharp.Analyzers.Test
             {
                 Foo x = null;
 
+                if (x != null)
+                    x.Method();
+
+                if (x != null)
+                {
+                    x.Method();
+                }
+
                 //y
 
                 if (x != null && x.Value == "x" && x.IsFoo) { }
@@ -33,6 +41,8 @@ namespace Roslynator.CSharp.Analyzers.Test
 
                 if (x != null && !x.IsFoo && x.IsFoo) { }
 
+                if (x != null && x.Value is object y) { }
+
                 //n
 
                 if (x != null && (x.Value == ("x")) && x.IsFoo) { }
@@ -40,6 +50,8 @@ namespace Roslynator.CSharp.Analyzers.Test
                 if (x != null && (x.Value == (NonNullConst)) && x.IsFoo) { }
 
                 if (x != null && (x.Value != (null)) && x.IsFoo) { }
+
+                if (x != null && (x.Value == null) is object y2) { }
 
                 if (x != null && x.Value == null && x.IsFoo) { }
 
@@ -86,6 +98,11 @@ namespace Roslynator.CSharp.Analyzers.Test
             if (dic != null && dic[0].Length > 1) { }
 
             if (dic != null && !dic[0].StartsWith("a")) { }
+
+            // n
+
+            string value;
+            string result = (dic != null && dic.TryGetValue(0, out value)) ? value : null;
         }
     }
 }

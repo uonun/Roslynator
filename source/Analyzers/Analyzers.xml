@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Analyzers>
   <Analyzer Identifier="AddBraces">
     <Id>RCS1001</Id>
@@ -63,7 +63,7 @@
     <SupportsFadeOut>false</SupportsFadeOut>
     <SupportsFadeOutAnalyzer>false</SupportsFadeOutAnalyzer>
   </Analyzer>
-  <Analyzer Identifier="UseExplicitTypeInsteadOfVar">
+  <Analyzer Identifier="UseExplicitTypeInsteadOfVarWhenTypeIsNotObvious">
     <Id>RCS1008</Id>
     <Title>Use explicit type instead of 'var' (when the type is not obvious).</Title>
     <Category>Readability</Category>
@@ -81,7 +81,7 @@
     <SupportsFadeOut>false</SupportsFadeOut>
     <SupportsFadeOutAnalyzer>false</SupportsFadeOutAnalyzer>
   </Analyzer>
-  <Analyzer Identifier="UseVarInsteadOfExplicitType">
+  <Analyzer Identifier="UseVarInsteadOfExplicitTypeWhenTypeIsObvious">
     <Id>RCS1010</Id>
     <Title>Use 'var' instead of explicit type (when the type is obvious).</Title>
     <Category>Simplification</Category>
@@ -90,9 +90,9 @@
     <SupportsFadeOut>true</SupportsFadeOut>
     <SupportsFadeOutAnalyzer>false</SupportsFadeOutAnalyzer>
   </Analyzer>
-  <Analyzer Identifier="UseExplicitTypeInsteadOfVarEvenIfObvious">
+  <Analyzer Identifier="UseExplicitTypeInsteadOfVarWhenTypeIsObvious">
     <Id>RCS1012</Id>
-    <Title>Use explicit type instead of 'var' (even if the type is obvious).</Title>
+    <Title>Use explicit type instead of 'var' (when the type is obvious).</Title>
     <Category>Readability</Category>
     <DefaultSeverity>Hidden</DefaultSeverity>
     <IsEnabledByDefault>false</IsEnabledByDefault>
@@ -1107,9 +1107,9 @@
     <SupportsFadeOut>false</SupportsFadeOut>
     <SupportsFadeOutAnalyzer>false</SupportsFadeOutAnalyzer>
   </Analyzer>
-  <Analyzer Identifier="MergeLocalDeclarationWithInitialization">
+  <Analyzer Identifier="MergeLocalDeclarationWithAssignment">
     <Id>RCS1127</Id>
-    <Title>Merge local declaration with initialization.</Title>
+    <Title>Merge local declaration with assignment.</Title>
     <Category>Simplification</Category>
     <DefaultSeverity>Info</DefaultSeverity>
     <IsEnabledByDefault>true</IsEnabledByDefault>
@@ -1228,7 +1228,7 @@
     <Id>RCS1140</Id>
     <Title>Add exception to documentation comment.</Title>
     <Category>Maintainability</Category>
-    <DefaultSeverity>Info</DefaultSeverity>
+    <DefaultSeverity>Hidden</DefaultSeverity>
     <IsEnabledByDefault>true</IsEnabledByDefault>
     <SupportsFadeOut>false</SupportsFadeOut>
     <SupportsFadeOutAnalyzer>false</SupportsFadeOutAnalyzer>
@@ -1417,7 +1417,7 @@
     <Id>RCS1161</Id>
     <Title>Enum member should declare explicit value.</Title>
     <Category>Readability</Category>
-    <DefaultSeverity>Info</DefaultSeverity>
+    <DefaultSeverity>Hidden</DefaultSeverity>
     <IsEnabledByDefault>true</IsEnabledByDefault>
     <SupportsFadeOut>false</SupportsFadeOut>
     <SupportsFadeOutAnalyzer>false</SupportsFadeOutAnalyzer>
@@ -1546,6 +1546,24 @@
     <DefaultSeverity>Info</DefaultSeverity>
     <IsEnabledByDefault>true</IsEnabledByDefault>
     <SupportsFadeOut>true</SupportsFadeOut>
+    <SupportsFadeOutAnalyzer>false</SupportsFadeOutAnalyzer>
+  </Analyzer>
+  <Analyzer Identifier="UseVarInsteadOfExplicitTypeWhenTypeIsNotObvious">
+    <Id>RCS1176</Id>
+    <Title>Use 'var' instead of explicit type (when the type is not obvious).</Title>
+    <Category>Simplification</Category>
+    <DefaultSeverity>Hidden</DefaultSeverity>
+    <IsEnabledByDefault>true</IsEnabledByDefault>
+    <SupportsFadeOut>false</SupportsFadeOut>
+    <SupportsFadeOutAnalyzer>false</SupportsFadeOutAnalyzer>
+  </Analyzer>
+  <Analyzer Identifier="UseVarInsteadOfExplicitTypeInForEach">
+    <Id>RCS1177</Id>
+    <Title>Use 'var' instead of explicit type (in foreach).</Title>
+    <Category>Simplification</Category>
+    <DefaultSeverity>Hidden</DefaultSeverity>
+    <IsEnabledByDefault>true</IsEnabledByDefault>
+    <SupportsFadeOut>false</SupportsFadeOut>
     <SupportsFadeOutAnalyzer>false</SupportsFadeOutAnalyzer>
   </Analyzer>
 </Analyzers>

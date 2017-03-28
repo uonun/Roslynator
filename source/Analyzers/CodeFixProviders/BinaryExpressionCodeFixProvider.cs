@@ -8,6 +8,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Roslynator.CodeFixes.Extensions;
 using Roslynator.CSharp.Extensions;
 using Roslynator.CSharp.Refactorings;
 using Roslynator.CSharp.Refactorings.UseInsteadOfCountMethod;
@@ -30,7 +31,6 @@ namespace Roslynator.CSharp.CodeFixProviders
                     DiagnosticIdentifiers.UseStringIsNullOrEmptyMethod,
                     DiagnosticIdentifiers.SimplifyCoalesceExpression,
                     DiagnosticIdentifiers.RemoveRedundantAsOperator,
-                    DiagnosticIdentifiers.UseConditionalAccess,
                     DiagnosticIdentifiers.UseStringLengthInsteadOfComparisonWithEmptyString,
                     DiagnosticIdentifiers.UnconstrainedTypeParameterCheckedForNull,
                     DiagnosticIdentifiers.ValueTypeCheckedForNull,
@@ -40,7 +40,7 @@ namespace Roslynator.CSharp.CodeFixProviders
 
         public sealed override async Task RegisterCodeFixesAsync(CodeFixContext context)
         {
-            SyntaxNode root = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);
+            SyntaxNode root = await context.GetSyntaxRootAsync().ConfigureAwait(false);
 
             BinaryExpressionSyntax binaryExpression = root
                 .FindNode(context.Span, getInnermostNodeForTie: true)?
@@ -122,16 +122,6 @@ namespace Roslynator.CSharp.CodeFixProviders
                             context.RegisterCodeFix(codeAction, diagnostic);
                             break;
                         }
-                    case DiagnosticIdentifiers.UseConditionalAccess:
-                        {
-                            CodeAction codeAction = CodeAction.Create(
-                                "Use conditional access",
-                                cancellationToken => UseConditionalAccessRefactoring.RefactorAsync(context.Document, binaryExpression, cancellationToken),
-                                diagnostic.Id + EquivalenceKeySuffix);
-
-                            context.RegisterCodeFix(codeAction, diagnostic);
-                            break;
-                        }
                     case DiagnosticIdentifiers.UseStringLengthInsteadOfComparisonWithEmptyString:
                         {
                             CodeAction codeAction = CodeAction.Create(
@@ -144,7 +134,7 @@ namespace Roslynator.CSharp.CodeFixProviders
                         }
                     case DiagnosticIdentifiers.UnconstrainedTypeParameterCheckedForNull:
                         {
-                            SemanticModel semanticModel = await context.Document.GetSemanticModelAsync(context.CancellationToken).ConfigureAwait(false);
+                            SemanticModel semanticModel = await context.GetSemanticModelAsync().ConfigureAwait(false);
 
                             ITypeSymbol typeSymbol = semanticModel.GetTypeSymbol(binaryExpression.Left, context.CancellationToken);
 
@@ -158,7 +148,7 @@ namespace Roslynator.CSharp.CodeFixProviders
                         }
                     case DiagnosticIdentifiers.ValueTypeCheckedForNull:
                         {
-                            SemanticModel semanticModel = await context.Document.GetSemanticModelAsync(context.CancellationToken).ConfigureAwait(false);
+                            SemanticModel semanticModel = await context.GetSemanticModelAsync().ConfigureAwait(false);
 
                             ITypeSymbol typeSymbol = semanticModel.GetTypeSymbol(binaryExpression.Left, context.CancellationToken);
 
@@ -167,7 +157,9 @@ namespace Roslynator.CSharp.CodeFixProviders
                             if (typeSymbol.IsPredefinedValueType()
                                 || typeSymbol.GetMethods(WellKnownMemberNames.EqualityOperatorName).Any())
                             {
-                                title = $"Replace 'null' with 'default({SymbolDisplay.GetMinimalString(typeSymbol, semanticModel, binaryExpression.Right.SpanStart)})'";
+                                ExpressionSyntax expression = typeSymbol.ToDefaultExpression(semanticModel, binaryExpression.Right.SpanStart);
+
+                                title = $"Replace 'null' with '{expression}'";
                             }
                             else
                             {

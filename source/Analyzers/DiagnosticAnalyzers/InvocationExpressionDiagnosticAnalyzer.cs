@@ -8,6 +8,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Roslynator.CSharp.Refactorings;
 using Roslynator.CSharp.Refactorings.UseInsteadOfCountMethod;
+using Roslynator.Diagnostics.Extensions;
 using Roslynator.Extensions;
 
 namespace Roslynator.CSharp.DiagnosticAnalyzers
@@ -109,7 +110,7 @@ namespace Roslynator.CSharp.DiagnosticAnalyzers
                         {
                             case "ElementAt":
                                 {
-                                    UseElementAccessInsteadOfElementAtRefactoring.Analyze(context, invocation, memberAccess);
+                                    UseElementAccessInsteadOfElementAtRefactoring.Analyze(context, invocation, argumentList, memberAccess);
                                     break;
                                 }
                             case "FirstOrDefault":

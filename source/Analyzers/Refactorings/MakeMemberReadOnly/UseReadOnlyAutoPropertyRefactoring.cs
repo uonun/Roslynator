@@ -9,6 +9,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Roslynator.CSharp.Extensions;
+using Roslynator.Diagnostics.Extensions;
 using Roslynator.Extensions;
 
 namespace Roslynator.CSharp.Refactorings.MakeMemberReadOnly
@@ -33,9 +34,11 @@ namespace Roslynator.CSharp.Refactorings.MakeMemberReadOnly
                 {
                     var propertySymbol = (IPropertySymbol)members[i];
 
-                    if (!propertySymbol.IsReadOnly
+                    if (!propertySymbol.IsIndexer
+                        && !propertySymbol.IsReadOnly
                         && !propertySymbol.IsImplicitlyDeclared
-                        && propertySymbol.ExplicitInterfaceImplementations.IsDefaultOrEmpty)
+                        && propertySymbol.ExplicitInterfaceImplementations.IsDefaultOrEmpty
+                        && !propertySymbol.HasAttributeByMetadataName(MetadataNames.System_Runtime_Serialization_DataMemberAttribute, context.Compilation))
                     {
                         IMethodSymbol setMethod = propertySymbol.SetMethod;
 
