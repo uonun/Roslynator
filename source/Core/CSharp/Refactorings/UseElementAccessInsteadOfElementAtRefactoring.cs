@@ -7,10 +7,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Text;
 using Roslynator.CSharp.Extensions;
-using Roslynator.Diagnostics.Extensions;
 using Roslynator.Extensions;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 using static Roslynator.CSharp.CSharpFactory;
@@ -19,32 +17,36 @@ namespace Roslynator.CSharp.Refactorings
 {
     internal static class UseElementAccessInsteadOfElementAtRefactoring
     {
-        internal static void Analyze(SyntaxNodeAnalysisContext context, InvocationExpressionSyntax invocation, ArgumentListSyntax argumentList, MemberAccessExpressionSyntax memberAccess)
+        public static bool CanRefactor(
+            InvocationExpressionSyntax invocation,
+            ArgumentListSyntax argumentList,
+            MemberAccessExpressionSyntax memberAccess,
+            SemanticModel semanticModel,
+            CancellationToken cancellationToken)
         {
             ExpressionSyntax argumentExpression = argumentList.Arguments[0].Expression;
+
             if (argumentExpression?.IsMissing == false)
             {
                 ExpressionSyntax memberAccessExpression = memberAccess.Expression;
-                if (memberAccessExpression?.IsMissing == false)
-                {
-                    SemanticModel semanticModel = context.SemanticModel;
-                    CancellationToken cancellationToken = context.CancellationToken;
 
-                    if (semanticModel
+                if (memberAccessExpression?.IsMissing == false
+                    && semanticModel
                         .GetExtensionMethodInfo(invocation, cancellationToken)
-                .MethodInfo
+                        .MethodInfo
                         .IsLinqElementAt(allowImmutableArrayExtension: true))
-                    {
-                        ITypeSymbol typeSymbol = semanticModel.GetTypeSymbol(memberAccessExpression, cancellationToken);
+                {
+                    ITypeSymbol typeSymbol = semanticModel.GetTypeSymbol(memberAccessExpression, cancellationToken);
 
-                        if (typeSymbol?.IsErrorType() == false
-                            && (typeSymbol.IsArrayType() || ExistsApplicableIndexer(invocation, argumentExpression, typeSymbol, semanticModel)))
-                        {
-                            context.ReportDiagnostic(DiagnosticDescriptors.UseElementAccessInsteadOfElementAt, memberAccess.Name);
-                        }
+                    if (typeSymbol?.IsErrorType() == false
+                        && (typeSymbol.IsArrayType() || ExistsApplicableIndexer(invocation, argumentExpression, typeSymbol, semanticModel)))
+                    {
+                        return true;
                     }
                 }
             }
+
+            return false;
         }
 
         private static bool ExistsApplicableIndexer(

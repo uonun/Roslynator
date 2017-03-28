@@ -56,7 +56,7 @@ namespace Roslynator.CSharp.Refactorings
                 if (!propertySymbol.IsWriteOnly
                     && semanticModel.IsAccessible(forEachStatement.SpanStart, propertySymbol.GetMethod)
                     && propertySymbol.Type.Equals(info.ElementType)
-                    && propertySymbol.SingleParameterOrDefault()?.Type.IsInt32() == true)
+                    && propertySymbol.SingleParameterOrDefault()?.Type.IsInt() == true)
                 {
                     return true;
                 }

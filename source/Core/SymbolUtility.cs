@@ -29,23 +29,6 @@ namespace Roslynator
             return false;
         }
 
-        public static IMethodSymbol FindGetItemMethodWithInt32Parameter(ITypeSymbol typeSymbol)
-        {
-            if (typeSymbol == null)
-                throw new ArgumentNullException(nameof(typeSymbol));
-
-            foreach (IMethodSymbol methodSymbol in typeSymbol.GetMethods("get_Item"))
-            {
-                if (!methodSymbol.IsStatic
-                    && methodSymbol.SingleParameterOrDefault()?.Type.IsInt() == true)
-                {
-                    return methodSymbol;
-                }
-            }
-
-            return null;
-        }
-
         public static bool IsEventHandlerOrConstructedFromEventHandlerOfT(
             ITypeSymbol typeSymbol,
             SemanticModel semanticModel)
