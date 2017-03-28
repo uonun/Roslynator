@@ -153,7 +153,7 @@ namespace Roslynator.CSharp.Refactorings
                             expression,
                             Block(yieldReturnStatement));
 
-                        if (EmbeddedStatement.IsEmbeddedStatement(returnStatement))
+                        if (EmbeddedStatementHelper.IsEmbeddedStatement(returnStatement))
                             newNode = Block(newNode);
 
                         newNode = newNode.WithTriviaFrom(returnStatement);

@@ -41,7 +41,7 @@ namespace Roslynator.CSharp.DiagnosticAnalyzers
 
         private void AnalyzeStatement(SyntaxNodeAnalysisContext context)
         {
-            StatementSyntax statement = EmbeddedStatement.GetEmbeddedStatement(context.Node);
+            StatementSyntax statement = EmbeddedStatementHelper.GetEmbeddedStatement(context.Node);
 
             if (statement != null)
             {

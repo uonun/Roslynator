@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Roslynator.CSharp.Extensions;
 using Roslynator.CSharp.Syntax;
 using Roslynator.Extensions;
 using Roslynator.Text.Extensions;
@@ -50,7 +51,7 @@ namespace Roslynator.CSharp.Refactorings
 
         private static IEnumerable<StatementSyntax> GetEmbeddedStatements(IfStatementSyntax topmostIf)
         {
-            foreach (IfStatementOrElseClause ifOrElse in IfElseChain.GetChain(topmostIf))
+            foreach (IfStatementOrElseClause ifOrElse in IfElseHelper.GetChain(topmostIf))
             {
                 StatementSyntax statement = ifOrElse.Statement;
 
@@ -69,7 +70,7 @@ namespace Roslynator.CSharp.Refactorings
         private static bool CanRefactor(RefactoringContext context, StatementSyntax statement)
         {
             return context.Span.IsEmptyAndContainedInSpanOrBetweenSpans(statement)
-                && EmbeddedStatement.IsEmbeddedStatement(statement);
+                && EmbeddedStatementHelper.IsEmbeddedStatement(statement);
         }
 
         private static IfStatementSyntax GetTopmostIf(StatementSyntax statement)
@@ -80,14 +81,14 @@ namespace Roslynator.CSharp.Refactorings
             {
                 if (parent.IsKind(SyntaxKind.ElseClause))
                 {
-                    return IfElseChain.GetTopmostIf((ElseClauseSyntax)parent);
+                    return IfElseHelper.GetTopmostIf((ElseClauseSyntax)parent);
                 }
                 else
                 {
                     var parentStatement = parent as IfStatementSyntax;
 
                     if (parentStatement != null)
-                        return IfElseChain.GetTopmostIf(parentStatement);
+                        return IfElseHelper.GetTopmostIf(parentStatement);
                 }
             }
 

@@ -18,7 +18,7 @@ namespace Roslynator.CSharp.Documentation
 
         protected virtual MemberDeclarationSyntax AddDocumentationComment(MemberDeclarationSyntax memberDeclaration)
         {
-            return DocumentationCommentGenerator.AddNewDocumentationComment(memberDeclaration, Settings);
+            return memberDeclaration.WithNewSingleLineDocumentationComment(Settings);
         }
 
         public override SyntaxNode VisitNamespaceDeclaration(NamespaceDeclarationSyntax node)

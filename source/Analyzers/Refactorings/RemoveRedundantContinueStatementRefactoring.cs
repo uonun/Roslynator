@@ -40,9 +40,9 @@ namespace Roslynator.CSharp.Refactorings
                     {
                         var elseClause = (ElseClauseSyntax)parent;
 
-                        if (IfElseChain.IsEndOfChain(elseClause))
+                        if (IfElseHelper.IsEndOfChain(elseClause))
                         {
-                            IfStatementSyntax ifStatement = IfElseChain.GetTopmostIf(elseClause);
+                            IfStatementSyntax ifStatement = IfElseHelper.GetTopmostIf(elseClause);
 
                             parent = ifStatement.Parent;
 

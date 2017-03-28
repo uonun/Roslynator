@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Text;
+using Roslynator.CSharp.Documentation;
 
 namespace Roslynator.Extensions
 {
@@ -286,6 +287,41 @@ namespace Roslynator.Extensions
         internal static Solution Solution(this Document document)
         {
             return document.Project.Solution;
+        }
+
+        internal static async Task<Document> AddNewDocumentationCommentsAsync(Document document, DocumentationCommentGeneratorSettings settings = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            if (document == null)
+                throw new ArgumentNullException(nameof(document));
+
+            SyntaxNode root = await document.GetSyntaxRootAsync(cancellationToken).ConfigureAwait(false);
+
+            var rewriter = new AddNewDocumentationCommentRewriter(settings);
+
+            SyntaxNode newRoot = rewriter.Visit(root);
+
+            return document.WithSyntaxRoot(newRoot);
+        }
+
+        internal static async Task<Document> AddBaseOrNewDocumentationCommentsAsync(
+            Document document,
+            SemanticModel semanticModel,
+            DocumentationCommentGeneratorSettings settings = null,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            if (document == null)
+                throw new ArgumentNullException(nameof(document));
+
+            if (semanticModel == null)
+                throw new ArgumentNullException(nameof(semanticModel));
+
+            SyntaxNode root = await document.GetSyntaxRootAsync(cancellationToken).ConfigureAwait(false);
+
+            var rewriter = new AddBaseOrNewDocumentationCommentRewriter(settings, semanticModel, cancellationToken);
+
+            SyntaxNode newRoot = rewriter.Visit(root);
+
+            return document.WithSyntaxRoot(newRoot);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Roslynator.CSharp.Refactorings
             SyntaxNode parent = emptyStatement.Parent;
 
             if (parent != null
-                && !EmbeddedStatement.CanContainEmbeddedStatement(parent))
+                && !EmbeddedStatementHelper.CanContainEmbeddedStatement(parent))
             {
                 context.ReportDiagnostic(DiagnosticDescriptors.RemoveEmptyStatement, emptyStatement);
             }

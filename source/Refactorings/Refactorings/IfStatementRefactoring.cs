@@ -18,7 +18,7 @@ namespace Roslynator.CSharp.Refactorings
                     RefactoringIdentifiers.SimplifyIf,
                     RefactoringIdentifiers.SwapStatementsInIfElse,
                     RefactoringIdentifiers.ReplaceIfElseWithSwitch)
-                && IfElseChain.IsTopmostIf(ifStatement)
+                && IfElseHelper.IsTopmostIf(ifStatement)
                 && context.Span.IsBetweenSpans(ifStatement))
             {
                 if (context.IsAnyRefactoringEnabled(

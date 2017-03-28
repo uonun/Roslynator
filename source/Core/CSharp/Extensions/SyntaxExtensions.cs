@@ -5,13 +5,15 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
+using Roslynator.CSharp.Comparers;
+using Roslynator.CSharp.Documentation;
 using Roslynator.Extensions;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
-using static Roslynator.CSharp.CSharpFactory;
 
 namespace Roslynator.CSharp.Extensions
 {
@@ -1373,6 +1375,61 @@ namespace Roslynator.CSharp.Extensions
             return false;
         }
 
+        internal static MemberDeclarationSyntax WithNewSingleLineDocumentationComment(
+            this MemberDeclarationSyntax memberDeclaration,
+            DocumentationCommentGeneratorSettings settings = null)
+        {
+            if (memberDeclaration == null)
+                throw new ArgumentNullException(nameof(memberDeclaration));
+
+            DocumentationCommentInserter inserter = DocumentationCommentInserter.Create(memberDeclaration);
+
+            settings = settings ?? DocumentationCommentGeneratorSettings.Default;
+
+            settings = settings.WithIndent(inserter.Indent);
+
+            SyntaxTriviaList comment = DocumentationCommentGenerator.Generate(memberDeclaration, settings);
+
+            SyntaxTriviaList newLeadingTrivia = inserter.InsertRange(comment);
+
+            return memberDeclaration.WithLeadingTrivia(newLeadingTrivia);
+        }
+
+        internal static MemberDeclarationSyntax WithBaseOrNewSingleLineDocumentationComment(
+            this MemberDeclarationSyntax memberDeclaration,
+            SemanticModel semanticModel,
+            DocumentationCommentGeneratorSettings settings = null,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            if (memberDeclaration == null)
+                throw new ArgumentNullException(nameof(memberDeclaration));
+
+            if (DocumentationCommentGenerator.CanGenerateFromBase(memberDeclaration.Kind()))
+            {
+                BaseDocumentationCommentInfo info = DocumentationCommentGenerator.GenerateFromBase(memberDeclaration, semanticModel, cancellationToken);
+
+                if (info.Success)
+                    return memberDeclaration.WithDocumentationComment(info.Trivia, indent: true);
+            }
+
+            return WithNewSingleLineDocumentationComment(memberDeclaration, settings);
+        }
+
+        public static MemberDeclarationSyntax WithDocumentationComment(
+            this MemberDeclarationSyntax memberDeclaration,
+            SyntaxTrivia comment,
+            bool indent = false)
+        {
+            if (memberDeclaration == null)
+                throw new ArgumentNullException(nameof(memberDeclaration));
+
+            DocumentationCommentInserter inserter = DocumentationCommentInserter.Create(memberDeclaration);
+
+            SyntaxTriviaList newLeadingTrivia = inserter.Insert(comment, indent: indent);
+
+            return memberDeclaration.WithLeadingTrivia(newLeadingTrivia);
+        }
+
         public static bool IsIterator(this MethodDeclarationSyntax methodDeclaration)
         {
             if (methodDeclaration == null)
@@ -1626,7 +1683,7 @@ namespace Roslynator.CSharp.Extensions
                     }
                 default:
                     {
-                        Debug.Assert(parent == null || EmbeddedStatement.IsEmbeddedStatement(statement), parent.Kind().ToString());
+                        Debug.Assert(parent == null || EmbeddedStatementHelper.IsEmbeddedStatement(statement), parent.Kind().ToString());
                         statements = default(SyntaxList<StatementSyntax>);
                         return false;
                     }
@@ -1769,6 +1826,11 @@ namespace Roslynator.CSharp.Extensions
             return list.Replace(list[index], newNode);
         }
 
+        public static SyntaxList<MemberDeclarationSyntax> InsertMember(this SyntaxList<MemberDeclarationSyntax> members, MemberDeclarationSyntax member, IMemberDeclarationComparer comparer)
+        {
+            return members.Insert(comparer.GetInsertIndex(members, member), member);
+        }
+
         public static bool IsVoid(this TypeSyntax type)
         {
             return type?.IsKind(SyntaxKind.PredefinedType) == true
@@ -1835,6 +1897,302 @@ namespace Roslynator.CSharp.Extensions
             }
 
             return member;
+        }
+
+        public static MemberDeclarationSyntax WithModifier(this MemberDeclarationSyntax memberDeclaration, SyntaxToken modifier, IModifierComparer comparer)
+        {
+            if (memberDeclaration == null)
+                throw new ArgumentNullException(nameof(memberDeclaration));
+
+            return memberDeclaration.SetModifiers(memberDeclaration.GetModifiers().InsertModifier(modifier, comparer));
+        }
+
+        public static MemberDeclarationSyntax WithModifier(this MemberDeclarationSyntax memberDeclaration, SyntaxKind modifierKind, IModifierComparer comparer)
+        {
+            if (memberDeclaration == null)
+                throw new ArgumentNullException(nameof(memberDeclaration));
+
+            return memberDeclaration.SetModifiers(memberDeclaration.GetModifiers().InsertModifier(modifierKind, comparer));
+        }
+
+        public static ClassDeclarationSyntax WithModifier(this ClassDeclarationSyntax classDeclaration, SyntaxToken modifier, IModifierComparer comparer)
+        {
+            if (classDeclaration == null)
+                throw new ArgumentNullException(nameof(classDeclaration));
+
+            return classDeclaration.WithModifiers(classDeclaration.Modifiers.InsertModifier(modifier, comparer));
+        }
+
+        public static ClassDeclarationSyntax WithModifier(this ClassDeclarationSyntax classDeclaration, SyntaxKind modifierKind, IModifierComparer comparer)
+        {
+            if (classDeclaration == null)
+                throw new ArgumentNullException(nameof(classDeclaration));
+
+            return classDeclaration.WithModifiers(classDeclaration.Modifiers.InsertModifier(modifierKind, comparer));
+        }
+
+        public static ConstructorDeclarationSyntax WithModifier(this ConstructorDeclarationSyntax constructorDeclaration, SyntaxToken modifier, IModifierComparer comparer)
+        {
+            if (constructorDeclaration == null)
+                throw new ArgumentNullException(nameof(constructorDeclaration));
+
+            return constructorDeclaration.WithModifiers(constructorDeclaration.Modifiers.InsertModifier(modifier, comparer));
+        }
+
+        public static ConstructorDeclarationSyntax WithModifier(this ConstructorDeclarationSyntax constructorDeclaration, SyntaxKind modifierKind, IModifierComparer comparer)
+        {
+            if (constructorDeclaration == null)
+                throw new ArgumentNullException(nameof(constructorDeclaration));
+
+            return constructorDeclaration.WithModifiers(constructorDeclaration.Modifiers.InsertModifier(modifierKind, comparer));
+        }
+
+        public static ConversionOperatorDeclarationSyntax WithModifier(this ConversionOperatorDeclarationSyntax conversionOperatorDeclaration, SyntaxToken modifier, IModifierComparer comparer)
+        {
+            if (conversionOperatorDeclaration == null)
+                throw new ArgumentNullException(nameof(conversionOperatorDeclaration));
+
+            return conversionOperatorDeclaration.WithModifiers(conversionOperatorDeclaration.Modifiers.InsertModifier(modifier, comparer));
+        }
+
+        public static ConversionOperatorDeclarationSyntax WithModifier(this ConversionOperatorDeclarationSyntax conversionOperatorDeclaration, SyntaxKind modifierKind, IModifierComparer comparer)
+        {
+            if (conversionOperatorDeclaration == null)
+                throw new ArgumentNullException(nameof(conversionOperatorDeclaration));
+
+            return conversionOperatorDeclaration.WithModifiers(conversionOperatorDeclaration.Modifiers.InsertModifier(modifierKind, comparer));
+        }
+
+        public static DelegateDeclarationSyntax WithModifier(this DelegateDeclarationSyntax delegateDeclaration, SyntaxToken modifier, IModifierComparer comparer)
+        {
+            if (delegateDeclaration == null)
+                throw new ArgumentNullException(nameof(delegateDeclaration));
+
+            return delegateDeclaration.WithModifiers(delegateDeclaration.Modifiers.InsertModifier(modifier, comparer));
+        }
+
+        public static DelegateDeclarationSyntax WithModifier(this DelegateDeclarationSyntax delegateDeclaration, SyntaxKind modifierKind, IModifierComparer comparer)
+        {
+            if (delegateDeclaration == null)
+                throw new ArgumentNullException(nameof(delegateDeclaration));
+
+            return delegateDeclaration.WithModifiers(delegateDeclaration.Modifiers.InsertModifier(modifierKind, comparer));
+        }
+
+        public static DestructorDeclarationSyntax WithModifier(this DestructorDeclarationSyntax destructorDeclaration, SyntaxToken modifier, IModifierComparer comparer)
+        {
+            if (destructorDeclaration == null)
+                throw new ArgumentNullException(nameof(destructorDeclaration));
+
+            return destructorDeclaration.WithModifiers(destructorDeclaration.Modifiers.InsertModifier(modifier, comparer));
+        }
+
+        public static DestructorDeclarationSyntax WithModifier(this DestructorDeclarationSyntax destructorDeclaration, SyntaxKind modifierKind, IModifierComparer comparer)
+        {
+            if (destructorDeclaration == null)
+                throw new ArgumentNullException(nameof(destructorDeclaration));
+
+            return destructorDeclaration.WithModifiers(destructorDeclaration.Modifiers.InsertModifier(modifierKind, comparer));
+        }
+
+        public static EnumDeclarationSyntax WithModifier(this EnumDeclarationSyntax enumDeclaration, SyntaxToken modifier, IModifierComparer comparer)
+        {
+            if (enumDeclaration == null)
+                throw new ArgumentNullException(nameof(enumDeclaration));
+
+            return enumDeclaration.WithModifiers(enumDeclaration.Modifiers.InsertModifier(modifier, comparer));
+        }
+
+        public static EnumDeclarationSyntax WithModifier(this EnumDeclarationSyntax enumDeclaration, SyntaxKind modifierKind, IModifierComparer comparer)
+        {
+            if (enumDeclaration == null)
+                throw new ArgumentNullException(nameof(enumDeclaration));
+
+            return enumDeclaration.WithModifiers(enumDeclaration.Modifiers.InsertModifier(modifierKind, comparer));
+        }
+
+        public static EventDeclarationSyntax WithModifier(this EventDeclarationSyntax eventDeclaration, SyntaxToken modifier, IModifierComparer comparer)
+        {
+            if (eventDeclaration == null)
+                throw new ArgumentNullException(nameof(eventDeclaration));
+
+            return eventDeclaration.WithModifiers(eventDeclaration.Modifiers.InsertModifier(modifier, comparer));
+        }
+
+        public static EventDeclarationSyntax WithModifier(this EventDeclarationSyntax eventDeclaration, SyntaxKind modifierKind, IModifierComparer comparer)
+        {
+            if (eventDeclaration == null)
+                throw new ArgumentNullException(nameof(eventDeclaration));
+
+            return eventDeclaration.WithModifiers(eventDeclaration.Modifiers.InsertModifier(modifierKind, comparer));
+        }
+
+        public static EventFieldDeclarationSyntax WithModifier(this EventFieldDeclarationSyntax eventFieldDeclaration, SyntaxToken modifier, IModifierComparer comparer)
+        {
+            if (eventFieldDeclaration == null)
+                throw new ArgumentNullException(nameof(eventFieldDeclaration));
+
+            return eventFieldDeclaration.WithModifiers(eventFieldDeclaration.Modifiers.InsertModifier(modifier, comparer));
+        }
+
+        public static EventFieldDeclarationSyntax WithModifier(this EventFieldDeclarationSyntax eventFieldDeclaration, SyntaxKind modifierKind, IModifierComparer comparer)
+        {
+            if (eventFieldDeclaration == null)
+                throw new ArgumentNullException(nameof(eventFieldDeclaration));
+
+            return eventFieldDeclaration.WithModifiers(eventFieldDeclaration.Modifiers.InsertModifier(modifierKind, comparer));
+        }
+
+        public static FieldDeclarationSyntax WithModifier(this FieldDeclarationSyntax fieldDeclaration, SyntaxToken modifier, IModifierComparer comparer)
+        {
+            if (fieldDeclaration == null)
+                throw new ArgumentNullException(nameof(fieldDeclaration));
+
+            return fieldDeclaration.WithModifiers(fieldDeclaration.Modifiers.InsertModifier(modifier, comparer));
+        }
+
+        public static FieldDeclarationSyntax WithModifier(this FieldDeclarationSyntax fieldDeclaration, SyntaxKind modifierKind, IModifierComparer comparer)
+        {
+            if (fieldDeclaration == null)
+                throw new ArgumentNullException(nameof(fieldDeclaration));
+
+            return fieldDeclaration.WithModifiers(fieldDeclaration.Modifiers.InsertModifier(modifierKind, comparer));
+        }
+
+        public static IndexerDeclarationSyntax WithModifier(this IndexerDeclarationSyntax indexerDeclaration, SyntaxToken modifier, IModifierComparer comparer)
+        {
+            if (indexerDeclaration == null)
+                throw new ArgumentNullException(nameof(indexerDeclaration));
+
+            return indexerDeclaration.WithModifiers(indexerDeclaration.Modifiers.InsertModifier(modifier, comparer));
+        }
+
+        public static IndexerDeclarationSyntax WithModifier(this IndexerDeclarationSyntax indexerDeclaration, SyntaxKind modifierKind, IModifierComparer comparer)
+        {
+            if (indexerDeclaration == null)
+                throw new ArgumentNullException(nameof(indexerDeclaration));
+
+            return indexerDeclaration.WithModifiers(indexerDeclaration.Modifiers.InsertModifier(modifierKind, comparer));
+        }
+
+        public static InterfaceDeclarationSyntax WithModifier(this InterfaceDeclarationSyntax interfaceDeclaration, SyntaxToken modifier, IModifierComparer comparer)
+        {
+            if (interfaceDeclaration == null)
+                throw new ArgumentNullException(nameof(interfaceDeclaration));
+
+            return interfaceDeclaration.WithModifiers(interfaceDeclaration.Modifiers.InsertModifier(modifier, comparer));
+        }
+
+        public static InterfaceDeclarationSyntax WithModifier(this InterfaceDeclarationSyntax interfaceDeclaration, SyntaxKind modifierKind, IModifierComparer comparer)
+        {
+            if (interfaceDeclaration == null)
+                throw new ArgumentNullException(nameof(interfaceDeclaration));
+
+            return interfaceDeclaration.WithModifiers(interfaceDeclaration.Modifiers.InsertModifier(modifierKind, comparer));
+        }
+
+        public static MethodDeclarationSyntax WithModifier(this MethodDeclarationSyntax methodDeclaration, SyntaxToken modifier, IModifierComparer comparer)
+        {
+            if (methodDeclaration == null)
+                throw new ArgumentNullException(nameof(methodDeclaration));
+
+            return methodDeclaration.WithModifiers(methodDeclaration.Modifiers.InsertModifier(modifier, comparer));
+        }
+
+        public static MethodDeclarationSyntax WithModifier(this MethodDeclarationSyntax methodDeclaration, SyntaxKind modifierKind, IModifierComparer comparer)
+        {
+            if (methodDeclaration == null)
+                throw new ArgumentNullException(nameof(methodDeclaration));
+
+            return methodDeclaration.WithModifiers(methodDeclaration.Modifiers.InsertModifier(modifierKind, comparer));
+        }
+
+        public static OperatorDeclarationSyntax WithModifier(this OperatorDeclarationSyntax operatorDeclaration, SyntaxToken modifier, IModifierComparer comparer)
+        {
+            if (operatorDeclaration == null)
+                throw new ArgumentNullException(nameof(operatorDeclaration));
+
+            return operatorDeclaration.WithModifiers(operatorDeclaration.Modifiers.InsertModifier(modifier, comparer));
+        }
+
+        public static OperatorDeclarationSyntax WithModifier(this OperatorDeclarationSyntax operatorDeclaration, SyntaxKind modifierKind, IModifierComparer comparer)
+        {
+            if (operatorDeclaration == null)
+                throw new ArgumentNullException(nameof(operatorDeclaration));
+
+            return operatorDeclaration.WithModifiers(operatorDeclaration.Modifiers.InsertModifier(modifierKind, comparer));
+        }
+
+        public static PropertyDeclarationSyntax WithModifier(this PropertyDeclarationSyntax propertyDeclaration, SyntaxToken modifier, IModifierComparer comparer)
+        {
+            if (propertyDeclaration == null)
+                throw new ArgumentNullException(nameof(propertyDeclaration));
+
+            return propertyDeclaration.WithModifiers(propertyDeclaration.Modifiers.InsertModifier(modifier, comparer));
+        }
+
+        public static PropertyDeclarationSyntax WithModifier(this PropertyDeclarationSyntax propertyDeclaration, SyntaxKind modifierKind, IModifierComparer comparer)
+        {
+            if (propertyDeclaration == null)
+                throw new ArgumentNullException(nameof(propertyDeclaration));
+
+            return propertyDeclaration.WithModifiers(propertyDeclaration.Modifiers.InsertModifier(modifierKind, comparer));
+        }
+
+        public static StructDeclarationSyntax WithModifier(this StructDeclarationSyntax structDeclaration, SyntaxToken modifier, IModifierComparer comparer)
+        {
+            if (structDeclaration == null)
+                throw new ArgumentNullException(nameof(structDeclaration));
+
+            return structDeclaration.WithModifiers(structDeclaration.Modifiers.InsertModifier(modifier, comparer));
+        }
+
+        public static StructDeclarationSyntax WithModifier(this StructDeclarationSyntax structDeclaration, SyntaxKind modifierKind, IModifierComparer comparer)
+        {
+            if (structDeclaration == null)
+                throw new ArgumentNullException(nameof(structDeclaration));
+
+            return structDeclaration.WithModifiers(structDeclaration.Modifiers.InsertModifier(modifierKind, comparer));
+        }
+
+        public static CompilationUnitSyntax InsertMember(this CompilationUnitSyntax compilationUnit, MemberDeclarationSyntax member, IMemberDeclarationComparer comparer)
+        {
+            if (compilationUnit == null)
+                throw new ArgumentNullException(nameof(compilationUnit));
+
+            return compilationUnit.WithMembers(compilationUnit.Members.InsertMember(member, comparer));
+        }
+
+        public static NamespaceDeclarationSyntax InsertMember(this NamespaceDeclarationSyntax namespaceDeclaration, MemberDeclarationSyntax member, IMemberDeclarationComparer comparer)
+        {
+            if (namespaceDeclaration == null)
+                throw new ArgumentNullException(nameof(namespaceDeclaration));
+
+            return namespaceDeclaration.WithMembers(namespaceDeclaration.Members.InsertMember(member, comparer));
+        }
+
+        public static ClassDeclarationSyntax InsertMember(this ClassDeclarationSyntax classDeclaration, MemberDeclarationSyntax member, IMemberDeclarationComparer comparer)
+        {
+            if (classDeclaration == null)
+                throw new ArgumentNullException(nameof(classDeclaration));
+
+            return classDeclaration.WithMembers(classDeclaration.Members.InsertMember(member, comparer));
+        }
+
+        public static StructDeclarationSyntax InsertMember(this StructDeclarationSyntax structDeclaration, MemberDeclarationSyntax member, IMemberDeclarationComparer comparer)
+        {
+            if (structDeclaration == null)
+                throw new ArgumentNullException(nameof(structDeclaration));
+
+            return structDeclaration.WithMembers(structDeclaration.Members.InsertMember(member, comparer));
+        }
+
+        public static InterfaceDeclarationSyntax InsertMember(this InterfaceDeclarationSyntax interfaceDeclaration, MemberDeclarationSyntax member, IMemberDeclarationComparer comparer)
+        {
+            if (interfaceDeclaration == null)
+                throw new ArgumentNullException(nameof(interfaceDeclaration));
+
+            return interfaceDeclaration.WithMembers(interfaceDeclaration.Members.InsertMember(member, comparer));
         }
     }
 }

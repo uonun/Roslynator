@@ -59,7 +59,7 @@ namespace Roslynator.CSharp.Refactorings
             if (statement?.IsKind(SyntaxKind.Block, SyntaxKind.IfStatement) == false
                 && context.SyntaxTree().IsMultiLineSpan(TextSpan.FromBounds(elseKeyword.SpanStart, statement.SpanStart)))
             {
-                IfStatementSyntax topmostIf = IfElseChain.GetTopmostIf(elseClause);
+                IfStatementSyntax topmostIf = IfElseHelper.GetTopmostIf(elseClause);
 
                 if (topmostIf != null)
                     Analyze(context, topmostIf, elseKeyword, statement);

@@ -11,7 +11,7 @@ using Roslynator.Extensions;
 
 namespace Roslynator.CSharp
 {
-    public static class IfElseChain
+    public static class IfElseHelper
     {
         public static IEnumerable<IfStatementOrElseClause> GetChain(IfStatementSyntax ifStatement)
         {

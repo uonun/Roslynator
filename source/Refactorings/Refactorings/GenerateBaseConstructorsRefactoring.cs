@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Roslynator.CSharp.Comparers;
 using Roslynator.CSharp.Extensions;
 using Roslynator.Extensions;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
@@ -78,7 +79,7 @@ namespace Roslynator.CSharp.Refactorings
 
             string name = classDeclaration.Identifier.ValueText;
 
-            int insertIndex = Inserter.GetMemberInsertIndex(members, SyntaxKind.ConstructorDeclaration);
+            int insertIndex = MemberDeclarationComparer.ByKind.GetInsertIndex(members, SyntaxKind.ConstructorDeclaration);
 
             int position = (insertIndex == 0)
                 ? classDeclaration.OpenBraceToken.FullSpan.End

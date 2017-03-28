@@ -265,7 +265,7 @@ namespace Roslynator.CSharp.Analysis
 
             int cnt = 0;
 
-            foreach (IfStatementOrElseClause ifOrElse in IfElseChain.GetChain(ifStatement))
+            foreach (IfStatementOrElseClause ifOrElse in IfElseHelper.GetChain(ifStatement))
             {
                 cnt++;
 

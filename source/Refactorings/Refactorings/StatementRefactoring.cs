@@ -24,7 +24,7 @@ namespace Roslynator.CSharp.Refactorings
 
                 if (statement != null)
                 {
-                    if (!EmbeddedStatement.IsEmbeddedStatement(statement)
+                    if (!EmbeddedStatementHelper.IsEmbeddedStatement(statement)
                         && statement.IsParentKind(SyntaxKind.Block))
                     {
                         RegisterRefactoring(context, statement);
@@ -124,7 +124,7 @@ namespace Roslynator.CSharp.Refactorings
                     {
                         var ifStatement = (IfStatementSyntax)parent;
 
-                        if (IfElseChain.IsTopmostIf(ifStatement)
+                        if (IfElseHelper.IsTopmostIf(ifStatement)
                             && block.OpenBraceToken.Span.Contains(context.Span))
                         {
                             return ifStatement;
@@ -143,7 +143,7 @@ namespace Roslynator.CSharp.Refactorings
                         var elseClause = (ElseClauseSyntax)parent;
 
                         if (block.CloseBraceToken.Span.Contains(context.Span))
-                            return IfElseChain.GetTopmostIf(elseClause);
+                            return IfElseHelper.GetTopmostIf(elseClause);
 
                         break;
                     }

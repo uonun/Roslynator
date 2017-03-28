@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Roslynator.CSharp.Comparers;
 using Roslynator.CSharp.Extensions;
 using Roslynator.Extensions;
 using Roslynator.Text.Extensions;
@@ -114,7 +115,7 @@ namespace Roslynator.CSharp.Refactorings
             MethodDeclarationSyntax method = CreateOnEventMethod(eventSymbol, eventArgsSymbol, supportsCSharp6)
                 .WithFormatterAnnotation();
 
-            SyntaxList<MemberDeclarationSyntax> newMembers = Inserter.InsertMember(members, method);
+            SyntaxList<MemberDeclarationSyntax> newMembers = members.InsertMember(method, MemberDeclarationComparer.ByKind);
 
             return document.ReplaceNodeAsync(containingMember, containingMember.SetMembers(newMembers), cancellationToken);
         }

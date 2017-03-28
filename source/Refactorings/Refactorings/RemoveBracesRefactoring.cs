@@ -79,7 +79,7 @@ namespace Roslynator.CSharp.Refactorings
                 {
                     continue;
                 }
-                else if (EmbeddedStatement.IsEmbeddableBlock(block))
+                else if (EmbeddedStatementHelper.IsEmbeddableBlock(block))
                 {
                     success = true;
                 }
@@ -94,7 +94,7 @@ namespace Roslynator.CSharp.Refactorings
 
         private static IEnumerable<BlockSyntax> GetBlockStatements(IfStatementSyntax ifStatement)
         {
-            foreach (IfStatementOrElseClause ifOrElse in IfElseChain.GetChain(ifStatement))
+            foreach (IfStatementOrElseClause ifOrElse in IfElseHelper.GetChain(ifStatement))
             {
                 StatementSyntax statement = ifOrElse.Statement;
 
@@ -106,9 +106,9 @@ namespace Roslynator.CSharp.Refactorings
         private static bool CanRefactor(RefactoringContext context, BlockSyntax block)
         {
             if (context.Span.IsEmptyAndContainedInSpanOrBetweenSpans(block)
-                && EmbeddedStatement.IsEmbeddableBlock(block))
+                && EmbeddedStatementHelper.IsEmbeddableBlock(block))
             {
-                StatementSyntax statement = EmbeddedStatement.GetEmbeddedStatement(block.Statements[0]);
+                StatementSyntax statement = EmbeddedStatementHelper.GetEmbeddedStatement(block.Statements[0]);
 
                 return statement == null
                     || !statement.FullSpan.Contains(context.Span);
@@ -124,9 +124,9 @@ namespace Roslynator.CSharp.Refactorings
             switch (parent?.Kind())
             {
                 case SyntaxKind.IfStatement:
-                    return IfElseChain.GetTopmostIf((IfStatementSyntax)parent);
+                    return IfElseHelper.GetTopmostIf((IfStatementSyntax)parent);
                 case SyntaxKind.ElseClause:
-                    return IfElseChain.GetTopmostIf((ElseClauseSyntax)parent);
+                    return IfElseHelper.GetTopmostIf((ElseClauseSyntax)parent);
                 default:
                     return null;
             }

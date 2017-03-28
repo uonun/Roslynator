@@ -231,7 +231,7 @@ namespace Roslynator.CSharp.Refactorings
 
         private static bool NullCheckExists(ExpressionSyntax expression, StatementSyntax statement)
         {
-            if (!EmbeddedStatement.IsEmbeddedStatement(statement))
+            if (!EmbeddedStatementHelper.IsEmbeddedStatement(statement))
             {
                 IStatementContainer container;
                 if (StatementContainer.TryCreate(statement, out container))
@@ -280,7 +280,7 @@ namespace Roslynator.CSharp.Refactorings
         {
             SemanticModel semanticModel = await document.GetSemanticModelAsync(cancellationToken).ConfigureAwait(false);
 
-            if (EmbeddedStatement.IsEmbeddedStatement(statement))
+            if (EmbeddedStatementHelper.IsEmbeddedStatement(statement))
             {
                 return await document.ReplaceNodeAsync(statement, Block(statement, CreateNullCheck(expression)), cancellationToken).ConfigureAwait(false);
             }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Roslynator.CSharp.Comparers;
 using Roslynator.CSharp.Extensions;
 using Roslynator.Extensions;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
@@ -291,9 +292,9 @@ namespace Roslynator.CSharp.Refactorings
 
             SyntaxList<MemberDeclarationSyntax> members = parentMember.GetMembers();
 
-            SyntaxList<MemberDeclarationSyntax> newMembers = Inserter.InsertMember(
-                members,
-                CreateConstructor(GetConstructorIdentifierText(parentMember), assignableMembers));
+            SyntaxList<MemberDeclarationSyntax> newMembers = members.InsertMember(
+                CreateConstructor(GetConstructorIdentifierText(parentMember), assignableMembers),
+                MemberDeclarationComparer.ByKind);
 
             MemberDeclarationSyntax newNode = parentMember.SetMembers(newMembers)
                 .WithFormatterAnnotation();

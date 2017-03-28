@@ -40,7 +40,7 @@ namespace Roslynator.CSharp.Refactorings
                 if (node == null)
                     throw new ArgumentNullException(nameof(node));
 
-                if (_previousIf == null || _previousIf.Equals(IfElseChain.GetPreviousIf(node)))
+                if (_previousIf == null || _previousIf.Equals(IfElseHelper.GetPreviousIf(node)))
                 {
                     if (node.Statement?.IsKind(SyntaxKind.Block) == false)
                     {

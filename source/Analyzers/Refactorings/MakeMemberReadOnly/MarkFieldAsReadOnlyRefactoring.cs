@@ -8,6 +8,8 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
+using Roslynator.CSharp.Comparers;
+using Roslynator.CSharp.Extensions;
 using Roslynator.Diagnostics.Extensions;
 using Roslynator.Extensions;
 
@@ -76,7 +78,7 @@ namespace Roslynator.CSharp.Refactorings.MakeMemberReadOnly
             FieldDeclarationSyntax fieldDeclaration,
             CancellationToken cancellationToken)
         {
-            FieldDeclarationSyntax newNode = Inserter.InsertModifier(fieldDeclaration, SyntaxKind.ReadOnlyKeyword);
+            FieldDeclarationSyntax newNode = fieldDeclaration.WithModifier(SyntaxKind.ReadOnlyKeyword, ModifierComparer.Instance);
 
             return document.ReplaceNodeAsync(fieldDeclaration, newNode, cancellationToken);
         }

@@ -67,17 +67,11 @@ namespace Roslynator.CSharp
             return WhitespaceOrEndOfLineTriviaRemover.RemoveWhitespaceOrEndOfLineTrivia(node, span);
         }
 
-        public static async Task<SyntaxTree> RemoveDirectivesAsync(
+        private static async Task<SyntaxTree> RemoveDirectivesAsync(
             SyntaxTree syntaxTree,
             IEnumerable<DirectiveTriviaSyntax> directives,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            if (syntaxTree == null)
-                throw new ArgumentNullException(nameof(syntaxTree));
-
-            if (directives == null)
-                throw new ArgumentNullException(nameof(directives));
-
             SourceText sourceText = await syntaxTree.GetTextAsync(cancellationToken).ConfigureAwait(false);
 
             SourceText newSourceText = RemoveDirectives(sourceText, directives);
@@ -85,13 +79,10 @@ namespace Roslynator.CSharp
             return syntaxTree.WithChangedText(newSourceText);
         }
 
-        public static async Task<SyntaxTree> RemoveDirectivesAsync(
+        private static async Task<SyntaxTree> RemoveDirectivesAsync(
             SyntaxTree syntaxTree,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            if (syntaxTree == null)
-                throw new ArgumentNullException(nameof(syntaxTree));
-
             SyntaxNode root = await syntaxTree.GetRootAsync(cancellationToken).ConfigureAwait(false);
 
             SourceText sourceText = await syntaxTree.GetTextAsync(cancellationToken).ConfigureAwait(false);
@@ -119,13 +110,10 @@ namespace Roslynator.CSharp
             return sourceText.WithChanges(changes);
         }
 
-        public static async Task<SyntaxTree> RemoveRegionDirectivesAsync(
+        private static async Task<SyntaxTree> RemoveRegionDirectivesAsync(
             SyntaxTree syntaxTree,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            if (syntaxTree == null)
-                throw new ArgumentNullException(nameof(syntaxTree));
-
             SyntaxNode root = await syntaxTree.GetRootAsync(cancellationToken).ConfigureAwait(false);
 
             return await RemoveDirectivesAsync(syntaxTree, root.DescendantRegionDirectives(), cancellationToken).ConfigureAwait(false);

@@ -3,12 +3,48 @@
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
+using Roslynator.CSharp.Comparers;
+using Roslynator.Extensions;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
 namespace Roslynator.CSharp.Extensions
 {
-    internal static class SyntaxTokenListExtensions
+    public static class SyntaxTokenListExtensions
     {
+        internal static SyntaxTokenList InsertModifier(this SyntaxTokenList modifiers, SyntaxKind modifierKind, IModifierComparer comparer)
+        {
+            return InsertModifier(modifiers, Token(modifierKind), comparer);
+        }
+
+        public static SyntaxTokenList InsertModifier(this SyntaxTokenList modifiers, SyntaxToken modifier, IModifierComparer comparer)
+        {
+            if (modifiers.Any())
+            {
+                int index = comparer.GetInsertIndex(modifiers, modifier);
+
+                if (index == modifiers.Count)
+                {
+                    return modifiers.Add(modifier.PrependToLeadingTrivia(Space));
+                }
+                else
+                {
+                    SyntaxToken nextModifier = modifiers[index];
+
+                    return modifiers
+                        .Replace(nextModifier, nextModifier.WithoutLeadingTrivia())
+                        .Insert(
+                            index,
+                            modifier
+                                .WithLeadingTrivia(nextModifier.LeadingTrivia)
+                                .WithTrailingTrivia(Space));
+                }
+            }
+            else
+            {
+                return modifiers.Add(modifier);
+            }
+        }
+
         internal static SyntaxTokenList RemoveAccessModifiers(this SyntaxTokenList tokenList)
         {
             return TokenList(tokenList.Where(token => !token.IsAccessModifier()));

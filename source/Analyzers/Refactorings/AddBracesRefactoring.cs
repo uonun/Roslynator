@@ -33,11 +33,11 @@ namespace Roslynator.CSharp.Refactorings
 
         private static StatementSyntax GetEmbeddedStatementThatShouldBeInsideBlock(SyntaxNode node)
         {
-            StatementSyntax statement = EmbeddedStatement.GetBlockOrEmbeddedStatement(node);
+            StatementSyntax statement = EmbeddedStatementHelper.GetBlockOrEmbeddedStatement(node);
 
             if (statement?.IsKind(SyntaxKind.Block) == false)
             {
-                if (!statement.IsSingleLine() || !EmbeddedStatement.FormattingSupportsEmbeddedStatement(node))
+                if (!statement.IsSingleLine() || !EmbeddedStatementHelper.FormattingSupportsEmbeddedStatement(node))
                     return statement;
             }
 

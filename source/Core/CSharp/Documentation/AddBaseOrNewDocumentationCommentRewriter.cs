@@ -3,6 +3,7 @@
 using System.Threading;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Roslynator.CSharp.Extensions;
 
 namespace Roslynator.CSharp.Documentation
 {
@@ -20,7 +21,7 @@ namespace Roslynator.CSharp.Documentation
 
         protected override MemberDeclarationSyntax AddDocumentationComment(MemberDeclarationSyntax memberDeclaration)
         {
-            return DocumentationCommentGenerator.AddNewDocumentationComment(memberDeclaration, Settings, SemanticModel, CancellationToken);
+            return memberDeclaration.WithBaseOrNewSingleLineDocumentationComment(SemanticModel, Settings, CancellationToken);
         }
     }
 }

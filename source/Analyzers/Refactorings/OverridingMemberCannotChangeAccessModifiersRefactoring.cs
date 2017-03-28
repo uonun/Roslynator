@@ -10,6 +10,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
+using Roslynator.CSharp.Comparers;
 using Roslynator.CSharp.Extensions;
 using Roslynator.Diagnostics.Extensions;
 using Roslynator.Extensions;
@@ -184,7 +185,7 @@ namespace Roslynator.CSharp.Refactorings
             if (index == -1)
             {
                 foreach (SyntaxToken modifier in Modifiers.FromAccessibility(newAccessibility))
-                    newModifiers = Inserter.InsertModifier(newModifiers, modifier);
+                    newModifiers = newModifiers.InsertModifier(modifier, ModifierComparer.Instance);
             }
             else
             {

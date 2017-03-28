@@ -1,17 +1,17 @@
 ﻿// Copyright (c) Josef Pihrt. All rights reserved. Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using System.Collections.Generic;
 using System.Diagnostics;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
+using Roslynator.CSharp.Extensions;
 
 namespace Roslynator.CSharp.Comparers
 {
-    internal class ModifierComparer : IComparer<SyntaxToken>
+    internal class ModifierComparer : IModifierComparer
     {
         public static readonly ModifierComparer Instance = new ModifierComparer();
 
-        internal static readonly int MaxOrderIndex = 16;
+        private static readonly int _maxOrderIndex = 16;
 
         private ModifierComparer()
         {
@@ -25,23 +25,41 @@ namespace Roslynator.CSharp.Comparers
             return GetOrderIndex(x).CompareTo(GetOrderIndex(y));
         }
 
-        public static bool IsListSorted(SyntaxTokenList modifiers)
+        public int GetInsertIndex(SyntaxTokenList modifiers, SyntaxToken modifier)
         {
-            for (int i = 0; i < modifiers.Count - 1; i++)
+            return GetInsertIndex(modifiers, GetOrderIndex(modifier));
+        }
+
+        public int GetInsertIndex(SyntaxTokenList modifiers, SyntaxKind kind)
+        {
+            return GetInsertIndex(modifiers, GetOrderIndex(kind));
+        }
+
+        private int GetInsertIndex(SyntaxTokenList modifiers, int orderIndex)
+        {
+            if (modifiers.Any())
             {
-                if (Instance.Compare(modifiers[i], modifiers[i + 1]) > 0)
-                    return false;
+                for (int i = orderIndex; i >= 0; i--)
+                {
+                    SyntaxKind kind = GetKind(i);
+
+                    for (int j = modifiers.Count - 1; j >= 0; j--)
+                    {
+                        if (modifiers[j].IsKind(kind))
+                            return j + 1;
+                    }
+                }
             }
 
-            return true;
+            return 0;
         }
 
-        internal static int GetOrderIndex(SyntaxToken syntaxToken)
+        private int GetOrderIndex(SyntaxToken token)
         {
-            return GetOrderIndex(syntaxToken.Kind());
+            return GetOrderIndex(token.Kind());
         }
 
-        public static int GetOrderIndex(SyntaxKind kind)
+        private int GetOrderIndex(SyntaxKind kind)
         {
             switch (kind)
             {
@@ -82,12 +100,12 @@ namespace Roslynator.CSharp.Comparers
                 default:
                     {
                         Debug.Assert(false, $"unknown modifier '{kind}'");
-                        return MaxOrderIndex;
+                        return _maxOrderIndex;
                     }
             }
         }
 
-        internal static SyntaxKind GetKind(int orderIndex)
+        private SyntaxKind GetKind(int orderIndex)
         {
             switch (orderIndex)
             {
@@ -128,6 +146,17 @@ namespace Roslynator.CSharp.Comparers
                 default:
                     return SyntaxKind.None;
             }
+        }
+
+        public bool IsListSorted(SyntaxTokenList modifiers)
+        {
+            for (int i = 0; i < modifiers.Count - 1; i++)
+            {
+                if (Compare(modifiers[i], modifiers[i + 1]) > 0)
+                    return false;
+            }
+
+            return true;
         }
     }
 }

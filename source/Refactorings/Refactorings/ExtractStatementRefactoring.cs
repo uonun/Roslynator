@@ -53,7 +53,7 @@ namespace Roslynator.CSharp.Refactorings
         {
             if (node.IsKind(SyntaxKind.ElseClause))
             {
-                return IfElseChain.GetTopmostIf((ElseClauseSyntax)node)?.Parent;
+                return IfElseHelper.GetTopmostIf((ElseClauseSyntax)node)?.Parent;
             }
             else
             {
@@ -79,9 +79,9 @@ namespace Roslynator.CSharp.Refactorings
                 case SyntaxKind.UncheckedStatement:
                     return true;
                 case SyntaxKind.IfStatement:
-                    return IfElseChain.IsTopmostIf((IfStatementSyntax)node);
+                    return IfElseHelper.IsTopmostIf((IfStatementSyntax)node);
                 case SyntaxKind.ElseClause:
-                    return IfElseChain.IsEndOfChain((ElseClauseSyntax)node);
+                    return IfElseHelper.IsEndOfChain((ElseClauseSyntax)node);
             }
 
             return false;
@@ -97,7 +97,7 @@ namespace Roslynator.CSharp.Refactorings
 
             if (statement.Parent.IsKind(SyntaxKind.ElseClause))
             {
-                IfStatementSyntax ifStatement = IfElseChain.GetTopmostIf((ElseClauseSyntax)statement.Parent);
+                IfStatementSyntax ifStatement = IfElseHelper.GetTopmostIf((ElseClauseSyntax)statement.Parent);
                 var block = (BlockSyntax)ifStatement.Parent;
                 int index = block.Statements.IndexOf(ifStatement);
 

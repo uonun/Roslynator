@@ -32,7 +32,7 @@ namespace Roslynator.CSharp.CodeFixProviders
             if (ifStatement == null)
                 return;
 
-            ifStatement = IfElseChain.GetTopmostIf(ifStatement);
+            ifStatement = IfElseHelper.GetTopmostIf(ifStatement);
 
             CodeAction codeAction = CodeAction.Create(
                 "Remove braces from if-else",

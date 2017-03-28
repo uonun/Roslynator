@@ -10,8 +10,7 @@ using Roslynator.Extensions;
 
 namespace Roslynator.CSharp
 {
-    //TODO: EmbeddedStatement
-    public static class EmbeddedStatement
+    internal static class EmbeddedStatementHelper
     {
         public static StatementSyntax GetEmbeddedStatement(SyntaxNode node)
         {
@@ -128,7 +127,7 @@ namespace Roslynator.CSharp
                     {
                         var elseClause = (ElseClauseSyntax)node;
 
-                        if (IfElseChain.IsEndOfChain(elseClause))
+                        if (IfElseHelper.IsEndOfChain(elseClause))
                             return elseClause.Statement;
 
                         break;

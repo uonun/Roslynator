@@ -83,7 +83,7 @@ namespace Roslynator.CSharp.Refactorings.SortMemberDeclarations
             MemberDeclarationSlice slice,
             ImmutableArray<MemberDeclarationSyntax> members)
         {
-            if (!MemberDeclarationComparer.IsSorted(members, sortMode))
+            if (!MemberDeclarationComparer.GetInstance(sortMode).IsSorted(members))
             {
                 context.RegisterRefactoring(
                     title,
@@ -97,7 +97,7 @@ namespace Roslynator.CSharp.Refactorings.SortMemberDeclarations
             MemberDeclarationSortMode sortMode,
             CancellationToken cancellationToken)
         {
-            var comparer = new MemberDeclarationComparer(sortMode);
+            MemberDeclarationComparer comparer = MemberDeclarationComparer.GetInstance(sortMode);
 
             MemberDeclarationSyntax containingMember = slice.ContainingMember;
 

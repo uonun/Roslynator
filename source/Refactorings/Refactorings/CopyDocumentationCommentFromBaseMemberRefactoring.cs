@@ -126,7 +126,7 @@ namespace Roslynator.CSharp.Refactorings
             SyntaxTrivia commentTrivia,
             CancellationToken cancellationToken)
         {
-            MemberDeclarationSyntax newMemberDeclaration = Inserter.InsertDocumentationComment(memberDeclaration, commentTrivia, indent: true);
+            MemberDeclarationSyntax newMemberDeclaration = memberDeclaration.WithDocumentationComment(commentTrivia, indent: true);
 
             return document.ReplaceNodeAsync(memberDeclaration, newMemberDeclaration, cancellationToken);
         }
