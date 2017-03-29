@@ -136,7 +136,7 @@ namespace Roslynator.CSharp.Refactorings
                 default(ExplicitInterfaceSpecifierSyntax),
                 Identifier($"On{eventSymbol.Name}"),
                 default(TypeParameterListSyntax),
-                ParameterList(Parameter(eventArgsType, Identifier(DefaultNames.EventArgsVariableName))),
+                ParameterList(Parameter(eventArgsType, Identifier(DefaultNames.EventArgsVariable))),
                 default(SyntaxList<TypeParameterConstraintClauseSyntax>),
                 Block(CreateOnEventMethodBody(eventSymbol, supportCSharp6)),
                 default(ArrowExpressionClauseSyntax));
@@ -155,7 +155,7 @@ namespace Roslynator.CSharp.Refactorings
                             MemberBindingExpression(IdentifierName("Invoke")),
                             ArgumentList(
                                 Argument(ThisExpression()),
-                                Argument(IdentifierName(DefaultNames.EventArgsVariableName))))));
+                                Argument(IdentifierName(DefaultNames.EventArgsVariable))))));
             }
             else
             {
@@ -163,17 +163,17 @@ namespace Roslynator.CSharp.Refactorings
                     VariableDeclaration(
                         eventSymbol.Type.ToTypeSyntax().WithSimplifierAnnotation(),
                         VariableDeclarator(
-                            Identifier(DefaultNames.EventHandlerVariableName),
+                            Identifier(DefaultNames.EventHandlerVariable),
                             EqualsValueClause(IdentifierName(eventSymbol.Name)))));
 
                 yield return IfStatement(
                     NotEqualsExpression(
-                        IdentifierName(DefaultNames.EventHandlerVariableName),
+                        IdentifierName(DefaultNames.EventHandlerVariable),
                         NullLiteralExpression()),
                     ExpressionStatement(
                         InvocationExpression(
-                            IdentifierName(DefaultNames.EventHandlerVariableName),
-                            ArgumentList(Argument(ThisExpression()), Argument(IdentifierName(DefaultNames.EventArgsVariableName))))));
+                            IdentifierName(DefaultNames.EventHandlerVariable),
+                            ArgumentList(Argument(ThisExpression()), Argument(IdentifierName(DefaultNames.EventArgsVariable))))));
             }
         }
     }

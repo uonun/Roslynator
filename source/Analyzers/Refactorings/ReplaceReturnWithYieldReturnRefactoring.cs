@@ -138,7 +138,7 @@ namespace Roslynator.CSharp.Refactorings
                     }
                 case SyntaxKind.ForEachStatement:
                     {
-                        string identifier = NameGenerator.EnsureUniqueLocalName(DefaultNames.ForEachVariableName, semanticModel, returnStatement.SpanStart, cancellationToken);
+                        string identifier = NameGenerator.EnsureUniqueLocalName(DefaultNames.ForEachVariable, semanticModel, returnStatement.SpanStart, cancellationToken);
 
                         YieldStatementSyntax yieldReturnStatement = YieldStatement(
                             SyntaxKind.YieldReturnStatement,
