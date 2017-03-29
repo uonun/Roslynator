@@ -8,6 +8,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Roslynator.CSharp.Analysis;
+using Roslynator.CSharp.Extensions;
 using Roslynator.Diagnostics.Extensions;
 using Roslynator.Extensions;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
@@ -37,10 +38,10 @@ namespace Roslynator.CSharp.Refactorings
                         if (IsString(right, semanticModel, cancellationToken))
                             ReportDiagnostic(context, equalsExpression);
                     }
-                    else if (CSharpUtility.IsEmptyString(right, semanticModel, cancellationToken))
+                    else if (CSharpUtility.IsEmptyString(right, semanticModel, cancellationToken)
+                        && IsString(left, semanticModel, cancellationToken))
                     {
-                        if (IsString(left, semanticModel, cancellationToken))
-                            ReportDiagnostic(context, equalsExpression);
+                        ReportDiagnostic(context, equalsExpression);
                     }
                 }
             }

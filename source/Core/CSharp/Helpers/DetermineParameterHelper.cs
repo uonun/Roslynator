@@ -10,7 +10,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Roslynator.CSharp.Extensions;
 using Roslynator.Extensions;
 
-namespace Roslynator.CSharp.Internal
+namespace Roslynator.CSharp.Helpers
 {
     internal static class DetermineParameterHelper
     {

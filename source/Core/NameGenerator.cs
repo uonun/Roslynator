@@ -5,33 +5,23 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.FindSymbols;
 using Roslynator.Extensions;
-using Roslynator.Internal;
+using Roslynator.Helpers;
 
 namespace Roslynator
 {
-    public static class Identifier
+    public static class NameGenerator
     {
-        public const string DefaultVariableName = "x";
-        public const string DefaultForVariableName = "i";
-        public const string DefaultForEachVariableName = "item";
-        public const string DefaultEventArgsVariableName = "e";
-        public const string DefaultEventHandlerVariableName = "handler";
-        public const string DefaultNamespaceName = "Namespace";
-        public const string DefaultEnumMemberName = "EnumMember";
-        public const string DefaultTypeParameterName = "T";
-
         private static StringComparer OrdinalComparer { get; } = StringComparer.Ordinal;
 
         public static string EnsureUniqueMemberName(
             string baseName,
-            int position,
             SemanticModel semanticModel,
+            int position,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             if (semanticModel == null)
@@ -61,14 +51,14 @@ namespace Roslynator
 
         public static string EnsureUniqueLocalName(
             string baseName,
-            int position,
             SemanticModel semanticModel,
+            int position,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             if (semanticModel == null)
                 throw new ArgumentNullException(nameof(semanticModel));
 
-            SyntaxNode container = FindContainer(position, semanticModel, cancellationToken);
+            SyntaxNode container = FindContainer(semanticModel, position, cancellationToken);
 
             HashSet<ISymbol> containerSymbols = GetContainerSymbols(container, semanticModel, cancellationToken);
 
@@ -80,7 +70,7 @@ namespace Roslynator
             return EnsureUniqueName(baseName, reservedNames);
         }
 
-        private static SyntaxNode FindContainer(int position, SemanticModel semanticModel, CancellationToken cancellationToken)
+        private static SyntaxNode FindContainer(SemanticModel semanticModel, int position, CancellationToken cancellationToken)
         {
             ISymbol enclosingSymbol = semanticModel.GetEnclosingSymbol(position, cancellationToken);
 
@@ -123,8 +113,8 @@ namespace Roslynator
         }
 
         public static async Task<string> EnsureUniqueParameterNameAsync(
-            IParameterSymbol parameterSymbol,
             string baseName,
+            IParameterSymbol parameterSymbol,
             Solution solution,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -197,9 +187,9 @@ namespace Roslynator
             return reservedNames;
         }
 
-        public static async Task<string> EnsureUniqueAsyncMethodNameAsync(
-            IMethodSymbol methodSymbol,
+        internal static async Task<string> EnsureUniqueAsyncMethodNameAsync(
             string baseName,
+            IMethodSymbol methodSymbol,
             Solution solution,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -216,8 +206,8 @@ namespace Roslynator
         }
 
         public static async Task<string> EnsureUniqueMemberNameAsync(
-            ISymbol memberSymbol,
             string baseName,
+            ISymbol memberSymbol,
             Solution solution,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -232,7 +222,7 @@ namespace Roslynator
             return EnsureUniqueName(baseName, reservedNames);
         }
 
-        public static string EnsureUniqueEnumMemberName(INamedTypeSymbol enumSymbol, string baseName)
+        public static string EnsureUniqueEnumMemberName(string baseName, INamedTypeSymbol enumSymbol)
         {
             if (enumSymbol == null)
                 throw new ArgumentNullException(nameof(enumSymbol));
@@ -242,8 +232,8 @@ namespace Roslynator
 
         public static bool IsUniqueMemberName(
             string name,
-            int position,
             SemanticModel semanticModel,
+            int position,
             bool isCaseSensitive = true,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -267,8 +257,8 @@ namespace Roslynator
         }
 
         public static async Task<bool> IsUniqueMemberNameAsync(
-            ISymbol memberSymbol,
             string name,
+            ISymbol memberSymbol,
             Solution solution,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -387,7 +377,7 @@ namespace Roslynator
 
         public static string CreateName(ITypeSymbol typeSymbol, bool firstCharToLower = false)
         {
-            return CreateNameFromTypeSymbol.CreateName(typeSymbol, firstCharToLower);
+            return CreateNameFromTypeSymbolHelper.CreateName(typeSymbol, firstCharToLower);
         }
 
         private static StringComparison GetStringComparison(bool isCaseSensitive)
@@ -399,154 +389,6 @@ namespace Roslynator
             else
             {
                 return StringComparison.OrdinalIgnoreCase;
-            }
-        }
-
-        public static string ToCamelCase(string value, bool prefixWithUnderscore = false)
-        {
-            if (value == null)
-                throw new ArgumentNullException(nameof(value));
-
-            string prefix = (prefixWithUnderscore) ? "_" : "";
-
-            if (value.Length > 0)
-            {
-                return ToCamelCase(value, prefix);
-            }
-            else
-            {
-                return prefix;
-            }
-        }
-
-        private static string ToCamelCase(string value, string prefix)
-        {
-            var sb = new StringBuilder(prefix, value.Length + prefix.Length);
-
-            int i = 0;
-
-            while (i < value.Length && value[i] == '_')
-                i++;
-
-            if (char.IsUpper(value[i]))
-            {
-                sb.Append(char.ToLower(value[i]));
-            }
-            else
-            {
-                sb.Append(value[i]);
-            }
-
-            i++;
-
-            sb.Append(value, i, value.Length - i);
-
-            return sb.ToString();
-        }
-
-        public static bool IsCamelCasePrefixedWithUnderscore(string value)
-        {
-            if (value == null)
-                throw new ArgumentNullException(nameof(value));
-
-            if (value[0] == '_')
-            {
-                if (value.Length > 1)
-                {
-                    return value[1] != '_'
-                        && !char.IsUpper(value[1]);
-                }
-
-                return true;
-            }
-
-            return false;
-        }
-
-        public static bool IsCamelCaseNotPrefixedWithUnderscore(string value)
-        {
-            if (value == null)
-                throw new ArgumentNullException(nameof(value));
-
-            return value.Length > 0
-                && value[0] != '_'
-                && char.IsLower(value[0]);
-        }
-
-        public static bool HasPrefix(string value, string prefix, StringComparison comparison = StringComparison.Ordinal)
-        {
-            if (value == null)
-                throw new ArgumentNullException(nameof(value));
-
-            if (prefix == null)
-                throw new ArgumentNullException(nameof(prefix));
-
-            return prefix.Length > 0
-                && value.Length > prefix.Length
-                && value.StartsWith(prefix, comparison)
-                && IsBoundary(value[prefix.Length - 1], value[prefix.Length]);
-        }
-
-        public static bool HasSuffix(string value, string suffix, StringComparison comparison = StringComparison.Ordinal)
-        {
-            if (value == null)
-                throw new ArgumentNullException(nameof(value));
-
-            if (suffix == null)
-                throw new ArgumentNullException(nameof(suffix));
-
-            return suffix.Length > 0
-                && value.Length > suffix.Length
-                && value.EndsWith(suffix, comparison)
-                && IsBoundary(value[value.Length - suffix.Length - 1], value[value.Length - suffix.Length]);
-        }
-
-        private static bool IsBoundary(char ch1, char ch2)
-        {
-            if (IsHyphenOrUnderscore(ch1))
-            {
-                return !IsHyphenOrUnderscore(ch2);
-            }
-            else if (char.IsDigit(ch1))
-            {
-                return IsHyphenOrUnderscore(ch2);
-            }
-            else if (char.IsLower(ch1))
-            {
-                return IsHyphenOrUnderscore(ch2) || char.IsUpper(ch2);
-            }
-            else
-            {
-                return IsHyphenOrUnderscore(ch2);
-            }
-        }
-
-        private static bool IsHyphenOrUnderscore(char ch)
-        {
-            return ch == '-' || ch == '_';
-        }
-
-        public static string RemovePrefix(string value, string prefix, StringComparison comparison = StringComparison.Ordinal)
-        {
-            if (HasPrefix(value, prefix, comparison))
-            {
-                return value.Substring(prefix.Length);
-            }
-            else
-            {
-                return value;
-            }
-        }
-
-        public static string RemoveSuffix(string value, string suffix, StringComparison comparison = StringComparison.Ordinal)
-        {
-            if (HasSuffix(value, suffix, comparison))
-            {
-                return value.Remove(value.Length - suffix.Length);
-            }
-            else
-            {
-                return value;
             }
         }
     }

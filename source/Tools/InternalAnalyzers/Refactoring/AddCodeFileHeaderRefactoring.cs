@@ -8,7 +8,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
-namespace Roslynator.CSharp.Internal.Refactoring
+namespace Roslynator.CSharp.Refactoring
 {
     internal static class AddCodeFileHeaderRefactoring
     {

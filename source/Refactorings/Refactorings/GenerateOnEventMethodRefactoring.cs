@@ -50,7 +50,7 @@ namespace Roslynator.CSharp.Refactorings
                                         && !MethodExists(eventSymbol, containingType, eventArgsSymbol))
                                     {
                                         string methodName = "On" + eventSymbol.Name;
-                                        methodName = Identifier.EnsureUniqueMemberName(methodName, containingType);
+                                        methodName = NameGenerator.EnsureUniqueMemberName(methodName, containingType);
 
                                         context.RegisterRefactoring(
                                             $"Generate '{methodName}' method",
@@ -136,7 +136,7 @@ namespace Roslynator.CSharp.Refactorings
                 default(ExplicitInterfaceSpecifierSyntax),
                 Identifier($"On{eventSymbol.Name}"),
                 default(TypeParameterListSyntax),
-                ParameterList(Parameter(eventArgsType, Identifier(Identifier.DefaultEventArgsVariableName))),
+                ParameterList(Parameter(eventArgsType, Identifier(DefaultNames.EventArgsVariableName))),
                 default(SyntaxList<TypeParameterConstraintClauseSyntax>),
                 Block(CreateOnEventMethodBody(eventSymbol, supportCSharp6)),
                 default(ArrowExpressionClauseSyntax));
@@ -155,7 +155,7 @@ namespace Roslynator.CSharp.Refactorings
                             MemberBindingExpression(IdentifierName("Invoke")),
                             ArgumentList(
                                 Argument(ThisExpression()),
-                                Argument(IdentifierName(Identifier.DefaultEventArgsVariableName))))));
+                                Argument(IdentifierName(DefaultNames.EventArgsVariableName))))));
             }
             else
             {
@@ -163,17 +163,17 @@ namespace Roslynator.CSharp.Refactorings
                     VariableDeclaration(
                         eventSymbol.Type.ToTypeSyntax().WithSimplifierAnnotation(),
                         VariableDeclarator(
-                            Identifier(Identifier.DefaultEventHandlerVariableName),
+                            Identifier(DefaultNames.EventHandlerVariableName),
                             EqualsValueClause(IdentifierName(eventSymbol.Name)))));
 
                 yield return IfStatement(
                     NotEqualsExpression(
-                        IdentifierName(Identifier.DefaultEventHandlerVariableName),
+                        IdentifierName(DefaultNames.EventHandlerVariableName),
                         NullLiteralExpression()),
                     ExpressionStatement(
                         InvocationExpression(
-                            IdentifierName(Identifier.DefaultEventHandlerVariableName),
-                            ArgumentList(Argument(ThisExpression()), Argument(IdentifierName(Identifier.DefaultEventArgsVariableName))))));
+                            IdentifierName(DefaultNames.EventHandlerVariableName),
+                            ArgumentList(Argument(ThisExpression()), Argument(IdentifierName(DefaultNames.EventArgsVariableName))))));
             }
         }
     }

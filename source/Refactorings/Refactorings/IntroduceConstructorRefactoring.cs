@@ -338,7 +338,7 @@ namespace Roslynator.CSharp.Refactorings
             foreach (MemberDeclarationSyntax member in members)
             {
                 string name = GetIdentifier(member).ValueText;
-                string parameterName = Identifier.ToCamelCase(name);
+                string parameterName = StringUtility.ToCamelCase(name);
 
                 statements.Add(SimpleAssignmentStatement(
                         IdentifierName(name),

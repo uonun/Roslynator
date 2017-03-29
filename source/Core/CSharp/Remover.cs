@@ -10,7 +10,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 using Roslynator.CSharp.Extensions;
-using Roslynator.CSharp.Internal;
+using Roslynator.CSharp.Helpers;
 using Roslynator.CSharp.SyntaxRewriters;
 using Roslynator.Extensions;
 
@@ -36,12 +36,12 @@ namespace Roslynator.CSharp
 
         public static TNode RemoveModifier<TNode>(TNode node, SyntaxKind modifierKind) where TNode : SyntaxNode
         {
-            return ModifierRemover.RemoveModifier(node, modifierKind);
+            return RemoveModifierHelper.RemoveModifier(node, modifierKind);
         }
 
         public static TNode RemoveModifier<TNode>(TNode node, SyntaxToken modifier) where TNode : SyntaxNode
         {
-            return ModifierRemover.RemoveModifier(node, modifier);
+            return RemoveModifierHelper.RemoveModifier(node, modifier);
         }
 
         public static TNode RemoveComments<TNode>(TNode node, CommentRemoveOptions removeOptions) where TNode : SyntaxNode

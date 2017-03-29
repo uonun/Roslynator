@@ -76,7 +76,7 @@ namespace Roslynator.CSharp.Refactorings
             object value,
             CancellationToken cancellationToken)
         {
-            EnumMemberDeclarationSyntax newEnumMember = CreateEnumMember(enumSymbol, Identifier.DefaultEnumMemberName, value);
+            EnumMemberDeclarationSyntax newEnumMember = CreateEnumMember(enumSymbol, DefaultNames.EnumMemberName, value);
 
             EnumDeclarationSyntax newNode = enumDeclaration.AddMembers(newEnumMember);
 
@@ -90,7 +90,7 @@ namespace Roslynator.CSharp.Refactorings
             if (value != null)
                 equalsValue = SyntaxFactory.EqualsValueClause(CSharpFactory.ConstantExpression(value));
 
-            name = Identifier.EnsureUniqueEnumMemberName(enumSymbol, name);
+            name = NameGenerator.EnsureUniqueEnumMemberName(name, enumSymbol);
 
             SyntaxToken identifier = SyntaxFactory.Identifier(name).WithRenameAnnotation();
 

@@ -54,7 +54,7 @@ namespace Roslynator.CSharp.Internal.DiagnosticAnalyzers
                         ExtensionMethodInfo info = semanticModel.GetExtensionMethodInfo(expression, ExtensionMethodKind.Reduced, cancellationToken);
 
                         if (info.IsValid
-                            && info.HasName("GetTypeInfo")
+                            && string.Equals(info.Symbol.Name, "GetTypeInfo", StringComparison.Ordinal)
                             && info.Symbol.ReturnType == semanticModel.GetTypeByMetadataName("Microsoft.CodeAnalysis.TypeInfo"))
                         {
                             ImmutableArray<IParameterSymbol> parameters = info.Symbol.Parameters;

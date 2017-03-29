@@ -127,7 +127,7 @@ namespace Roslynator.CSharp
                     {
                         var elseClause = (ElseClauseSyntax)node;
 
-                        if (IfElseHelper.IsEndOfChain(elseClause))
+                        if (!elseClause.ContinuesWithIf())
                             return elseClause.Statement;
 
                         break;

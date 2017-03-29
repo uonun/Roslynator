@@ -51,7 +51,7 @@ namespace Roslynator.CSharp.Refactorings
 
         private static IEnumerable<StatementSyntax> GetEmbeddedStatements(IfStatementSyntax topmostIf)
         {
-            foreach (IfStatementOrElseClause ifOrElse in IfElseHelper.GetChain(topmostIf))
+            foreach (IfStatementOrElseClause ifOrElse in topmostIf.GetChain())
             {
                 StatementSyntax statement = ifOrElse.Statement;
 
@@ -81,14 +81,14 @@ namespace Roslynator.CSharp.Refactorings
             {
                 if (parent.IsKind(SyntaxKind.ElseClause))
                 {
-                    return IfElseHelper.GetTopmostIf((ElseClauseSyntax)parent);
+                    return ((ElseClauseSyntax)parent).GetTopmostIf();
                 }
                 else
                 {
                     var parentStatement = parent as IfStatementSyntax;
 
                     if (parentStatement != null)
-                        return IfElseHelper.GetTopmostIf(parentStatement);
+                        return parentStatement.GetTopmostIf();
                 }
             }
 

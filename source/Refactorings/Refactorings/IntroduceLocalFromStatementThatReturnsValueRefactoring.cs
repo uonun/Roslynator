@@ -76,9 +76,9 @@ namespace Roslynator.CSharp.Refactorings
             if (addAwait)
                 typeSymbol = ((INamedTypeSymbol)typeSymbol).TypeArguments[0];
 
-            string identifier = Identifier.CreateName(typeSymbol, firstCharToLower: true) ?? Identifier.DefaultVariableName;
+            string identifier = NameGenerator.CreateName(typeSymbol, firstCharToLower: true) ?? DefaultNames.VariableName;
 
-            identifier = Identifier.EnsureUniqueLocalName(identifier, expressionStatement.SpanStart, semanticModel, cancellationToken);
+            identifier = NameGenerator.EnsureUniqueLocalName(identifier, semanticModel, expressionStatement.SpanStart, cancellationToken);
 
             ExpressionSyntax value = expressionStatement.Expression;
 

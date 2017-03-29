@@ -80,7 +80,7 @@ namespace Roslynator.CSharp.Refactorings
                     .LookupNamespacesAndTypes(member.SpanStart)
                     .Select(f => f.Name);
 
-                string name = Identifier.EnsureUniqueName(Identifier.DefaultNamespaceName, reservedNames);
+                string name = NameGenerator.EnsureUniqueName(DefaultNames.NamespaceName, reservedNames);
 
                 NamespaceDeclarationSyntax namespaceDeclaration = NamespaceDeclaration(
                     IdentifierName(Identifier(name).WithRenameAnnotation()),

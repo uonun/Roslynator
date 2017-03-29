@@ -7,7 +7,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Roslynator.CSharp.Internal.Refactoring;
+using Roslynator.CSharp.Refactoring;
 
 namespace Roslynator.CSharp.Internal.CodeFixProviders
 {

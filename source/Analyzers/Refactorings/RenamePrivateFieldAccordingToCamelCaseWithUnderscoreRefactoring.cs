@@ -18,7 +18,7 @@ namespace Roslynator.CSharp.Refactorings
                 && !fieldSymbol.IsImplicitlyDeclared
                 && fieldSymbol.IsPrivate()
                 && !string.IsNullOrEmpty(fieldSymbol.Name)
-                && !Identifier.IsCamelCasePrefixedWithUnderscore(fieldSymbol.Name))
+                && !StringUtility.IsCamelCasePrefixedWithUnderscore(fieldSymbol.Name))
             {
                 context.ReportDiagnostic(
                     DiagnosticDescriptors.RenamePrivateFieldAccordingToCamelCaseWithUnderscore,

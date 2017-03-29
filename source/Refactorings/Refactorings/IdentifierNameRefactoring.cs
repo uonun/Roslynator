@@ -48,13 +48,13 @@ namespace Roslynator.CSharp.Refactorings
                             && fieldSymbol.IsStatic == propertySymbol.IsStatic
                             && fieldSymbol.ContainingType == propertySymbol.ContainingType)
                         {
-                            string newName = Identifier.ToCamelCase(propertySymbol.Name, context.Settings.PrefixFieldIdentifierWithUnderscore);
+                            string newName = StringUtility.ToCamelCase(propertySymbol.Name, context.Settings.PrefixFieldIdentifierWithUnderscore);
 
                             if (!string.Equals(fieldSymbol.Name, newName, StringComparison.Ordinal))
                             {
-                                bool isUnique = await Identifier.IsUniqueMemberNameAsync(
-                                    fieldSymbol,
+                                bool isUnique = await NameGenerator.IsUniqueMemberNameAsync(
                                     newName,
+                                    fieldSymbol,
                                     context.Solution,
                                     context.CancellationToken).ConfigureAwait(false);
 

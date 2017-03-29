@@ -5,7 +5,7 @@ using System.Threading;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Roslynator.CSharp.Internal;
+using Roslynator.CSharp.Helpers;
 using Roslynator.Extensions;
 
 namespace Roslynator.CSharp.Extensions

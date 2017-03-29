@@ -95,14 +95,14 @@ namespace Roslynator.CSharp.Refactorings
                     {
                         string oldName = identifier.ValueText;
 
-                        string newName = Identifier.CreateName(
+                        string newName = NameGenerator.CreateName(
                             typeSymbol,
                             firstCharToLower: true);
 
                         if (!string.IsNullOrEmpty(newName)
                             && !string.Equals(newName, oldName, StringComparison.Ordinal))
                         {
-                            newName = Identifier.EnsureUniqueLocalName(newName, forEachStatement.SpanStart, semanticModel, context.CancellationToken);
+                            newName = NameGenerator.EnsureUniqueLocalName(newName, semanticModel, forEachStatement.SpanStart, context.CancellationToken);
 
                             ISymbol symbol = semanticModel.GetDeclaredSymbol(forEachStatement, context.CancellationToken);
 

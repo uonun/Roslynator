@@ -124,7 +124,7 @@ namespace Roslynator.CSharp.Refactorings
                     {
                         var ifStatement = (IfStatementSyntax)parent;
 
-                        if (IfElseHelper.IsTopmostIf(ifStatement)
+                        if (ifStatement.IsTopmostIf()
                             && block.OpenBraceToken.Span.Contains(context.Span))
                         {
                             return ifStatement;
@@ -143,7 +143,7 @@ namespace Roslynator.CSharp.Refactorings
                         var elseClause = (ElseClauseSyntax)parent;
 
                         if (block.CloseBraceToken.Span.Contains(context.Span))
-                            return IfElseHelper.GetTopmostIf(elseClause);
+                            return elseClause.GetTopmostIf();
 
                         break;
                     }

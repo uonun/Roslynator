@@ -23,13 +23,13 @@ namespace Roslynator.CSharp.Refactorings
             bool prefixIdentifierWithUnderscore = true,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            string fieldName = Identifier.ToCamelCase(
+            string fieldName = StringUtility.ToCamelCase(
                 propertyDeclaration.Identifier.ValueText,
                 prefixWithUnderscore: prefixIdentifierWithUnderscore);
 
             SemanticModel semanticModel = await document.GetSemanticModelAsync(cancellationToken).ConfigureAwait(false);
 
-            fieldName = Identifier.EnsureUniqueMemberName(fieldName, propertyDeclaration.SpanStart, semanticModel, cancellationToken);
+            fieldName = NameGenerator.EnsureUniqueMemberName(fieldName, semanticModel, propertyDeclaration.SpanStart, cancellationToken);
 
             FieldDeclarationSyntax fieldDeclaration = CreateBackingField(propertyDeclaration, fieldName)
                 .WithFormatterAnnotation();

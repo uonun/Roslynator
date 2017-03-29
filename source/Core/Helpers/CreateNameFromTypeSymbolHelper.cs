@@ -7,9 +7,9 @@ using Microsoft.CodeAnalysis;
 using Roslynator.CSharp.Extensions;
 using Roslynator.Extensions;
 
-namespace Roslynator.Internal
+namespace Roslynator.Helpers
 {
-    internal static class CreateNameFromTypeSymbol
+    internal static class CreateNameFromTypeSymbolHelper
     {
         public static string CreateName(ITypeSymbol typeSymbol, bool firstCharToLower = false)
         {
@@ -38,7 +38,7 @@ namespace Roslynator.Internal
             if (name.Length > 1
                 && UsePlural(typeSymbol2))
             {
-                name = Identifier.RemoveSuffix(name, "Collection");
+                name = StringUtility.RemoveSuffix(name, "Collection");
 
                 if (name.EndsWith("s", StringComparison.Ordinal) || name.EndsWith("x", StringComparison.Ordinal))
                 {

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Roslynator.CSharp.Extensions;
 using Roslynator.Extensions;
 
 namespace Roslynator.CSharp.Refactorings
@@ -40,7 +41,7 @@ namespace Roslynator.CSharp.Refactorings
                 if (node == null)
                     throw new ArgumentNullException(nameof(node));
 
-                if (_previousIf == null || _previousIf.Equals(IfElseHelper.GetPreviousIf(node)))
+                if (_previousIf == null || _previousIf.Equals(node.GetPreviousIf()))
                 {
                     if (node.Statement?.IsKind(SyntaxKind.Block) == false)
                     {

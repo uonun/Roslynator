@@ -78,11 +78,10 @@
     <Compile Include="CSharp\Formatting\BinaryExpressionToMultiLineRewriter.cs" />
     <Compile Include="CSharp\HexadecimalLiteralInfo.cs" />
     <Compile Include="CSharp\HexadecimalLiteralSuffixKind.cs" />
-    <Compile Include="CSharp\IfElseHelper.cs" />
     <Compile Include="CSharp\Syntax\IfStatement.cs" />
     <Compile Include="CSharp\Syntax\IfStatementOrElseClause.cs" />
     <Compile Include="CSharp\Comparers\MemberDeclarationSortMode.cs" />
-    <Compile Include="CSharp\Internal\ModifierRemover.cs" />
+    <Compile Include="CSharp\Helpers\RemoveModifierHelper.cs" />
     <Compile Include="CSharp\Negator.cs" />
     <Compile Include="CSharp\Refactorings\AddBracesToSwitchSectionRefactoring.cs" />
     <Compile Include="CSharp\Refactorings\AddExceptionToDocumentationComment\AddExceptionToDocumentationCommentAnalysis.cs" />
@@ -123,7 +122,7 @@
     <Compile Include="CSharp\Refactorings\MarkContainingClassAsAbstractRefactoring.cs" />
     <Compile Include="CSharp\Refactorings\MarkMemberAsStaticRefactoring.cs" />
     <Compile Include="CSharp\Refactorings\MergeInterpolationIntoInterpolatedStringRefactoring.cs" />
-    <Compile Include="CSharp\Internal\RemoveCommentHelper.cs" />
+    <Compile Include="CSharp\Helpers\RemoveCommentHelper.cs" />
     <Compile Include="CSharp\Refactorings\UseBitwiseOperationInsteadOfCallingHasFlagRefactoring.cs" />
     <Compile Include="CSharp\BinaryExpressionSlice.cs" />
     <Compile Include="CSharp\MemberDeclarationSlice.cs" />
@@ -131,7 +130,7 @@
     <Compile Include="CSharp\SwitchSectionStatementContainer.cs" />
     <Compile Include="CommentRemoveOptions.cs" />
     <Compile Include="CSharp\CSharpFactory.cs" />
-    <Compile Include="CSharp\Internal\DetermineParameterHelper.cs" />
+    <Compile Include="CSharp\Helpers\DetermineParameterHelper.cs" />
     <Compile Include="CSharp\Extensions\SyntaxExtensions.cs" />
     <Compile Include="CSharp\AutoPropertyKind.cs" />
     <Compile Include="CSharp\Refactorings\CallConfigureAwaitRefactoring.cs" />
@@ -149,6 +148,7 @@
     <Compile Include="CSharp\Refactorings\SplitVariableDeclarationRefactoring.cs" />
     <Compile Include="CSharp\Refactorings\UseExpressionBodiedMemberRefactoring.cs" />
     <Compile Include="CSharp\Documentation\AddNewDocumentationCommentRewriter.cs" />
+    <Compile Include="DefaultNames.cs" />
     <Compile Include="Diagnostics\SyntaxNodeAnalysisContextExtensions.cs" />
     <Compile Include="CSharp\Syntax\MemberInvocationExpression.cs" />
     <Compile Include="Diagnostics\SyntaxTreeAnalysisContextExtensions.cs" />
@@ -175,10 +175,10 @@
     <Compile Include="Extensions\SymbolExtensions.cs" />
     <Compile Include="Extensions\SemanticModelExtensions.cs" />
     <Compile Include="Text\Extensions\TextSpanExtensions.cs" />
-    <Compile Include="Internal\CreateNameFromTypeSymbol.cs" />
+    <Compile Include="Helpers\CreateNameFromTypeSymbolHelper.cs" />
     <Compile Include="MetadataNames.cs" />
     <Compile Include="CSharp\Modifiers.cs" />
-    <Compile Include="Identifier.cs" />
+    <Compile Include="NameGenerator.cs" />
     <Compile Include="Text\TextLineCollectionSlice.cs" />
     <Compile Include="CSharp\StatementContainerSlice.cs" />
     <Compile Include="ListSlice`1.cs" />

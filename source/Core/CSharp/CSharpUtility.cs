@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Josef Pihrt. All rights reserved. Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -11,7 +10,7 @@ using Roslynator.Extensions;
 
 namespace Roslynator.CSharp
 {
-    public static class CSharpUtility
+    internal static class CSharpUtility
     {
         public static bool IsNamespaceInScope(
             SyntaxNode node,
@@ -28,7 +27,63 @@ namespace Roslynator.CSharp
             if (semanticModel == null)
                 throw new ArgumentNullException(nameof(semanticModel));
 
-            foreach (NameSyntax name in NamespacesInScope(node))
+            foreach (SyntaxNode ancestor in node.Ancestors())
+            {
+                switch (ancestor.Kind())
+                {
+                    case SyntaxKind.NamespaceDeclaration:
+                        {
+                            var namespaceDeclaration = (NamespaceDeclarationSyntax)ancestor;
+
+                            if (IsNamespace(namespaceSymbol, namespaceDeclaration.Name, semanticModel, cancellationToken)
+                                || IsNamespace(namespaceSymbol, namespaceDeclaration.Usings, semanticModel, cancellationToken))
+                            {
+                                return true;
+                            }
+
+                            break;
+                        }
+                    case SyntaxKind.CompilationUnit:
+                        {
+                            var compilationUnit = (CompilationUnitSyntax)ancestor;
+
+                            if (IsNamespace(namespaceSymbol, compilationUnit.Usings, semanticModel, cancellationToken))
+                                return true;
+
+                            break;
+                        }
+                }
+            }
+
+            return false;
+        }
+
+        private static bool IsNamespace(
+            INamespaceSymbol namespaceSymbol,
+            SyntaxList<UsingDirectiveSyntax> usings,
+            SemanticModel semanticModel,
+            CancellationToken cancellationToken)
+        {
+            foreach (UsingDirectiveSyntax usingDirective in usings)
+            {
+                if (!usingDirective.StaticKeyword.IsKind(SyntaxKind.StaticKeyword)
+                    && usingDirective.Alias == null
+                    && IsNamespace(namespaceSymbol, usingDirective.Name, semanticModel, cancellationToken))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static bool IsNamespace(
+            INamespaceSymbol namespaceSymbol,
+            NameSyntax name,
+            SemanticModel semanticModel,
+            CancellationToken cancellationToken)
+        {
+            if (name != null)
             {
                 ISymbol symbol = semanticModel.GetSymbol(name, cancellationToken);
 
@@ -54,34 +109,6 @@ namespace Roslynator.CSharp
             return false;
         }
 
-        private static IEnumerable<NameSyntax> NamespacesInScope(SyntaxNode node)
-        {
-            foreach (SyntaxNode ancestor in node.Ancestors())
-            {
-                SyntaxKind kind = ancestor.Kind();
-
-                if (kind == SyntaxKind.NamespaceDeclaration)
-                {
-                    var namespaceDeclaration = (NamespaceDeclarationSyntax)ancestor;
-
-                    NameSyntax namespaceName = namespaceDeclaration.Name;
-
-                    if (namespaceName != null)
-                        yield return namespaceName;
-
-                    foreach (NameSyntax name in namespaceDeclaration.Usings.Namespaces())
-                        yield return name;
-                }
-                else if (kind == SyntaxKind.CompilationUnit)
-                {
-                    var compilationUnit = (CompilationUnitSyntax)ancestor;
-
-                    foreach (NameSyntax name in compilationUnit.Usings.Namespaces())
-                        yield return name;
-                }
-            }
-        }
-
         public static bool IsStaticClassInScope(
             SyntaxNode node,
             INamedTypeSymbol staticClassSymbol,
@@ -97,89 +124,36 @@ namespace Roslynator.CSharp
             if (semanticModel == null)
                 throw new ArgumentNullException(nameof(semanticModel));
 
-            foreach (NameSyntax name in StaticClassesInScope(node))
+            foreach (SyntaxNode ancestor in node.Ancestors())
             {
-                ISymbol symbol = semanticModel.GetSymbol(name, cancellationToken);
+                foreach (UsingDirectiveSyntax usingDirective in GetUsings(ancestor))
+                {
+                    if (usingDirective.StaticKeyword.IsKind(SyntaxKind.StaticKeyword))
+                    {
+                        NameSyntax name = usingDirective.Name;
 
-                if (symbol?.Equals(staticClassSymbol) == true)
-                    return true;
+                        if (name != null
+                            && staticClassSymbol.Equals(semanticModel.GetSymbol(name, cancellationToken)))
+                        {
+                            return true;
+                        }
+                    }
+                }
             }
 
             return false;
         }
 
-        private static IEnumerable<NameSyntax> StaticClassesInScope(SyntaxNode node)
+        private static SyntaxList<UsingDirectiveSyntax> GetUsings(SyntaxNode node)
         {
-            foreach (SyntaxNode ancestor in node.Ancestors())
+            switch (node.Kind())
             {
-                SyntaxKind kind = ancestor.Kind();
-
-                if (kind == SyntaxKind.NamespaceDeclaration)
-                {
-                    var namespaceDeclaration = (NamespaceDeclarationSyntax)ancestor;
-
-                    foreach (NameSyntax name in namespaceDeclaration.Usings.StaticClasses())
-                        yield return name;
-                }
-                else if (kind == SyntaxKind.CompilationUnit)
-                {
-                    var compilationUnit = (CompilationUnitSyntax)ancestor;
-
-                    foreach (NameSyntax name in compilationUnit.Usings.StaticClasses())
-                        yield return name;
-                }
-            }
-        }
-
-        private static IEnumerable<UsingDirectiveSyntax> RegularUsings(this SyntaxList<UsingDirectiveSyntax> usings)
-        {
-            foreach (UsingDirectiveSyntax usingDirective in usings)
-            {
-                if (!usingDirective.StaticKeyword.IsKind(SyntaxKind.StaticKeyword)
-                    && usingDirective.Alias == null)
-                {
-                    yield return usingDirective;
-                }
-            }
-        }
-
-        private static IEnumerable<NameSyntax> Namespaces(this SyntaxList<UsingDirectiveSyntax> usings)
-        {
-            foreach (UsingDirectiveSyntax usingDirective in usings.RegularUsings())
-            {
-                NameSyntax name = usingDirective.Name;
-
-                if (name != null)
-                    yield return name;
-            }
-        }
-
-        private static IEnumerable<UsingDirectiveSyntax> StaticUsings(this SyntaxList<UsingDirectiveSyntax> usings)
-        {
-            foreach (UsingDirectiveSyntax usingDirective in usings)
-            {
-                if (usingDirective.StaticKeyword.IsKind(SyntaxKind.StaticKeyword))
-                    yield return usingDirective;
-            }
-        }
-
-        private static IEnumerable<NameSyntax> StaticClasses(this SyntaxList<UsingDirectiveSyntax> usings)
-        {
-            foreach (UsingDirectiveSyntax usingDirective in usings.StaticUsings())
-            {
-                NameSyntax name = usingDirective.Name;
-
-                if (name != null)
-                    yield return name;
-            }
-        }
-
-        private static IEnumerable<UsingDirectiveSyntax> AliasUsings(this SyntaxList<UsingDirectiveSyntax> usings)
-        {
-            foreach (UsingDirectiveSyntax usingDirective in usings)
-            {
-                if (usingDirective.Alias != null)
-                    yield return usingDirective;
+                case SyntaxKind.NamespaceDeclaration:
+                    return ((NamespaceDeclarationSyntax)node).Usings;
+                case SyntaxKind.CompilationUnit:
+                    return ((CompilationUnitSyntax)node).Usings;
+                default:
+                    return default(SyntaxList<UsingDirectiveSyntax>);
             }
         }
 

@@ -97,7 +97,6 @@ namespace Roslynator.CSharp.Internal.CodeFixProviders
                                 memberAccess.WithName(IdentifierName(newName)))
                             .WithArgumentList(ArgumentList());
                     }
-
                 case SyntaxKind.MemberBindingExpression:
                     {
                         var memberBinding = (MemberBindingExpressionSyntax)expression;

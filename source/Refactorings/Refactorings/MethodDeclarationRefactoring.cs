@@ -107,7 +107,7 @@ namespace Roslynator.CSharp.Refactorings
 
                     if (typeSymbol != null)
                     {
-                        string newName = Identifier.CreateName(typeSymbol);
+                        string newName = NameGenerator.CreateName(typeSymbol);
 
                         if (!string.IsNullOrEmpty(newName))
                         {
@@ -120,9 +120,9 @@ namespace Roslynator.CSharp.Refactorings
 
                             if (!string.Equals(oldName, newName, StringComparison.Ordinal))
                             {
-                                bool isUnique = await Identifier.IsUniqueMemberNameAsync(
-                                    methodSymbol,
+                                bool isUnique = await NameGenerator.IsUniqueMemberNameAsync(
                                     newName,
+                                    methodSymbol,
                                     context.Solution,
                                     context.CancellationToken).ConfigureAwait(false);
 

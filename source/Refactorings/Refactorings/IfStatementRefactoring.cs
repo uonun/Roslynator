@@ -3,6 +3,7 @@
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Roslynator.CSharp.Extensions;
 using Roslynator.CSharp.Refactorings.If;
 using Roslynator.Text.Extensions;
 
@@ -18,7 +19,7 @@ namespace Roslynator.CSharp.Refactorings
                     RefactoringIdentifiers.SimplifyIf,
                     RefactoringIdentifiers.SwapStatementsInIfElse,
                     RefactoringIdentifiers.ReplaceIfElseWithSwitch)
-                && IfElseHelper.IsTopmostIf(ifStatement)
+                && ifStatement.IsTopmostIf()
                 && context.Span.IsBetweenSpans(ifStatement))
             {
                 if (context.IsAnyRefactoringEnabled(

@@ -40,7 +40,7 @@ namespace Roslynator.CSharp.Refactorings
 
                     if (span.Contains(context.Span))
                     {
-                        string name = Identifier.CreateName(parameterSymbol.Type, firstCharToLower: true);
+                        string name = NameGenerator.CreateName(parameterSymbol.Type, firstCharToLower: true);
 
                         if (!string.IsNullOrEmpty(name))
                         {
@@ -55,12 +55,12 @@ namespace Roslynator.CSharp.Refactorings
                 && parameter.Identifier.Span.Contains(context.Span))
             {
                 string name = parameter.Identifier.ValueText;
-                string newName = Identifier.CreateName(parameterSymbol.Type, firstCharToLower: true);
+                string newName = NameGenerator.CreateName(parameterSymbol.Type, firstCharToLower: true);
 
                 if (!string.IsNullOrEmpty(newName)
                     && !string.Equals(name, newName, StringComparison.Ordinal))
                 {
-                    newName = await Identifier.EnsureUniqueParameterNameAsync(parameterSymbol, newName, context.Solution, context.CancellationToken).ConfigureAwait(false);
+                    newName = await NameGenerator.EnsureUniqueParameterNameAsync(newName, parameterSymbol, context.Solution, context.CancellationToken).ConfigureAwait(false);
 
                     context.RegisterRefactoring(
                         $"Rename '{name}' to '{newName}'",

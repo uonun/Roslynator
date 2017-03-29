@@ -50,12 +50,12 @@ namespace Roslynator.CSharp.Refactorings
                             if (typeSymbol != null)
                             {
                                 string oldName = identifier.ValueText;
-                                string newName = Identifier.CreateName(typeSymbol, firstCharToLower: true);
+                                string newName = NameGenerator.CreateName(typeSymbol, firstCharToLower: true);
 
                                 if (!string.IsNullOrEmpty(newName)
                                     && !string.Equals(oldName, newName, StringComparison.Ordinal))
                                 {
-                                    newName = Identifier.EnsureUniqueLocalName(newName, singleVariableDesignation.SpanStart, semanticModel, context.CancellationToken);
+                                    newName = NameGenerator.EnsureUniqueLocalName(newName, semanticModel, singleVariableDesignation.SpanStart, context.CancellationToken);
 
                                     context.RegisterRefactoring(
                                         $"Rename '{oldName}' to '{newName}'",

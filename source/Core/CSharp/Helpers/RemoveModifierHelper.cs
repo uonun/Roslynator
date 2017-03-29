@@ -7,9 +7,9 @@ using Microsoft.CodeAnalysis.CSharp;
 using Roslynator.CSharp.Extensions;
 using Roslynator.Extensions;
 
-namespace Roslynator.CSharp.Internal
+namespace Roslynator.CSharp.Helpers
 {
-    internal static class ModifierRemover
+    internal static class RemoveModifierHelper
     {
         public static TNode RemoveModifier<TNode>(TNode node, SyntaxKind modifierKind) where TNode : SyntaxNode
         {

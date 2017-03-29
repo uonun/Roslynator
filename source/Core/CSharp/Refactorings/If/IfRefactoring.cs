@@ -47,7 +47,7 @@ namespace Roslynator.CSharp.Refactorings.If
             SemanticModel semanticModel,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            if (IfElseHelper.IsTopmostIf(ifStatement))
+            if (ifStatement.IsTopmostIf())
             {
                 ExpressionSyntax condition = ifStatement.Condition;
 
@@ -276,10 +276,10 @@ namespace Roslynator.CSharp.Refactorings.If
                         if (kind2 == SyntaxKind.IfStatement)
                             return Analyze((LocalDeclarationStatementSyntax)statement1, (IfStatementSyntax)statement2, options);
                     }
-                    else if (kind1 == SyntaxKind.ExpressionStatement)
+                    else if (kind1 == SyntaxKind.ExpressionStatement
+                        && kind2 == SyntaxKind.IfStatement)
                     {
-                        if (kind2 == SyntaxKind.IfStatement)
-                            return Analyze((ExpressionStatementSyntax)statement1, (IfStatementSyntax)statement2, options);
+                        return Analyze((ExpressionStatementSyntax)statement1, (IfStatementSyntax)statement2, options);
                     }
                 }
             }

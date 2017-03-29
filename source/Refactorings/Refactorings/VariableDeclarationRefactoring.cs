@@ -63,7 +63,7 @@ namespace Roslynator.CSharp.Refactorings
 
                             if (typeSymbol?.IsErrorType() == false)
                             {
-                                string newName = Identifier.CreateName(
+                                string newName = NameGenerator.CreateName(
                                     typeSymbol,
                                     FirstCharToLower(symbol));
 
@@ -74,14 +74,14 @@ namespace Roslynator.CSharp.Refactorings
                                         && symbol.IsField()
                                         && !((IFieldSymbol)symbol).IsConst)
                                     {
-                                        newName = Identifier.ToCamelCase(newName, prefixWithUnderscore: true);
+                                        newName = StringUtility.ToCamelCase(newName, prefixWithUnderscore: true);
                                     }
 
                                     string oldName = identifier.ValueText;
 
                                     if (!string.Equals(oldName, newName, StringComparison.Ordinal))
                                     {
-                                        newName = Identifier.EnsureUniqueLocalName(newName, variable.SpanStart, semanticModel, context.CancellationToken);
+                                        newName = NameGenerator.EnsureUniqueLocalName(newName, semanticModel, variable.SpanStart, context.CancellationToken);
 
                                         context.RegisterRefactoring(
                                             $"Rename '{oldName}' to '{newName}'",

@@ -41,9 +41,9 @@ namespace Roslynator.CSharp.Refactorings
                     {
                         SeparatedSyntaxList<EnumMemberDeclarationSyntax> enumMembers = enumDeclaration.Members;
 
-                        string name = Identifier.EnsureUniqueEnumMemberName(
-                            enumSymbol,
-                            string.Concat(selectedMembers.Select(f => f.Identifier.ValueText)));
+                        string name = NameGenerator.EnsureUniqueEnumMemberName(
+                            string.Concat(selectedMembers.Select(f => f.Identifier.ValueText)),
+                            enumSymbol);
 
                         EnumMemberDeclarationSyntax newEnumMember = CreateEnumMember(name, selectedMembers);
 

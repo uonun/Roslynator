@@ -31,7 +31,7 @@ namespace Roslynator.CSharp.Refactorings
             SemanticModel semanticModel,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            if (IfElseHelper.IsTopmostIf(ifStatement))
+            if (ifStatement.IsTopmostIf())
             {
                 ElseClauseSyntax elseClause = ifStatement.Else;
 

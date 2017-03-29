@@ -153,7 +153,7 @@ namespace Roslynator.CSharp.Refactorings.IntroduceAndInitialize
                     ImmutableArray<ISymbol> members = containingType.GetMembers();
 
                     return Infos
-                        .Where(f => Identifier.IsUniqueMemberName(f.Name, containingType, isCaseSensitive: true))
+                        .Where(f => NameGenerator.IsUniqueMemberName(f.Name, containingType, isCaseSensitive: true))
                         .Select(f => f.CreateDeclaration());
                 }
             }

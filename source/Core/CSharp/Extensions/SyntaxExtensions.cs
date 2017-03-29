@@ -12,6 +12,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 using Roslynator.CSharp.Comparers;
 using Roslynator.CSharp.Documentation;
+using Roslynator.CSharp.Syntax;
 using Roslynator.Extensions;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
@@ -390,6 +391,32 @@ namespace Roslynator.CSharp.Extensions
             }
         }
 
+        internal static StatementSyntax GetSingleStatementOrDefault(this ElseClauseSyntax elseClause)
+        {
+            return GetSingleStatementOrDefault(elseClause.Statement);
+        }
+
+        public static IfStatementSyntax GetTopmostIf(this ElseClauseSyntax elseClause)
+        {
+            if (elseClause == null)
+                throw new ArgumentNullException(nameof(elseClause));
+
+            var ifStatement = elseClause.Parent as IfStatementSyntax;
+
+            if (ifStatement != null)
+                return ifStatement.GetTopmostIf();
+
+            return null;
+        }
+
+        public static bool ContinuesWithIf(this ElseClauseSyntax elseClause)
+        {
+            if (elseClause == null)
+                throw new ArgumentNullException(nameof(elseClause));
+
+            return elseClause.Statement?.IsKind(SyntaxKind.IfStatement) == true;
+        }
+
         public static TextSpan BracesSpan(this EnumDeclarationSyntax enumDeclaration)
         {
             if (enumDeclaration == null)
@@ -522,9 +549,98 @@ namespace Roslynator.CSharp.Extensions
                 && ifStatement.Else?.Statement?.IsKind(SyntaxKind.IfStatement) == false;
         }
 
-        internal static StatementSyntax GetSingleStatementOrDefault(this ElseClauseSyntax elseClause)
+        public static IEnumerable<IfStatementOrElseClause> GetChain(this IfStatementSyntax ifStatement)
         {
-            return GetSingleStatementOrDefault(elseClause.Statement);
+            if (ifStatement == null)
+                throw new ArgumentNullException(nameof(ifStatement));
+
+            yield return ifStatement;
+
+            while (true)
+            {
+                ElseClauseSyntax elseClause = ifStatement.Else;
+
+                if (elseClause != null)
+                {
+                    StatementSyntax statement = elseClause.Statement;
+
+                    if (statement?.IsKind(SyntaxKind.IfStatement) == true)
+                    {
+                        ifStatement = (IfStatementSyntax)statement;
+                        yield return ifStatement;
+                    }
+                    else
+                    {
+                        yield return elseClause;
+                        yield break;
+                    }
+                }
+                else
+                {
+                    yield break;
+                }
+            }
+        }
+
+        public static IfStatementSyntax GetTopmostIf(this IfStatementSyntax ifStatement)
+        {
+            if (ifStatement == null)
+                throw new ArgumentNullException(nameof(ifStatement));
+
+            while (true)
+            {
+                IfStatementSyntax parentIf = GetPreviousIf(ifStatement);
+
+                if (parentIf != null)
+                {
+                    ifStatement = parentIf;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            return ifStatement;
+        }
+
+        public static bool IsTopmostIf(this IfStatementSyntax ifStatement)
+        {
+            if (ifStatement == null)
+                throw new ArgumentNullException(nameof(ifStatement));
+
+            return !ifStatement.IsParentKind(SyntaxKind.ElseClause);
+        }
+
+        public static IfStatementSyntax GetNextIf(this IfStatementSyntax ifStatement)
+        {
+            if (ifStatement == null)
+                throw new ArgumentNullException(nameof(ifStatement));
+
+            StatementSyntax statement = ifStatement.Else?.Statement;
+
+            if (statement?.IsKind(SyntaxKind.IfStatement) == true)
+                return (IfStatementSyntax)statement;
+
+            return null;
+        }
+
+        public static IfStatementSyntax GetPreviousIf(this IfStatementSyntax ifStatement)
+        {
+            if (ifStatement == null)
+                throw new ArgumentNullException(nameof(ifStatement));
+
+            SyntaxNode parent = ifStatement.Parent;
+
+            if (parent?.IsKind(SyntaxKind.ElseClause) == true)
+            {
+                parent = parent.Parent;
+
+                if (parent?.IsKind(SyntaxKind.IfStatement) == true)
+                    return (IfStatementSyntax)parent;
+            }
+
+            return null;
         }
 
         private static StatementSyntax GetSingleStatementOrDefault(StatementSyntax statement)

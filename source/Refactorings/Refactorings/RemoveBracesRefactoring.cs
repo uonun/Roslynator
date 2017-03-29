@@ -94,7 +94,7 @@ namespace Roslynator.CSharp.Refactorings
 
         private static IEnumerable<BlockSyntax> GetBlockStatements(IfStatementSyntax ifStatement)
         {
-            foreach (IfStatementOrElseClause ifOrElse in IfElseHelper.GetChain(ifStatement))
+            foreach (IfStatementOrElseClause ifOrElse in ifStatement.GetChain())
             {
                 StatementSyntax statement = ifOrElse.Statement;
 
@@ -124,9 +124,9 @@ namespace Roslynator.CSharp.Refactorings
             switch (parent?.Kind())
             {
                 case SyntaxKind.IfStatement:
-                    return IfElseHelper.GetTopmostIf((IfStatementSyntax)parent);
+                    return ((IfStatementSyntax)parent).GetTopmostIf();
                 case SyntaxKind.ElseClause:
-                    return IfElseHelper.GetTopmostIf((ElseClauseSyntax)parent);
+                    return ((ElseClauseSyntax)parent).GetTopmostIf();
                 default:
                     return null;
             }
