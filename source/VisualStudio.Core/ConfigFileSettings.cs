@@ -1,32 +1,12 @@
 ﻿// Copyright (c) Josef Pihrt. All rights reserved. Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
 using System.Xml.Linq;
 
 namespace Roslynator.VisualStudio
 {
-    public sealed class ConfigFileSettings
+    public sealed class ConfigFileSettings : Settings
     {
         public const string FileName = "roslynator.config";
-
-        private static ConfigFileSettings _current = new ConfigFileSettings();
-
-        public static ConfigFileSettings Current
-        {
-            get { return _current; }
-            set
-            {
-                if (value == null)
-                    throw new ArgumentException(nameof(value));
-
-                _current = value;
-            }
-        }
-
-        public bool PrefixFieldIdentifierWithUnderscore { get; set; } = true;
-
-        public Dictionary<string, bool> Refactorings { get; set; } = new Dictionary<string, bool>(StringComparer.Ordinal);
 
         public static ConfigFileSettings Load(string uri)
         {

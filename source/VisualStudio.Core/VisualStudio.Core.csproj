@@ -121,6 +121,8 @@
     </Compile>
     <Compile Include="RefactoringModel.cs" />
     <Compile Include="ConfigFileSettings.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="SettingsManager.cs" />
     <Compile Include="XElementExtensions.cs" />
     <Compile Include="TypeConverters\YesNoConverter.cs" />
     <Compile Include="TypeConverters\EnabledDisabledConverter.cs" />

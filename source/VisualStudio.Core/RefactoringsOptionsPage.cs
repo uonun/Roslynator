@@ -16,6 +16,7 @@ namespace Roslynator.VisualStudio
     {
         private const string RefactoringCategory = "Refactoring";
 
+        private bool _isActive;
         private readonly RefactoringsControl _refactoringsControl = new RefactoringsControl();
         private readonly HashSet<string> _disabledRefactorings = new HashSet<string>();
 
@@ -41,11 +42,26 @@ namespace Roslynator.VisualStudio
             }
         }
 
+        internal IEnumerable<string> GetDisabledRefactorings()
+        {
+            foreach (string id in _disabledRefactorings)
+                yield return id;
+        }
+
         protected override void OnActivate(CancelEventArgs e)
         {
             base.OnActivate(e);
 
-            Fill(_refactoringsControl.Refactorings);
+            if (!_isActive)
+            {
+                Fill(_refactoringsControl.Refactorings);
+                _isActive = true;
+            }
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            _isActive = false;
         }
 
         protected override void OnApply(PageApplyEventArgs e)
@@ -55,7 +71,8 @@ namespace Roslynator.VisualStudio
                 foreach (RefactoringModel refactoring in _refactoringsControl.Refactorings)
                     SetIsEnabled(refactoring.Id, refactoring.Enabled);
 
-                ApplyTo(RefactoringSettings.Current);
+                SettingsManager.Instance.UpdateVisualStudioSettings(this);
+                SettingsManager.Instance.ApplyTo(RefactoringSettings.Current);
             }
 
             base.OnApply(e);
