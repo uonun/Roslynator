@@ -48,6 +48,26 @@ namespace Roslynator.Extensions
             return methodSymbol.ReducedFrom ?? methodSymbol;
         }
 
+        internal static bool IsEventHandler(this IMethodSymbol methodSymbol, SemanticModel semanticModel)
+        {
+            if (methodSymbol == null)
+                throw new ArgumentNullException(nameof(methodSymbol));
+
+            if (semanticModel == null)
+                throw new ArgumentNullException(nameof(semanticModel));
+
+            if (methodSymbol.ReturnsVoid)
+            {
+                ImmutableArray<IParameterSymbol> parameters = methodSymbol.Parameters;
+
+                return parameters.Length == 2
+                    && parameters[0].Type.IsObject()
+                    && parameters[1].Type.EqualsOrInheritsFrom(semanticModel.GetTypeByMetadataName(MetadataNames.System_EventArgs));
+            }
+
+            return false;
+        }
+
         //TODO: SingleParameterOrDefault
         public static IParameterSymbol SingleParameterOrDefault(this IPropertySymbol propertySymbol)
         {
@@ -1181,6 +1201,20 @@ namespace Roslynator.Extensions
 
             return typeSymbol.IsClass()
                 && typeSymbol.EqualsOrInheritsFrom(semanticModel.GetTypeByMetadataName(MetadataNames.System_Exception));
+        }
+
+        internal static bool IsEventHandlerOrConstructedFromEventHandlerOfT(
+            this ITypeSymbol typeSymbol,
+            SemanticModel semanticModel)
+        {
+            if (typeSymbol == null)
+                throw new ArgumentNullException(nameof(typeSymbol));
+
+            if (semanticModel == null)
+                throw new ArgumentNullException(nameof(semanticModel));
+
+            return typeSymbol.Equals(semanticModel.GetTypeByMetadataName(MetadataNames.System_EventHandler))
+                || typeSymbol.IsConstructedFrom(semanticModel.GetTypeByMetadataName(MetadataNames.System_EventHandler_T));
         }
 
         public static bool IsParamsOf(this IParameterSymbol parameterSymbol, SpecialType elementType)

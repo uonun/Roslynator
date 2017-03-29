@@ -7,42 +7,8 @@ using Roslynator.Extensions;
 
 namespace Roslynator
 {
-    public static class SymbolUtility
+    internal static class SymbolUtility
     {
-        public static bool IsEventHandlerMethod(IMethodSymbol methodSymbol, SemanticModel semanticModel)
-        {
-            if (methodSymbol == null)
-                throw new ArgumentNullException(nameof(methodSymbol));
-
-            if (semanticModel == null)
-                throw new ArgumentNullException(nameof(semanticModel));
-
-            if (methodSymbol.ReturnsVoid)
-            {
-                ImmutableArray<IParameterSymbol> parameters = methodSymbol.Parameters;
-
-                return parameters.Length == 2
-                    && parameters[0].Type.IsObject()
-                    && parameters[1].Type.EqualsOrInheritsFrom(semanticModel.GetTypeByMetadataName(MetadataNames.System_EventArgs));
-            }
-
-            return false;
-        }
-
-        public static bool IsEventHandlerOrConstructedFromEventHandlerOfT(
-            ITypeSymbol typeSymbol,
-            SemanticModel semanticModel)
-        {
-            if (typeSymbol == null)
-                throw new ArgumentNullException(nameof(typeSymbol));
-
-            if (semanticModel == null)
-                throw new ArgumentNullException(nameof(semanticModel));
-
-            return typeSymbol.Equals(semanticModel.GetTypeByMetadataName(MetadataNames.System_EventHandler))
-                || typeSymbol.IsConstructedFrom(semanticModel.GetTypeByMetadataName(MetadataNames.System_EventHandler_T));
-        }
-
         public static bool IsFunc(ISymbol symbol, ITypeSymbol parameter1, ITypeSymbol parameter2, SemanticModel semanticModel)
         {
             if (symbol == null)
