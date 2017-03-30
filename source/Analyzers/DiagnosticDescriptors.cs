@@ -1659,5 +1659,14 @@ namespace Roslynator.CSharp
             defaultSeverity: DiagnosticSeverity.Hidden,
             isEnabledByDefault: true
         );
+
+        public static readonly DiagnosticDescriptor ReplaceCommentWithDocumentationComment = new DiagnosticDescriptor(
+            id: DiagnosticIdentifiers.ReplaceCommentWithDocumentationComment,
+            title: "Replace comment with documentation comment.",
+            messageFormat: "Replace comment with documentation comment.",
+            category: DiagnosticCategories.General,
+            defaultSeverity: DiagnosticSeverity.Hidden,
+            isEnabledByDefault: true
+        );
     }
 }

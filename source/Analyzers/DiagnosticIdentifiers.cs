@@ -183,5 +183,6 @@ namespace Roslynator.CSharp
         public const string UnusedThisParameter = Prefix + "1175";
         public const string UseVarInsteadOfExplicitTypeWhenTypeIsNotObvious = Prefix + "1176";
         public const string UseVarInsteadOfExplicitTypeInForEach = Prefix + "1177";
+        public const string ReplaceCommentWithDocumentationComment = Prefix + "1178";
     }
 }
