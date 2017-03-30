@@ -26,6 +26,7 @@ namespace Roslynator.CSharp.Refactorings.MakeMemberReadOnly
         public override HashSet<ISymbol> GetAnalyzableSymbols(SymbolAnalysisContext context, INamedTypeSymbol containingType)
         {
             HashSet<ISymbol> analyzableFields = null;
+            var spinLockSymbol = default(Deferred<INamedTypeSymbol>);
 
             foreach (ISymbol member in containingType.GetMembers())
             {
@@ -39,7 +40,13 @@ namespace Roslynator.CSharp.Refactorings.MakeMemberReadOnly
                         && !fieldSymbol.IsVolatile
                         && !fieldSymbol.IsImplicitlyDeclared)
                     {
-                        (analyzableFields ?? (analyzableFields = new HashSet<ISymbol>())).Add(fieldSymbol);
+                        if (!spinLockSymbol.IsSet)
+                            spinLockSymbol = new Deferred<INamedTypeSymbol>(context.Compilation.GetTypeByMetadataName(MetadataNames.System_Threading_SpinLock));
+                        if (spinLockSymbol.Value == null
+                            || !fieldSymbol.Type.Equals(spinLockSymbol.Value))
+                        {
+                            (analyzableFields ?? (analyzableFields = new HashSet<ISymbol>())).Add(fieldSymbol);
+                        }
                     }
                 }
             }
