@@ -42,6 +42,7 @@ namespace Roslynator.CSharp.Refactorings.MakeMemberReadOnly
                     {
                         if (!spinLockSymbol.IsSet)
                             spinLockSymbol = new Deferred<INamedTypeSymbol>(context.Compilation.GetTypeByMetadataName(MetadataNames.System_Threading_SpinLock));
+
                         if (spinLockSymbol.Value == null
                             || !fieldSymbol.Type.Equals(spinLockSymbol.Value))
                         {
