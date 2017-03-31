@@ -295,7 +295,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DefaultRoslynatorConfig.xml" />
+    <Content Include="DefaultConfigFile.xml" />
     <Content Include="Refactorings.xml">
       <SubType>Designer</SubType>
     </Content>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Roslynator>
   <Settings>
     <General>
@@ -184,6 +184,7 @@
       <Refactoring Id="RR0177" IsEnabled="true" /> <!-- WrapInUsingStatement -->
       <Refactoring Id="RR0178" IsEnabled="true" /> <!-- AddTypeParameter -->
       <Refactoring Id="RR0179" IsEnabled="true" /> <!-- ImplementIEquatableOfT -->
+      <Refactoring Id="RR0180" IsEnabled="true" /> <!-- InlineUsingStatic -->
     </Refactorings>
   </Settings>
 </Roslynator>

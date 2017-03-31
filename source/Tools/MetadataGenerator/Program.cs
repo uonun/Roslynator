@@ -86,7 +86,7 @@ namespace MetadataGenerator
             }
 
             SaveFile(
-                Path.Combine(dirPath, @"Refactorings\DefaultRoslynatorConfig.xml"),
+                Path.Combine(dirPath, @"Refactorings\DefaultConfigFile.xml"),
                 XmlGenerator.CreateDefaultConfigFile(refactorings));
 
             SaveFile(
