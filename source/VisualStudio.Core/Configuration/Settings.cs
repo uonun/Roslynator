@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using Roslynator.CSharp.Refactorings;
 
-namespace Roslynator.VisualStudio
+namespace Roslynator.Configuration
 {
     public class Settings
     {

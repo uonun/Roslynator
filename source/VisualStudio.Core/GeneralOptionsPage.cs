@@ -7,6 +7,7 @@ using System.Windows;
 using Microsoft.VisualStudio.Shell;
 using Roslynator.CSharp.Refactorings;
 using Roslynator.VisualStudio.TypeConverters;
+using Roslynator.Configuration;
 
 namespace Roslynator.VisualStudio
 {

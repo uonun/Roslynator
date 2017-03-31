@@ -120,9 +120,9 @@
       <DependentUpon>GeneralOptionsPageControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="RefactoringModel.cs" />
-    <Compile Include="ConfigFileSettings.cs" />
-    <Compile Include="Settings.cs" />
-    <Compile Include="SettingsManager.cs" />
+    <Compile Include="Configuration\ConfigFileSettings.cs" />
+    <Compile Include="Configuration\Settings.cs" />
+    <Compile Include="Configuration\SettingsManager.cs" />
     <Compile Include="XElementExtensions.cs" />
     <Compile Include="TypeConverters\YesNoConverter.cs" />
     <Compile Include="TypeConverters\EnabledDisabledConverter.cs" />

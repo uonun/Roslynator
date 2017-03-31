@@ -2,7 +2,7 @@
 
 using System.Xml.Linq;
 
-namespace Roslynator.VisualStudio
+namespace Roslynator.Configuration
 {
     public sealed class ConfigFileSettings : Settings
     {
