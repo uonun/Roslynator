@@ -19,7 +19,7 @@ Visual Studio does not provide any configuration mechanism for refactorings. Sin
 
 Config file is a XML file that has name **roslynator.config**. It has to be placed in solution root directory.
 
-By default, any setting in config file **overrides** settings from IDE options. This behavior can be disabled by unchecking **Use config file** in the IDE options.
+By default, any setting in config file **overrides** setting from IDE options. This behavior can be disabled by unchecking 'Use config file' in the IDE options.
 
 ### Structure
 
@@ -40,8 +40,8 @@ By default, any setting in config file **overrides** settings from IDE options. 
 ### Benefits
 
 * Config file is not bound to IDE installation.
-* One configuration file can be used by multiple developers.
+* One configuration file can be used by multiple users.
 
 ### Default Config File
 
-Refactorings are distinguished by their identifiers which is not very descriptive. To make config file more desriptive, you can use [Default Config File](source/Refactorings/DefaultConfigFile.xml) which contains comment for each refactoring.
+Refactorings are distinguished by their identifiers which is not very descriptive. To make config file more desriptive, you can use [Default Config File](../source/Refactorings/DefaultConfigFile.xml) which contains comment for each refactoring.
