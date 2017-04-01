@@ -31,7 +31,7 @@ namespace Roslynator.CSharp.Refactorings
                 ITypeSymbol typeSymbol = semanticModel.GetTypeSymbol(expression, context.CancellationToken);
 
                 if (typeSymbol?.IsEnum() == true
-                    && typeSymbol.GetFields().Any())
+                    && typeSymbol.ExistsField())
                 {
                     return true;
                 }

@@ -30,7 +30,11 @@ namespace Roslynator.CSharp.Refactorings
 
         private static void Analyze(SymbolAnalysisContext context, INamedTypeSymbol enumType)
         {
-            IFieldSymbol[] fields = enumType.GetFields().ToArray();
+            IFieldSymbol[] fields = enumType
+                .GetMembers()
+                .Where(f => f.IsField())
+                .Cast<IFieldSymbol>()
+                .ToArray();
 
             switch (enumType.EnumUnderlyingType.SpecialType)
             {

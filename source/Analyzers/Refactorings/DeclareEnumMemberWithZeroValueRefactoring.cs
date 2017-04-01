@@ -52,21 +52,21 @@ namespace Roslynator.CSharp.Refactorings
             switch (enumUnderlyingType.SpecialType)
             {
                 case SpecialType.System_SByte:
-                    return namedTypeSymbol.GetFields().Any(f => f.HasConstantValue((sbyte)0));
+                    return namedTypeSymbol.ExistsField(f => f.HasConstantValue((sbyte)0));
                 case SpecialType.System_Byte:
-                    return namedTypeSymbol.GetFields().Any(f => f.HasConstantValue((byte)0));
+                    return namedTypeSymbol.ExistsField(f => f.HasConstantValue((byte)0));
                 case SpecialType.System_Int16:
-                    return namedTypeSymbol.GetFields().Any(f => f.HasConstantValue((short)0));
+                    return namedTypeSymbol.ExistsField(f => f.HasConstantValue((short)0));
                 case SpecialType.System_UInt16:
-                    return namedTypeSymbol.GetFields().Any(f => f.HasConstantValue((ushort)0));
+                    return namedTypeSymbol.ExistsField(f => f.HasConstantValue((ushort)0));
                 case SpecialType.System_Int32:
-                    return namedTypeSymbol.GetFields().Any(f => f.HasConstantValue((int)0));
+                    return namedTypeSymbol.ExistsField(f => f.HasConstantValue((int)0));
                 case SpecialType.System_UInt32:
-                    return namedTypeSymbol.GetFields().Any(f => f.HasConstantValue((uint)0));
+                    return namedTypeSymbol.ExistsField(f => f.HasConstantValue((uint)0));
                 case SpecialType.System_Int64:
-                    return namedTypeSymbol.GetFields().Any(f => f.HasConstantValue((long)0));
+                    return namedTypeSymbol.ExistsField(f => f.HasConstantValue((long)0));
                 case SpecialType.System_UInt64:
-                    return namedTypeSymbol.GetFields().Any(f => f.HasConstantValue((ulong)0));
+                    return namedTypeSymbol.ExistsField(f => f.HasConstantValue((ulong)0));
                 default:
                     {
                         Debug.Assert(false, enumUnderlyingType.SpecialType.ToString());

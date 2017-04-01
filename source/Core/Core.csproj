@@ -69,12 +69,6 @@
     <Compile Include="CSharp\Extensions\CSharpExtensions.cs" />
     <Compile Include="CSharp\CSharpGeneratedCodeAnalyzer.cs" />
     <Compile Include="CSharp\Extensions\SymbolExtensions.cs" />
-    <Compile Include="CSharp\Extensions\SyntaxNodeExtensions.cs" />
-    <Compile Include="CSharp\Extensions\EnumerableExtensions.cs" />
-    <Compile Include="CSharp\Extensions\SyntaxTokenExtensions.cs" />
-    <Compile Include="CSharp\Extensions\SyntaxTokenListExtensions.cs" />
-    <Compile Include="CSharp\Extensions\SyntaxTriviaExtensions.cs" />
-    <Compile Include="CSharp\Extensions\SyntaxTriviaListExtensions.cs" />
     <Compile Include="CSharp\Formatting\BinaryExpressionToMultiLineRewriter.cs" />
     <Compile Include="CSharp\HexadecimalLiteralInfo.cs" />
     <Compile Include="CSharp\HexadecimalLiteralSuffixKind.cs" />
@@ -187,12 +181,8 @@
     <Compile Include="CSharp\StatementContainer.cs" />
     <Compile Include="Rename\SymbolRenamer.cs" />
     <Compile Include="CSharp\Comparers\ModifierComparer.cs" />
-    <Compile Include="Extensions\SyntaxNodeExtensions.cs" />
-    <Compile Include="Extensions\SyntaxNodeOrTokenExtensions.cs" />
-    <Compile Include="Extensions\SyntaxTokenExtensions.cs" />
-    <Compile Include="Extensions\SyntaxTokenListExtensions.cs" />
+    <Compile Include="Extensions\SyntaxExtensions.cs" />
     <Compile Include="Extensions\SyntaxTreeExtensions.cs" />
-    <Compile Include="Extensions\SyntaxTriviaExtensions.cs" />
     <Compile Include="GeneratedCodeAnalyzer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CSharp\SyntaxRewriters\TriviaRemover.cs" />

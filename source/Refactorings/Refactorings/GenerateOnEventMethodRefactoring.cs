@@ -46,24 +46,29 @@ namespace Roslynator.CSharp.Refactorings
                                 {
                                     ITypeSymbol eventArgsSymbol = GetEventArgsSymbol(eventHandlerType, semanticModel);
 
-                                    if (eventArgsSymbol != null
-                                        && !MethodExists(eventSymbol, containingType, eventArgsSymbol))
+                                    if (eventArgsSymbol != null)
                                     {
                                         string methodName = "On" + eventSymbol.Name;
-                                        methodName = NameGenerator.EnsureUniqueMemberName(methodName, containingType);
 
-                                        context.RegisterRefactoring(
-                                            $"Generate '{methodName}' method",
-                                            cancellationToken =>
-                                            {
-                                                return RefactorAsync(
-                                                    context.Document,
-                                                    eventFieldDeclaration,
-                                                    eventSymbol,
-                                                    eventArgsSymbol,
-                                                    context.SupportsCSharp6,
-                                                    cancellationToken);
-                                            });
+                                        if (!containingType.ExistsMethod(
+                                            $"On{eventSymbol.Name}",
+                                            methodSymbol => eventArgsSymbol.Equals(methodSymbol.SingleParameterOrDefault()?.Type)))
+                                        {
+                                            methodName = NameGenerator.EnsureUniqueMemberName(methodName, containingType);
+
+                                            context.RegisterRefactoring(
+                                                $"Generate '{methodName}' method",
+                                                cancellationToken =>
+                                                {
+                                                    return RefactorAsync(
+                                                        context.Document,
+                                                        eventFieldDeclaration,
+                                                        eventSymbol,
+                                                        eventArgsSymbol,
+                                                        context.SupportsCSharp6,
+                                                        cancellationToken);
+                                                });
+                                        }
                                     }
                                 }
                             }
@@ -71,17 +76,6 @@ namespace Roslynator.CSharp.Refactorings
                     }
                 }
             }
-        }
-
-        private static bool MethodExists(IEventSymbol eventSymbol, INamedTypeSymbol containingType, ITypeSymbol eventArgsSymbol)
-        {
-            foreach (IMethodSymbol methodSymbol in containingType.GetMethods($"On{eventSymbol.Name}"))
-            {
-                if (eventArgsSymbol.Equals(methodSymbol.SingleParameterOrDefault()?.Type))
-                    return true;
-            }
-
-            return false;
         }
 
         private static ITypeSymbol GetEventArgsSymbol(INamedTypeSymbol eventHandlerType, SemanticModel semanticModel)

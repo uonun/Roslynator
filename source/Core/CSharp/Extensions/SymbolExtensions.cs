@@ -18,6 +18,45 @@ namespace Roslynator.CSharp.Extensions
             typeQualificationStyle: SymbolDisplayTypeQualificationStyle.NameAndContainingTypesAndNamespaces,
             miscellaneousOptions: SymbolDisplayMiscellaneousOptions.UseSpecialTypes);
 
+        #region IParameterSymbol
+        internal static ExpressionSyntax GetDefaultValueSyntax(this IParameterSymbol parameterSymbol)
+        {
+            if (parameterSymbol == null)
+                throw new ArgumentNullException(nameof(parameterSymbol));
+
+            if (parameterSymbol.HasExplicitDefaultValue)
+            {
+                object value = parameterSymbol.ExplicitDefaultValue;
+
+                ITypeSymbol type = parameterSymbol.Type;
+
+                if (type.IsEnum())
+                {
+                    if (value != null)
+                    {
+                        IFieldSymbol fieldSymbol = type.FindField(f => f.HasConstantValue && value.Equals(f.ConstantValue));
+
+                        if (fieldSymbol != null)
+                        {
+                            return SimpleMemberAccessExpression(type.ToTypeSyntax(), IdentifierName(fieldSymbol.Name));
+                        }
+                        else
+                        {
+                            return CastExpression(type.ToTypeSyntax().WithSimplifierAnnotation(), ConstantExpression(value));
+                        }
+                    }
+                }
+                else
+                {
+                    return ConstantExpression(value);
+                }
+            }
+
+            return null;
+        }
+        #endregion
+
+        #region ITypeSymbol
         public static TypeSyntax ToTypeSyntax(this ITypeSymbol typeSymbol, SymbolDisplayFormat symbolDisplayFormat = null)
         {
             if (typeSymbol == null)
@@ -130,42 +169,6 @@ namespace Roslynator.CSharp.Extensions
             return DefaultExpression(type);
         }
 
-        internal static ExpressionSyntax GetDefaultValueSyntax(this IParameterSymbol parameterSymbol)
-        {
-            if (parameterSymbol == null)
-                throw new ArgumentNullException(nameof(parameterSymbol));
-
-            if (parameterSymbol.HasExplicitDefaultValue)
-            {
-                object value = parameterSymbol.ExplicitDefaultValue;
-
-                ITypeSymbol type = parameterSymbol.Type;
-
-                if (type.IsEnum())
-                {
-                    if (value != null)
-                    {
-                        foreach (IFieldSymbol fieldSymbol in type.GetFields())
-                        {
-                            if (fieldSymbol.HasConstantValue
-                                && value.Equals(fieldSymbol.ConstantValue))
-                            {
-                                return SimpleMemberAccessExpression(type.ToTypeSyntax(), IdentifierName(fieldSymbol.Name));
-                            }
-                        }
-
-                        return CastExpression(type.ToTypeSyntax().WithSimplifierAnnotation(), ConstantExpression(value));
-                    }
-                }
-                else
-                {
-                    return ConstantExpression(value);
-                }
-            }
-
-            return null;
-        }
-
         public static bool SupportsPredefinedType(this ITypeSymbol typeSymbol)
         {
             if (typeSymbol == null)
@@ -245,5 +248,6 @@ namespace Roslynator.CSharp.Extensions
 
             return typeSymbol.IsEnum();
         }
+        #endregion
     }
 }

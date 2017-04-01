@@ -2,17 +2,20 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.Formatting;
 using Microsoft.CodeAnalysis.Simplification;
 using Microsoft.CodeAnalysis.Text;
 
 namespace Roslynator.Extensions
 {
-    public static class SyntaxNodeExtensions
+    public static class SyntaxExtensions
     {
+        #region SyntaxNode
         public static IEnumerable<SyntaxTrivia> GetLeadingTrailingTrivia(this SyntaxNode node)
         {
             if (node == null)
@@ -208,5 +211,218 @@ namespace Roslynator.Extensions
         {
             return s.Substring(span.Start - node.SpanStart, span.Length);
         }
+        #endregion
+
+        #region SyntaxNodeOrToken
+        public static SyntaxNodeOrToken WithoutLeadingTrivia(this SyntaxNodeOrToken nodeOrToken)
+        {
+            if (nodeOrToken.IsNode)
+            {
+                return nodeOrToken.AsNode().WithoutLeadingTrivia();
+            }
+            else
+            {
+                return nodeOrToken.AsToken().WithoutLeadingTrivia();
+            }
+        }
+
+        public static SyntaxNodeOrToken WithoutTrailingTrivia(this SyntaxNodeOrToken nodeOrToken)
+        {
+            if (nodeOrToken.IsNode)
+            {
+                return nodeOrToken.AsNode().WithoutTrailingTrivia();
+            }
+            else
+            {
+                return nodeOrToken.AsToken().WithoutTrailingTrivia();
+            }
+        }
+        #endregion
+
+        #region SyntaxToken
+        public static SyntaxToken PrependToLeadingTrivia(this SyntaxToken token, IEnumerable<SyntaxTrivia> trivia)
+        {
+            if (trivia == null)
+                throw new ArgumentNullException(nameof(trivia));
+
+            return token.WithLeadingTrivia(trivia.Concat(token.LeadingTrivia));
+        }
+
+        public static SyntaxToken PrependToLeadingTrivia(this SyntaxToken token, SyntaxTrivia trivia)
+        {
+            return token.WithLeadingTrivia(token.LeadingTrivia.Insert(0, trivia));
+        }
+
+        public static SyntaxToken AppendToTrailingTrivia(this SyntaxToken token, IEnumerable<SyntaxTrivia> trivia)
+        {
+            if (trivia == null)
+                throw new ArgumentNullException(nameof(trivia));
+
+            return token.WithTrailingTrivia(token.TrailingTrivia.AddRange(trivia));
+        }
+
+        public static SyntaxToken AppendToTrailingTrivia(this SyntaxToken token, SyntaxTrivia trivia)
+        {
+            return token.WithTrailingTrivia(token.TrailingTrivia.Add(trivia));
+        }
+
+        public static IEnumerable<SyntaxTrivia> GetLeadingTrailingTrivia(this SyntaxToken token)
+        {
+            return token.LeadingTrivia.Concat(token.TrailingTrivia);
+        }
+
+        public static int GetSpanStartLine(this SyntaxToken token, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            if (token.SyntaxTree != null)
+            {
+                return token.SyntaxTree.GetLineSpan(token.Span, cancellationToken).StartLine();
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        public static int GetFullSpanStartLine(this SyntaxToken token, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            if (token.SyntaxTree != null)
+            {
+                return token.SyntaxTree.GetLineSpan(token.FullSpan, cancellationToken).StartLine();
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        public static int GetSpanEndLine(this SyntaxToken token, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            if (token.SyntaxTree != null)
+            {
+                return token.SyntaxTree.GetLineSpan(token.Span, cancellationToken).EndLine();
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        public static int GetFullSpanEndLine(this SyntaxToken token, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            if (token.SyntaxTree != null)
+            {
+                return token.SyntaxTree.GetLineSpan(token.FullSpan, cancellationToken).EndLine();
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        public static SyntaxToken WithoutLeadingTrivia(this SyntaxToken token)
+        {
+            return token.WithLeadingTrivia(default(SyntaxTriviaList));
+        }
+
+        public static SyntaxToken WithoutTrailingTrivia(this SyntaxToken token)
+        {
+            return token.WithTrailingTrivia(default(SyntaxTriviaList));
+        }
+
+        public static SyntaxToken WithFormatterAnnotation(this SyntaxToken token)
+        {
+            return token.WithAdditionalAnnotations(Formatter.Annotation);
+        }
+
+        public static SyntaxToken WithSimplifierAnnotation(this SyntaxToken token)
+        {
+            return token.WithAdditionalAnnotations(Simplifier.Annotation);
+        }
+
+        public static SyntaxToken WithRenameAnnotation(this SyntaxToken token)
+        {
+            return token.WithAdditionalAnnotations(RenameAnnotation.Create());
+        }
+        #endregion
+
+        #region SyntaxTokenList
+        public static SyntaxTokenList ReplaceAt(this SyntaxTokenList tokenList, int index, SyntaxToken newToken)
+        {
+            return tokenList.Replace(tokenList[index], newToken);
+        }
+        #endregion
+
+        #region SyntaxTriviaList
+        public static SyntaxTriviaList GetContainingList(this SyntaxTrivia trivia)
+        {
+            SyntaxToken token = trivia.Token;
+
+            SyntaxTriviaList leadingTrivia = token.LeadingTrivia;
+
+            int index = leadingTrivia.IndexOf(trivia);
+
+            if (index != -1)
+                return token.LeadingTrivia;
+
+            SyntaxTriviaList trailingTrivia = token.TrailingTrivia;
+
+            index = trailingTrivia.IndexOf(trivia);
+
+            if (index != -1)
+                return token.TrailingTrivia;
+
+            Debug.Assert(false, "containing trivia list not found");
+
+            return default(SyntaxTriviaList);
+        }
+
+        public static int GetSpanStartLine(this SyntaxTrivia trivia, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            if (trivia.SyntaxTree != null)
+            {
+                return trivia.SyntaxTree.GetLineSpan(trivia.Span, cancellationToken).StartLine();
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        public static int GetFullSpanStartLine(this SyntaxTrivia trivia, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            if (trivia.SyntaxTree != null)
+            {
+                return trivia.SyntaxTree.GetLineSpan(trivia.FullSpan, cancellationToken).StartLine();
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        public static int GetSpanEndLine(this SyntaxTrivia trivia, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            if (trivia.SyntaxTree != null)
+            {
+                return trivia.SyntaxTree.GetLineSpan(trivia.Span, cancellationToken).EndLine();
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        public static int GetFullSpanEndLine(this SyntaxTrivia trivia, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            if (trivia.SyntaxTree != null)
+            {
+                return trivia.SyntaxTree.GetLineSpan(trivia.FullSpan, cancellationToken).EndLine();
+            }
+            else
+            {
+                return -1;
+            }
+        }
+        #endregion
     }
 }

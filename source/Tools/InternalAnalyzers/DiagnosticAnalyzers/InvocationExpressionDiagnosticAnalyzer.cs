@@ -164,14 +164,19 @@ namespace Roslynator.CSharp.Internal.DiagnosticAnalyzers
         {
             if (newExtensionsClassSymbol != null)
             {
-                foreach (IMethodSymbol methodSymbol in newExtensionsClassSymbol.GetMethods("Is" + elementName))
+                foreach (ISymbol symbol in newExtensionsClassSymbol.GetMembers("Is" + elementName))
                 {
-                    if (methodSymbol.IsPublic()
-                        && methodSymbol.IsStatic
-                        && methodSymbol.ReturnType.IsBoolean()
-                        && methodSymbol.SingleParameterOrDefault()?.Type.Equals(typeSymbol) == true)
+                    if (symbol.IsMethod())
                     {
-                        return true;
+                        var methodSymbol = (IMethodSymbol)symbol;
+
+                        if (methodSymbol.IsPublic()
+                            && methodSymbol.IsStatic
+                            && methodSymbol.ReturnType.IsBoolean()
+                            && methodSymbol.SingleParameterOrDefault()?.Type.Equals(typeSymbol) == true)
+                        {
+                            return true;
+                        }
                     }
                 }
             }
