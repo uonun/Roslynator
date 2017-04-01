@@ -18,7 +18,7 @@ namespace Roslynator.CSharp.Refactorings
 {
     internal static class DeclareEnumMemberWithZeroValueRefactoring
     {
-        public static void Analyze(SymbolAnalysisContext context)
+        public static void AnalyzeNamedType(SymbolAnalysisContext context)
         {
             var namedTypeSymbol = (INamedTypeSymbol)context.Symbol;
 

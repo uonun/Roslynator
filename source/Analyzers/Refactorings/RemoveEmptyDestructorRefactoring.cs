@@ -13,8 +13,10 @@ namespace Roslynator.CSharp.Refactorings
 {
     internal static class RemoveEmptyDestructorRefactoring
     {
-        public static void Analyze(SyntaxNodeAnalysisContext context, DestructorDeclarationSyntax destructor)
+        public static void AnalyzeDestructorDeclaration(SyntaxNodeAnalysisContext context)
         {
+            var destructor = (DestructorDeclarationSyntax)context.Node;
+
             if (destructor.Body?.Statements.Count == 0
                 && !destructor.SpanContainsDirectives())
             {

@@ -16,8 +16,10 @@ namespace Roslynator.CSharp.Refactorings
 {
     internal static class RemoveRedundantOverridingMemberRefactoring
     {
-        internal static void Analyze(SyntaxNodeAnalysisContext context, MethodDeclarationSyntax methodDeclaration)
+        public static void AnalyzeMethodDeclaration(SyntaxNodeAnalysisContext context)
         {
+            var methodDeclaration = (MethodDeclarationSyntax)context.Node;
+
             SyntaxTokenList modifiers = methodDeclaration.Modifiers;
 
             if (modifiers.Contains(SyntaxKind.OverrideKeyword)
@@ -125,8 +127,10 @@ namespace Roslynator.CSharp.Refactorings
             return null;
         }
 
-        internal static void Analyze(SyntaxNodeAnalysisContext context, PropertyDeclarationSyntax propertyDeclaration)
+        public static void AnalyzePropertyDeclaration(SyntaxNodeAnalysisContext context)
         {
+            var propertyDeclaration = (PropertyDeclarationSyntax)context.Node;
+
             SyntaxTokenList modifiers = propertyDeclaration.Modifiers;
 
             if (modifiers.Contains(SyntaxKind.OverrideKeyword)
@@ -246,8 +250,10 @@ namespace Roslynator.CSharp.Refactorings
             }
         }
 
-        internal static void Analyze(SyntaxNodeAnalysisContext context, IndexerDeclarationSyntax indexerDeclaration)
+        public static void AnalyzeIndexerDeclaration(SyntaxNodeAnalysisContext context)
         {
+            var indexerDeclaration = (IndexerDeclarationSyntax)context.Node;
+
             SyntaxTokenList modifiers = indexerDeclaration.Modifiers;
 
             if (modifiers.Contains(SyntaxKind.OverrideKeyword)

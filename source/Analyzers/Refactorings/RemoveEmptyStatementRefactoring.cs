@@ -12,8 +12,10 @@ namespace Roslynator.CSharp.Refactorings
 {
     internal static class RemoveEmptyStatementRefactoring
     {
-        public static void Analyze(SyntaxNodeAnalysisContext context, SyntaxNode emptyStatement)
+        public static void AnalyzeEmptyStatement(SyntaxNodeAnalysisContext context)
         {
+            SyntaxNode emptyStatement = context.Node;
+
             SyntaxNode parent = emptyStatement.Parent;
 
             if (parent != null

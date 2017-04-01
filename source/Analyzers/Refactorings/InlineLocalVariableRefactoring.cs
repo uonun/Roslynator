@@ -19,8 +19,10 @@ namespace Roslynator.CSharp.Refactorings
 {
     internal static class InlineLocalVariableRefactoring
     {
-        public static void Analyze(SyntaxNodeAnalysisContext context, LocalDeclarationStatementSyntax localDeclaration)
+        public static void AnalyzeLocalDeclarationStatement(SyntaxNodeAnalysisContext context)
         {
+            var localDeclaration = (LocalDeclarationStatementSyntax)context.Node;
+
             VariableDeclarationSyntax declaration = localDeclaration.Declaration;
 
             if (declaration != null)

@@ -16,20 +16,26 @@ namespace Roslynator.CSharp.Refactorings
 {
     internal static class FormatDeclarationBracesRefactoring
     {
-        public static void Analyze(SyntaxNodeAnalysisContext context, ClassDeclarationSyntax classDeclaration)
+        public static void AnalyzeClassDeclaration(SyntaxNodeAnalysisContext context)
         {
+            var classDeclaration = (ClassDeclarationSyntax)context.Node;
+
             if (!classDeclaration.Members.Any())
                 Analyze(context, classDeclaration, classDeclaration.OpenBraceToken, classDeclaration.CloseBraceToken);
         }
 
-        public static void Analyze(SyntaxNodeAnalysisContext context, StructDeclarationSyntax structDeclaration)
+        public static void AnalyzeStructDeclaration(SyntaxNodeAnalysisContext context)
         {
+            var structDeclaration = (StructDeclarationSyntax)context.Node;
+
             if (!structDeclaration.Members.Any())
                 Analyze(context, structDeclaration, structDeclaration.OpenBraceToken, structDeclaration.CloseBraceToken);
         }
 
-        public static void Analyze(SyntaxNodeAnalysisContext context, InterfaceDeclarationSyntax interfaceDeclaration)
+        public static void AnalyzeInterfaceDeclaration(SyntaxNodeAnalysisContext context)
         {
+            var interfaceDeclaration = (InterfaceDeclarationSyntax)context.Node;
+
             if (!interfaceDeclaration.Members.Any())
                 Analyze(context, interfaceDeclaration, interfaceDeclaration.OpenBraceToken, interfaceDeclaration.CloseBraceToken);
         }

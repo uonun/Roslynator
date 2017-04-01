@@ -18,8 +18,10 @@ namespace Roslynator.CSharp.Refactorings
 {
     internal static class MergeSwitchSectionsRefactoring
     {
-        public static void Analyze(SyntaxNodeAnalysisContext context, SwitchStatementSyntax switchStatement)
+        public static void AnalyzeSwitchStatement(SyntaxNodeAnalysisContext context)
         {
+            var switchStatement = (SwitchStatementSyntax)context.Node;
+
             SyntaxList<SwitchSectionSyntax> sections = switchStatement.Sections;
 
             if (sections.Count > 1)

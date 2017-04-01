@@ -16,8 +16,10 @@ namespace Roslynator.CSharp.Refactorings
 {
     internal static class RemoveEmptyRegionRefactoring
     {
-        public static void Analyze(SyntaxNodeAnalysisContext context, RegionDirectiveTriviaSyntax region)
+        public static void AnalyzeRegionDirective(SyntaxNodeAnalysisContext context)
         {
+            var region = (RegionDirectiveTriviaSyntax)context.Node;
+
             if (region.IsKind(SyntaxKind.RegionDirectiveTrivia))
             {
                 List<DirectiveTriviaSyntax> relatedDirectives = region.GetRelatedDirectives();

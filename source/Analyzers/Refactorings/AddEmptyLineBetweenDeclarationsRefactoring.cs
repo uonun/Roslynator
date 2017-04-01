@@ -16,8 +16,10 @@ namespace Roslynator.CSharp.Refactorings
 {
     internal static class AddEmptyLineBetweenDeclarationsRefactoring
     {
-        public static void Analyze(SyntaxNodeAnalysisContext context, MemberDeclarationSyntax declaration)
+        public static void AnalyzeMemberDeclaration(SyntaxNodeAnalysisContext context)
         {
+            var declaration = (MemberDeclarationSyntax)context.Node;
+
             if (!declaration.IsParentKind(SyntaxKind.CompilationUnit))
             {
                 TokenPair tokenPair = GetTokenPair(declaration);

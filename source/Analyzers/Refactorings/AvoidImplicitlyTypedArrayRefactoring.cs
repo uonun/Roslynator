@@ -15,8 +15,10 @@ namespace Roslynator.CSharp.Refactorings
 {
     internal static class AvoidImplicitlyTypedArrayRefactoring
     {
-        public static void Analyze(SyntaxNodeAnalysisContext context, ImplicitArrayCreationExpressionSyntax expression)
+        public static void AnalyzeImplicitArrayCreationExpression(SyntaxNodeAnalysisContext context)
         {
+            var expression = (ImplicitArrayCreationExpressionSyntax)context.Node;
+
             SyntaxToken newKeyword = expression.NewKeyword;
             SyntaxToken openBracket = expression.OpenBracketToken;
             SyntaxToken closeBracket = expression.CloseBracketToken;

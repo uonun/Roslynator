@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Josef Pihrt. All rights reserved. Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using System;
 using System.Collections.Immutable;
 using System.Threading;
 using System.Threading.Tasks;
@@ -9,7 +8,6 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Text;
-using Roslynator.CSharp.Analysis;
 using Roslynator.CSharp.Extensions;
 using Roslynator.Diagnostics.Extensions;
 using Roslynator.Extensions;
@@ -19,8 +17,10 @@ namespace Roslynator.CSharp.Refactorings
 {
     internal static class CallStringConcatInsteadOfStringJoinRefactoring
     {
-        public static void Analyze(SyntaxNodeAnalysisContext context, InvocationExpressionSyntax invocation)
+        public static void AnalyzeInvocationExpression(SyntaxNodeAnalysisContext context)
         {
+            var invocation = (InvocationExpressionSyntax)context.Node;
+
             ExpressionSyntax expression = invocation.Expression;
 
             if (expression?.IsKind(SyntaxKind.SimpleMemberAccessExpression) == true)

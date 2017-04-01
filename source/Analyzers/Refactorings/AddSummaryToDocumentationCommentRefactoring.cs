@@ -19,8 +19,10 @@ namespace Roslynator.CSharp.Refactorings
 {
     internal static class AddSummaryToDocumentationCommentRefactoring
     {
-        public static void Analyze(SyntaxNodeAnalysisContext context, DocumentationCommentTriviaSyntax documentationComment)
+        public static void AnalyzeSingleLineDocumentationCommentTrivia(SyntaxNodeAnalysisContext context)
         {
+            var documentationComment = (DocumentationCommentTriviaSyntax)context.Node;
+
             bool containsInheritDoc = false;
             bool containsInclude = false;
             bool containsSummaryElement = false;

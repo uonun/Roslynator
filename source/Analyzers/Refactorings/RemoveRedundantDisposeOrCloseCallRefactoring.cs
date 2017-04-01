@@ -14,8 +14,10 @@ namespace Roslynator.CSharp.Refactorings
 {
     internal static class RemoveRedundantDisposeOrCloseCallRefactoring
     {
-        public static void Analyze(SyntaxNodeAnalysisContext context, UsingStatementSyntax usingStatement)
+        public static void AnalyzeUsingStatement(SyntaxNodeAnalysisContext context)
         {
+            var usingStatement = (UsingStatementSyntax)context.Node;
+
             StatementSyntax statement = usingStatement.Statement;
 
             if (statement?.IsKind(SyntaxKind.Block) == true)

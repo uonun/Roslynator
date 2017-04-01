@@ -15,17 +15,21 @@ namespace Roslynator.CSharp.Refactorings
 {
     internal static class RemoveRedundantSealedModifierRefactoring
     {
-        public static void Analyze(SyntaxNodeAnalysisContext context, PropertyDeclarationSyntax propertyDeclaration)
+        public static void AnalyzePropertyDeclaration(SyntaxNodeAnalysisContext context)
         {
-            AnalyzePrivate(context, propertyDeclaration);
+            var propertyDeclaration = (PropertyDeclarationSyntax)context.Node;
+
+            Analyze(context, propertyDeclaration);
         }
 
-        public static void Analyze(SyntaxNodeAnalysisContext context, MethodDeclarationSyntax methodDeclaration)
+        public static void AnalyzeMethodDeclaration(SyntaxNodeAnalysisContext context)
         {
-            AnalyzePrivate(context, methodDeclaration);
+            var methodDeclaration = (MethodDeclarationSyntax)context.Node;
+
+            Analyze(context, methodDeclaration);
         }
 
-        private static void AnalyzePrivate(SyntaxNodeAnalysisContext context, MemberDeclarationSyntax declaration)
+        private static void Analyze(SyntaxNodeAnalysisContext context, MemberDeclarationSyntax declaration)
         {
             ISymbol symbol = context.SemanticModel.GetDeclaredSymbol(declaration, context.CancellationToken);
 

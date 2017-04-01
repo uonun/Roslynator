@@ -16,8 +16,10 @@ namespace Roslynator.CSharp.Refactorings
 {
     internal static class SimplifyNullableOfTRefactoring
     {
-        public static void Analyze(SyntaxNodeAnalysisContext context, GenericNameSyntax genericName)
+        public static void AnalyzeGenericName(SyntaxNodeAnalysisContext context)
         {
+            var genericName = (GenericNameSyntax)context.Node;
+
             if (!genericName.IsParentKind(SyntaxKind.QualifiedName, SyntaxKind.UsingDirective))
             {
                 TypeArgumentListSyntax typeArgumentList = genericName.TypeArgumentList;

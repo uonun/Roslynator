@@ -15,8 +15,10 @@ namespace Roslynator.CSharp.Refactorings.FormatSummary
 {
     internal static class FormatSummaryOnSingleLineRefactoring
     {
-        public static void Analyze(SyntaxNodeAnalysisContext context, DocumentationCommentTriviaSyntax documentationComment)
+        public static void AnalyzeSingleLineDocumentationCommentTrivia(SyntaxNodeAnalysisContext context)
         {
+            var documentationComment = (DocumentationCommentTriviaSyntax)context.Node;
+
             XmlElementSyntax summaryElement = documentationComment.SummaryElement();
 
             if (summaryElement != null)

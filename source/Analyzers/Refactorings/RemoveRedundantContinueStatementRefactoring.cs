@@ -14,8 +14,10 @@ namespace Roslynator.CSharp.Refactorings
 {
     internal static class RemoveRedundantContinueStatementRefactoring
     {
-        public static void Analyze(SyntaxNodeAnalysisContext context, ContinueStatementSyntax continueStatement)
+        public static void Analyze(SyntaxNodeAnalysisContext context)
         {
+            var continueStatement = (ContinueStatementSyntax)context.Node;
+
             SyntaxNode parent = continueStatement.Parent;
 
             if (parent?.IsKind(SyntaxKind.Block) == true)

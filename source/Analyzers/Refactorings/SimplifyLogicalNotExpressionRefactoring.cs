@@ -15,8 +15,10 @@ namespace Roslynator.CSharp.Refactorings
 {
     internal static class SimplifyLogicalNotExpressionRefactoring
     {
-        public static void Analyze(SyntaxNodeAnalysisContext context, PrefixUnaryExpressionSyntax logicalNot)
+        public static void AnalyzeLogicalNotExpression(SyntaxNodeAnalysisContext context)
         {
+            var logicalNot = (PrefixUnaryExpressionSyntax)context.Node;
+
             ExpressionSyntax operand = logicalNot.Operand;
 
             switch (operand?.Kind())

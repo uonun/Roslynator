@@ -14,8 +14,10 @@ namespace Roslynator.CSharp.Refactorings
 {
     internal static class AvoidLockingOnPubliclyAccessibleInstanceRefactoring
     {
-        public static void Analyze(SyntaxNodeAnalysisContext context, LockStatementSyntax lockStatement)
+        public static void AnalyzeLockStatement(SyntaxNodeAnalysisContext context)
         {
+            var lockStatement = (LockStatementSyntax)context.Node;
+
             ExpressionSyntax expression = lockStatement.Expression;
 
             if (expression?.IsKind(SyntaxKind.ThisExpression, SyntaxKind.TypeOfExpression) == true)

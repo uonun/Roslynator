@@ -15,8 +15,10 @@ namespace Roslynator.CSharp.Refactorings
 {
     internal static class RemoveEmptyFinallyClauseRefactoring
     {
-        public static void Analyze(SyntaxNodeAnalysisContext context, FinallyClauseSyntax finallyClause)
+        public static void AnalyzeFinallyClause(SyntaxNodeAnalysisContext context)
         {
+            var finallyClause = (FinallyClauseSyntax)context.Node;
+
             if (finallyClause.IsParentKind(SyntaxKind.TryStatement))
             {
                 var tryStatement = (TryStatementSyntax)finallyClause.Parent;

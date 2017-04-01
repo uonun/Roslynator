@@ -20,8 +20,10 @@ namespace Roslynator.CSharp.Refactorings
 {
     internal static class MergeLocalDeclarationWithAssignmentRefactoring
     {
-        public static void Analyze(SyntaxNodeAnalysisContext context, LocalDeclarationStatementSyntax localDeclaration)
+        public static void AnalyzeLocalDeclarationStatement(SyntaxNodeAnalysisContext context)
         {
+            var localDeclaration = (LocalDeclarationStatementSyntax)context.Node;
+
             if (!localDeclaration.IsConst
                 && !localDeclaration.SpanOrTrailingTriviaContainsDirectives())
             {

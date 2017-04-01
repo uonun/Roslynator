@@ -15,13 +15,10 @@ namespace Roslynator.CSharp.Refactorings
 {
     internal static class SimplifyLambdaExpressionParameterListRefactoring
     {
-        private static DiagnosticDescriptor FadeOutDescriptor
+        public static void AnalyzeParenthesizedLambdaExpression(SyntaxNodeAnalysisContext context)
         {
-            get { return DiagnosticDescriptors.SimplifyLambdaExpressionParameterListFadeOut; }
-        }
+            var lambda = (ParenthesizedLambdaExpressionSyntax)context.Node;
 
-        public static void Analyze(SyntaxNodeAnalysisContext context, ParenthesizedLambdaExpressionSyntax lambda)
-        {
             ParameterListSyntax parameterList = lambda.ParameterList;
 
             if (parameterList != null)
@@ -68,13 +65,13 @@ namespace Roslynator.CSharp.Refactorings
                 foreach (ParameterSyntax parameter in parameters)
                 {
                     if (parameter.Type != null)
-                        context.ReportNode(FadeOutDescriptor, parameter.Type);
+                        context.ReportNode(DiagnosticDescriptors.SimplifyLambdaExpressionParameterListFadeOut, parameter.Type);
                 }
 
                 if (parameters.Count == 1)
                 {
-                    context.ReportToken(FadeOutDescriptor, parameterList.OpenParenToken);
-                    context.ReportToken(FadeOutDescriptor, parameterList.CloseParenToken);
+                    context.ReportToken(DiagnosticDescriptors.SimplifyLambdaExpressionParameterListFadeOut, parameterList.OpenParenToken);
+                    context.ReportToken(DiagnosticDescriptors.SimplifyLambdaExpressionParameterListFadeOut, parameterList.CloseParenToken);
                 }
             }
         }

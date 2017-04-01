@@ -18,8 +18,10 @@ namespace Roslynator.CSharp.Refactorings
 {
     internal static class RemoveRedundantCastRefactoring
     {
-        public static void Analyze(SyntaxNodeAnalysisContext context, CastExpressionSyntax castExpression)
+        public static void AnalyzeCastExpression(SyntaxNodeAnalysisContext context)
         {
+            var castExpression = (CastExpressionSyntax)context.Node;
+
             SyntaxNode parent = castExpression.Parent;
 
             if (parent?.IsKind(SyntaxKind.ParenthesizedExpression) == true)
@@ -119,8 +121,10 @@ namespace Roslynator.CSharp.Refactorings
             }
         }
 
-        internal static void Analyze(SyntaxNodeAnalysisContext context, InvocationExpressionSyntax invocation)
+        internal static void AnalyzeInvocationExpression(SyntaxNodeAnalysisContext context)
         {
+            var invocation = (InvocationExpressionSyntax)context.Node;
+
             ExpressionSyntax expression = invocation.Expression;
 
             if (expression?.IsKind(SyntaxKind.SimpleMemberAccessExpression) == true)

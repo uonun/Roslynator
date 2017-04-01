@@ -12,8 +12,10 @@ namespace Roslynator.CSharp.Refactorings
 {
     internal static class RenamePrivateFieldAccordingToCamelCaseWithUnderscoreRefactoring
     {
-        public static void Analyze(SymbolAnalysisContext context, IFieldSymbol fieldSymbol)
+        public static void AnalyzeFieldSymbol(SymbolAnalysisContext context)
         {
+            var fieldSymbol = (IFieldSymbol)context.Symbol;
+
             if (!fieldSymbol.IsConst
                 && !fieldSymbol.IsImplicitlyDeclared
                 && fieldSymbol.IsPrivate()

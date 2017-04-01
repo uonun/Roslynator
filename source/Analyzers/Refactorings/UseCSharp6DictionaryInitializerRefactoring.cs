@@ -19,8 +19,10 @@ namespace Roslynator.CSharp.Refactorings
 {
     internal static class UseCSharp6DictionaryInitializerRefactoring
     {
-        public static void Analyze(SyntaxNodeAnalysisContext context, InitializerExpressionSyntax initializer)
+        public static void AnalyzeComplexElementInitializerExpression(SyntaxNodeAnalysisContext context)
         {
+            var initializer = (InitializerExpressionSyntax)context.Node;
+
             SeparatedSyntaxList<ExpressionSyntax> expressions = initializer.Expressions;
 
             if (expressions.Count == 2)

@@ -18,8 +18,10 @@ namespace Roslynator.CSharp.Refactorings
 {
     internal static class FormatAccessorListRefactoring
     {
-        public static void Analyze(SyntaxNodeAnalysisContext context, AccessorListSyntax accessorList)
+        public static void AnalyzeAccessorList(SyntaxNodeAnalysisContext context)
         {
+            var accessorList = (AccessorListSyntax)context.Node;
+
             SyntaxList<AccessorDeclarationSyntax> accessors = accessorList.Accessors;
 
             if (accessors.Any(f => f.BodyOrExpressionBody() != null))

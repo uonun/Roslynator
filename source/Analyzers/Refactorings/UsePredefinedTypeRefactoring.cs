@@ -14,8 +14,10 @@ namespace Roslynator.CSharp.Refactorings
 {
     internal static class UsePredefinedTypeRefactoring
     {
-        public static void Analyze(SyntaxNodeAnalysisContext context, IdentifierNameSyntax identifierName)
+        public static void AnalyzeIdentifierName(SyntaxNodeAnalysisContext context)
         {
+            var identifierName = (IdentifierNameSyntax)context.Node;
+
             if (!identifierName.IsVar
                 && !identifierName.IsParentKind(
                     SyntaxKind.SimpleMemberAccessExpression,

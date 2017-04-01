@@ -20,13 +20,10 @@ namespace Roslynator.CSharp.Refactorings
 {
     internal static class UseAutoPropertyRefactoring
     {
-        public static DiagnosticDescriptor FadeOutDescriptor
+        public static void AnalyzePropertyDeclaration(SyntaxNodeAnalysisContext context)
         {
-            get { return DiagnosticDescriptors.UseAutoPropertyFadeOut; }
-        }
+            var property = (PropertyDeclarationSyntax)context.Node;
 
-        public static void Analyze(SyntaxNodeAnalysisContext context, PropertyDeclarationSyntax property)
-        {
             IFieldSymbol fieldSymbol = GetBackingFieldSymbol(property, context.SemanticModel, context.CancellationToken);
 
             if (fieldSymbol != null)
@@ -51,7 +48,7 @@ namespace Roslynator.CSharp.Refactorings
 
                         if (property.ExpressionBody != null)
                         {
-                            context.ReportNode(FadeOutDescriptor, property.ExpressionBody);
+                            context.ReportNode(DiagnosticDescriptors.UseAutoPropertyFadeOut, property.ExpressionBody);
                         }
                         else
                         {
@@ -82,21 +79,21 @@ namespace Roslynator.CSharp.Refactorings
                 {
                     case SyntaxKind.ReturnStatement:
                         {
-                            context.ReportNode(FadeOutDescriptor, ((ReturnStatementSyntax)statement).Expression);
+                            context.ReportNode(DiagnosticDescriptors.UseAutoPropertyFadeOut, ((ReturnStatementSyntax)statement).Expression);
                             break;
                         }
                     case SyntaxKind.ExpressionStatement:
                         {
-                            context.ReportNode(FadeOutDescriptor, ((ExpressionStatementSyntax)statement).Expression);
+                            context.ReportNode(DiagnosticDescriptors.UseAutoPropertyFadeOut, ((ExpressionStatementSyntax)statement).Expression);
                             break;
                         }
                 }
 
-                context.ReportBraces(FadeOutDescriptor, body);
+                context.ReportBraces(DiagnosticDescriptors.UseAutoPropertyFadeOut, body);
             }
             else
             {
-                context.ReportNode(FadeOutDescriptor, getter.ExpressionBody);
+                context.ReportNode(DiagnosticDescriptors.UseAutoPropertyFadeOut, getter.ExpressionBody);
             }
         }
 
