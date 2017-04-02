@@ -58,58 +58,11 @@ namespace Roslynator
             if (semanticModel == null)
                 throw new ArgumentNullException(nameof(semanticModel));
 
-            SyntaxNode container = FindContainer(semanticModel, position, cancellationToken);
+            ImmutableArray<ISymbol> symbols = semanticModel
+                .GetSymbolsDeclaredInEnclosingSymbol(position, excludeAnonymousTypeProperty: true, cancellationToken: cancellationToken)
+                .AddRange(semanticModel.LookupSymbols(position));
 
-            HashSet<ISymbol> containerSymbols = GetContainerSymbols(container, semanticModel, cancellationToken);
-
-            IEnumerable<string> reservedNames = semanticModel
-                .LookupSymbols(position)
-                .Select(f => f.Name)
-                .Concat(containerSymbols.Select(f => f.Name));
-
-            return EnsureUniqueName(baseName, reservedNames);
-        }
-
-        private static SyntaxNode FindContainer(SemanticModel semanticModel, int position, CancellationToken cancellationToken)
-        {
-            ISymbol enclosingSymbol = semanticModel.GetEnclosingSymbol(position, cancellationToken);
-
-            ImmutableArray<SyntaxReference> syntaxReferences = enclosingSymbol.DeclaringSyntaxReferences;
-
-            if (syntaxReferences.Length == 1)
-            {
-                return syntaxReferences[0].GetSyntax(cancellationToken);
-            }
-            else
-            {
-                foreach (SyntaxReference syntaxReference in syntaxReferences)
-                {
-                    SyntaxNode syntax = syntaxReference.GetSyntax(cancellationToken);
-
-                    if (syntax.SyntaxTree == semanticModel.SyntaxTree)
-                        return syntax;
-                }
-            }
-
-            return null;
-        }
-
-        private static HashSet<ISymbol> GetContainerSymbols(
-            SyntaxNode container,
-            SemanticModel semanticModel,
-            CancellationToken cancellationToken)
-        {
-            var symbols = new HashSet<ISymbol>();
-
-            foreach (SyntaxNode node in container.DescendantNodesAndSelf())
-            {
-                ISymbol symbol = semanticModel.GetDeclaredSymbol(node, cancellationToken);
-
-                if (symbol?.IsAnonymousTypeProperty() == false)
-                    symbols.Add(symbol);
-            }
-
-            return symbols;
+            return EnsureUniqueName(baseName, symbols);
         }
 
         public static async Task<string> EnsureUniqueParameterNameAsync(
