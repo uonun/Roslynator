@@ -45,8 +45,7 @@ namespace Roslynator.CSharp.Extensions
                 && accessorDeclaration.BodyOrExpressionBody() == null;
         }
 
-        internal static AccessorDeclarationSyntax WithoutSemicolonToken(
-            this AccessorDeclarationSyntax accessorDeclaration)
+        internal static AccessorDeclarationSyntax WithoutSemicolonToken(this AccessorDeclarationSyntax accessorDeclaration)
         {
             return accessorDeclaration.WithSemicolonToken(default(SyntaxToken));
         }
@@ -85,6 +84,7 @@ namespace Roslynator.CSharp.Extensions
         #endregion
 
         #region BlockSyntax
+        //TODO: SingleStatementOrDefault
         public static StatementSyntax SingleStatementOrDefault(this BlockSyntax body)
         {
             if (body == null)
@@ -340,7 +340,7 @@ namespace Roslynator.CSharp.Extensions
                 constructorDeclaration.ParameterList?.Span.End ?? constructorDeclaration.Identifier.Span.End);
         }
 
-        public static TextSpan HeaderSpanIncludingInitializer(this ConstructorDeclarationSyntax constructorDeclaration)
+        internal static TextSpan HeaderSpanIncludingInitializer(this ConstructorDeclarationSyntax constructorDeclaration)
         {
             if (constructorDeclaration == null)
                 throw new ArgumentNullException(nameof(constructorDeclaration));
@@ -1971,6 +1971,11 @@ namespace Roslynator.CSharp.Extensions
             return list.IndexOf(kind) != -1;
         }
 
+        public static SeparatedSyntaxList<TNode> ReplaceAt<TNode>(this SeparatedSyntaxList<TNode> list, int index, TNode newNode) where TNode : SyntaxNode
+        {
+            return list.Replace(list[index], newNode);
+        }
+
         public static bool IsFirst<TNode>(this SeparatedSyntaxList<TNode> list, TNode node) where TNode : SyntaxNode
         {
             return list.IndexOf(node) == 0;
@@ -1980,11 +1985,6 @@ namespace Roslynator.CSharp.Extensions
         {
             return list.Any()
                 && list.IndexOf(node) == list.Count - 1;
-        }
-
-        public static SeparatedSyntaxList<TNode> ReplaceAt<TNode>(this SeparatedSyntaxList<TNode> list, int index, TNode newNode) where TNode : SyntaxNode
-        {
-            return list.Replace(list[index], newNode);
         }
         #endregion
 
@@ -2939,7 +2939,7 @@ namespace Roslynator.CSharp.Extensions
             return tokenList.IndexOf(kind) != -1;
         }
 
-        public static bool ContainsAny(this SyntaxTokenList tokenList, SyntaxKind kind1, SyntaxKind kind2)
+        internal static bool ContainsAny(this SyntaxTokenList tokenList, SyntaxKind kind1, SyntaxKind kind2)
         {
             foreach (SyntaxToken token in tokenList)
             {
@@ -2955,7 +2955,7 @@ namespace Roslynator.CSharp.Extensions
             return false;
         }
 
-        public static bool ContainsAny(this SyntaxTokenList tokenList, SyntaxKind kind1, SyntaxKind kind2, SyntaxKind kind3)
+        internal static bool ContainsAny(this SyntaxTokenList tokenList, SyntaxKind kind1, SyntaxKind kind2, SyntaxKind kind3)
         {
             foreach (SyntaxToken token in tokenList)
             {
