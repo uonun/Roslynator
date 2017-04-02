@@ -80,7 +80,8 @@ namespace Roslynator.CSharp.Extensions
 
             SyntaxNode root = await document.GetSyntaxRootAsync(cancellationToken).ConfigureAwait(false);
 
-            SyntaxNode newRoot = Remover.RemoveComments(root, removeOptions, span)
+            SyntaxNode newRoot = root
+                .RemoveComments(removeOptions, span)
                 .WithFormatterAnnotation();
 
             return document.WithSyntaxRoot(newRoot);
@@ -96,7 +97,8 @@ namespace Roslynator.CSharp.Extensions
 
             SyntaxNode root = await document.GetSyntaxRootAsync(cancellationToken).ConfigureAwait(false);
 
-            SyntaxNode newRoot = Remover.RemoveComments(root, removeOptions)
+            SyntaxNode newRoot = root
+                .RemoveComments(removeOptions)
                 .WithFormatterAnnotation();
 
             return document.WithSyntaxRoot(newRoot);

@@ -105,7 +105,8 @@ namespace Roslynator.CSharp.Refactorings
                 propertyDeclaration = propertyDeclaration.ReplaceNode(setter, newSetter);
             }
 
-            AccessorListSyntax accessorList = Remover.RemoveWhitespaceOrEndOfLineTrivia(propertyDeclaration.AccessorList)
+            AccessorListSyntax accessorList = propertyDeclaration.AccessorList
+                .RemoveWhitespaceOrEndOfLineTrivia()
                 .WithCloseBraceToken(propertyDeclaration.AccessorList.CloseBraceToken.WithLeadingTrivia(NewLineTrivia()));
 
             return propertyDeclaration

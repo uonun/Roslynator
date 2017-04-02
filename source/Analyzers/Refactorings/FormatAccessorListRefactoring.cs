@@ -169,7 +169,7 @@ namespace Roslynator.CSharp.Refactorings
                                 propertyDeclaration.Identifier.Span.End,
                                 accessorList.CloseBraceToken.Span.Start);
 
-                            PropertyDeclarationSyntax newNode = Remover.RemoveWhitespaceOrEndOfLineTrivia(propertyDeclaration, span);
+                            PropertyDeclarationSyntax newNode = propertyDeclaration.RemoveWhitespaceOrEndOfLineTrivia(span);
 
                             newNode = newNode.WithFormatterAnnotation();
 
@@ -183,7 +183,7 @@ namespace Roslynator.CSharp.Refactorings
                                 indexerDeclaration.ParameterList.CloseBracketToken.Span.End,
                                 accessorList.CloseBraceToken.Span.Start);
 
-                            IndexerDeclarationSyntax newNode = Remover.RemoveWhitespaceOrEndOfLineTrivia(indexerDeclaration, span);
+                            IndexerDeclarationSyntax newNode = indexerDeclaration.RemoveWhitespaceOrEndOfLineTrivia(span);
 
                             newNode = newNode.WithFormatterAnnotation();
 
@@ -234,7 +234,8 @@ namespace Roslynator.CSharp.Refactorings
                     .LeadingTrivia
                     .Add(NewLineTrivia());
 
-                return Remover.RemoveWhitespaceOrEndOfLineTrivia(accessorList)
+                return accessorList
+                    .RemoveWhitespaceOrEndOfLineTrivia()
                     .WithCloseBraceToken(accessorList.CloseBraceToken.WithLeadingTrivia(triviaList));
             }
             else
@@ -243,7 +244,7 @@ namespace Roslynator.CSharp.Refactorings
                 {
                     if (ShouldBeFormatted(f))
                     {
-                        return Remover.RemoveWhitespaceOrEndOfLineTrivia(f, f.Span);
+                        return f.RemoveWhitespaceOrEndOfLineTrivia(f.Span);
                     }
                     else
                     {

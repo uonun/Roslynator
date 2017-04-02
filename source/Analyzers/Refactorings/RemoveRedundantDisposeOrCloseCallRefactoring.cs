@@ -112,7 +112,7 @@ namespace Roslynator.CSharp.Refactorings
         {
             var block = (BlockSyntax)expressionStatement.Parent;
 
-            BlockSyntax newBlock = Remover.RemoveStatement(block, expressionStatement);
+            BlockSyntax newBlock = block.RemoveStatement(expressionStatement);
 
             return document.ReplaceNodeAsync(block, newBlock, cancellationToken);
         }

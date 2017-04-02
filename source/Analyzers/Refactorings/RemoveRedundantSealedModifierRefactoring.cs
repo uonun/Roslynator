@@ -56,7 +56,7 @@ namespace Roslynator.CSharp.Refactorings
             MemberDeclarationSyntax memberDeclaration,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            SyntaxNode newNode = Remover.RemoveModifier(memberDeclaration, SyntaxKind.SealedKeyword);
+            SyntaxNode newNode = memberDeclaration.RemoveModifier(SyntaxKind.SealedKeyword);
 
             return document.ReplaceNodeAsync(memberDeclaration, newNode, cancellationToken);
         }

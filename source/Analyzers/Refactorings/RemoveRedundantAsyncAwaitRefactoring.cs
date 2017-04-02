@@ -443,7 +443,7 @@ namespace Roslynator.CSharp.Refactorings
         {
             MethodDeclarationSyntax newNode = AwaitRemover.Visit(methodDeclaration, semanticModel, cancellationToken);
 
-            newNode = Remover.RemoveModifier(newNode, SyntaxKind.AsyncKeyword);
+            newNode = newNode.RemoveModifier(SyntaxKind.AsyncKeyword);
 
             return document.ReplaceNodeAsync(methodDeclaration, newNode, cancellationToken);
         }
@@ -452,7 +452,7 @@ namespace Roslynator.CSharp.Refactorings
         {
             LocalFunctionStatementSyntax newNode = AwaitRemover.Visit(localFunction, semanticModel, cancellationToken);
 
-            newNode = Remover.RemoveModifier(newNode, SyntaxKind.AsyncKeyword);
+            newNode = newNode.RemoveModifier(SyntaxKind.AsyncKeyword);
 
             return document.ReplaceNodeAsync(localFunction, newNode, cancellationToken);
         }

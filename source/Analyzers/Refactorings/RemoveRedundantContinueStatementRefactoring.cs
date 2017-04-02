@@ -94,7 +94,7 @@ namespace Roslynator.CSharp.Refactorings
         {
             var block = (BlockSyntax)continueStatement.Parent;
 
-            SyntaxNode newBlock = Remover.RemoveStatement(block, continueStatement);
+            SyntaxNode newBlock = block.RemoveStatement(continueStatement);
 
             return document.ReplaceNodeAsync(block, newBlock, cancellationToken);
         }

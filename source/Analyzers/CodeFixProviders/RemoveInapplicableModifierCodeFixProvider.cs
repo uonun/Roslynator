@@ -14,6 +14,7 @@ using System;
 using System.Threading;
 using Roslynator.Extensions;
 using Roslynator.CodeFixes.Extensions;
+using Roslynator.CSharp.Extensions;
 
 namespace Roslynator.CSharp.CodeFixProviders
 {
@@ -52,7 +53,7 @@ namespace Roslynator.CSharp.CodeFixProviders
         {
             SyntaxNode node = token.Parent;
 
-            SyntaxNode newNode = Remover.RemoveModifier(node, token);
+            SyntaxNode newNode = node.RemoveModifier(token);
 
             return document.ReplaceNodeAsync(node, newNode, cancellationToken);
         }

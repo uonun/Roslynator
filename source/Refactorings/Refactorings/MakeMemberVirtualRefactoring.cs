@@ -107,7 +107,8 @@ namespace Roslynator.CSharp.Refactorings
 
             AccessorListSyntax accessorList = AccessorList(List(accessors));
 
-            accessorList = Remover.RemoveWhitespaceOrEndOfLineTrivia(accessorList)
+            accessorList = accessorList
+                .RemoveWhitespaceOrEndOfLineTrivia()
                 .WithCloseBraceToken(accessorList.CloseBraceToken.WithLeadingTrivia(NewLineTrivia()));
 
             return indexerDeclaration

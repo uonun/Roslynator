@@ -11,7 +11,9 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 using Roslynator.CSharp.Documentation;
+using Roslynator.CSharp.Helpers;
 using Roslynator.CSharp.Syntax;
+using Roslynator.CSharp.SyntaxRewriters;
 using Roslynator.Extensions;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
@@ -2836,6 +2838,50 @@ namespace Roslynator.CSharp.Extensions
             }
 
             return parent;
+        }
+
+        internal static TNode RemoveStatement<TNode>(this TNode node, StatementSyntax statement) where TNode : SyntaxNode
+        {
+            if (node == null)
+                throw new ArgumentNullException(nameof(node));
+
+            if (statement == null)
+                throw new ArgumentNullException(nameof(statement));
+
+            return node.RemoveNode(statement, Remover.GetRemoveOptions(statement));
+        }
+
+        internal static TNode RemoveModifier<TNode>(this TNode node, SyntaxKind modifierKind) where TNode : SyntaxNode
+        {
+            return RemoveModifierHelper.RemoveModifier(node, modifierKind);
+        }
+
+        internal static TNode RemoveModifier<TNode>(this TNode node, SyntaxToken modifier) where TNode : SyntaxNode
+        {
+            return RemoveModifierHelper.RemoveModifier(node, modifier);
+        }
+
+        public static TNode RemoveComments<TNode>(this TNode node, CommentRemoveOptions removeOptions) where TNode : SyntaxNode
+        {
+            return CommentRemover.RemoveComments(node, removeOptions);
+        }
+
+        public static TNode RemoveComments<TNode>(this TNode node, CommentRemoveOptions removeOptions, TextSpan span) where TNode : SyntaxNode
+        {
+            return CommentRemover.RemoveComments(node, removeOptions, span);
+        }
+
+        public static TNode RemoveTrivia<TNode>(this TNode node, TextSpan? span = null) where TNode : SyntaxNode
+        {
+            if (node == null)
+                throw new ArgumentNullException(nameof(node));
+
+            return TriviaRemover.RemoveTrivia(node, span);
+        }
+
+        public static TNode RemoveWhitespaceOrEndOfLineTrivia<TNode>(this TNode node, TextSpan? span = null) where TNode : SyntaxNode
+        {
+            return WhitespaceOrEndOfLineTriviaRemover.RemoveWhitespaceOrEndOfLineTrivia(node, span);
         }
         #endregion
 

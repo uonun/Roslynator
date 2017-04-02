@@ -31,7 +31,8 @@ namespace Roslynator.CSharp.Formatting
 
         public static TNode ToSingleLine<TNode>(TNode node) where TNode : SyntaxNode
         {
-            return Remover.RemoveWhitespaceOrEndOfLineTrivia(node, node.Span)
+            return node
+                .RemoveWhitespaceOrEndOfLineTrivia(node.Span)
                 .WithFormatterAnnotation();
         }
 
